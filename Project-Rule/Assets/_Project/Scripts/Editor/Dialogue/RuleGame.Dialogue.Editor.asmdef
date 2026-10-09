@@ -1,0 +1,7 @@
+{
+  "name": "RuleGame.Dialogue.Editor",
+  "rootNamespace": "RuleGame.Editor.Dialogue",
+  "references": ["RuleGame.Dialogue", "RuleGame.Dialogue.UI", "RuleGame.Dialogue.Lab", "RuleGame.Core", "RuleGame.Infrastructure", "YarnSpinner.Unity", "YarnSpinner.Unity.Editor"],
+  "includePlatforms": ["Editor"],
+  "autoReferenced": true
+}

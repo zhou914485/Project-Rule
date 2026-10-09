@@ -1,0 +1,16 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+    <ui:Style src="Dialogue.uss" />
+    <ui:VisualElement class="dialogue-screen" picking-mode="Ignore">
+        <ui:VisualElement name="dialogueRoot" class="dialogue-paper hidden">
+            <ui:VisualElement class="dialogue-heading">
+                <ui:Label name="dialogueSpeaker" class="dialogue-speaker" />
+            </ui:VisualElement>
+            <ui:Label name="dialogueLine" class="dialogue-line" />
+            <ui:VisualElement class="dialogue-footer">
+                <ui:Label name="dialogueHint" class="dialogue-hint" />
+                <ui:Button name="dialogueClose" text="结束交谈" class="dialogue-close" />
+                <ui:Button name="dialogueNext" text="继续" class="dialogue-next" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

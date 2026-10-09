@@ -1,0 +1,6 @@
+{
+  "name": "RuleGame.Dialogue.Lab",
+  "rootNamespace": "RuleGame.Development.Dialogue",
+  "references": ["RuleGame.Dialogue", "RuleGame.Core", "RuleGame.Infrastructure"],
+  "autoReferenced": true
+}

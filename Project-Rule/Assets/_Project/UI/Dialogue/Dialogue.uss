@@ -1,0 +1,55 @@
+.dialogue-screen {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    color: #21211f;
+    -unity-font-definition: url("DialogueChineseFont.asset");
+}
+.dialogue-paper {
+    position: absolute;
+    left: 4%;
+    bottom: 6%;
+    width: 84%;
+    max-width: 920px;
+    background-color: #f2f1eb;
+    border-left-width: 7px;
+    border-left-color: #21211f;
+    border-bottom-width: 3px;
+    border-bottom-color: #21211f;
+    padding: 22px 28px 18px 25px;
+}
+.dialogue-paper Label { margin: 0; padding: 0; }
+.dialogue-heading { flex-direction: row; align-items: center; margin-bottom: 15px; }
+.dialogue-speaker { font-size: 24px; -unity-font-style: bold; flex-grow: 1; }
+.dialogue-note { font-size: 13px; color: #777771; }
+.dialogue-line { font-size: 24px; white-space: normal; min-height: 74px; }
+.dialogue-footer { flex-direction: row; align-items: center; margin-top: 12px; }
+.dialogue-hint { flex-grow: 1; color: #777771; font-size: 12px; white-space: normal; }
+.dialogue-paper Button {
+    background-image: none;
+    min-height: 44px;
+    min-width: 84px;
+    margin: 0 0 0 12px;
+    padding: 8px 14px;
+    border-radius: 0;
+    border-width: 2px;
+    border-color: #21211f;
+    color: #21211f;
+    background-color: #f2f1eb;
+    font-size: 16px;
+    -unity-font-style: bold;
+}
+.dialogue-paper .dialogue-next { background-color: #21211f; color: #f2f1eb; }
+.dialogue-paper Button:hover { background-color: #dadad2; color: #21211f; }
+.dialogue-paper Button:focus {
+    border-top-color: #21211f;
+    border-right-color: #21211f;
+    border-bottom-color: #21211f;
+    border-left-color: #21211f;
+    background-image: none;
+}
+.dialogue-paper .dialogue-next:focus { background-color: #21211f; color: #f2f1eb; }
+.dialogue-paper Button:active { translate: 0 2px; }
+.hidden { display: none; }

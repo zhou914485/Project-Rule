@@ -1,0 +1,61 @@
+// 示例角色：路边的人不愿挪窝；看门的人盼着下班；记事的人总在改稿。
+// 共 34 条正文（含兜底）。看门的人每轮连续说 6 句，角色经历暂作示例，不是正式设定。
+// rule_active 读取当前规则表；rule_seen 只供回顾，且必须先检查 history_ready。
+title: Observer
+---
+=> 路边的人: 这回坐下可费劲了。 <<if world_ready() and rule_active("Gravity", "Revert")>> #line:observer_revert
+=> 路边的人: 腿麻了。站不起来，也坐不回去。 <<if world_ready() and rule_active("Gravity", "Nullify")>> #line:observer_nullify
+=> 路边的人: 嗯。屁股还认得地。 <<if world_ready() and rule_active("Gravity", "Constant")>> #line:observer_constant
+=> 路边的人: 你先走。我跟地板处得挺好。 <<if world_ready() and rule_active("Gravity", "Enhance")>> #line:observer_enhance
+=> 路边的人: 跺了下脚。没什么气势。 <<if world_ready() and rule_active("Gravity", "Weaken")>> #line:observer_weaken
+=> 路边的人: 谁说我没出息？我可是上过天花板的人。 <<if world_ready() and history_ready() and rule_seen("Gravity", "Revert") and not rule_present("Gravity")>> #line:observer_history
+=> 路边的人: 坐会儿？这块地暂时归我。 #line:observer_generic
+===
+
+title: ObserverFallback
+---
+路边的人: 坐会儿？这块地暂时归我。 #line:observer_fallback
+===
+
+title: Caretaker
+---
+=> 看门的人: 门在下面。你要是从上面走，我就当没看见。 <<if world_ready() and rule_active("Gravity", "Revert")>> #line:caretaker_revert
+=> 看门的人: 别飘着过门。蹭着门框，我还得补漆。 <<if world_ready() and rule_active("Gravity", "Nullify")>> #line:caretaker_nullify
+=> 看门的人: 脚踏实地的，省得我老往上看。 <<if world_ready() and rule_active("Gravity", "Constant")>> #line:caretaker_constant
+=> 看门的人: 别跟地较劲。它今天占便宜。 <<if world_ready() and rule_active("Gravity", "Enhance")>> #line:caretaker_enhance
+=> 看门的人: 这一步迈得够久的。还过不过？ <<if world_ready() and rule_active("Gravity", "Weaken")>> #line:caretaker_weaken
+=> 看门的人: 刚才我还琢磨，要不要在天花板上再装个门。 <<if world_ready() and history_ready() and rule_seen("Gravity", "Revert") and not rule_present("Gravity")>> #line:caretaker_history
+=> 看门的人: 过门可以。别顺手把门带走。 #line:caretaker_generic
+// line group 只决定开场白；后面的普通正文仍属于同一轮对话，不重新启动 Host。
+看门的人: 我原先是来修门的。 #line:caretaker_chat_01
+看门的人: 修好了，他们说：来都来了，顺便看着吧。 #line:caretaker_chat_02
+看门的人: 一看就是八年。 #line:caretaker_chat_03
+看门的人: 所以你要是打不开，先别急着找我。 #line:caretaker_chat_04
+看门的人: 让我先高兴一会儿。 #line:caretaker_chat_05
+===
+
+title: CaretakerFallback
+---
+看门的人: 过门可以。别顺手把门带走。 #line:caretaker_fallback
+看门的人: 我原先是来修门的。 #line:caretaker_fallback_chat_01
+看门的人: 修好了，他们说：来都来了，顺便看着吧。 #line:caretaker_fallback_chat_02
+看门的人: 一看就是八年。 #line:caretaker_fallback_chat_03
+看门的人: 所以你要是打不开，先别急着找我。 #line:caretaker_fallback_chat_04
+看门的人: 让我先高兴一会儿。 #line:caretaker_fallback_chat_05
+===
+
+title: Archivist
+---
+=> 记事的人: 「东西往上掉。」……这句怎么写都像错字。 <<if world_ready() and rule_active("Gravity", "Revert")>> #line:archivist_revert
+=> 记事的人: 「掉落」划掉。划早了，还没想好换什么。 <<if world_ready() and rule_active("Gravity", "Nullify")>> #line:archivist_nullify
+=> 记事的人: 这回不用改句子。只改日期。 <<if world_ready() and rule_active("Gravity", "Constant")>> #line:archivist_constant
+=> 记事的人: 今天这页写得短。抬笔累。 <<if world_ready() and rule_active("Gravity", "Enhance")>> #line:archivist_enhance
+=> 记事的人: 笔尖没压住。字都瘦了一圈。 <<if world_ready() and rule_active("Gravity", "Weaken")>> #line:archivist_weaken
+=> 记事的人: 前一页写往上，后一页写往下。别替我撕，都是亲眼见的。 <<if world_ready() and history_ready() and rule_seen("Gravity", "Revert") and not rule_present("Gravity")>> #line:archivist_history
+=> 记事的人: 问路去隔壁。我这里有昨天的路。 #line:archivist_generic
+===
+
+title: ArchivistFallback
+---
+记事的人: 先别报名字。墨还没磨好。 #line:archivist_fallback
+===

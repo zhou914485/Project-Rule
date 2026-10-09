@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5409df8fca2c03648a927d23f4822942, type: 3}
+  m_Name: DialogueContent
+  m_EditorClassIdentifier: RuleGame.Dialogue::RuleGame.Gameplay.Dialogue.DialogueContent
+  _project: {fileID: 7545569452688597077, guid: 88a2fe8fe504bf64b9021f4ca17ff589, type: 3}
+  _scripts:
+  - {fileID: -8253061345870894857, guid: 7154c9fed75de1a42b4e17f89b3013f9, type: 3}
+  _speakers:
+  - Id: observer
+    DisplayName: "\u8DEF\u8FB9\u7684\u4EBA"
+    EntryNode: Observer
+    FallbackNode: ObserverFallback
+  - Id: caretaker
+    DisplayName: "\u770B\u95E8\u7684\u4EBA"
+    EntryNode: Caretaker
+    FallbackNode: CaretakerFallback
+  - Id: archivist
+    DisplayName: "\u8BB0\u4E8B\u7684\u4EBA"
+    EntryNode: Archivist
+    FallbackNode: ArchivistFallback

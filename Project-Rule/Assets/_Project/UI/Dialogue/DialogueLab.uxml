@@ -1,0 +1,19 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/_Project/UI/Dialogue/DialogueLab.uss?fileID=7433441132597879392&amp;guid=092904d215f0f624cb872fb6ba671f96&amp;type=3#DialogueLab"/>
+    <ui:VisualElement picking-mode="Ignore" class="lab-screen">
+        <ui:VisualElement class="lab-controls">
+            <ui:Label text="台词试播" class="lab-title"/>
+            <ui:Label text="选个人聊聊。" class="lab-caption"/>
+            <ui:VisualElement class="lab-row">
+                <ui:Button name="reverseGravity" text="重力反转"/>
+                <ui:Button name="clearRules" text="清空规则"/>
+            </ui:VisualElement>
+            <ui:VisualElement class="lab-row">
+                <ui:Button name="observer" text="路边的人"/>
+                <ui:Button name="caretaker" text="看门的人"/>
+                <ui:Button name="archivist" text="记事的人"/>
+            </ui:VisualElement>
+            <ui:Label text="继续：显示整句 / 下一句。可随时结束交谈。" class="lab-caption"/>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

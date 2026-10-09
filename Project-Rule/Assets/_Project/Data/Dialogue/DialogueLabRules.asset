@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e5aec2675f40084a90a7b12ea06a904, type: 3}
+  m_Name: DialogueLabRules
+  m_EditorClassIdentifier: RuleGame.Core::RuleGame.Core.Rules.RuleCatalog
+  _rules:
+  - {fileID: 11400000, guid: 5f8dd8700176f4d40bf5180278f9b0c4, type: 2}
+  - {fileID: 11400000, guid: 4240051627dff7d42a87f5a1d553e55a, type: 2}
+  - {fileID: 11400000, guid: b24c9075c185aee479a4821175dc555c, type: 2}
+  - {fileID: 11400000, guid: 8559f83af167d6f408ee2bf89f53bf45, type: 2}
+  - {fileID: 11400000, guid: ec3bf3d6ce509224784cd083643b2ccc, type: 2}

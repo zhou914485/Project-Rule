@@ -1,0 +1,6 @@
+{
+  "name": "RuleGame.Dialogue",
+  "rootNamespace": "RuleGame.Gameplay.Dialogue",
+  "references": ["RuleGame.Core", "RuleGame.Infrastructure", "YarnSpinner.Unity"],
+  "autoReferenced": true
+}

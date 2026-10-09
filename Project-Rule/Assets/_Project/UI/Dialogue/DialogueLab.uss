@@ -1,0 +1,9 @@
+.lab-screen { position: absolute; left: 0; top: 0; right: 0; bottom: 0; -unity-font-definition: url("DialogueChineseFont.asset"); color: #21211f; }
+.lab-controls { position: absolute; top: 7%; left: 4%; right: 4%; }
+.lab-title { font-size: 40px; -unity-font-style: bold; margin-bottom: 8px; }
+.lab-caption { font-size: 15px; color: #777771; white-space: normal; margin: 4px 0 14px 0; }
+.lab-row { flex-direction: row; flex-wrap: wrap; }
+.lab-row Button { padding: 10px 18px; margin: 0 12px 10px 0; min-height: 44px; border-width: 2px; border-color: #21211f; border-radius: 0; background-color: #f2f1eb; color: #21211f; font-size: 17px; }
+.lab-row Button:hover { background-color: #21211f; color: #f2f1eb; }
+.lab-row Button { background-image: none; }
+.lab-row Button:focus { background-image: none; border-color: #21211f; }
