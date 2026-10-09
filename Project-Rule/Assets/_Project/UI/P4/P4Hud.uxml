@@ -1,0 +1,137 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/_Project/UI/P4/P4Hud.uss?fileID=7433441132597879392&amp;guid=6fd01b8a5adfb414da8094a993fa897e&amp;type=3#P4Hud"/>
+    <ui:VisualElement name="hudRoot" picking-mode="Ignore" class="ui-root" style="top: 0;">
+        <ui:VisualElement picking-mode="Ignore" class="top-left">
+            <ui:Label text="规则游戏" picking-mode="Ignore" class="game-title"/>
+            <ui:VisualElement picking-mode="Ignore" class="vitals">
+                <ui:VisualElement picking-mode="Ignore" class="vital-row">
+                    <ui:Label text="生命" picking-mode="Ignore" class="vital-name"/>
+                    <ui:ProgressBar name="healthBar" low-value="0" high-value="100" value="80" picking-mode="Ignore" class="health-bar"/>
+                    <ui:Label name="healthValue" text="80 / 100" picking-mode="Ignore" class="vital-number"/>
+                </ui:VisualElement>
+                <ui:VisualElement picking-mode="Ignore" class="vital-row">
+                    <ui:Label text="能量" picking-mode="Ignore" class="vital-name"/>
+                    <ui:ProgressBar name="energyBar" low-value="0" high-value="100" value="60" picking-mode="Ignore" class="energy-bar"/>
+                    <ui:Label name="energyValue" text="60 / 100" picking-mode="Ignore" class="vital-number"/>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement picking-mode="Ignore" class="top-right">
+            <ui:Label text="世界此刻" picking-mode="Ignore" class="section-label"/>
+            <ui:VisualElement name="gravityRule" picking-mode="Ignore" class="rule-row hidden">
+                <ui:Label text="重力" picking-mode="Ignore" class="rule-title"/>
+                <ui:Label text="玩家" picking-mode="Ignore" class="rule-source"/>
+                <ui:Label text="30 秒" picking-mode="Ignore" class="rule-time"/>
+            </ui:VisualElement>
+            <ui:VisualElement name="timeRule" picking-mode="Ignore" class="rule-row hidden">
+                <ui:Label text="时间" picking-mode="Ignore" class="rule-title"/>
+                <ui:Label text="玩家" picking-mode="Ignore" class="rule-source"/>
+                <ui:Label text="30 秒" picking-mode="Ignore" class="rule-time"/>
+            </ui:VisualElement>
+            <ui:VisualElement name="frictionRule" picking-mode="Ignore" class="rule-row hidden">
+                <ui:Label text="摩擦" picking-mode="Ignore" class="rule-title"/>
+                <ui:Label text="玩家" picking-mode="Ignore" class="rule-source"/>
+                <ui:Label text="30 秒" picking-mode="Ignore" class="rule-time"/>
+            </ui:VisualElement>
+            <ui:VisualElement name="massRule" picking-mode="Ignore" class="rule-row hidden">
+                <ui:Label text="质量" picking-mode="Ignore" class="rule-title"/>
+                <ui:Label text="玩家" picking-mode="Ignore" class="rule-source"/>
+                <ui:Label text="30 秒" picking-mode="Ignore" class="rule-time"/>
+            </ui:VisualElement>
+            <ui:VisualElement name="relationRule" picking-mode="Ignore" class="rule-row hidden">
+                <ui:Label text="关系" picking-mode="Ignore" class="rule-title"/>
+                <ui:Label text="玩家" picking-mode="Ignore" class="rule-source"/>
+                <ui:Label text="30 秒" picking-mode="Ignore" class="rule-time"/>
+            </ui:VisualElement>
+            <ui:VisualElement name="damageRule" picking-mode="Ignore" class="rule-row hidden">
+                <ui:Label text="伤害 / 生命" picking-mode="Ignore" class="rule-title"/>
+                <ui:Label text="玩家" picking-mode="Ignore" class="rule-source"/>
+                <ui:Label text="30 秒" picking-mode="Ignore" class="rule-time"/>
+            </ui:VisualElement>
+            <ui:VisualElement name="causalityRule" picking-mode="Ignore" class="rule-row hidden">
+                <ui:Label text="因果" picking-mode="Ignore" class="rule-title"/>
+                <ui:Label text="玩家" picking-mode="Ignore" class="rule-source"/>
+                <ui:Label text="30 秒" picking-mode="Ignore" class="rule-time"/>
+            </ui:VisualElement>
+            <ui:Label name="noRules" text="一切照旧。" picking-mode="Ignore" class="empty-rules"/>
+        </ui:VisualElement>
+        <ui:VisualElement picking-mode="Ignore" class="bottom-left">
+            <ui:Label name="objective" text="走到右边的门。" picking-mode="Ignore" class="objective"/>
+            <ui:Label name="statusMessage" text="试着拼一条规则。" picking-mode="Ignore" class="status-message"/>
+            <ui:Label text="A D  移动    空格  跳跃    R  重来" picking-mode="Ignore" class="controls"/>
+            <ui:Label text="重力已接入世界 · 其他词条用于 UI 演示" picking-mode="Ignore" class="demo-note"/>
+        </ui:VisualElement>
+        <ui:VisualElement picking-mode="Ignore" class="bottom-right">
+            <ui:Button name="resetButton" text="重来" class="text-button"/>
+            <ui:Button name="assembleButton" text="Tab 拼规则" class="primary-button"/>
+        </ui:VisualElement>
+        <ui:VisualElement name="assemblyOverlay" class="assembly-overlay hidden">
+            <ui:VisualElement class="assembly-page">
+                <ui:VisualElement class="page-heading">
+                    <ui:VisualElement class="heading-copy">
+                        <ui:Label text="世界暂停" class="eyebrow"/>
+                        <ui:Label text="拼一条新规则。" class="board-title"/>
+                    </ui:VisualElement>
+                    <ui:Button name="closeButton" text="继续游戏  Esc" class="text-button"/>
+                </ui:VisualElement>
+                <ui:VisualElement class="workspace">
+                    <ui:VisualElement class="formula-side">
+                        <ui:Label text="世界的哪一部分，怎样改变？" class="formula-caption"/>
+                        <ui:VisualElement class="formula">
+                            <ui:VisualElement picking-mode="Ignore" class="word-shadow attribute-shadow"/>
+                            <ui:VisualElement picking-mode="Ignore" class="word-shadow relation-shadow"/>
+                            <ui:VisualElement class="formula-slot attribute-slot">
+                                <ui:Label text="属性" class="slot-caption"/>
+                                <ui:Label name="selectedAttribute" text="重力" class="slot-title"/>
+                            </ui:VisualElement>
+                            <ui:Label text="＋" class="formula-plus"/>
+                            <ui:VisualElement class="formula-slot relation-slot">
+                                <ui:Label text="关系" class="slot-caption"/>
+                                <ui:Label name="selectedRelation" text="反转" class="slot-title"/>
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement class="preview">
+                        <ui:Label name="previewTitle" text="重力反转" class="preview-title"/>
+                        <ui:Label name="previewDescription" text="重力向上。你、敌人，还有那些石头，都会向天花板落去。" class="description"/>
+                        <ui:Label name="previewReason" text="这条规则，会影响所有人。" class="preview-reason"/>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement class="word-shelves">
+                    <ui:VisualElement class="word-shelf attributes-shelf">
+                        <ui:Label text="属性词" class="shelf-label"/>
+                        <ui:VisualElement class="choice-row">
+                            <ui:Button name="gravity" text="重力" class="choice-button attribute-choice"/>
+                            <ui:Button name="time" text="时间" class="choice-button attribute-choice"/>
+                            <ui:Button name="friction" text="摩擦" class="choice-button attribute-choice"/>
+                            <ui:Button name="mass" text="质量" class="choice-button attribute-choice"/>
+                            <ui:Button name="relation" text="关系" class="choice-button attribute-choice"/>
+                            <ui:Button name="damage" text="伤害/生命" class="choice-button attribute-choice"/>
+                            <ui:Button name="causality" text="因果" class="choice-button attribute-choice"/>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement class="word-shelf relations-shelf">
+                        <ui:Label text="关系词" class="shelf-label"/>
+                        <ui:VisualElement class="choice-row">
+                            <ui:Button name="revert" text="反转" class="choice-button relation-choice"/>
+                            <ui:Button name="nullify" text="失效" class="choice-button relation-choice"/>
+                            <ui:Button name="constant" text="恒定" class="choice-button relation-choice"/>
+                            <ui:Button name="enhance" text="增强" class="choice-button relation-choice"/>
+                            <ui:Button name="weaken" text="削弱" class="choice-button relation-choice"/>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement class="page-footer">
+                    <ui:VisualElement class="footer-copy">
+                        <ui:Label name="combinationCount" text="可以拼出 35 条规则" class="combination-count"/>
+                        <ui:Label name="assemblyEnergy" text="手中能量 100 / 100" class="muted"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement class="release-copy">
+                        <ui:Label name="previewCost" text="需要 20 能量" class="cost"/>
+                        <ui:Button name="confirmButton" text="让它生效" class="primary-button confirm-button"/>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

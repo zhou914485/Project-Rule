@@ -1,0 +1,321 @@
+{
+  "Source": "Doc/规则矩阵.json",
+  "Version": "2.0（2026-10-04 应用团队决策 D4/D5/D8 后的收敛版）",
+  "Previews": [
+    {
+      "AttributeId": "gravity",
+      "RelationId": "revert",
+      "Title": "重力反转",
+      "Description": "重力反转，g变成负的",
+      "Cost": 20,
+      "Duration": 30,
+      "PendingDesign": false
+    },
+    {
+      "AttributeId": "gravity",
+      "RelationId": "nullify",
+      "Title": "重力失效",
+      "Description": "没有重力，类似太空中",
+      "Cost": 25,
+      "Duration": 30,
+      "PendingDesign": false
+    },
+    {
+      "AttributeId": "gravity",
+      "RelationId": "constant",
+      "Title": "重力恒定",
+      "Description": "重力恢复初始状态",
+      "Cost": 10,
+      "Duration": 30,
+      "PendingDesign": false
+    },
+    {
+      "AttributeId": "gravity",
+      "RelationId": "enhance",
+      "Title": "重力增强",
+      "Description": "重力加大，跳跃高度变低、子弹下坠增大",
+      "Cost": 10,
+      "Duration": 30,
+      "PendingDesign": false
+    },
+    {
+      "AttributeId": "gravity",
+      "RelationId": "weaken",
+      "Title": "重力削弱",
+      "Description": "重力减小，跳跃高度变高，子弹下坠减弱",
+      "Cost": 10,
+      "Duration": 30,
+      "PendingDesign": false
+    },
+    {
+      "AttributeId": "time",
+      "RelationId": "revert",
+      "Title": "时间反转",
+      "Description": "时间倒流，玩家可以回血等",
+      "Cost": 10,
+      "Duration": 10,
+      "PendingDesign": false
+    },
+    {
+      "AttributeId": "time",
+      "RelationId": "nullify",
+      "Title": "时间失效",
+      "Description": "所有基于时间的机制失效（冷却、Buff、Debuff），动画不变",
+      "Cost": 10,
+      "Duration": 10,
+      "PendingDesign": false
+    },
+    {
+      "AttributeId": "time",
+      "RelationId": "constant",
+      "Title": "时间恒定",
+      "Description": "时停，类似武士零里没关的录像带，玩家在时停状态下编排接下来的操作，然后时停结束的时候播放",
+      "Cost": 10,
+      "Duration": 10,
+      "PendingDesign": false
+    },
+    {
+      "AttributeId": "time",
+      "RelationId": "enhance",
+      "Title": "时间增强",
+      "Description": "时间加快",
+      "Cost": 10,
+      "Duration": 10,
+      "PendingDesign": false
+    },
+    {
+      "AttributeId": "time",
+      "RelationId": "weaken",
+      "Title": "时间削弱",
+      "Description": "时间减慢",
+      "Cost": 10,
+      "Duration": 10,
+      "PendingDesign": false
+    },
+    {
+      "AttributeId": "friction",
+      "RelationId": "revert",
+      "Title": "摩擦反转",
+      "Description": "地面变成传送带？",
+      "Cost": 10,
+      "Duration": -1,
+      "PendingDesign": true
+    },
+    {
+      "AttributeId": "friction",
+      "RelationId": "nullify",
+      "Title": "摩擦失效",
+      "Description": "无摩擦力，像在冰面上，只能通过位移或跳跃移动",
+      "Cost": 15,
+      "Duration": -1,
+      "PendingDesign": false
+    },
+    {
+      "AttributeId": "friction",
+      "RelationId": "constant",
+      "Title": "摩擦恒定",
+      "Description": "摩擦力恢复正常",
+      "Cost": 10,
+      "Duration": -1,
+      "PendingDesign": false
+    },
+    {
+      "AttributeId": "friction",
+      "RelationId": "enhance",
+      "Title": "摩擦增强",
+      "Description": "增大摩擦力，移速降低（类似沼泽地？）",
+      "Cost": 10,
+      "Duration": -1,
+      "PendingDesign": true
+    },
+    {
+      "AttributeId": "friction",
+      "RelationId": "weaken",
+      "Title": "摩擦削弱",
+      "Description": "降低摩擦力",
+      "Cost": 10,
+      "Duration": -1,
+      "PendingDesign": false
+    },
+    {
+      "AttributeId": "mass",
+      "RelationId": "revert",
+      "Title": "质量反转",
+      "Description": "重的变轻，轻的变重",
+      "Cost": 10,
+      "Duration": -1,
+      "PendingDesign": false
+    },
+    {
+      "AttributeId": "mass",
+      "RelationId": "nullify",
+      "Title": "质量失效",
+      "Description": "重量都变得极轻",
+      "Cost": 10,
+      "Duration": -1,
+      "PendingDesign": false
+    },
+    {
+      "AttributeId": "mass",
+      "RelationId": "constant",
+      "Title": "质量恒定",
+      "Description": "质量恢复正常",
+      "Cost": 10,
+      "Duration": -1,
+      "PendingDesign": false
+    },
+    {
+      "AttributeId": "mass",
+      "RelationId": "enhance",
+      "Title": "质量增强",
+      "Description": "质量变大",
+      "Cost": 10,
+      "Duration": -1,
+      "PendingDesign": false
+    },
+    {
+      "AttributeId": "mass",
+      "RelationId": "weaken",
+      "Title": "质量削弱",
+      "Description": "质量变轻",
+      "Cost": 10,
+      "Duration": -1,
+      "PendingDesign": false
+    },
+    {
+      "AttributeId": "relation",
+      "RelationId": "revert",
+      "Title": "关系反转",
+      "Description": "敌人自己打起来，朋友自己打起来，敌人保护你，朋友攻击你",
+      "Cost": 10,
+      "Duration": 15,
+      "PendingDesign": false
+    },
+    {
+      "AttributeId": "relation",
+      "RelationId": "nullify",
+      "Title": "关系失效",
+      "Description": "大家互不认识",
+      "Cost": 10,
+      "Duration": 15,
+      "PendingDesign": false
+    },
+    {
+      "AttributeId": "relation",
+      "RelationId": "constant",
+      "Title": "关系恒定",
+      "Description": "关系值不会改变",
+      "Cost": 10,
+      "Duration": 15,
+      "PendingDesign": false
+    },
+    {
+      "AttributeId": "relation",
+      "RelationId": "enhance",
+      "Title": "关系增强",
+      "Description": "关系值修正增强",
+      "Cost": 10,
+      "Duration": 15,
+      "PendingDesign": false
+    },
+    {
+      "AttributeId": "relation",
+      "RelationId": "weaken",
+      "Title": "关系削弱",
+      "Description": "关系值修正减弱",
+      "Cost": 10,
+      "Duration": 15,
+      "PendingDesign": false
+    },
+    {
+      "AttributeId": "damage",
+      "RelationId": "revert",
+      "Title": "伤害/生命反转",
+      "Description": "攻击变回血，回血变攻击",
+      "Cost": 10,
+      "Duration": 10,
+      "PendingDesign": false
+    },
+    {
+      "AttributeId": "damage",
+      "RelationId": "nullify",
+      "Title": "伤害/生命失效",
+      "Description": "攻击和回血都失效",
+      "Cost": 10,
+      "Duration": 10,
+      "PendingDesign": false
+    },
+    {
+      "AttributeId": "damage",
+      "RelationId": "constant",
+      "Title": "伤害/生命恒定",
+      "Description": "攻击和回血都变成定值？",
+      "Cost": 10,
+      "Duration": 10,
+      "PendingDesign": true
+    },
+    {
+      "AttributeId": "damage",
+      "RelationId": "enhance",
+      "Title": "伤害/生命增强",
+      "Description": "增强攻击和回血",
+      "Cost": 10,
+      "Duration": 10,
+      "PendingDesign": false
+    },
+    {
+      "AttributeId": "damage",
+      "RelationId": "weaken",
+      "Title": "伤害/生命削弱",
+      "Description": "减弱攻击和回血",
+      "Cost": 10,
+      "Duration": 10,
+      "PendingDesign": false
+    },
+    {
+      "AttributeId": "causality",
+      "RelationId": "revert",
+      "Title": "因果反转",
+      "Description": "原因和结果互换，受到攻击时攻击者受伤，治疗别人时自己受到治疗",
+      "Cost": 10,
+      "Duration": 10,
+      "PendingDesign": false
+    },
+    {
+      "AttributeId": "causality",
+      "RelationId": "nullify",
+      "Title": "因果失效",
+      "Description": "攻击回血等这类有因果关系的东西都失效？",
+      "Cost": 10,
+      "Duration": 10,
+      "PendingDesign": true
+    },
+    {
+      "AttributeId": "causality",
+      "RelationId": "constant",
+      "Title": "因果恒定",
+      "Description": "因果恢复正常",
+      "Cost": 10,
+      "Duration": 10,
+      "PendingDesign": false
+    },
+    {
+      "AttributeId": "causality",
+      "RelationId": "enhance",
+      "Title": "因果增强",
+      "Description": "因果增强，攻击扩散到周围，治疗扩散到全队",
+      "Cost": 10,
+      "Duration": 10,
+      "PendingDesign": false
+    },
+    {
+      "AttributeId": "causality",
+      "RelationId": "weaken",
+      "Title": "因果削弱",
+      "Description": "因果削弱，效果延迟或减弱",
+      "Cost": 10,
+      "Duration": 10,
+      "PendingDesign": false
+    }
+  ]
+}

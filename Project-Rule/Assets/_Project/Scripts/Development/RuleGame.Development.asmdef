@@ -1,0 +1,9 @@
+{
+  "name": "RuleGame.Development",
+  "rootNamespace": "RuleGame.Development",
+  "references": ["RuleGame.UI", "RuleGame.Core", "RuleGame.Infrastructure", "Unity.InputSystem"],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "autoReferenced": true
+}

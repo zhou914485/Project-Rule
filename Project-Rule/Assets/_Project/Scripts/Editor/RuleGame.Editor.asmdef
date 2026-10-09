@@ -7,7 +7,8 @@
         "RuleGame.Gameplay",
         "RuleGame.Persistence",
         "RuleGame.UI",
-        "RuleGame.Presentation"
+        "RuleGame.Presentation",
+        "RuleGame.Development"
     ],
     "includePlatforms": [
         "Editor"
