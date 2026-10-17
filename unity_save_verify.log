@@ -1,0 +1,513 @@
+[Licensing::Module] Trying to connect to existing licensing client channel...
+[Licensing::IpcConnector] Channel LicenseClient-李哲鑫 doesn't exist
+Built from '6000.3/staging' branch; Version is '6000.3.10f1 (e35f0c77bd8e) revision 14901004'; Using compiler version '194234433'; Build Type 'Release'
+OS: 'Windows 11  (10.0.26200) CoreCountrySpecific' Language: 'zh' Physical Memory: 16077 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1
+System  architecture: x64
+Process architecture: x64
+Date: 2026-10-17T08:38:46Z
+[Licensing::Module] Successfully launched the LicensingClient (PId: 23804)
+
+COMMAND LINE ARGUMENTS:
+C:\Users\KID\Documents\Unity\Editor\Unity.exe
+-batchmode
+-nographics
+-projectPath
+c:\Users\KID\Documents\GitHub\Project-Rule\Project-Rule
+-executeMethod
+RuleGame.Editor.Persistence.PersistenceVerifyHarness.RunFromMenu
+-logFile
+c:\Users\KID\Documents\GitHub\Project-Rule\unity_save_verify.log
+-quit
+Successfully changed project path to: c:\Users\KID\Documents\GitHub\Project-Rule\Project-Rule
+C:/Users/KID/Documents/GitHub/Project-Rule/Project-Rule
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-gfx=262144"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+Player connection [12256]  Target information:
+
+Player connection [12256]  * "[IP] 10.250.40.189 [Port] 55504 [Flags] 2 [Guid] 4206202726 [EditorId] 4206202726 [Version] 1048832 [Id] WindowsEditor(7,KID) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [12256] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [12256] Host joined alternative multi-casting on [225.0.0.222:34997]...
+Input System module state changed to: Initialized.
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-李哲鑫" at "2026-10-17T08:38:47.8439384Z"
+[Package Manager] Connected to IPC stream "Upm-3888" after 0.6 seconds.
+[Licensing::Module] Licensing is not yet initialized.
+[Licensing::Client] Handshaking with LicensingClient:
+  Version:                 1.17.4+4293ba1
+  Session Id:              572fcb0bd9524fabbad12803ce834469
+  Correlation Id:          247ed08859257ce44bae5cc750df446b
+  External correlation Id: 5916068695126275739
+  Machine Id:              dscuQIsrEoTUY61finvEt9Pby0w=
+[Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-李哲鑫" (connect: 0.85s, validation: 0.13s, handshake: 6.53s)
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-李哲鑫-notifications" at "2026-10-17T08:38:54.510807Z"
+[Licensing::Module] Connected to LicensingClient (PId: 23804, launch time: 0.05, total connection time: 7.52s)
+[Licensing::Module] Error: Access token is unavailable; failed to update
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] License group:
+  Id: ewogICJzdWJzR3JvdXAiIDogInVuaXR5IGVkaXRvciIsCiAgIm5hbWVzcGFjZSIgOiAidW5pdHlfZWRpdG9yIiwKICAidHlwZSIgOiAiRURJVE9SIiwKICAidGFnIiA6ICJVbml0eVBlcnNvbmFsXXXX
+  Product: Unity Personal Version
+  Type: Assigned
+  Expiration: Unlimited
+[Licensing::Client] Successfully updated license, isAsync: True, time: 0.03
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] Licensing Background thread has ended after 7.66s
+[Licensing::Module] Licensing is initialized (took 6.45s).
+[Licensing::Client] Successfully resolved entitlement details
+Library Redirect Path: Library/
+[Physics::Module] Selected backend.
+[Physics::Module] Name: PhysX
+[Physics::Module] Id: 0xf2b8ea05
+[Physics::Module] SDK Version: 4.1.2
+[Physics::Module] Integration Version: 1.0.0
+[Physics::Module] Threading Mode: Multi-Threaded
+Refreshing native plugins compatible for Editor in 3.09 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.06 ms.
+Initialize engine version: 6000.3.10f1 (e35f0c77bd8e)
+[Subsystems] Discovering subsystems at path C:/Users/KID/Documents/Unity/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Users/KID/Documents/GitHub/Project-Rule/Project-Rule/Assets
+Forcing GfxDevice: Null
+GfxDevice: creating device client; kGfxThreadingModeNonThreaded
+NullGfxDevice:
+    Version:  NULL 1.0 [1.0]
+    Renderer: Null Device
+    Vendor:   Unity Technologies
+Initialize mono
+Mono path[0] = 'C:/Users/KID/Documents/Unity/Editor/Data/Managed'
+Mono path[1] = 'C:/Users/KID/Documents/Unity/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Users/KID/Documents/Unity/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56888
+Using cacheserver namespaces - metadata:defaultmetadata, artifacts:defaultartifacts
+Using cacheserver namespaces - metadata:defaultmetadata, artifacts:defaultartifacts
+ImportWorker Server TCP listen port: 0
+AcceleratorClientConnectionCallback - disconnected - :0
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Users/KID/Documents/Unity/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.008381 seconds.
+- Loaded All Assemblies, in  1.494 seconds
+Native extension for WindowsStandalone target not found
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:False
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  1.355 seconds
+Domain Reload Profiling: 2840ms
+	BeginReloadAssembly (642ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (0ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (7ms)
+	RebuildCommonClasses (138ms)
+	RebuildNativeTypeToScriptingClass (35ms)
+	initialDomainReloadingComplete (171ms)
+	LoadAllAssembliesAndSetupDomain (497ms)
+		LoadAssemblies (623ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (488ms)
+			TypeCache.Refresh (481ms)
+				TypeCache.ScanAssembly (442ms)
+			BuildScriptInfoCaches (1ms)
+			ResolveRequiredComponents (3ms)
+	FinalizeReload (1357ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (1235ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (158ms)
+			SetLoadedEditorAssemblies (12ms)
+			BeforeProcessingInitializeOnLoad (265ms)
+			ProcessInitializeOnLoadAttributes (529ms)
+			ProcessInitializeOnLoadMethodAttributes (270ms)
+			AfterProcessingInitializeOnLoad (0ms)
+			EditorAssembliesLoaded (1ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (0ms)
+[Licensing::Client] Successfully resolved entitlement details
+Application.AssetDatabase Initial Refresh Start
+Package Manager log level set to [2]
+[Package Manager] Restoring resolved packages state from cache
+[Licensing::Client] Successfully resolved entitlement details
+[Package Manager] Registered 55 packages:
+  Packages from [https://packages.unity.com]:
+    com.unity.ide.rider@3.0.38 (location: C:\Users\KID\Documents\GitHub\Project-Rule\Project-Rule\Library\PackageCache\com.unity.ide.rider@1f60b3138684)
+    com.unity.ide.visualstudio@2.0.26 (location: C:\Users\KID\Documents\GitHub\Project-Rule\Project-Rule\Library\PackageCache\com.unity.ide.visualstudio@a99d56dec63f)
+    com.unity.inputsystem@1.20.0 (location: C:\Users\KID\Documents\GitHub\Project-Rule\Project-Rule\Library\PackageCache\com.unity.inputsystem@7a4e1a2a8194)
+    com.unity.visualscripting@1.9.12 (location: C:\Users\KID\Documents\GitHub\Project-Rule\Project-Rule\Library\PackageCache\com.unity.visualscripting@4edfcc09512f)
+    com.unity.searcher@4.9.4 (location: C:\Users\KID\Documents\GitHub\Project-Rule\Project-Rule\Library\PackageCache\com.unity.searcher@d45a78918735)
+    com.unity.burst@1.8.28 (location: C:\Users\KID\Documents\GitHub\Project-Rule\Project-Rule\Library\PackageCache\com.unity.burst@07790c2d06d9)
+    com.unity.mathematics@1.3.3 (location: C:\Users\KID\Documents\GitHub\Project-Rule\Project-Rule\Library\PackageCache\com.unity.mathematics@19a9377c4ffa)
+    com.unity.collections@2.6.2 (location: C:\Users\KID\Documents\GitHub\Project-Rule\Project-Rule\Library\PackageCache\com.unity.collections@aea9d3bd5e19)
+    com.unity.nuget.mono-cecil@1.11.6 (location: C:\Users\KID\Documents\GitHub\Project-Rule\Project-Rule\Library\PackageCache\com.unity.nuget.mono-cecil@ecb9724e46ff)
+    com.unity.test-framework.performance@3.2.0 (location: C:\Users\KID\Documents\GitHub\Project-Rule\Project-Rule\Library\PackageCache\com.unity.test-framework.performance@0840f58e4562)
+  Built-in packages:
+    com.unity.2d.sprite@1.0.0 (location: C:\Users\KID\Documents\GitHub\Project-Rule\Project-Rule\Library\PackageCache\com.unity.2d.sprite@d14b9d497a24)
+    com.unity.2d.tilemap@1.0.0 (location: C:\Users\KID\Documents\GitHub\Project-Rule\Project-Rule\Library\PackageCache\com.unity.2d.tilemap@f011712243ad)
+    com.unity.render-pipelines.universal@17.3.0 (location: C:\Users\KID\Documents\GitHub\Project-Rule\Project-Rule\Library\PackageCache\com.unity.render-pipelines.universal@37e0d4fc2503)
+    com.unity.test-framework@1.6.0 (location: C:\Users\KID\Documents\GitHub\Project-Rule\Project-Rule\Library\PackageCache\com.unity.test-framework@0b7a23ab2e1d)
+    com.unity.ugui@2.0.0 (location: C:\Users\KID\Documents\GitHub\Project-Rule\Project-Rule\Library\PackageCache\com.unity.ugui@bb329a87fcdc)
+    com.unity.modules.accessibility@1.0.0 (location: C:\Users\KID\Documents\GitHub\Project-Rule\Project-Rule\Library\PackageCache\com.unity.modules.accessibility)
+    com.unity.modules.adaptiveperformance@1.0.0 (location: C:\Users\KID\Documents\GitHub\Project-Rule\Project-Rule\Library\PackageCache\com.unity.modules.adaptiveperformance)
+    com.unity.modules.ai@1.0.0 (location: C:\Users\KID\Documents\GitHub\Project-Rule\Project-Rule\Library\PackageCache\com.unity.modules.ai)
+    com.unity.modules.androidjni@1.0.0 (location: C:\Users\KID\Documents\GitHub\Project-Rule\Project-Rule\Library\PackageCache\com.unity.modules.androidjni)
+    com.unity.modules.animation@1.0.0 (location: C:\Users\KID\Documents\GitHub\Project-Rule\Project-Rule\Library\PackageCache\com.unity.modules.animation)
+    com.unity.modules.assetbundle@1.0.0 (location: C:\Users\KID\Documents\GitHub\Project-Rule\Project-Rule\Library\PackageCache\com.unity.modules.assetbundle)
+    com.unity.modules.audio@1.0.0 (location: C:\Users\KID\Documents\GitHub\Project-Rule\Project-Rule\Library\PackageCache\com.unity.modules.audio)
+    com.unity.modules.cloth@1.0.0 (location: C:\Users\KID\Documents\GitHub\Project-Rule\Project-Rule\Library\PackageCache\com.unity.modules.cloth)
+    com.unity.modules.director@1.0.0 (location: C:\Users\KID\Documents\GitHub\Project-Rule\Project-Rule\Library\PackageCache\com.unity.modules.director)
+    com.unity.modules.imageconversion@1.0.0 (location: C:\Users\KID\Documents\GitHub\Project-Rule\Project-Rule\Library\PackageCache\com.unity.modules.imageconversion)
+    com.unity.modules.imgui@1.0.0 (location: C:\Users\KID\Documents\GitHub\Project-Rule\Project-Rule\Library\PackageCache\com.unity.modules.imgui)
+    com.unity.modules.jsonserialize@1.0.0 (location: C:\Users\KID\Documents\GitHub\Project-Rule\Project-Rule\Library\PackageCache\com.unity.modules.jsonserialize)
+    com.unity.modules.particlesystem@1.0.0 (location: C:\Users\KID\Documents\GitHub\Project-Rule\Project-Rule\Library\PackageCache\com.unity.modules.particlesystem)
+    com.unity.modules.physics@1.0.0 (location: C:\Users\KID\Documents\GitHub\Project-Rule\Project-Rule\Library\PackageCache\com.unity.modules.physics)
+    com.unity.modules.physics2d@1.0.0 (location: C:\Users\KID\Documents\GitHub\Project-Rule\Project-Rule\Library\PackageCache\com.unity.modules.physics2d)
+    com.unity.modules.screencapture@1.0.0 (location: C:\Users\KID\Documents\GitHub\Project-Rule\Project-Rule\Library\PackageCache\com.unity.modules.screencapture)
+    com.unity.modules.terrain@1.0.0 (location: C:\Users\KID\Documents\GitHub\Project-Rule\Project-Rule\Library\PackageCache\com.unity.modules.terrain)
+    com.unity.modules.terrainphysics@1.0.0 (location: C:\Users\KID\Documents\GitHub\Project-Rule\Project-Rule\Library\PackageCache\com.unity.modules.terrainphysics)
+    com.unity.modules.tilemap@1.0.0 (location: C:\Users\KID\Documents\GitHub\Project-Rule\Project-Rule\Library\PackageCache\com.unity.modules.tilemap)
+    com.unity.modules.ui@1.0.0 (location: C:\Users\KID\Documents\GitHub\Project-Rule\Project-Rule\Library\PackageCache\com.unity.modules.ui)
+    com.unity.modules.uielements@1.0.0 (location: C:\Users\KID\Documents\GitHub\Project-Rule\Project-Rule\Library\PackageCache\com.unity.modules.uielements)
+    com.unity.modules.umbra@1.0.0 (location: C:\Users\KID\Documents\GitHub\Project-Rule\Project-Rule\Library\PackageCache\com.unity.modules.umbra)
+    com.unity.modules.unityanalytics@1.0.0 (location: C:\Users\KID\Documents\GitHub\Project-Rule\Project-Rule\Library\PackageCache\com.unity.modules.unityanalytics)
+    com.unity.modules.unitywebrequest@1.0.0 (location: C:\Users\KID\Documents\GitHub\Project-Rule\Project-Rule\Library\PackageCache\com.unity.modules.unitywebrequest)
+    com.unity.modules.unitywebrequestassetbundle@1.0.0 (location: C:\Users\KID\Documents\GitHub\Project-Rule\Project-Rule\Library\PackageCache\com.unity.modules.unitywebrequestassetbundle)
+    com.unity.modules.unitywebrequestaudio@1.0.0 (location: C:\Users\KID\Documents\GitHub\Project-Rule\Project-Rule\Library\PackageCache\com.unity.modules.unitywebrequestaudio)
+    com.unity.modules.unitywebrequesttexture@1.0.0 (location: C:\Users\KID\Documents\GitHub\Project-Rule\Project-Rule\Library\PackageCache\com.unity.modules.unitywebrequesttexture)
+    com.unity.modules.unitywebrequestwww@1.0.0 (location: C:\Users\KID\Documents\GitHub\Project-Rule\Project-Rule\Library\PackageCache\com.unity.modules.unitywebrequestwww)
+    com.unity.modules.vectorgraphics@1.0.0 (location: C:\Users\KID\Documents\GitHub\Project-Rule\Project-Rule\Library\PackageCache\com.unity.modules.vectorgraphics)
+    com.unity.modules.vehicles@1.0.0 (location: C:\Users\KID\Documents\GitHub\Project-Rule\Project-Rule\Library\PackageCache\com.unity.modules.vehicles)
+    com.unity.modules.video@1.0.0 (location: C:\Users\KID\Documents\GitHub\Project-Rule\Project-Rule\Library\PackageCache\com.unity.modules.video)
+    com.unity.modules.wind@1.0.0 (location: C:\Users\KID\Documents\GitHub\Project-Rule\Project-Rule\Library\PackageCache\com.unity.modules.wind)
+    com.unity.modules.xr@1.0.0 (location: C:\Users\KID\Documents\GitHub\Project-Rule\Project-Rule\Library\PackageCache\com.unity.modules.xr)
+    com.unity.modules.subsystems@1.0.0 (location: C:\Users\KID\Documents\GitHub\Project-Rule\Project-Rule\Library\PackageCache\com.unity.modules.subsystems)
+    com.unity.modules.hierarchycore@1.0.0 (location: C:\Users\KID\Documents\GitHub\Project-Rule\Project-Rule\Library\PackageCache\com.unity.modules.hierarchycore)
+    com.unity.ext.nunit@2.0.5 (location: C:\Users\KID\Documents\GitHub\Project-Rule\Project-Rule\Library\PackageCache\com.unity.ext.nunit@d8c07649098d)
+    com.unity.render-pipelines.core@17.3.0 (location: C:\Users\KID\Documents\GitHub\Project-Rule\Project-Rule\Library\PackageCache\com.unity.render-pipelines.core@04ab0eefa0c3)
+    com.unity.shadergraph@17.3.0 (location: C:\Users\KID\Documents\GitHub\Project-Rule\Project-Rule\Library\PackageCache\com.unity.shadergraph@c8830f61858d)
+    com.unity.render-pipelines.universal-config@17.0.3 (location: C:\Users\KID\Documents\GitHub\Project-Rule\Project-Rule\Library\PackageCache\com.unity.render-pipelines.universal-config@8dc1aab4af1d)
+  Embedded packages:
+    dev.yarnspinner.unity@file:C:\Users\KID\Documents\GitHub\Project-Rule\Project-Rule\Packages\dev.yarnspinner.unity (location: C:\Users\KID\Documents\GitHub\Project-Rule\Project-Rule\Packages\dev.yarnspinner.unity)
+[Subsystems] No new subsystems found in resolved package list.
+[Package Manager] Done registering packages in 0.06 seconds
+[ScriptCompilation] Requested script compilation because: Assetdatabase observed changes in script compilation related files
+Duplicate assembly 'System.Runtime.CompilerServices.Unsafe.dll' with different versions detected, using 'Packages/com.unity.collections/Unity.Collections.Tests/System.Runtime.CompilerServices.Unsafe/System.Runtime.CompilerServices.Unsafe.dll, AssemblyName=System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a' and ignoring 'Packages/dev.yarnspinner.unity/Editor/Analysis/DLLs/System.Runtime.CompilerServices.Unsafe.dll, AssemblyName=System.Runtime.CompilerServices.Unsafe, Version=4.0.6.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a'.Assembly for Assembly Definition File 'Assets/_Project/Scripts/Presentation/RuleGame.Presentation.asmdef' will not be compiled, because it has no scripts associated with it.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:LogFormat (UnityEngine.LogType,string,object[])
+UnityEngine.Debug:LogWarningFormat (string,object[])
+UnityEditor.Scripting.ScriptCompilation.EditorCompilation:WarnIfThereAreAssembliesWithoutAnyScripts (UnityEditor.Scripting.ScriptCompilation.ScriptAssemblySettings,UnityEditor.Scripting.ScriptCompilation.ScriptAssembly[])
+UnityEditor.Scripting.ScriptCompilation.EditorCompilation:CompileScriptsWithSettings (UnityEditor.Scripting.ScriptCompilation.ScriptAssemblySettings)
+UnityEditor.Scripting.ScriptCompilation.EditorCompilation:CompileScripts (UnityEditor.Scripting.ScriptCompilation.EditorScriptCompilationOptions,UnityEditor.BuildTarget,int,string[])
+UnityEditor.Scripting.ScriptCompilation.EditorCompilationInterface/<>c__DisplayClass21_0:<CompileScripts>b__0 ()
+UnityEditor.Scripting.ScriptCompilation.EditorCompilationInterface:EmitExceptionAsError<UnityEditor.Scripting.ScriptCompilation.EditorCompilation/CompileStatus> (System.Func`1<UnityEditor.Scripting.ScriptCompilation.EditorCompilation/CompileStatus>,UnityEditor.Scripting.ScriptCompilation.EditorCompilation/CompileStatus)
+UnityEditor.Scripting.ScriptCompilation.EditorCompilationInterface:CompileScripts (UnityEditor.Scripting.ScriptCompilation.EditorScriptCompilationOptions,UnityEditor.BuildTarget,int,string[])
+
+Starting: C:\Users\KID\Documents\Unity\Editor\Data\Tools\BuildPipeline\bee_backend.exe --ipc --defer-dag-verification --dagfile="Library/Bee/1900b0aE.dag" --continue-on-failure --profile="Library/Bee/backend1.traceevents" ScriptAssemblies
+WorkingDir: C:/Users/KID/Documents/GitHub/Project-Rule/Project-Rule
+DisplayProgressbar: Compiling Scripts
+ExitCode: 0 Duration: 6s520ms
+[702/905    0s] ILPP-Configuration Library/ilpp-configuration.nevergeneratedoutput
+[901/905    4s] Csc Library/Bee/artifacts/1900b0aE.dag/RuleGame.Editor.dll (+2 others)
+Assets\_Project\Scripts\Editor\Persistence\SaveTestDoubles.cs(69,72): warning CS0067: The event 'SaveTestDoubles.FakePlayerStatus.OnCooldownStarted' is never used
+
+Assets\_Project\Scripts\Editor\Persistence\SaveTestDoubles.cs(68,54): warning CS0067: The event 'SaveTestDoubles.FakePlayerStatus.OnHealthChanged' is never used
+
+Assets\_Project\Scripts\Editor\Persistence\SaveTestDoubles.cs(67,54): warning CS0067: The event 'SaveTestDoubles.FakePlayerStatus.OnEnergyChanged' is never used
+[902/905    0s] ILPostProcess Library/Bee/artifacts/1900b0aE.dag/post-processed/RuleGame.Editor.dll (+pdb)
+Processing assembly Library/Bee/artifacts/1900b0aE.dag/RuleGame.Editor.dll, with 135 defines and 290 references
+
+processors: Unity.Jobs.CodeGen.JobsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+
+running Unity.Jobs.CodeGen.JobsILPostProcessor
+
+running zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[903/905    0s] CopyFiles Library/ScriptAssemblies/RuleGame.Editor.pdb
+[904/905    0s] CopyFiles Library/ScriptAssemblies/RuleGame.Editor.dll
+*** Tundra build success (6.33 seconds), 5 items updated, 905 evaluated
+Assets\_Project\Scripts\Editor\Persistence\SaveTestDoubles.cs(69,72): warning CS0067: The event 'SaveTestDoubles.FakePlayerStatus.OnCooldownStarted' is never used
+Assets\_Project\Scripts\Editor\Persistence\SaveTestDoubles.cs(68,54): warning CS0067: The event 'SaveTestDoubles.FakePlayerStatus.OnHealthChanged' is never used
+Assets\_Project\Scripts\Editor\Persistence\SaveTestDoubles.cs(67,54): warning CS0067: The event 'SaveTestDoubles.FakePlayerStatus.OnEnergyChanged' is never used
+AssetDatabase: script compilation time: 7.811125s
+Begin MonoManager ReloadAssembly
+Duplicate assembly 'System.Runtime.CompilerServices.Unsafe.dll' with different versions detected, using 'Packages/com.unity.collections/Unity.Collections.Tests/System.Runtime.CompilerServices.Unsafe/System.Runtime.CompilerServices.Unsafe.dll, AssemblyName=System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a' and ignoring 'Packages/dev.yarnspinner.unity/Editor/Analysis/DLLs/System.Runtime.CompilerServices.Unsafe.dll, AssemblyName=System.Runtime.CompilerServices.Unsafe, Version=4.0.6.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a'.- Loaded All Assemblies, in  3.392 seconds
+Refreshing native plugins compatible for Editor in 6.58 ms, found 1 plugins.
+Native extension for WindowsStandalone target not found
+Duplicate assembly 'System.Runtime.CompilerServices.Unsafe.dll' with different versions detected, using 'Packages/com.unity.collections/Unity.Collections.Tests/System.Runtime.CompilerServices.Unsafe/System.Runtime.CompilerServices.Unsafe.dll, AssemblyName=System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a' and ignoring 'Packages/dev.yarnspinner.unity/Editor/Analysis/DLLs/System.Runtime.CompilerServices.Unsafe.dll, AssemblyName=System.Runtime.CompilerServices.Unsafe, Version=4.0.6.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a'.ScheduleIndexationOnStartup MainProcess:True IndexOnStartup:True
+Missing types referenced from component UniversalRenderPipelineGlobalSettings on game object UniversalRenderPipelineGlobalSettings:
+	UnityEngine.PathTracing.Core.WorldRenderPipelineResources, Unity.PathTracing.Runtime (1 object)
+	UnityEngine.Rendering.MipGenRenderPipelineRuntimeResources, Unity.RenderPipelines.Universal.Runtime (1 object)
+	UnityEngine.Rendering.Universal.ScreenSpaceAmbientOcclusionBlueNoiseResources, Unity.RenderPipelines.Universal.Runtime (1 object)
+	UnityEngine.Rendering.Universal.ScreenSpaceAmbientOcclusionCoreResources, Unity.RenderPipelines.Universal.Runtime (1 object)
+	UnityEngine.Rendering.Universal.ScreenSpaceReflectionPersistentResources, Unity.RenderPipelines.Universal.Runtime (1 object)
+	UnityEngine.Rendering.Universal.UniversalRenderPipelineFilmGrainResources, Unity.RenderPipelines.Universal.Runtime (1 object)
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  8.858 seconds
+Domain Reload Profiling: 12233ms
+	BeginReloadAssembly (708ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (36ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (222ms)
+	RebuildCommonClasses (96ms)
+	RebuildNativeTypeToScriptingClass (38ms)
+	initialDomainReloadingComplete (124ms)
+	LoadAllAssembliesAndSetupDomain (2408ms)
+		LoadAssemblies (1805ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (920ms)
+			TypeCache.Refresh (685ms)
+				TypeCache.ScanAssembly (656ms)
+			BuildScriptInfoCaches (192ms)
+			ResolveRequiredComponents (34ms)
+	FinalizeReload (8859ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (8224ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (67ms)
+			SetLoadedEditorAssemblies (12ms)
+			BeforeProcessingInitializeOnLoad (553ms)
+			ProcessInitializeOnLoadAttributes (6811ms)
+			ProcessInitializeOnLoadMethodAttributes (754ms)
+			AfterProcessingInitializeOnLoad (25ms)
+			EditorAssembliesLoaded (1ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (27ms)
+Refreshing native plugins compatible for Editor in 4.46 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=7a6733052b46a924aba4e1f0988c28b7): Total: 23.198 seconds - Initiated by InitialRefreshV2(ForceSynchronousImport)
+	Summary:
+		Imports: total=0 (actual=0, local cache=0, cache server=0)
+		Asset DB Process Time: managed=0 ms, native=10657 ms
+		Asset DB Callback time: managed=1073 ms, native=105 ms
+		Scripting: domain reloads=1, domain reload time=3394 ms, compile time=7816 ms, other=150 ms
+		Project Asset Count: scripts=1220, non-scripts=2014
+		Asset File Changes: new=0, changed=1, moved=0, deleted=0
+		Scan Filter Count: 0
+	InvokeCustomDependenciesCallbacks: 0.004ms
+	InvokePackagesCallback: 84.470ms
+	ApplyChangesToAssetFolders: 3.129ms
+	Scan: 592.496ms
+	OnSourceAssetsModified: 2.982ms
+	CategorizeAssetsWithTransientArtifact: 192.608ms
+	ProcessAssetsWithTransientArtifactChanges: 198.796ms
+	CategorizeAssets: 242.100ms
+	ImportOutOfDateAssets: 8886.303ms (1063.559ms without children)
+		CompileScripts: 7816.106ms
+		ReloadNativeAssets: 0.049ms
+		UnloadImportedAssets: 2.470ms
+		EnsureUptoDateAssetsAreRegisteredWithGuidPM: 1.540ms
+		InitializingProgressBar: 0.001ms
+		PostProcessAllAssetNotificationsAddChangedAssets: 0.001ms
+		OnDemandSchedulerStart: 2.577ms
+	PostProcessAllAssets: 1091.124ms
+	Hotreload: 12.702ms
+	GatherAllCurrentPrimaryArtifactRevisions: 1.350ms
+	UnloadStreamsBegin: 4.098ms
+	PersistCurrentRevisions: 0.318ms
+	UnloadStreamsEnd: 0.002ms
+	GenerateScriptTypeHashes: 11.812ms
+	Untracked: 11885.602ms
+
+Application.AssetDatabase Initial Refresh End
+Scanning for USB devices : 4.199ms
+Initializing Unity extensions:
+[MODES] ModeService[none].Initialize
+[MODES] ModeService[none].LoadModes
+[MODES] Loading mode Default (0) for mode-current-id-Project-Rule
+Unloading 78 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 5754 unused Assets / (12.5 MB). Loaded Objects now: 6449.
+Memory consumption went from 205.0 MB to 192.5 MB.
+Total: 36.369700 ms (FindLiveObjects: 0.721800 ms CreateObjectMapping: 0.524300 ms MarkObjects: 18.248400 ms  DeleteObjects: 16.872300 ms)
+
+[SaveSystem] 存档反序列化失败，按无档处理：JSON parse error: Missing a name for object member.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:LogError (object)
+RuleGame.Persistence.SaveSystem:Load () (at Assets/_Project/Scripts/Persistence/SaveSystem.cs:242)
+RuleGame.Editor.Persistence.SaveSystemVerifier:Run () (at Assets/_Project/Scripts/Editor/Persistence/SaveSystemVerifier.cs:190)
+RuleGame.Editor.Persistence.PersistenceVerifyHarness:RunFromMenu () (at Assets/_Project/Scripts/Editor/Persistence/PersistenceVerifyHarness.cs:14)
+
+(Filename: Assets/_Project/Scripts/Persistence/SaveSystem.cs Line: 242)
+
+[SaveSystem] 无法识别的规则 Id，已跳过："totally.notarule"。
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:LogWarning (object)
+RuleGame.Persistence.SaveSystem:ReapplyRule (string) (at Assets/_Project/Scripts/Persistence/SaveSystem.cs:175)
+RuleGame.Persistence.SaveSystem:Apply (RuleGame.Infrastructure.Persistence.SaveData) (at Assets/_Project/Scripts/Persistence/SaveSystem.cs:157)
+RuleGame.Editor.Persistence.SaveSystemVerifier:Run () (at Assets/_Project/Scripts/Editor/Persistence/SaveSystemVerifier.cs:205)
+RuleGame.Editor.Persistence.PersistenceVerifyHarness:RunFromMenu () (at Assets/_Project/Scripts/Editor/Persistence/PersistenceVerifyHarness.cs:14)
+
+(Filename: Assets/_Project/Scripts/Persistence/SaveSystem.cs Line: 175)
+
+[SaveSystem] 无法识别的规则 Id，已跳过：""。
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:LogWarning (object)
+RuleGame.Persistence.SaveSystem:ReapplyRule (string) (at Assets/_Project/Scripts/Persistence/SaveSystem.cs:175)
+RuleGame.Persistence.SaveSystem:Apply (RuleGame.Infrastructure.Persistence.SaveData) (at Assets/_Project/Scripts/Persistence/SaveSystem.cs:157)
+RuleGame.Editor.Persistence.SaveSystemVerifier:Run () (at Assets/_Project/Scripts/Editor/Persistence/SaveSystemVerifier.cs:205)
+RuleGame.Editor.Persistence.PersistenceVerifyHarness:RunFromMenu () (at Assets/_Project/Scripts/Editor/Persistence/PersistenceVerifyHarness.cs:14)
+
+(Filename: Assets/_Project/Scripts/Persistence/SaveSystem.cs Line: 175)
+
+===== 存档系统验证：通过 42，失败 0 =====
+[1 无档启动]
+  ✓ 无档时 Load 返回 null
+  ✓ 未 Apply 前历史未就绪
+  ✓ 未就绪时 TryHasActivated 返回 false
+  ✓ Apply(null) 后历史就绪
+  ✓ 新游戏历史为空（查 mass.enhance = false）
+[2 采集]
+  ✓ 前置：质量增强请求成功
+  ✓ 采集到激活规则 mass.enhance
+  ✓ 当前关卡为 1
+  ✓ 通关标记含 1
+  ✓ 激活历史记录了 1 条
+  ✓ 历史查询口能查到激活过
+  ✓ 历史查询口对没发生过的规则回答 false
+[3 写盘]
+  ✓ 存档已写入
+  ✓ JSON 含规则 Id
+  ✓ JSON 含版本号
+[4 跨实例恢复]
+  ✓ 读到存档
+  ✓ 规则槽位恢复（Mass/Enhance 激活）
+  ✓ 规则效果真的重新执行了（MassScale ≠ 1，不是只写槽位）
+  ✓ 恢复前的 Weaken 被清掉（世界先回初态再重放）
+  ✓ 关卡进度恢复
+  ✓ 通关标记恢复
+  ✓ 玩家能量恢复为 42
+  ✓ 玩家生命恢复为 77
+  ✓ 已解锁属性恢复
+  ✓ 已解锁关系恢复
+  ✓ 历史随档恢复（1 条）
+  ✓ 重放不污染历史（仍为 1 条，不翻倍）
+  ✓ Apply 期间不触发自动存档（写盘 0 次）
+[5 自动存档]
+  ✓ 关卡开头自动存档一次
+  ✓ 关卡结尾再自动存档一次
+  ✓ 自动存档内容正确（关卡=3）
+  ✓ 自动存档含本关激活的规则
+[6 容错]
+  ✓ 损坏 JSON 不抛异常
+  ✓ 损坏 JSON 返回 null
+  ✓ 坏 Id / null Id 不抛异常
+  ✓ 好 Id 仍正常恢复
+[7 文件存储]
+  ✓ 初始不存在
+  ✓ 读不存在的档返回 null
+  ✓ 写入后存在
+  ✓ 读回内容一致
+  ✓ 清除后不存在
+[8 解绑]
+  ✓ Dispose 后关卡事件不再写盘
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+RuleGame.Editor.Persistence.PersistenceVerifyHarness:RunFromMenu () (at Assets/_Project/Scripts/Editor/Persistence/PersistenceVerifyHarness.cs:14)
+
+(Filename: Assets/_Project/Scripts/Editor/Persistence/PersistenceVerifyHarness.cs Line: 14)
+
+Batchmode quit successfully invoked - shutting down!
+Curl error 42: Callback aborted
+Start importing ProjectSettings/Physics2DSettings.asset using Guid(00000000000000005100000000000000) (LibraryAssetImporter) -> (artifact id: 'bb8ce7f5b2d944741959db20200075a7') in 0.0555102 seconds
+Refreshing native plugins compatible for Editor in 3.75 ms, found 1 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Asset Pipeline Refresh (id=22130e424a8fd9444bb8eb613fc5bdc6): Total: 0.476 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+	Summary:
+		Imports: total=1 (actual=1, local cache=0, cache server=0)
+		Asset DB Process Time: managed=13 ms, native=216 ms
+		Asset DB Callback time: managed=238 ms, native=7 ms
+		Scripting: domain reloads=0, domain reload time=0 ms, compile time=0 ms, other=0 ms
+		Project Asset Count: scripts=1220, non-scripts=2014
+		Asset File Changes: new=0, changed=0, moved=0, deleted=0
+		Scan Filter Count: 1
+	InvokeCustomDependenciesCallbacks: 0.001ms
+	InvokePackagesCallback: 0.001ms
+	ApplyChangesToAssetFolders: 0.267ms
+	Scan: 80.560ms
+	OnSourceAssetsModified: 0.001ms
+	CategorizeAssetsWithTransientArtifact: 0.020ms
+	ProcessAssetsWithTransientArtifactChanges: 0.102ms
+	CategorizeAssets: 73.600ms
+	ImportOutOfDateAssets: 67.941ms (0.740ms without children)
+		ImportManagerImport: 64.729ms (4.581ms without children)
+			ImportInProcess: 60.034ms
+			UpdateCategorizedAssets: 0.114ms
+		ReloadNativeAssets: 0.050ms
+		UnloadImportedAssets: 0.441ms
+		ReloadImportedAssets: 0.001ms
+		EnsureUptoDateAssetsAreRegisteredWithGuidPM: 0.933ms
+		InitializingProgressBar: 0.001ms
+		PostProcessAllAssetNotificationsAddChangedAssets: 0.001ms
+		OnDemandSchedulerStart: 1.044ms
+	PostProcessAllAssets: 241.113ms
+	Hotreload: 4.560ms
+	GatherAllCurrentPrimaryArtifactRevisions: 0.352ms
+	UnloadStreamsBegin: 0.177ms
+	PersistCurrentRevisions: 0.289ms
+	UnloadStreamsEnd: 0.002ms
+	Untracked: 6.724ms
+
+[Physics::Module] Cleanup current backend.
+[Physics::Module] Id: 0xf2b8ea05
+Input System module state changed to: ShutdownInProgress.
+Input System polling thread exited.
+Input System module state changed to: Shutdown.
+[Licensing::IpcConnector] LicenseClient-李哲鑫-notifications channel disconnected successfully.
+[Licensing::IpcConnector] LicenseClient-李哲鑫 channel disconnected successfully.
+AcceleratorClientConnectionCallback - disconnected - :0
+Cleanup mono
+Exiting batchmode successfully now!
+Exiting without the bug reporter. Application will terminate with return code 0
