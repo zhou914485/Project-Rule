@@ -22,6 +22,8 @@ namespace RuleGame.Gameplay.Enemy
         public EnemyActor FlyingMinionPrefab;
         public EnemyActor Summoner;
         public EnemyWeakPoint WeakPoint;
+        [Tooltip("玩家身体阻挡层，用于移动与生成点避让；攻击查询使用 Hurtbox.Mask。")]
+        public LayerMask PlayerMask = 1;
         public Sprite ProjectileSprite;
         [Tooltip("光束原点，例如闹钟表盘轴心；未设置时使用身体中心。")]
         public Transform BeamOrigin;
@@ -199,7 +201,7 @@ namespace RuleGame.Gameplay.Enemy
         {
             if (Combat == null || !HasTarget) return;
             _swingTargets.Clear();
-            Combat.PerformAttack(this, center, size, PlayerMask, Definition.Damage, 7f, _swingTargets);
+            Combat.PerformAttack(this, center, size, Definition.Damage, 7f, _swingTargets);
             EmitFeedback(EnemyFeedbackKind.AreaStrike, center, Motor.Up);
         }
         public void Beam(float angle, float width, float warning = 0.65f)
