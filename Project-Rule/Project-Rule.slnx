@@ -6,6 +6,7 @@
   <Project Path="RuleGame.Infrastructure.csproj" />
   <Project Path="RuleGame.UI.csproj" />
   <Project Path="YarnSpinner.Unity.Editor.csproj" />
+  <Project Path="RuleGame.Npcs.csproj" />
   <Project Path="RuleGame.Presentation.csproj" />
   <Project Path="RuleGame.Development.csproj" />
   <Project Path="YarnSpinner.Unity.Tests.Editor.csproj" />
@@ -13,7 +14,9 @@
   <Project Path="YarnSpinner.Unity.Tests.csproj" />
   <Project Path="YarnSpinner.Unity.Tests.Shared.csproj" />
   <Project Path="YarnSpinnerTests.CommandsInAnAssemblyDefinition.csproj" />
+  <Project Path="RuleGame.Npcs.Editor.csproj" />
   <Project Path="RuleGame.Dialogue.Editor.csproj" />
+  <Project Path="RuleGame.NpcLab.csproj" />
   <Project Path="RuleGame.Dialogue.Lab.csproj" />
   <Project Path="RuleGame.Dialogue.UI.csproj" />
 </Solution>
