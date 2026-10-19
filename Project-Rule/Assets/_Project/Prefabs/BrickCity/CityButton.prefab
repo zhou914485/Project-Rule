@@ -105,6 +105,7 @@ GameObject:
   - component: {fileID: 3630901073924850033}
   - component: {fileID: 3886320486053166524}
   - component: {fileID: 1775104327189007895}
+  - component: {fileID: 1204719534185749578}
   m_Layer: 0
   m_Name: CityButton
   m_TagString: Untagged
@@ -232,6 +233,20 @@ MonoBehaviour:
   Toggle: 0
   IsOn: 0
   FollowMotor: {fileID: 0}
+  PressByPlayerProximity: 0
   OnChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1204719534185749578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6192745225451598917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8d605734018946908f0e729baff9df6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: RuleGame.Presentation::RuleGame.Presentation.Audio.MechanismSfxPresenter
+  _minimumImpactSpeed: 1.5

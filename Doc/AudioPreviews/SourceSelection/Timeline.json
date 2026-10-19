@@ -1,0 +1,214 @@
+{
+  "BeforeAfter": [
+    {
+      "time": 0,
+      "cue": "Land",
+      "version": "before"
+    },
+    {
+      "time": 0.56,
+      "cue": "Land",
+      "version": "selected"
+    },
+    {
+      "time": 1.16,
+      "cue": "SwordLight",
+      "version": "before"
+    },
+    {
+      "time": 1.74,
+      "cue": "SwordLight",
+      "version": "selected"
+    },
+    {
+      "time": 2.42,
+      "cue": "Hurt",
+      "version": "before"
+    },
+    {
+      "time": 3.07,
+      "cue": "Hurt",
+      "version": "selected"
+    },
+    {
+      "time": 3.78,
+      "cue": "EnemyHitWood",
+      "version": "before"
+    },
+    {
+      "time": 4.56,
+      "cue": "EnemyHitWood",
+      "version": "selected"
+    },
+    {
+      "time": 5.26,
+      "cue": "EnemyHitMetal",
+      "version": "before"
+    },
+    {
+      "time": 5.97,
+      "cue": "EnemyHitMetal",
+      "version": "selected"
+    },
+    {
+      "time": 6.66,
+      "cue": "SwitchOn",
+      "version": "before"
+    },
+    {
+      "time": 7.51,
+      "cue": "SwitchOn",
+      "version": "selected"
+    },
+    {
+      "time": 8.14,
+      "cue": "BreakStone",
+      "version": "before"
+    },
+    {
+      "time": 9.5,
+      "cue": "BreakStone",
+      "version": "selected"
+    },
+    {
+      "time": 10.87,
+      "cue": "Explosion",
+      "version": "before"
+    },
+    {
+      "time": 12.1,
+      "cue": "Explosion",
+      "version": "selected"
+    }
+  ],
+  "Player": [
+    {
+      "time": 0.2,
+      "cue": "Jump"
+    },
+    {
+      "time": 1.0,
+      "cue": "AirJump"
+    },
+    {
+      "time": 1.77,
+      "cue": "WallJump"
+    },
+    {
+      "time": 2.55,
+      "cue": "Land"
+    },
+    {
+      "time": 3.1,
+      "cue": "Dash"
+    },
+    {
+      "time": 3.67,
+      "cue": "SwordLight"
+    },
+    {
+      "time": 4.3,
+      "cue": "SwordHeavy"
+    },
+    {
+      "time": 4.98,
+      "cue": "Hurt"
+    }
+  ],
+  "Wheel": [
+    {
+      "time": 0.2,
+      "cue": "WheelOpen"
+    },
+    {
+      "time": 0.83,
+      "cue": "WheelPreview"
+    },
+    {
+      "time": 1.33,
+      "cue": "WheelConfirm"
+    },
+    {
+      "time": 2.05,
+      "cue": "WheelCancel"
+    },
+    {
+      "time": 2.71,
+      "cue": "WheelBack"
+    },
+    {
+      "time": 3.17,
+      "cue": "WheelError"
+    }
+  ],
+  "World": [
+    {
+      "time": 0.2,
+      "cue": "EnemyMelee"
+    },
+    {
+      "time": 0.83,
+      "cue": "EnemyShot"
+    },
+    {
+      "time": 1.57,
+      "cue": "EnemyBeam"
+    },
+    {
+      "time": 2.69,
+      "cue": "EnemyHitWood"
+    },
+    {
+      "time": 3.34,
+      "cue": "EnemyHitMetal"
+    },
+    {
+      "time": 3.97,
+      "cue": "EnemyHitSoft"
+    },
+    {
+      "time": 4.48,
+      "cue": "EnemyDeathWood"
+    },
+    {
+      "time": 5.63,
+      "cue": "EnemyDeathMetal"
+    },
+    {
+      "time": 6.6,
+      "cue": "EnemyDeathSoft"
+    },
+    {
+      "time": 7.32,
+      "cue": "SwitchOn"
+    },
+    {
+      "time": 7.9,
+      "cue": "SwitchOff"
+    },
+    {
+      "time": 8.53,
+      "cue": "ImpactStone"
+    },
+    {
+      "time": 9.3,
+      "cue": "ImpactMetal"
+    },
+    {
+      "time": 9.91,
+      "cue": "ImpactWood"
+    },
+    {
+      "time": 10.55,
+      "cue": "BreakStone"
+    },
+    {
+      "time": 11.87,
+      "cue": "BreakWood"
+    },
+    {
+      "time": 13.1,
+      "cue": "Explosion"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+Source-selected SFX for Project Rule. All selected original materials: CC0-1.0.
+https://creativecommons.org/publicdomain/zero/1.0/
+
+Kenney: Impact Sounds, Interface Sounds, RPG Audio, Sci-Fi Sounds.
+https://kenney.nl/assets/impact-sounds
+https://kenney.nl/assets/interface-sounds
+https://kenney.nl/assets/rpg-audio
+https://kenney.nl/assets/sci-fi-sounds
+
+Listener: Sound effects for platformer.
+https://opengameart.org/content/sound-effects-for-platformer
+
+rubberduck: 80 CC0 RPG SFX.
+https://opengameart.org/content/80-cc0-rpg-sfx
+
+Independent.nu (submitted by qubodup): 37 hits/punches; 35 wooden cracks/hits/destructions.
+https://opengameart.org/content/37-hitspunches
+https://opengameart.org/content/35-wooden-crackshitsdestructions
+
+StarNinjas: 10 Impact/Shield Blocks.
+https://opengameart.org/content/10-impactshield-blocks
+https://opengameart.org/users/starninjas
+
+Prepared: excerpts, gain, brief de-click fades and stated foley layers. No EQ.
+Full per-clip recipes, untouched source files and hashes: Doc/AudioSources/SelectedSfxManifest.json.

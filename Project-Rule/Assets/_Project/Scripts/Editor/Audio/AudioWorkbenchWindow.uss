@@ -1,0 +1,77 @@
+.audio-workbench {
+    padding: 10px;
+    flex-grow: 1;
+}
+.workbench-heading {
+    font-size: 20px;
+    -unity-font-style: bold;
+    margin-bottom: 8px;
+}
+.workbench-toolbar {
+    flex-direction: row;
+    margin-bottom: 6px;
+    flex-shrink: 0;
+}
+.workbench-toolbar > Button {
+    min-height: 26px;
+    margin-right: 5px;
+}
+.workbench-body {
+    flex-direction: row;
+    flex-grow: 1;
+    min-height: 200px;
+}
+.workbench-list {
+    width: 190px;
+    min-width: 150px;
+    margin-right: 12px;
+    border-right-width: 1px;
+    border-right-color: #636363;
+    padding-right: 8px;
+}
+.workbench-list Button {
+    min-height: 27px;
+    -unity-text-align: middle-left;
+    margin-bottom: 3px;
+}
+.workbench-selected {
+    background-color: #315675;
+    color: #ffffff;
+}
+.workbench-detail {
+    flex-grow: 1;
+    min-width: 280px;
+}
+.workbench-title {
+    font-size: 17px;
+    -unity-font-style: bold;
+    margin-bottom: 8px;
+}
+.workbench-note {
+    white-space: normal;
+    margin-top: 5px;
+    margin-bottom: 8px;
+}
+.workbench-variant {
+    margin-top: 8px;
+    padding: 7px;
+    border-width: 1px;
+    border-color: #636363;
+}
+.workbench-status {
+    white-space: normal;
+    margin-top: 8px;
+    min-height: 30px;
+    flex-shrink: 0;
+}
+.workbench-grow {
+    flex-grow: 1;
+}
+
+.workbench-browser { min-width: 250px; padding-right: 10px; }
+.workbench-configuration { flex-grow: 1; min-width: 530px; padding-left: 10px; }
+.workbench-source-files { flex-grow: 1; min-height: 150px; margin-top: 7px; }
+.workbench-source-row { padding-left: 5px; -unity-text-align: middle-left; overflow: hidden; text-overflow: ellipsis; }
+.workbench-source-path { white-space: normal; font-size: 11px; margin-bottom: 6px; }
+.workbench-drop-zone { min-height: 52px; margin-top: 9px; padding: 8px; border-width: 1px; border-color: #8297a7; -unity-text-align: middle-center; white-space: normal; }
+.workbench-drop-active { background-color: #315675; color: white; }

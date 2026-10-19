@@ -181,7 +181,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a69f0223fead4dc4db1819d26c428d4a, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: RuleGame.Gameplay::RuleGame.Gameplay.Combat.Hurtbox
   _owner: {fileID: 5924847301918334476}
 --- !u!1 &1724828913906976658
@@ -200,6 +200,7 @@ GameObject:
   - component: {fileID: 5924847301918334476}
   - component: {fileID: 5808702222701464018}
   - component: {fileID: 6254490209653734174}
+  - component: {fileID: 4738266767812128076}
   m_Layer: 9
   m_Name: StoneGuard
   m_TagString: Untagged
@@ -234,7 +235,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d5b17e5f0fb818991d232565fec6e1d5, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: RuleGame.Gameplay::RuleGame.Gameplay.Player.EntityStatus
   _energyMax: 100
   _energy: 100
@@ -324,7 +325,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 03f81f7abaebd04478283970d8cfbc34, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: RuleGame.Gameplay::RuleGame.Gameplay.Enemy.EnemyMotor
   SolidMask:
     serializedVersion: 2
@@ -342,7 +343,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e367a6432c3bc2049834a74d9b8f8f63, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: RuleGame.Gameplay::RuleGame.Gameplay.Enemy.EnemyActor
   Definition: {fileID: 11400000, guid: e2ef528ce0ee844d0abcab31155a24ae, type: 2}
   Target: {fileID: 0}
@@ -362,6 +363,8 @@ MonoBehaviour:
   RuntimeSpawned: 0
   ArenaX: {x: -12, y: 12}
   ArenaY: {x: 0, y: 10}
+  PatrolRange: 0
+  PressContactSwitches: 1
 --- !u!114 &5808702222701464018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -372,7 +375,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a7085f702f0e4752bd2383e7a2978b8b, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: RuleGame.Gameplay::RuleGame.Gameplay.Common.RuleAffectedBody
   _applyFriction: 1
   _applyMass: 1
@@ -387,7 +390,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f75c28e2a1ad450598158297d5a141b1, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: RuleGame.Presentation::RuleGame.Presentation.Enemy.FieldMinionView
   Actor: {fileID: 5924847301918334476}
   Body: {fileID: 6016698141925248253}
+--- !u!114 &4738266767812128076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1724828913906976658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5734830a1f2e9419a9db2d4bce1d0f9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: RuleGame.Presentation::RuleGame.Presentation.Audio.EnemySfxPresenter

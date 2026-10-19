@@ -1,0 +1,275 @@
+{
+  "license": "CC0-1.0",
+  "retrieved": "2026-10-18",
+  "source_pages": [
+    "https://kenney.nl/assets/impact-sounds",
+    "https://kenney.nl/assets/interface-sounds",
+    "https://kenney.nl/assets/rpg-audio",
+    "https://opengameart.org/node/86018",
+    "https://kenney.nl/assets/sci-fi-sounds"
+  ],
+  "files": [
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/Kenney/Impact/footstep_wood_000.ogg",
+      "pack": "impact-sounds",
+      "original_path": "Audio/footstep_wood_000.ogg",
+      "sha256": "5f1c252942a220d658121bd9417448cd19649ded9fff2ff15f6e50899373ce8e",
+      "author": "Kenney"
+    },
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/Kenney/Impact/footstep_wood_001.ogg",
+      "pack": "impact-sounds",
+      "original_path": "Audio/footstep_wood_001.ogg",
+      "sha256": "e4f68e1c9fd55b4dc8ca89ed2bbab6f200171bc54bdc18aa96b80d8e7336f462",
+      "author": "Kenney"
+    },
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/Kenney/Impact/footstep_carpet_000.ogg",
+      "pack": "impact-sounds",
+      "original_path": "Audio/footstep_carpet_000.ogg",
+      "sha256": "b9524658b52a99a20590f8feefc103088637fd13ea8ec35811aee785e1f2f330",
+      "author": "Kenney"
+    },
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/Kenney/Impact/footstep_carpet_001.ogg",
+      "pack": "impact-sounds",
+      "original_path": "Audio/footstep_carpet_001.ogg",
+      "sha256": "9af3c3f76705107339e72036e4053bdca3eaa50ad31c8c929f42ce8d40e5d781",
+      "author": "Kenney"
+    },
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/Kenney/Impact/impactWood_medium_000.ogg",
+      "pack": "impact-sounds",
+      "original_path": "Audio/impactWood_medium_000.ogg",
+      "sha256": "1723a9fd25103ed41af06054814e84e65f4a772bac86ab2dc927da93d9592ff5",
+      "author": "Kenney"
+    },
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/Kenney/Impact/impactWood_heavy_000.ogg",
+      "pack": "impact-sounds",
+      "original_path": "Audio/impactWood_heavy_000.ogg",
+      "sha256": "15ff82332f342c30e469215539e1cc57e11b221aa2cf7e11e811d313a9927f3d",
+      "author": "Kenney"
+    },
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/Kenney/Impact/impactMetal_medium_000.ogg",
+      "pack": "impact-sounds",
+      "original_path": "Audio/impactMetal_medium_000.ogg",
+      "sha256": "a96f879fec0864a8938e0c745b6996a6c5679c16a234ce31a01cc995e8401003",
+      "author": "Kenney"
+    },
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/Kenney/Impact/impactBell_heavy_000.ogg",
+      "pack": "impact-sounds",
+      "original_path": "Audio/impactBell_heavy_000.ogg",
+      "sha256": "94b8bb5f2d43ab65e4bcc32b28562416e9bc2c51d9fd4be1e333660ee52f977f",
+      "author": "Kenney"
+    },
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/Kenney/Impact/impactSoft_medium_000.ogg",
+      "pack": "impact-sounds",
+      "original_path": "Audio/impactSoft_medium_000.ogg",
+      "sha256": "7d3ba0bb5e60a11b5d3e558c141303dcf494256675fbf753c0d252d2cf0481e3",
+      "author": "Kenney"
+    },
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/Kenney/Impact/impactPunch_medium_000.ogg",
+      "pack": "impact-sounds",
+      "original_path": "Audio/impactPunch_medium_000.ogg",
+      "sha256": "486988aa2d6440ffc4c62a0e8ccf3c23673ba84424bd4723378d451b7255eb5c",
+      "author": "Kenney"
+    },
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/Kenney/Interface/open_001.ogg",
+      "pack": "interface-sounds",
+      "original_path": "Audio/open_001.ogg",
+      "sha256": "a27c6bb0df7da1e6af5dd5937593c98bc58b6e513f42fe6a3254cd6a6949c648",
+      "author": "Kenney"
+    },
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/Kenney/Interface/close_001.ogg",
+      "pack": "interface-sounds",
+      "original_path": "Audio/close_001.ogg",
+      "sha256": "44af8249b933e0fd35ec957a638bb1a0b01f85b53fbe9674bf77bd3ca3168ef4",
+      "author": "Kenney"
+    },
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/Kenney/Interface/select_001.ogg",
+      "pack": "interface-sounds",
+      "original_path": "Audio/select_001.ogg",
+      "sha256": "aec0c31ea934a35936ae0d2ab8fac8123c93aa5647f935853a58dbaf90278b7a",
+      "author": "Kenney"
+    },
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/Kenney/Interface/confirmation_001.ogg",
+      "pack": "interface-sounds",
+      "original_path": "Audio/confirmation_001.ogg",
+      "sha256": "063564703b6094d70718a3e787a55cc9141611e4ecd6b6637f8828f79b4a8c3a",
+      "author": "Kenney"
+    },
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/Kenney/Interface/error_001.ogg",
+      "pack": "interface-sounds",
+      "original_path": "Audio/error_001.ogg",
+      "sha256": "46e67425d16339772e8d328fb36a49426c9467418686e11beeb71ff84b0f6433",
+      "author": "Kenney"
+    },
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/Kenney/Interface/click_001.ogg",
+      "pack": "interface-sounds",
+      "original_path": "Audio/click_001.ogg",
+      "sha256": "ccfb7fa0cccdd9faec0eb16033c732b1e308d139d80f799161495d58f7adcdb9",
+      "author": "Kenney"
+    },
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/Kenney/Rpg/cloth1.ogg",
+      "pack": "rpg-audio",
+      "original_path": "Audio/cloth1.ogg",
+      "sha256": "ddb93a3671233f95da0e0b10367f082f7eb42fa6caaddcf776410aa8833c747d",
+      "author": "Kenney"
+    },
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/Kenney/Rpg/cloth2.ogg",
+      "pack": "rpg-audio",
+      "original_path": "Audio/cloth2.ogg",
+      "sha256": "8a7451193c38bc05483aec25dd193e163a15d44cf7fff04ac7912573231b0201",
+      "author": "Kenney"
+    },
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/Kenney/Rpg/cloth3.ogg",
+      "pack": "rpg-audio",
+      "original_path": "Audio/cloth3.ogg",
+      "sha256": "a48632d17a4f1416541d261a32a31612e01267144c407fa3ecab3ff410f0085b",
+      "author": "Kenney"
+    },
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/Rpg80/stones_01.ogg",
+      "pack": "80-CC0-RPG-SFX",
+      "author": "rubberduck",
+      "license": "CC0-1.0",
+      "original_path": "stones_01.ogg",
+      "sha256": "d11ce95031c2c36ae2a00979620fa95a7a3f5c6d6f2ac86962ed292aa556be8d"
+    },
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/Rpg80/stones_02.ogg",
+      "pack": "80-CC0-RPG-SFX",
+      "author": "rubberduck",
+      "license": "CC0-1.0",
+      "original_path": "stones_02.ogg",
+      "sha256": "57dc6b85ee986e68ddc4b7fb2b41cc1c885151677d32439fdb299492a3103a65"
+    },
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/Rpg80/wood_01.ogg",
+      "pack": "80-CC0-RPG-SFX",
+      "author": "rubberduck",
+      "license": "CC0-1.0",
+      "original_path": "wood_01.ogg",
+      "sha256": "55d4527a1f7d8e158eff0921f7a533340ab6be69a7b9b52fdac7a19b9d8e1cb2"
+    },
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/Rpg80/wood_02.ogg",
+      "pack": "80-CC0-RPG-SFX",
+      "author": "rubberduck",
+      "license": "CC0-1.0",
+      "original_path": "wood_02.ogg",
+      "sha256": "e64b95a1ec7675f28f8837ee4e4e81aa8e5b28e272159a0b3ed124fed037fc4f"
+    },
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/Rpg80/lock_01.ogg",
+      "pack": "80-CC0-RPG-SFX",
+      "author": "rubberduck",
+      "license": "CC0-1.0",
+      "original_path": "lock_01.ogg",
+      "sha256": "e828ad2a936e34a0212f3309c5ac706c0ded412b9b383a87f10bcfa1d1445271"
+    },
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/Rpg80/spell_01.ogg",
+      "pack": "80-CC0-RPG-SFX",
+      "author": "rubberduck",
+      "license": "CC0-1.0",
+      "original_path": "spell_01.ogg",
+      "sha256": "09821a53c418c5eeeac4fa25bada9d245e822fed302eeeae9ae4151522a45ae5"
+    },
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/Rpg80/spell_fire_02.ogg",
+      "pack": "80-CC0-RPG-SFX",
+      "author": "rubberduck",
+      "license": "CC0-1.0",
+      "original_path": "spell_fire_02.ogg",
+      "sha256": "bf1eef4993f0adb4bd3a1c1ec91f8f6e4ddeb32d922671a14561846d5b7cab98"
+    },
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/Kenney/Impact/impactMetal_heavy_000.ogg",
+      "pack": "impact-sounds",
+      "original_path": "Audio/impactMetal_heavy_000.ogg",
+      "sha256": "e07045693e4a2b3d165c424e3dab4c781d9ff8880a386880ac89a51315d7f831",
+      "author": "Kenney"
+    },
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/Kenney/Impact/impactMetal_heavy_001.ogg",
+      "pack": "impact-sounds",
+      "original_path": "Audio/impactMetal_heavy_001.ogg",
+      "sha256": "83554049f81f4db9209379e103c30bfa63f65c42189a03f300b045c2c82e23ae",
+      "author": "Kenney"
+    },
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/Kenney/Impact/impactSoft_heavy_000.ogg",
+      "pack": "impact-sounds",
+      "original_path": "Audio/impactSoft_heavy_000.ogg",
+      "sha256": "49e7ca88743fca974bb8676ea138b751cfd8f9033b5e7af8736c2a215d6edbc1",
+      "author": "Kenney"
+    },
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/Kenney/Impact/impactSoft_heavy_001.ogg",
+      "pack": "impact-sounds",
+      "original_path": "Audio/impactSoft_heavy_001.ogg",
+      "sha256": "4d0096364ba9e46119d2ff6df493fdc101bd2e1efae061da5e5f77a53b3fdcb6",
+      "author": "Kenney"
+    },
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/Rpg80/creature_hurt_01.ogg",
+      "pack": "80-CC0-RPG-SFX",
+      "author": "rubberduck",
+      "license": "CC0-1.0",
+      "original_path": "creature_hurt_01.ogg",
+      "sha256": "9948f9ce067e1aae7bd780e974d51ceae03f2611a52afffb0e092ba47e9dc8e1"
+    },
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/Rpg80/creature_hurt_02.ogg",
+      "pack": "80-CC0-RPG-SFX",
+      "author": "rubberduck",
+      "license": "CC0-1.0",
+      "original_path": "creature_hurt_02.ogg",
+      "sha256": "a4ea983e62ace874754c51d78239bd8b6532227119bd511c38fa827b2ccbca70"
+    },
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/Kenney/SciFi/explosionCrunch_000.ogg",
+      "pack": "sci-fi-sounds",
+      "author": "Kenney",
+      "license": "CC0-1.0",
+      "source_page": "https://kenney.nl/assets/sci-fi-sounds",
+      "original_path": "Audio/explosionCrunch_000.ogg",
+      "sha256": "4b597d658d0ae101f0a030fbeea5fc3a4292ab85f017470a8254a8e7959cbd69"
+    }
+  ],
+  "authors": [
+    "Kenney",
+    "rubberduck"
+  ],
+  "retired_files": [
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/Kenney/Rpg/knifeSlice.ogg",
+      "pack": "rpg-audio",
+      "original_path": "Audio/knifeSlice.ogg",
+      "sha256": "4cd96dc630bed9840c15f1dd2306da2cc56a4da26a5d3f1a03c5a7265ac5e54f",
+      "author": "Kenney"
+    },
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/Kenney/Rpg/knifeSlice2.ogg",
+      "pack": "rpg-audio",
+      "original_path": "Audio/knifeSlice2.ogg",
+      "sha256": "6c2064d0ef988d1ec3d56868e823ea8823a5cac00f2742560052633529407def",
+      "author": "Kenney"
+    }
+  ]
+}

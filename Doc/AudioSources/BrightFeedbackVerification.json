@@ -1,0 +1,48 @@
+{
+  "baseline_commit": "2c619d0",
+  "measurement": "FFmpeg mono 44.1kHz; 3kHz high-pass and 12kHz low-pass RMS / full-band RMS; values describe PCM, not subjective listening.",
+  "files": [
+    {
+      "cue": "Hurt",
+      "before": {
+        "rms": 0.12749556652193045,
+        "peak": 0.749969482421875,
+        "high_band_relative_db": -37.46005998529907
+      },
+      "after": {
+        "rms": 0.12820883806715497,
+        "peak": 0.749969482421875,
+        "high_band_relative_db": -29.26339625449657
+      },
+      "relative_high_band_increase_db": 8.196663730802499
+    },
+    {
+      "cue": "Land",
+      "before": {
+        "rms": 0.0813559211852023,
+        "peak": 0.749969482421875,
+        "high_band_relative_db": -26.986893047083903
+      },
+      "after": {
+        "rms": 0.08329693838203958,
+        "peak": 0.749969482421875,
+        "high_band_relative_db": -17.13062203740548
+      },
+      "relative_high_band_increase_db": 9.856271009678423
+    },
+    {
+      "cue": "Explosion",
+      "before": {
+        "rms": 0.2050437777860072,
+        "peak": 0.8957971930503845,
+        "high_band_relative_db": -19.467306015607853
+      },
+      "after": {
+        "rms": 0.13649624047188097,
+        "peak": 0.8499755859375,
+        "high_band_relative_db": -13.30794486689354
+      },
+      "relative_high_band_increase_db": 6.159361148714314
+    }
+  ]
+}

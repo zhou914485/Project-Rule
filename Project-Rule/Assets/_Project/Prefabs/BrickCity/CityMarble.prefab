@@ -106,6 +106,7 @@ GameObject:
   - component: {fileID: 1515598471470831139}
   - component: {fileID: 8783869704639266607}
   - component: {fileID: 5507364572635288710}
+  - component: {fileID: 9120597437953166090}
   m_Layer: 9
   m_Name: CityMarble
   m_TagString: Untagged
@@ -175,7 +176,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a5fa15455202b8c498696e56a44cac4c, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: RuleGame.Gameplay::RuleGame.Gameplay.Scene.Components.CityDamageZone
   Damage: 15
   Knockback: 6
@@ -219,7 +220,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a7085f702f0e4752bd2383e7a2978b8b, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: RuleGame.Gameplay::RuleGame.Gameplay.Common.RuleAffectedBody
   _applyFriction: 1
   _applyMass: 1
@@ -234,6 +235,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a98c5aeb411f17a4186bf811e51e8346, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: RuleGame.Gameplay::RuleGame.Gameplay.Scene.Components.CityMarble
   InitialVelocity: {x: 5, y: 7}
+--- !u!114 &9120597437953166090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7882499538619345729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8d605734018946908f0e729baff9df6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: RuleGame.Presentation::RuleGame.Presentation.Audio.MechanismSfxPresenter
+  _minimumImpactSpeed: 1.5

@@ -1,0 +1,6 @@
+Player feedback prepared from Kenney Impact Sounds (CC0 1.0)
+https://kenney.nl/assets/impact-sounds
+PlayerHurt: impactPunch_heavy_003, 0.20s; PlayerLand: footstep_concrete_002, 0.110s.
+Mono PCM16 44100Hz; high-pass 100/140Hz, low-mid cut at 260Hz, high shelf +6/+5dB at 3.5kHz, 14kHz bandwidth cap, short fades.
+Original files, processing and hashes: Doc/AudioSources/PlayerFeedbackManifest.json.
+No voice samples.

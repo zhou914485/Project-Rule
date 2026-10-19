@@ -16,6 +16,8 @@ GameObject:
   - component: {fileID: 1822704453037038788}
   - component: {fileID: 8042909878757348295}
   - component: {fileID: 4803782070948608780}
+  - component: {fileID: 8556318553381149006}
+  - component: {fileID: 8089579300888125441}
   m_Layer: 0
   m_Name: EnemyLabPlayer
   m_TagString: Untagged
@@ -128,16 +130,31 @@ MonoBehaviour:
   _solidLayer:
     serializedVersion: 2
     m_Bits: 256
+  _bodyBlockLayer:
+    serializedVersion: 2
+    m_Bits: 512
   _groundProbeDistance: 0.08
   _surfaceAnchorDistance: 0.05
   _surfaceSlideAngle: 89
+  _windLayer:
+    serializedVersion: 2
+    m_Bits: 0
   _knockbackDecay: 30
+  _pushStrength: 60
+  _pushProbeDistance: 0.15
   _status: {fileID: 3480298681219015247}
   _combat: {fileID: 0}
   _attackDamage: 10
   _attackKnockback: 6
   _attackBoxSize: {x: 1.2, y: 1}
   _attackOffset: 0.8
+  _knifePrefab: {fileID: 0}
+  _knifeOffset: 0.55
+  _knifeHeight: 0.15
+  _knifeSpeed: 16
+  _knifeDamage: 4
+  _knifeKnockback: 4
+  _knifeCooldown: 0.35
   _attackWindup: 0.08
   _attackActive: 0.14
   _attackRecover: 0.18
@@ -151,6 +168,8 @@ MonoBehaviour:
   _heavyBoxSize: {x: 1.4, y: 1.2}
   _heavyBoxOffset: 0.9
   _energyPerHit: 4
+  _respawnOnDeath: 1
+  _respawnDelay: 1.2
 --- !u!114 &3539437654964439885
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -247,6 +266,33 @@ MonoBehaviour:
   _animator: {fileID: 0}
   _renderer: {fileID: 0}
   _status: {fileID: 0}
+--- !u!114 &8556318553381149006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4191270912287155528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 409b352f64a054f0cb228bd97b6664e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: RuleGame.Presentation::RuleGame.Presentation.Audio.SfxPlayer
+  _bank: {fileID: 11400000, guid: c123a1130ff994289986fe76e0fa1e69, type: 2}
+  _volume: 0.85
+  _hearingDistance: 24
+--- !u!114 &8089579300888125441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4191270912287155528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49c7addf7841041ada107382a75e72cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: RuleGame.Presentation::RuleGame.Presentation.Audio.WorldSfxBinder
 --- !u!1 &4957342680674123188
 GameObject:
   m_ObjectHideFlags: 0

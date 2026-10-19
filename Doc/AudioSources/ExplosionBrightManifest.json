@@ -1,0 +1,18 @@
+{
+  "author": "Kenney",
+  "license": "CC0-1.0",
+  "source_page": "https://kenney.nl/assets/sci-fi-sounds",
+  "original": "Project-Rule/Assets/_Project/Audio/SFX/Kenney/SciFi/explosionCrunch_000.ogg",
+  "original_sha256": "4b597d658d0ae101f0a030fbeea5fc3a4292ab85f017470a8254a8e7959cbd69",
+  "processing": "highpass=f=50,equalizer=f=280:t=q:w=0.8:g=-2.5,highshelf=f=3500:g=5,lowpass=f=14000",
+  "normalizing_gain": 0.9741048930475567,
+  "original_rms": 0.2050437777860072,
+  "prepared_rms": 0.1365003855550912,
+  "peak": 0.85,
+  "file": "Doc/AudioPreviews/Explosion/Explosion_Bright.wav",
+  "sha256": "0d29706e77921ae7ba8db166ce15f98b4133a49cea0496c1aaa457a362de3f16",
+  "runtime_file": "Project-Rule/Assets/_Project/Audio/SFX/Kenney/SciFi/Explosion_Bright.wav",
+  "audition": "Doc/AudioPreviews/Explosion/Explosion_Audition.wav",
+  "audition_sha256": "087bcee18512ffaef2547be6af7de443df996367633b7087c38e46d223ee0bf8",
+  "status": "Historical preparation; current runtime sources are recorded by SelectedSfxManifest.json."
+}

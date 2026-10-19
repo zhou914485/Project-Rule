@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1319091654126535112}
   - component: {fileID: 3115460799238357490}
   - component: {fileID: 5348577398120301824}
+  - component: {fileID: 409999145929564336}
   m_Layer: 0
   m_Name: CityTrackBomb
   m_TagString: Untagged
@@ -88,6 +89,7 @@ MonoBehaviour:
   _points:
   - {x: 0, y: 2.4}
   _mode: 0
+  _startProgress: 0
   _speed: 2
   _waitAtPoint: 0
   _running: 1
@@ -160,6 +162,19 @@ MonoBehaviour:
     m_Bits: 4294967295
   Combat: {fileID: 0}
   DetonateOnContact: 1
+--- !u!114 &409999145929564336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6379096022396097264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8d605734018946908f0e729baff9df6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: RuleGame.Presentation::RuleGame.Presentation.Audio.MechanismSfxPresenter
+  _minimumImpactSpeed: 1.5
 --- !u!1 &8460479657672947810
 GameObject:
   m_ObjectHideFlags: 0

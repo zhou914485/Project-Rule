@@ -55,6 +55,8 @@ namespace RuleGame.Gameplay.Scene
 
             if (_streamer == null) _streamer = GetComponent<WorldStreamer>();
             if (_streamer == null) Debug.LogError("[GameRoot] 缺少 WorldStreamer 组件，世界不会加载。", this);
+            // 启动入口尚未放行时，不让 Update 提前加载分区。
+            if (_streamer != null) _streamer.enabled = false;
 
             // TODO(P1 存档)：读档后调用 LevelFlow.SetProgress(current, cleared)，
             // 并让 WorldStreamer 从存档记录的出生点开局。
@@ -66,6 +68,7 @@ namespace RuleGame.Gameplay.Scene
             if (_started) return;
             _started = true;
 
+            if (_streamer != null) _streamer.enabled = true;
             _streamer?.Refresh();
 
             // 开局即「一关开始」：进度状态机立起来，UI / 存档可以订阅。

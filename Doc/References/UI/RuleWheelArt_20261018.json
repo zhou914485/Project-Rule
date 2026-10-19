@@ -1,0 +1,206 @@
+{
+  "sources": {
+    "实心.png": "14e90b3f5119601e6912106a758516585a6141cc478ec580ad19759a17e4118f",
+    "空心.png": "12df6a8554f3d671e2af47dc8f7afdcba6c4ab14bd84c3c255fae23f11ddce37"
+  },
+  "cards": {
+    "Attribute_01_Paper.png": {
+      "crop": [
+        1316,
+        282,
+        1578,
+        534
+      ],
+      "sha256": "a8b2e0d72a02ee2e3bf45deda2a5958ede9b7ebaadd29a863bf5fc88f534b375"
+    },
+    "Attribute_02_Paper.png": {
+      "crop": [
+        1480,
+        432,
+        1722,
+        678
+      ],
+      "sha256": "66b370505d23a427db019a3ec22af0e4d649aeb8a661166208da202a9c8b31cc"
+    },
+    "Attribute_03_Paper.png": {
+      "crop": [
+        1570,
+        624,
+        1788,
+        864
+      ],
+      "sha256": "ab04dfad2b8a3e771438382ce43c50fe499e59dc19669336cd20d60d3ba6416a"
+    },
+    "Attribute_04_Paper.png": {
+      "crop": [
+        1568,
+        862,
+        1788,
+        1102
+      ],
+      "sha256": "a7d203f8b44ac7425f5b7789f7252b5bd355a30a93dced07054d04062b00ee1b"
+    },
+    "Attribute_05_Paper.png": {
+      "crop": [
+        1476,
+        1048,
+        1722,
+        1296
+      ],
+      "sha256": "4027e3e4ff2df7631a3a13d7554d9788ef89b9df3bed595974a9dfc2f411649a"
+    },
+    "Attribute_06_Paper.png": {
+      "crop": [
+        1316,
+        1190,
+        1580,
+        1444
+      ],
+      "sha256": "b7bb6016c3d35a75b1c32ef6b1d7dec06052b5e0e1ec4aa210dec7eb2e6781a4"
+    },
+    "Relation_01_Paper.png": {
+      "crop": [
+        506,
+        354,
+        768,
+        612
+      ],
+      "sha256": "be2e23fbfe512cbcda6bc04664d7f3060a55e3d7f4fbb469c0ba5a5e773c8a31"
+    },
+    "Relation_02_Paper.png": {
+      "crop": [
+        644,
+        534,
+        878,
+        776
+      ],
+      "sha256": "90e43842250b8e4a2d5988a0139163359fb0ed018c31c2cfd762aaadf56e5fff"
+    },
+    "Relation_03_Paper.png": {
+      "crop": [
+        704,
+        744,
+        908,
+        988
+      ],
+      "sha256": "4a6e8c78bf0bd8e831599870e55633f46b8fc1824df114c79763bb689546f7f9"
+    },
+    "Relation_04_Paper.png": {
+      "crop": [
+        652,
+        964,
+        886,
+        1216
+      ],
+      "sha256": "ec604e0539d6025cae8758c4d9e44a576fb2ed97fc09eb75bfc33a38e356d533"
+    },
+    "Relation_05_Paper.png": {
+      "crop": [
+        532,
+        1138,
+        784,
+        1388
+      ],
+      "sha256": "0e089e9171a3569ad2091f169b7ea4ff69442a17762f922d53d44f762a492045"
+    },
+    "Attribute_01_Mask.png": {
+      "crop": [
+        1316,
+        282,
+        1578,
+        534
+      ],
+      "sha256": "41806a26facc20668979aefe62a2b78689c9f2e4651db8812e7ced8926270ad2"
+    },
+    "Attribute_02_Mask.png": {
+      "crop": [
+        1480,
+        432,
+        1722,
+        678
+      ],
+      "sha256": "46c40d9445020d8f77f2977ad9aaa691565cd3e930885c0addc81632e306d300"
+    },
+    "Attribute_03_Mask.png": {
+      "crop": [
+        1570,
+        624,
+        1788,
+        864
+      ],
+      "sha256": "7938078f8e7009f82e80d2b6c99af984194a659211c75a0508008348e069ede5"
+    },
+    "Attribute_04_Mask.png": {
+      "crop": [
+        1568,
+        862,
+        1788,
+        1102
+      ],
+      "sha256": "884c6daa2bf47e2996a54a0a7032e20f659ee06f94a6668508f9fbb6fe765087"
+    },
+    "Attribute_05_Mask.png": {
+      "crop": [
+        1476,
+        1048,
+        1722,
+        1296
+      ],
+      "sha256": "cc078a6f88801d976a60ddfc49dbe49f7a402fb0b9ca5de03ce7bd711d00154a"
+    },
+    "Attribute_06_Mask.png": {
+      "crop": [
+        1316,
+        1190,
+        1580,
+        1444
+      ],
+      "sha256": "6a3a7ddaa15a6999ea66c9c28430dc77095e1bbb36fa358178e4406da90c3887"
+    },
+    "Relation_01_Mask.png": {
+      "crop": [
+        506,
+        354,
+        768,
+        612
+      ],
+      "sha256": "d4dec0d97a9825e9bc3c770a9b7198f7e71a5d808b1fcb799d49b23601b8d351"
+    },
+    "Relation_02_Mask.png": {
+      "crop": [
+        644,
+        534,
+        878,
+        776
+      ],
+      "sha256": "5cbb1e9e64fe5ee0d9b9ca4ae007444308051b467624ae1a5379e5da0aca5ed6"
+    },
+    "Relation_03_Mask.png": {
+      "crop": [
+        704,
+        744,
+        908,
+        988
+      ],
+      "sha256": "5eac6e5bca75e96ec2f89759ab293c4643ca080e6558bdeda15ac7f54f298fa6"
+    },
+    "Relation_04_Mask.png": {
+      "crop": [
+        652,
+        964,
+        886,
+        1216
+      ],
+      "sha256": "8016cf6569814e1160c28f0c0a39ce0349b63ee0d219753d2214ae68c57fe313"
+    },
+    "Relation_05_Mask.png": {
+      "crop": [
+        532,
+        1138,
+        784,
+        1388
+      ],
+      "sha256": "1d9cc38f0e9aa0af833abd05370b6ecb87853e99d7050df581c0fa44a36652a0"
+    }
+  }
+}

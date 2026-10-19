@@ -1,0 +1,5 @@
+Current sword clips: Kenney RPG Audio, CC0-1.0.
+https://kenney.nl/assets/rpg-audio
+Knife-slice excerpts; mono PCM16 44100 Hz, trim, gain and brief de-click fades; no EQ.
+Full recipes/hashes: Doc/AudioSources/SelectedSfxManifest.json
+Historical artisticdude swishes remain documented in SwishesManifest.json but are no longer used here.

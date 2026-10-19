@@ -1,0 +1,747 @@
+[
+  {
+    "cue": "BossRuleCast",
+    "output": "Project-Rule/Assets/_Project/Audio/SFX/Boss/BossPhaseChange.wav",
+    "output_sha256": "c6b451de0076a47d6657fa101b02f6ab67e1c7a5c2af8767c962678f38ff5605",
+    "seconds": 1.4,
+    "peak": 0.85,
+    "rms": 0.09108,
+    "layers": [
+      {
+        "pack": "virix",
+        "source": "Healing Full.wav",
+        "start": 0.0,
+        "end": 1.4,
+        "gain": 1.0,
+        "at": 0.0,
+        "reverse": false,
+        "author": "ViRiX Dreamcore (David Mckee)",
+        "license": "CC-BY-3.0",
+        "url": "https://opengameart.org/content/magic-sfx-sample",
+        "download_url": "https://opengameart.org/sites/default/files/Magic%20SFX%20Preview%20Pack.zip",
+        "archive_sha256": "77f964847ade8e84728a64cfc901d1d18b51459963c68e9f48bd19b0d0d8aa4e",
+        "source_sha256": "ad60bc48be1ac7451771505c0e169590af18241d38ff79b93aa6e5f186b1e54b"
+      }
+    ]
+  },
+  {
+    "cue": "BossSummon",
+    "output": "Project-Rule/Assets/_Project/Audio/SFX/Boss/BossSummon.wav",
+    "output_sha256": "6e7affee503c411ca741a217fc01ba44c16c211e4afd8176b31eb476096310eb",
+    "seconds": 1.1,
+    "peak": 0.64867,
+    "rms": 0.12,
+    "layers": [
+      {
+        "pack": "spells",
+        "source": "teleport.wav",
+        "start": 0.0,
+        "end": 1.1,
+        "gain": 1.0,
+        "at": 0.0,
+        "reverse": false,
+        "author": "Ogrebane",
+        "license": "CC0-1.0",
+        "url": "https://opengameart.org/content/teleport-spell",
+        "download_url": "https://opengameart.org/sites/default/files/teleport.wav",
+        "archive_sha256": "23fe938e7e82931227196bf6b2978ad9154f627af26623acf52958d12125f3b8",
+        "source_sha256": "23fe938e7e82931227196bf6b2978ad9154f627af26623acf52958d12125f3b8"
+      }
+    ]
+  },
+  {
+    "cue": "BossPhaseChange",
+    "output": "Project-Rule/Assets/_Project/Audio/SFX/Boss/BossPhaseChange.wav",
+    "output_sha256": "c6b451de0076a47d6657fa101b02f6ab67e1c7a5c2af8767c962678f38ff5605",
+    "seconds": 1.4,
+    "peak": 0.85,
+    "rms": 0.09108,
+    "layers": [
+      {
+        "pack": "virix",
+        "source": "Healing Full.wav",
+        "start": 0.0,
+        "end": 1.4,
+        "gain": 1.0,
+        "at": 0.0,
+        "reverse": false,
+        "author": "ViRiX Dreamcore (David Mckee)",
+        "license": "CC-BY-3.0",
+        "url": "https://opengameart.org/content/magic-sfx-sample",
+        "download_url": "https://opengameart.org/sites/default/files/Magic%20SFX%20Preview%20Pack.zip",
+        "archive_sha256": "77f964847ade8e84728a64cfc901d1d18b51459963c68e9f48bd19b0d0d8aa4e",
+        "source_sha256": "ad60bc48be1ac7451771505c0e169590af18241d38ff79b93aa6e5f186b1e54b"
+      }
+    ]
+  },
+  {
+    "cue": "BrickBossWindup",
+    "output": "Project-Rule/Assets/_Project/Audio/SFX/Boss/BrickBossWindup.wav",
+    "output_sha256": "ba775e4c0e6435ce0f5904dfe725a02e387d211726d7968b2137363e18f31551",
+    "seconds": 0.4513,
+    "peak": 0.85,
+    "rms": 0.09756,
+    "layers": [
+      {
+        "pack": "swish",
+        "source": "swosh-03.flac",
+        "start": 0.0,
+        "end": null,
+        "gain": 1.0,
+        "at": 0.0,
+        "reverse": false,
+        "author": "qubodup",
+        "license": "CC0-1.0",
+        "url": "https://opengameart.org/content/swish-bamboo-stick-weapon-swhoshes",
+        "download_url": "https://opengameart.org/sites/default/files/swoshes.7z",
+        "archive_sha256": "2d55b26f918a4d8042e2c97a4db81392757195f5aaac9039f5ec2c557b6f11f2",
+        "source_sha256": "2111003e4c61b8f3589f926f549ffc36094319da7b99238624c7d64e91bddc09"
+      },
+      {
+        "pack": "rpg",
+        "source": "Audio/beltHandle1.ogg",
+        "start": 0.0,
+        "end": null,
+        "gain": 0.25,
+        "at": 0.0,
+        "reverse": false,
+        "author": "Kenney",
+        "license": "CC0-1.0",
+        "url": "https://kenney.nl/assets/rpg-audio",
+        "download_url": "https://kenney.nl/media/pages/assets/rpg-audio/8e99002d76-1677590336/kenney_rpg-audio.zip",
+        "archive_sha256": "6dbeaf8544da958d8f2adcb4a4a4b76c1ade34a05f8ab9edccd327da7375f38b",
+        "source_sha256": "2ef665bd8b65dbe669f4560be38a6d8f04a162e618b15a49e3e71b58e558aab0"
+      }
+    ]
+  },
+  {
+    "cue": "BrickBossSlam",
+    "output": "Project-Rule/Assets/_Project/Audio/SFX/Boss/BrickBossSlam.wav",
+    "output_sha256": "fc88fbcc16237570e591d1b1b41a640f365d8eee8967808bb4bff04729ad97ba",
+    "seconds": 0.2974,
+    "peak": 0.85,
+    "rms": 0.12995,
+    "layers": [
+      {
+        "pack": "impact",
+        "source": "Audio/impactWood_heavy_000.ogg",
+        "start": 0.0,
+        "end": null,
+        "gain": 1.0,
+        "at": 0.0,
+        "reverse": false,
+        "author": "Kenney",
+        "license": "CC0-1.0",
+        "url": "https://kenney.nl/assets/impact-sounds",
+        "download_url": "https://kenney.nl/media/pages/assets/impact-sounds/87b4ddecda-1677589768/kenney_impact-sounds.zip",
+        "archive_sha256": "029d734af1582474edf3a694d1b0cebc97c1c152f2f39fa34d4c2bafc5de77f8",
+        "source_sha256": "15ff82332f342c30e469215539e1cc57e11b221aa2cf7e11e811d313a9927f3d"
+      },
+      {
+        "pack": "impact",
+        "source": "Audio/impactPunch_heavy_001.ogg",
+        "start": 0.0,
+        "end": null,
+        "gain": 0.6,
+        "at": 0.0,
+        "reverse": false,
+        "author": "Kenney",
+        "license": "CC0-1.0",
+        "url": "https://kenney.nl/assets/impact-sounds",
+        "download_url": "https://kenney.nl/media/pages/assets/impact-sounds/87b4ddecda-1677589768/kenney_impact-sounds.zip",
+        "archive_sha256": "029d734af1582474edf3a694d1b0cebc97c1c152f2f39fa34d4c2bafc5de77f8",
+        "source_sha256": "f92f5cb6ba4ff2766497292ffd90865654317eeca976f5652e0708dbdcdc0dd9"
+      }
+    ]
+  },
+  {
+    "cue": "BrickBossThrow",
+    "output": "Project-Rule/Assets/_Project/Audio/SFX/Boss/BrickBossThrow.wav",
+    "output_sha256": "9376e2675618febab7d1e756efdb6276aa55cd994de6ab75a352f4235b440039",
+    "seconds": 0.2059,
+    "peak": 0.85,
+    "rms": 0.11929,
+    "layers": [
+      {
+        "pack": "swish",
+        "source": "swosh-08.flac",
+        "start": 0.0,
+        "end": null,
+        "gain": 1.0,
+        "at": 0.0,
+        "reverse": false,
+        "author": "qubodup",
+        "license": "CC0-1.0",
+        "url": "https://opengameart.org/content/swish-bamboo-stick-weapon-swhoshes",
+        "download_url": "https://opengameart.org/sites/default/files/swoshes.7z",
+        "archive_sha256": "2d55b26f918a4d8042e2c97a4db81392757195f5aaac9039f5ec2c557b6f11f2",
+        "source_sha256": "3689120b2577d2cf6ecce7109b40502d9b1f6c96001cf8ae6adaa0d397c5d28f"
+      },
+      {
+        "pack": "impact",
+        "source": "Audio/impactWood_heavy_002.ogg",
+        "start": 0.0,
+        "end": null,
+        "gain": 0.25,
+        "at": 0.0,
+        "reverse": false,
+        "author": "Kenney",
+        "license": "CC0-1.0",
+        "url": "https://kenney.nl/assets/impact-sounds",
+        "download_url": "https://kenney.nl/media/pages/assets/impact-sounds/87b4ddecda-1677589768/kenney_impact-sounds.zip",
+        "archive_sha256": "029d734af1582474edf3a694d1b0cebc97c1c152f2f39fa34d4c2bafc5de77f8",
+        "source_sha256": "ce1e06f2a05f2634c645cb72f6a1623e64bc2d92be34917430a61031fb6597d4"
+      }
+    ]
+  },
+  {
+    "cue": "BrickBossSplit",
+    "output": "Project-Rule/Assets/_Project/Audio/SFX/Boss/BrickBossSplit.wav",
+    "output_sha256": "ac0f54da67300567855cc4dbe6e8e0851d38cadaff5a715996b427e00befca24",
+    "seconds": 0.6,
+    "peak": 0.62908,
+    "rms": 0.14,
+    "layers": [
+      {
+        "pack": "earth",
+        "source": "Earth%20Element%20Magic%20Spell_0.flac",
+        "start": 0.0,
+        "end": 0.6,
+        "gain": 1.0,
+        "at": 0.0,
+        "reverse": false,
+        "author": "qubodup",
+        "license": "CC0-1.0",
+        "url": "https://opengameart.org/content/earth-element-magic-spell",
+        "download_url": "https://opengameart.org/sites/default/files/Earth%20Element%20Magic%20Spell_0.flac",
+        "archive_sha256": "1248f39e7850dc3645e3e2185a38e7a499177649bcec9c793f58aba838281e1e",
+        "source_sha256": "1248f39e7850dc3645e3e2185a38e7a499177649bcec9c793f58aba838281e1e"
+      },
+      {
+        "pack": "impact",
+        "source": "Audio/impactWood_heavy_003.ogg",
+        "start": 0.0,
+        "end": null,
+        "gain": 0.8,
+        "at": 0.06,
+        "reverse": false,
+        "author": "Kenney",
+        "license": "CC0-1.0",
+        "url": "https://kenney.nl/assets/impact-sounds",
+        "download_url": "https://kenney.nl/media/pages/assets/impact-sounds/87b4ddecda-1677589768/kenney_impact-sounds.zip",
+        "archive_sha256": "029d734af1582474edf3a694d1b0cebc97c1c152f2f39fa34d4c2bafc5de77f8",
+        "source_sha256": "af07511902b309b3f6d8f0e1fafbe93869127fb88099ebdc0aa6a00a98dc3cb0"
+      },
+      {
+        "pack": "impact",
+        "source": "Audio/impactWood_heavy_004.ogg",
+        "start": 0.0,
+        "end": null,
+        "gain": 0.5,
+        "at": 0.17,
+        "reverse": false,
+        "author": "Kenney",
+        "license": "CC0-1.0",
+        "url": "https://kenney.nl/assets/impact-sounds",
+        "download_url": "https://kenney.nl/media/pages/assets/impact-sounds/87b4ddecda-1677589768/kenney_impact-sounds.zip",
+        "archive_sha256": "029d734af1582474edf3a694d1b0cebc97c1c152f2f39fa34d4c2bafc5de77f8",
+        "source_sha256": "2c647ae6bd29c72ae2523f7e16e325d8d331b75cc99ab4f637c48a0e11c34677"
+      }
+    ]
+  },
+  {
+    "cue": "ClockBossCharge",
+    "output": "Project-Rule/Assets/_Project/Audio/SFX/Boss/ClockBossCharge.wav",
+    "output_sha256": "fdf43c0bfbdaa5b9fcc3d13d253bdeec18433add25393f83dda524a9834bb234",
+    "seconds": 0.65,
+    "peak": 0.85,
+    "rms": 0.08339,
+    "layers": [
+      {
+        "pack": "clock",
+        "source": "multiwind2.wav",
+        "start": 0.0,
+        "end": 0.65,
+        "gain": 1.0,
+        "at": 0.0,
+        "reverse": false,
+        "author": "Brian MacIntosh (BMacZero)",
+        "license": "CC0-1.0",
+        "url": "https://opengameart.org/content/clock-wind-sounds",
+        "download_url": "https://opengameart.org/sites/default/files/multiwind2.wav",
+        "archive_sha256": "85a4b2fdc7e31a8d429969de4936bc34829a1f18e8d9de33ad58843dba55fbb7",
+        "source_sha256": "85a4b2fdc7e31a8d429969de4936bc34829a1f18e8d9de33ad58843dba55fbb7"
+      },
+      {
+        "pack": "mechanical",
+        "source": "mechanical2.wav",
+        "start": 0.0,
+        "end": null,
+        "gain": 0.45,
+        "at": 0.0,
+        "reverse": false,
+        "author": "Brian MacIntosh (BMacZero)",
+        "license": "CC0-1.0",
+        "url": "https://opengameart.org/content/mechanical-sounds",
+        "download_url": "https://opengameart.org/sites/default/files/mechanical2.wav",
+        "archive_sha256": "27b4b6c3517c90d635295fca48fccd747950f869d680c871662f26038c3665ef",
+        "source_sha256": "27b4b6c3517c90d635295fca48fccd747950f869d680c871662f26038c3665ef"
+      }
+    ]
+  },
+  {
+    "cue": "ClockBossBarrageWarning",
+    "output": "Project-Rule/Assets/_Project/Audio/SFX/Boss/ClockBossBarrageWarning.wav",
+    "output_sha256": "22f9dc1eeab85ddf3555b7d82f364296baffb1772303d34d65ccf908993c6a9c",
+    "seconds": 0.5573,
+    "peak": 0.85,
+    "rms": 0.08721,
+    "layers": [
+      {
+        "pack": "clock",
+        "source": "singlewind1.wav",
+        "start": 0.0,
+        "end": null,
+        "gain": 1.0,
+        "at": 0.0,
+        "reverse": false,
+        "author": "Brian MacIntosh (BMacZero)",
+        "license": "CC0-1.0",
+        "url": "https://opengameart.org/content/clock-wind-sounds",
+        "download_url": "https://opengameart.org/sites/default/files/singlewind1.wav",
+        "archive_sha256": "05216ac924a8616cb7e7862ab1a8b621c86e201b945eebdc5cdd5130c76c8984",
+        "source_sha256": "05216ac924a8616cb7e7862ab1a8b621c86e201b945eebdc5cdd5130c76c8984"
+      },
+      {
+        "pack": "clock",
+        "source": "singlewind2.wav",
+        "start": 0.0,
+        "end": null,
+        "gain": 1.0,
+        "at": 0.16,
+        "reverse": false,
+        "author": "Brian MacIntosh (BMacZero)",
+        "license": "CC0-1.0",
+        "url": "https://opengameart.org/content/clock-wind-sounds",
+        "download_url": "https://opengameart.org/sites/default/files/singlewind2.wav",
+        "archive_sha256": "86a7731f216c682b178a51032d8e5f290816fe4f3f0adb0b75bd205c087f1542",
+        "source_sha256": "86a7731f216c682b178a51032d8e5f290816fe4f3f0adb0b75bd205c087f1542"
+      },
+      {
+        "pack": "clock",
+        "source": "singlewind3.wav",
+        "start": 0.0,
+        "end": null,
+        "gain": 1.0,
+        "at": 0.29,
+        "reverse": false,
+        "author": "Brian MacIntosh (BMacZero)",
+        "license": "CC0-1.0",
+        "url": "https://opengameart.org/content/clock-wind-sounds",
+        "download_url": "https://opengameart.org/sites/default/files/singlewind3.wav",
+        "archive_sha256": "dbe2be55d7778b9b2e57b010a8be10dd081f02941e20bdfb518f1ff341ac4f3b",
+        "source_sha256": "dbe2be55d7778b9b2e57b010a8be10dd081f02941e20bdfb518f1ff341ac4f3b"
+      },
+      {
+        "pack": "rpg",
+        "source": "Audio/metalLatch.ogg",
+        "start": 0.0,
+        "end": null,
+        "gain": 0.5,
+        "at": 0.41,
+        "reverse": false,
+        "author": "Kenney",
+        "license": "CC0-1.0",
+        "url": "https://kenney.nl/assets/rpg-audio",
+        "download_url": "https://kenney.nl/media/pages/assets/rpg-audio/8e99002d76-1677590336/kenney_rpg-audio.zip",
+        "archive_sha256": "6dbeaf8544da958d8f2adcb4a4a4b76c1ade34a05f8ab9edccd327da7375f38b",
+        "source_sha256": "ba9ba60b172b3ebc131a940f25793cd2e207aca7af73dc80d637277f060f1708"
+      }
+    ]
+  },
+  {
+    "cue": "ClockBossBeam",
+    "output": "Project-Rule/Assets/_Project/Audio/SFX/Boss/ClockBossBeam.wav",
+    "output_sha256": "30cc280d5a05a6a942a23e18d0b6755ca0847478dabf96d09106794093fd8517",
+    "seconds": 0.65,
+    "peak": 0.508,
+    "rms": 0.13,
+    "layers": [
+      {
+        "pack": "virix",
+        "source": "Wind effects 5.wav",
+        "start": 0.0,
+        "end": 0.65,
+        "gain": 1.0,
+        "at": 0.0,
+        "reverse": false,
+        "author": "ViRiX Dreamcore (David Mckee)",
+        "license": "CC-BY-3.0",
+        "url": "https://opengameart.org/content/magic-sfx-sample",
+        "download_url": "https://opengameart.org/sites/default/files/Magic%20SFX%20Preview%20Pack.zip",
+        "archive_sha256": "77f964847ade8e84728a64cfc901d1d18b51459963c68e9f48bd19b0d0d8aa4e",
+        "source_sha256": "37424e27cceca69c0bf48a40465a8d7db2889816c67073378668af3317bb974a"
+      },
+      {
+        "pack": "clock",
+        "source": "singlewind3.wav",
+        "start": 0.0,
+        "end": null,
+        "gain": 0.35,
+        "at": 0.0,
+        "reverse": false,
+        "author": "Brian MacIntosh (BMacZero)",
+        "license": "CC0-1.0",
+        "url": "https://opengameart.org/content/clock-wind-sounds",
+        "download_url": "https://opengameart.org/sites/default/files/singlewind3.wav",
+        "archive_sha256": "dbe2be55d7778b9b2e57b010a8be10dd081f02941e20bdfb518f1ff341ac4f3b",
+        "source_sha256": "dbe2be55d7778b9b2e57b010a8be10dd081f02941e20bdfb518f1ff341ac4f3b"
+      }
+    ]
+  },
+  {
+    "cue": "ClockBossRewind",
+    "output": "Project-Rule/Assets/_Project/Audio/SFX/Boss/ClockBossRewind.wav",
+    "output_sha256": "562fb5ba282e244cfd7c3d2f61b61ae1bbd41f31a64048cb74f92e20fedbb69c",
+    "seconds": 0.9519,
+    "peak": 0.85,
+    "rms": 0.07718,
+    "layers": [
+      {
+        "pack": "clock",
+        "source": "multiwind1.wav",
+        "start": 0.0,
+        "end": 0.8,
+        "gain": 1.0,
+        "at": 0.0,
+        "reverse": true,
+        "author": "Brian MacIntosh (BMacZero)",
+        "license": "CC0-1.0",
+        "url": "https://opengameart.org/content/clock-wind-sounds",
+        "download_url": "https://opengameart.org/sites/default/files/multiwind1.wav",
+        "archive_sha256": "c3a60aa4c0da900956b2756dc558b068425d42062869ba6ea11c471f6fa1a585",
+        "source_sha256": "c3a60aa4c0da900956b2756dc558b068425d42062869ba6ea11c471f6fa1a585"
+      },
+      {
+        "pack": "mechanical",
+        "source": "lightclunk2.wav",
+        "start": 0.0,
+        "end": null,
+        "gain": 0.5,
+        "at": 0.65,
+        "reverse": false,
+        "author": "Brian MacIntosh (BMacZero)",
+        "license": "CC0-1.0",
+        "url": "https://opengameart.org/content/mechanical-sounds",
+        "download_url": "https://opengameart.org/sites/default/files/lightclunk2.wav",
+        "archive_sha256": "987be837a5941ded9a81572c319b9bf8f57d9f89741a5781fc7104adc87d60f5",
+        "source_sha256": "987be837a5941ded9a81572c319b9bf8f57d9f89741a5781fc7104adc87d60f5"
+      }
+    ]
+  },
+  {
+    "cue": "ClockBossStun",
+    "output": "Project-Rule/Assets/_Project/Audio/SFX/Boss/ClockBossStun.wav",
+    "output_sha256": "fdda446312c200f8bc74365456e68d125a3a4ba982453d1d4ff8ee68543e037c",
+    "seconds": 0.3763,
+    "peak": 0.85,
+    "rms": 0.09711,
+    "layers": [
+      {
+        "pack": "mechanical",
+        "source": "clank1.wav",
+        "start": 0.0,
+        "end": 0.55,
+        "gain": 1.0,
+        "at": 0.0,
+        "reverse": false,
+        "author": "Brian MacIntosh (BMacZero)",
+        "license": "CC0-1.0",
+        "url": "https://opengameart.org/content/mechanical-sounds",
+        "download_url": "https://opengameart.org/sites/default/files/clank1.wav",
+        "archive_sha256": "899a46a8423fa0ca349b3c70a07a422d1eaa3a58695ce6facfbae074dd70226f",
+        "source_sha256": "899a46a8423fa0ca349b3c70a07a422d1eaa3a58695ce6facfbae074dd70226f"
+      },
+      {
+        "pack": "clock",
+        "source": "singlewind2.wav",
+        "start": 0.0,
+        "end": null,
+        "gain": 0.3,
+        "at": 0.0,
+        "reverse": false,
+        "author": "Brian MacIntosh (BMacZero)",
+        "license": "CC0-1.0",
+        "url": "https://opengameart.org/content/clock-wind-sounds",
+        "download_url": "https://opengameart.org/sites/default/files/singlewind2.wav",
+        "archive_sha256": "86a7731f216c682b178a51032d8e5f290816fe4f3f0adb0b75bd205c087f1542",
+        "source_sha256": "86a7731f216c682b178a51032d8e5f290816fe4f3f0adb0b75bd205c087f1542"
+      }
+    ]
+  },
+  {
+    "cue": "RabbitBossBurrow",
+    "output": "Project-Rule/Assets/_Project/Audio/SFX/Boss/RabbitBossBurrow.wav",
+    "output_sha256": "c60af2b755691fbbdd43ea3433e9cd468ee9841ac5b40f401f71317b7f8efff3",
+    "seconds": 0.4174,
+    "peak": 0.85,
+    "rms": 0.10373,
+    "layers": [
+      {
+        "pack": "rpg",
+        "source": "Audio/cloth3.ogg",
+        "start": 0.0,
+        "end": null,
+        "gain": 1.0,
+        "at": 0.0,
+        "reverse": false,
+        "author": "Kenney",
+        "license": "CC0-1.0",
+        "url": "https://kenney.nl/assets/rpg-audio",
+        "download_url": "https://kenney.nl/media/pages/assets/rpg-audio/8e99002d76-1677590336/kenney_rpg-audio.zip",
+        "archive_sha256": "6dbeaf8544da958d8f2adcb4a4a4b76c1ade34a05f8ab9edccd327da7375f38b",
+        "source_sha256": "a48632d17a4f1416541d261a32a31612e01267144c407fa3ecab3ff410f0085b"
+      },
+      {
+        "pack": "swish",
+        "source": "swosh-01.flac",
+        "start": 0.0,
+        "end": null,
+        "gain": 0.35,
+        "at": 0.0,
+        "reverse": false,
+        "author": "qubodup",
+        "license": "CC0-1.0",
+        "url": "https://opengameart.org/content/swish-bamboo-stick-weapon-swhoshes",
+        "download_url": "https://opengameart.org/sites/default/files/swoshes.7z",
+        "archive_sha256": "2d55b26f918a4d8042e2c97a4db81392757195f5aaac9039f5ec2c557b6f11f2",
+        "source_sha256": "6bacb655b1b6e6669f5b1eb44e7eaea1219b185539486c08e11240193391ebd5"
+      }
+    ]
+  },
+  {
+    "cue": "RabbitBossEmerge",
+    "output": "Project-Rule/Assets/_Project/Audio/SFX/Boss/RabbitBossBurrow.wav",
+    "output_sha256": "c60af2b755691fbbdd43ea3433e9cd468ee9841ac5b40f401f71317b7f8efff3",
+    "seconds": 0.4174,
+    "peak": 0.85,
+    "rms": 0.10373,
+    "layers": [
+      {
+        "pack": "rpg",
+        "source": "Audio/cloth3.ogg",
+        "start": 0.0,
+        "end": null,
+        "gain": 1.0,
+        "at": 0.0,
+        "reverse": false,
+        "author": "Kenney",
+        "license": "CC0-1.0",
+        "url": "https://kenney.nl/assets/rpg-audio",
+        "download_url": "https://kenney.nl/media/pages/assets/rpg-audio/8e99002d76-1677590336/kenney_rpg-audio.zip",
+        "archive_sha256": "6dbeaf8544da958d8f2adcb4a4a4b76c1ade34a05f8ab9edccd327da7375f38b",
+        "source_sha256": "a48632d17a4f1416541d261a32a31612e01267144c407fa3ecab3ff410f0085b"
+      },
+      {
+        "pack": "swish",
+        "source": "swosh-01.flac",
+        "start": 0.0,
+        "end": null,
+        "gain": 0.35,
+        "at": 0.0,
+        "reverse": false,
+        "author": "qubodup",
+        "license": "CC0-1.0",
+        "url": "https://opengameart.org/content/swish-bamboo-stick-weapon-swhoshes",
+        "download_url": "https://opengameart.org/sites/default/files/swoshes.7z",
+        "archive_sha256": "2d55b26f918a4d8042e2c97a4db81392757195f5aaac9039f5ec2c557b6f11f2",
+        "source_sha256": "6bacb655b1b6e6669f5b1eb44e7eaea1219b185539486c08e11240193391ebd5"
+      }
+    ]
+  },
+  {
+    "cue": "RabbitBossShot",
+    "output": "Project-Rule/Assets/_Project/Audio/SFX/Boss/RabbitBossShot.wav",
+    "output_sha256": "716a5d216cacaa6e5b4265747e3053e0d3dc8d4e5db2e89f09ada558d8cc199a",
+    "seconds": 0.34,
+    "peak": 0.75421,
+    "rms": 0.11,
+    "layers": [
+      {
+        "pack": "virix",
+        "source": "Ice attack 2.wav",
+        "start": 0.0,
+        "end": 0.34,
+        "gain": 1.0,
+        "at": 0.0,
+        "reverse": false,
+        "author": "ViRiX Dreamcore (David Mckee)",
+        "license": "CC-BY-3.0",
+        "url": "https://opengameart.org/content/magic-sfx-sample",
+        "download_url": "https://opengameart.org/sites/default/files/Magic%20SFX%20Preview%20Pack.zip",
+        "archive_sha256": "77f964847ade8e84728a64cfc901d1d18b51459963c68e9f48bd19b0d0d8aa4e",
+        "source_sha256": "148e143241e6516c7229c366bb5574a29d556179ee2021c7e40bd3d5e5066311"
+      },
+      {
+        "pack": "swish",
+        "source": "swosh-08.flac",
+        "start": 0.0,
+        "end": null,
+        "gain": 0.3,
+        "at": 0.0,
+        "reverse": false,
+        "author": "qubodup",
+        "license": "CC0-1.0",
+        "url": "https://opengameart.org/content/swish-bamboo-stick-weapon-swhoshes",
+        "download_url": "https://opengameart.org/sites/default/files/swoshes.7z",
+        "archive_sha256": "2d55b26f918a4d8042e2c97a4db81392757195f5aaac9039f5ec2c557b6f11f2",
+        "source_sha256": "3689120b2577d2cf6ecce7109b40502d9b1f6c96001cf8ae6adaa0d397c5d28f"
+      }
+    ]
+  },
+  {
+    "cue": "BatBossWindup",
+    "output": "Project-Rule/Assets/_Project/Audio/SFX/Boss/BatBossWindup.wav",
+    "output_sha256": "860da290bc6f0ad10a72998187db521fccfc9ab74c0a8277feea5bbda9d70a60",
+    "seconds": 0.45,
+    "peak": 0.85,
+    "rms": 0.0761,
+    "layers": [
+      {
+        "pack": "rpg",
+        "source": "Audio/cloth1.ogg",
+        "start": 0.0,
+        "end": 0.45,
+        "gain": 1.0,
+        "at": 0.0,
+        "reverse": false,
+        "author": "Kenney",
+        "license": "CC0-1.0",
+        "url": "https://kenney.nl/assets/rpg-audio",
+        "download_url": "https://kenney.nl/media/pages/assets/rpg-audio/8e99002d76-1677590336/kenney_rpg-audio.zip",
+        "archive_sha256": "6dbeaf8544da958d8f2adcb4a4a4b76c1ade34a05f8ab9edccd327da7375f38b",
+        "source_sha256": "ddb93a3671233f95da0e0b10367f082f7eb42fa6caaddcf776410aa8833c747d"
+      },
+      {
+        "pack": "bat",
+        "source": "flac/bat_03.flac",
+        "start": 0.0,
+        "end": 0.3,
+        "gain": 0.3,
+        "at": 0.0,
+        "reverse": false,
+        "author": "AntumDeluge / polymorpheva",
+        "license": "CC0-1.0",
+        "url": "https://opengameart.org/content/bat-screeches",
+        "download_url": "https://opengameart.org/sites/default/files/bat.zip",
+        "archive_sha256": "8a41cfeca5a3b184f4cf171d45faf0041715b6f9d402dcfe04c53369c05e0ab3",
+        "source_sha256": "bc7f1ac5f52fa87f33eff62e4ecb9b7e0fe42164b5830f24a4ce6471ae4d2a01"
+      }
+    ]
+  },
+  {
+    "cue": "BatBossDash",
+    "output": "Project-Rule/Assets/_Project/Audio/SFX/Boss/BatBossDash.wav",
+    "output_sha256": "c3d103350b04dc663f2371abc68900234926c50d237d3cc2e24665bd67e546ea",
+    "seconds": 0.4513,
+    "peak": 0.85,
+    "rms": 0.1032,
+    "layers": [
+      {
+        "pack": "swish",
+        "source": "swosh-03.flac",
+        "start": 0.0,
+        "end": null,
+        "gain": 1.0,
+        "at": 0.0,
+        "reverse": false,
+        "author": "qubodup",
+        "license": "CC0-1.0",
+        "url": "https://opengameart.org/content/swish-bamboo-stick-weapon-swhoshes",
+        "download_url": "https://opengameart.org/sites/default/files/swoshes.7z",
+        "archive_sha256": "2d55b26f918a4d8042e2c97a4db81392757195f5aaac9039f5ec2c557b6f11f2",
+        "source_sha256": "2111003e4c61b8f3589f926f549ffc36094319da7b99238624c7d64e91bddc09"
+      },
+      {
+        "pack": "rpg",
+        "source": "Audio/cloth4.ogg",
+        "start": 0.0,
+        "end": null,
+        "gain": 0.35,
+        "at": 0.0,
+        "reverse": false,
+        "author": "Kenney",
+        "license": "CC0-1.0",
+        "url": "https://kenney.nl/assets/rpg-audio",
+        "download_url": "https://kenney.nl/media/pages/assets/rpg-audio/8e99002d76-1677590336/kenney_rpg-audio.zip",
+        "archive_sha256": "6dbeaf8544da958d8f2adcb4a4a4b76c1ade34a05f8ab9edccd327da7375f38b",
+        "source_sha256": "e7ab9a6c4466dea874196c61f59bf1da05cfe58748f42fadd695d441a154a99b"
+      }
+    ]
+  },
+  {
+    "cue": "BatBossFlap",
+    "output": "Project-Rule/Assets/_Project/Audio/SFX/Boss/BatBossFlap.wav",
+    "output_sha256": "fafa41d0e7a09921af0342eb75ac65976a61898e146b1450495c96e96217b66d",
+    "seconds": 0.5401,
+    "peak": 0.85,
+    "rms": 0.1049,
+    "layers": [
+      {
+        "pack": "rpg",
+        "source": "Audio/cloth2.ogg",
+        "start": 0.0,
+        "end": null,
+        "gain": 1.0,
+        "at": 0.0,
+        "reverse": false,
+        "author": "Kenney",
+        "license": "CC0-1.0",
+        "url": "https://kenney.nl/assets/rpg-audio",
+        "download_url": "https://kenney.nl/media/pages/assets/rpg-audio/8e99002d76-1677590336/kenney_rpg-audio.zip",
+        "archive_sha256": "6dbeaf8544da958d8f2adcb4a4a4b76c1ade34a05f8ab9edccd327da7375f38b",
+        "source_sha256": "8a7451193c38bc05483aec25dd193e163a15d44cf7fff04ac7912573231b0201"
+      },
+      {
+        "pack": "rpg",
+        "source": "Audio/cloth4.ogg",
+        "start": 0.0,
+        "end": null,
+        "gain": 0.7,
+        "at": 0.16,
+        "reverse": false,
+        "author": "Kenney",
+        "license": "CC0-1.0",
+        "url": "https://kenney.nl/assets/rpg-audio",
+        "download_url": "https://kenney.nl/media/pages/assets/rpg-audio/8e99002d76-1677590336/kenney_rpg-audio.zip",
+        "archive_sha256": "6dbeaf8544da958d8f2adcb4a4a4b76c1ade34a05f8ab9edccd327da7375f38b",
+        "source_sha256": "e7ab9a6c4466dea874196c61f59bf1da05cfe58748f42fadd695d441a154a99b"
+      }
+    ]
+  },
+  {
+    "cue": "BatBossRoar",
+    "output": "Project-Rule/Assets/_Project/Audio/SFX/Boss/BatBossRoar.wav",
+    "output_sha256": "2fac992c5570074eb123dfdd6cb18a9dc6134d6905fe6643a1ee0c73f5d67f48",
+    "seconds": 1.0,
+    "peak": 0.85,
+    "rms": 0.08105,
+    "layers": [
+      {
+        "pack": "bat",
+        "source": "flac/bat_01.flac",
+        "start": 0.0,
+        "end": 1.0,
+        "gain": 1.0,
+        "at": 0.0,
+        "reverse": false,
+        "author": "AntumDeluge / polymorpheva",
+        "license": "CC0-1.0",
+        "url": "https://opengameart.org/content/bat-screeches",
+        "download_url": "https://opengameart.org/sites/default/files/bat.zip",
+        "archive_sha256": "8a41cfeca5a3b184f4cf171d45faf0041715b6f9d402dcfe04c53369c05e0ab3",
+        "source_sha256": "71dd6dac86d9cd74480f78b521021a22d5ec4d3f7151caa7536ed2da6acf21ee"
+      }
+    ]
+  }
+]

@@ -1,0 +1,6 @@
+Sci-Fi Sounds by Kenney, CC0 1.0
+Author: https://kenney.nl/assets/sci-fi-sounds
+Author mirror: https://opengameart.org/content/sci-fi-sounds
+Download: https://opengameart.org/sites/default/files/sci-fi_sounds.zip
+Original explosionCrunch_000.ogg, unchanged.
+Explosion_Bright.wav: prepared from explosionCrunch_000.ogg, 50Hz high-pass, 280Hz low-mid cut, +5dB high shelf at 3.5kHz, 14kHz bandwidth cap, peak headroom. Processing and hashes: Doc/AudioSources/ExplosionBrightManifest.json.

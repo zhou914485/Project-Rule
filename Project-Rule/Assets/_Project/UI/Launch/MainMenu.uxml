@@ -1,0 +1,24 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+    <ui:Style src="MainMenu.uss" />
+    <ui:VisualElement name="menuViewport" class="menu-viewport">
+        <ui:VisualElement name="menuArtboard" class="menu-artboard">
+            <ui:Button name="startButton" tooltip="开始游戏" class="art-button start-button" />
+            <ui:Button name="loadButton" tooltip="读取存档" class="art-button load-button" />
+            <ui:Button name="aboutButton" tooltip="关于我们" class="art-button about-button" />
+            <ui:Button name="settingsButton" tooltip="设置" class="art-button settings-button" />
+            <ui:Button name="quitButton" tooltip="退出游戏" class="art-button quit-button" />
+        </ui:VisualElement>
+        <ui:VisualElement name="modalShade" class="modal-shade hidden">
+            <ui:VisualElement class="common-panel">
+                <ui:Button name="modalCloseButton" tooltip="关闭" class="modal-close" />
+                <ui:Label name="modalTitle" class="modal-title" />
+                <ui:Label name="modalCopy" class="modal-copy" />
+                <ui:Slider name="volumeSlider" label="总音量" low-value="0" high-value="1" class="volume-control hidden" />
+                <ui:VisualElement class="modal-actions">
+                    <ui:Button name="modalBackButton" text="返回" class="common-button" />
+                    <ui:Button name="quitConfirmButton" text="退出游戏" class="common-button hidden" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

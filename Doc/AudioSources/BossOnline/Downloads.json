@@ -1,0 +1,92 @@
+[
+  {
+    "pack": "clock",
+    "url": "https://opengameart.org/sites/default/files/singlewind3.wav",
+    "file": "Doc/AudioSources/BossOnline/clock/singlewind3.wav",
+    "sha256": "dbe2be55d7778b9b2e57b010a8be10dd081f02941e20bdfb518f1ff341ac4f3b"
+  },
+  {
+    "pack": "clock",
+    "url": "https://opengameart.org/sites/default/files/singlewind2.wav",
+    "file": "Doc/AudioSources/BossOnline/clock/singlewind2.wav",
+    "sha256": "86a7731f216c682b178a51032d8e5f290816fe4f3f0adb0b75bd205c087f1542"
+  },
+  {
+    "pack": "clock",
+    "url": "https://opengameart.org/sites/default/files/singlewind1.wav",
+    "file": "Doc/AudioSources/BossOnline/clock/singlewind1.wav",
+    "sha256": "05216ac924a8616cb7e7862ab1a8b621c86e201b945eebdc5cdd5130c76c8984"
+  },
+  {
+    "pack": "clock",
+    "url": "https://opengameart.org/sites/default/files/multiwind2.wav",
+    "file": "Doc/AudioSources/BossOnline/clock/multiwind2.wav",
+    "sha256": "85a4b2fdc7e31a8d429969de4936bc34829a1f18e8d9de33ad58843dba55fbb7"
+  },
+  {
+    "pack": "clock",
+    "url": "https://opengameart.org/sites/default/files/multiwind1.wav",
+    "file": "Doc/AudioSources/BossOnline/clock/multiwind1.wav",
+    "sha256": "c3a60aa4c0da900956b2756dc558b068425d42062869ba6ea11c471f6fa1a585"
+  },
+  {
+    "pack": "mechanical",
+    "url": "https://opengameart.org/sites/default/files/clank1.wav",
+    "file": "Doc/AudioSources/BossOnline/mechanical/clank1.wav",
+    "sha256": "899a46a8423fa0ca349b3c70a07a422d1eaa3a58695ce6facfbae074dd70226f"
+  },
+  {
+    "pack": "mechanical",
+    "url": "https://opengameart.org/sites/default/files/lightclunk2.wav",
+    "file": "Doc/AudioSources/BossOnline/mechanical/lightclunk2.wav",
+    "sha256": "987be837a5941ded9a81572c319b9bf8f57d9f89741a5781fc7104adc87d60f5"
+  },
+  {
+    "pack": "mechanical",
+    "url": "https://opengameart.org/sites/default/files/mechanical2.wav",
+    "file": "Doc/AudioSources/BossOnline/mechanical/mechanical2.wav",
+    "sha256": "27b4b6c3517c90d635295fca48fccd747950f869d680c871662f26038c3665ef"
+  },
+  {
+    "pack": "bat",
+    "url": "https://opengameart.org/sites/default/files/bat.zip",
+    "file": "Doc/AudioSources/BossOnline/bat/bat.zip",
+    "sha256": "8a41cfeca5a3b184f4cf171d45faf0041715b6f9d402dcfe04c53369c05e0ab3"
+  },
+  {
+    "pack": "impact",
+    "url": "https://kenney.nl/media/pages/assets/impact-sounds/87b4ddecda-1677589768/kenney_impact-sounds.zip",
+    "file": "Doc/AudioSources/BossOnline/impact/kenney_impact-sounds.zip",
+    "sha256": "029d734af1582474edf3a694d1b0cebc97c1c152f2f39fa34d4c2bafc5de77f8"
+  },
+  {
+    "pack": "rpg",
+    "url": "https://kenney.nl/media/pages/assets/rpg-audio/8e99002d76-1677590336/kenney_rpg-audio.zip",
+    "file": "Doc/AudioSources/BossOnline/rpg/kenney_rpg-audio.zip",
+    "sha256": "6dbeaf8544da958d8f2adcb4a4a4b76c1ade34a05f8ab9edccd327da7375f38b"
+  },
+  {
+    "pack": "earth",
+    "url": "https://opengameart.org/sites/default/files/Earth%20Element%20Magic%20Spell_0.flac",
+    "file": "Doc/AudioSources/BossOnline/earth/Earth%20Element%20Magic%20Spell_0.flac",
+    "sha256": "1248f39e7850dc3645e3e2185a38e7a499177649bcec9c793f58aba838281e1e"
+  },
+  {
+    "pack": "spells",
+    "url": "https://opengameart.org/sites/default/files/teleport.wav",
+    "file": "Doc/AudioSources/BossOnline/spells/teleport.wav",
+    "sha256": "23fe938e7e82931227196bf6b2978ad9154f627af26623acf52958d12125f3b8"
+  },
+  {
+    "pack": "swish",
+    "url": "https://opengameart.org/sites/default/files/swoshes.7z",
+    "file": "Doc/AudioSources/BossOnline/swish/swoshes.7z",
+    "sha256": "2d55b26f918a4d8042e2c97a4db81392757195f5aaac9039f5ec2c557b6f11f2"
+  },
+  {
+    "pack": "virix",
+    "url": "https://opengameart.org/sites/default/files/Magic%20SFX%20Preview%20Pack.zip",
+    "file": "Doc/AudioSources/BossOnline/virix/MagicSFX.zip",
+    "sha256": "77f964847ade8e84728a64cfc901d1d18b51459963c68e9f48bd19b0d0d8aa4e"
+  }
+]

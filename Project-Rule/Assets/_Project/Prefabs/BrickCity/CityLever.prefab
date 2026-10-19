@@ -105,6 +105,7 @@ GameObject:
   - component: {fileID: 7930359002111446568}
   - component: {fileID: 8084752514572247338}
   - component: {fileID: 6651702229124784000}
+  - component: {fileID: 3009880283803105319}
   m_Layer: 0
   m_Name: CityLever
   m_TagString: Untagged
@@ -211,7 +212,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a7085f702f0e4752bd2383e7a2978b8b, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: RuleGame.Gameplay::RuleGame.Gameplay.Common.RuleAffectedBody
   _applyFriction: 1
   _applyMass: 1
@@ -226,12 +227,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 13b0ec61dbb928646826b8fc58553c0a, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: RuleGame.Gameplay::RuleGame.Gameplay.Scene.Components.CitySwitch
   Prompt: "\u5207\u6362\u5347\u964D\u65B9\u5411"
   Toggle: 1
   IsOn: 0
   FollowMotor: {fileID: 0}
+  PressByPlayerProximity: 0
   OnChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &3009880283803105319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2585989564975497227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8d605734018946908f0e729baff9df6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: RuleGame.Presentation::RuleGame.Presentation.Audio.MechanismSfxPresenter
+  _minimumImpactSpeed: 1.5

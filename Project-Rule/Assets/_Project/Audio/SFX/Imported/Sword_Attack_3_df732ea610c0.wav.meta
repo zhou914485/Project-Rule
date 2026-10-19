@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: c8a9cd95bf5834d45b0db57cca78dd64
+AudioImporter:
+  externalObjects: {}
+  serializedVersion: 8
+  defaultSettings:
+    serializedVersion: 2
+    loadType: 0
+    sampleRateSetting: 0
+    sampleRateOverride: 44100
+    compressionFormat: 0
+    quality: 1
+    conversionMode: 0
+    preloadAudioData: 1
+  platformSettingOverrides: {}
+  forceToMono: 0
+  normalize: 1
+  loadInBackground: 0
+  ambisonic: 0
+  3D: 1
+  userData: '{"Source":"Src\\Free Fantasy SFX Pack By TomMusic\\Free Fantasy SFX Pack By TomMusic\\WAV Files\\SFX\\Attacks\\Sword Attacks Hits and Blocks\\Sword Attack 3.wav","Sha256":"df732ea610c0402f2fa4d90443d8141f3730c3c23a989d9fc7fc43aa81d1b4e5"}'
+  assetBundleName:
+  assetBundleVariant:

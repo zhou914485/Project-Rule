@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00174f1d0d839498ea6b1a54f2c23fe6, type: 3}
+  m_Name: Bricks_MusicProfile
+  m_EditorClassIdentifier: RuleGame.Presentation::RuleGame.Presentation.Audio.MusicProfile
+  _intro: {fileID: 8300000, guid: 565bcd78379cc463dbc7c3899ac18cd6, type: 3}
+  _loop: {fileID: 8300000, guid: 57e542df49f97479993502435b32ed4e, type: 3}
+  _volume: 0.25
+  _crossfadeSeconds: 1.5

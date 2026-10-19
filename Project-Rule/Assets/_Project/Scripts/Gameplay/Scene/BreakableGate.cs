@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using RuleGame.Gameplay.Player;
 using RuleGame.Infrastructure.Time;
@@ -81,6 +82,7 @@ namespace RuleGame.Gameplay.Scene
 
         /// <summary>是不是已经被砍碎了（碰撞体摘掉，这条路永久通了）。</summary>
         public bool IsBroken => _broken;
+        public event Action OnBroken;
 
         /// <summary>可破坏方向。</summary>
         public OneWayGate.PassDirection Pass => _pass;
@@ -200,9 +202,11 @@ namespace RuleGame.Gameplay.Scene
 
         private void SetBroken(bool broken)
         {
+            bool changed = _broken != broken;
             _broken = broken;
             if (_box != null) _box.enabled = !broken;
             if (_art != null) _art.enabled = !broken;
+            if (changed && broken) OnBroken?.Invoke();
         }
 
         private void Subscribe()

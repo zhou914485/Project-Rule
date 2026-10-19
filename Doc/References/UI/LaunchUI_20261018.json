@@ -1,0 +1,47 @@
+{
+  "source_folder": "ui，10.18，12am",
+  "sha256": {
+    "开始界面/开始界面.png": "072b41687983dbf8e9b3f884ec56647a20d8a4700d230dcb2f39d8d9e3fc14ee",
+    "开始界面/按钮按下遮罩.png": "b7a7aaf6e954452ce47f179c283507b7f82224949d287d2edf6770880401a1f7",
+    "血量条/血条.png": "ec83e8c64ed96464fdb5cb4bb3764b6a10091352b96953063ddb92df0f1df51c",
+    "血量条/血条_20261018_034515.png": "78a8b38b865169e44754a2f6ad29c80a7d3fef5cc9e148b227d530f4f0e18722",
+    "标准格式通用UI组件/ui表1.png": "c97707e38c716b50c051e67a17b392c199dbc5ccf66bba96af1a032d6729b170"
+  },
+  "title_canvas": [
+    4800,
+    2700
+  ],
+  "hotspots": {
+    "Start": [
+      3540,
+      920,
+      4430,
+      1172
+    ],
+    "Load": [
+      3540,
+      1284,
+      4430,
+      1536
+    ],
+    "About": [
+      3540,
+      1656,
+      4430,
+      1908
+    ],
+    "Settings": [
+      4500,
+      72,
+      4750,
+      310
+    ],
+    "Quit": [
+      4500,
+      2370,
+      4750,
+      2600
+    ]
+  },
+  "notes": "Fixed crops, mirrored panel corner and nine-slice assembly; trim 2px at internal alpha joins. PSD and reference JPG are not runtime assets."
+}

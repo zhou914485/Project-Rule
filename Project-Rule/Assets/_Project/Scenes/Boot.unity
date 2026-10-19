@@ -148,6 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d85e64e902fe252fcb05b35589bb7d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: RuleGame.Gameplay::RuleGame.Gameplay.Scene.BootFlowStarter
+  _startAutomatically: 0
 --- !u!4 &499710036
 Transform:
   m_ObjectHideFlags: 0
@@ -155,6 +156,76 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 499710034}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &747296933
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 747296936}
+  - component: {fileID: 747296935}
+  - component: {fileID: 747296934}
+  m_Layer: 0
+  m_Name: Main Menu
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &747296934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 747296933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8ac2073e01444afe91ac36633a0658f, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: RuleGame.UI::RuleGame.UI.Launch.MainMenuPresenter
+  _gameRoot: {fileID: 1519009891}
+  _player: {fileID: 1519009890}
+--- !u!114 &747296935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 747296933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name:
+  m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.UIElements.UIDocument
+  m_PanelSettings: {fileID: 11400000, guid: a509cfd71214349a38ae139484f4c2bf, type: 2}
+  m_ParentUI: {fileID: 0}
+  sourceAsset: {fileID: 9197481963319205126, guid: 12259ad6fc0a64c86aca0ecb8e23f234, type: 3}
+  m_SortingOrder: 0
+  m_Position: 0
+  m_WorldSpaceSizeMode: 1
+  m_WorldSpaceWidth: 1920
+  m_WorldSpaceHeight: 1080
+  m_PivotReferenceSize: 0
+  m_Pivot: 0
+  m_WorldSpaceCollider: {fileID: 0}
+--- !u!4 &747296936
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 747296933}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -264,6 +335,28 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d9ba9685861f8f46b65e40f45026839, type: 3}
+--- !u!114 &1519009890 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5472706517810015240, guid: 3d9ba9685861f8f46b65e40f45026839, type: 3}
+  m_PrefabInstance: {fileID: 1519009889}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dff63cb7deb704d549990e1a8cd84fa, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: RuleGame.Gameplay::RuleGame.Gameplay.Player.PlayerController
+--- !u!114 &1519009891 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1664628298187012377, guid: 3d9ba9685861f8f46b65e40f45026839, type: 3}
+  m_PrefabInstance: {fileID: 1519009889}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf8f016c7940e91ae3b9a0e5c98b6eaf, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: RuleGame.Gameplay::RuleGame.Gameplay.Scene.GameRoot
 --- !u!1 &1767275737
 GameObject:
   m_ObjectHideFlags: 0
@@ -326,3 +419,4 @@ SceneRoots:
   - {fileID: 1519009889}
   - {fileID: 499710036}
   - {fileID: 1767275739}
+  - {fileID: 747296936}

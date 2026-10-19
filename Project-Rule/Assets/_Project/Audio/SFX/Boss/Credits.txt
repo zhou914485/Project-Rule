@@ -1,0 +1,42 @@
+Boss audio: online reselection v2
+Changes: excerpts, mono, resampling, gain, fades and layers. No EQ.
+
+Brian MacIntosh (BMacZero)
+https://opengameart.org/content/clock-wind-sounds
+CC0-1.0
+
+Brian MacIntosh (BMacZero)
+https://opengameart.org/content/mechanical-sounds
+CC0-1.0
+
+AntumDeluge / polymorpheva
+https://opengameart.org/content/bat-screeches
+CC0-1.0
+
+qubodup
+https://opengameart.org/content/swish-bamboo-stick-weapon-swhoshes
+CC0-1.0
+
+Kenney
+https://kenney.nl/assets/impact-sounds
+CC0-1.0
+
+Kenney
+https://kenney.nl/assets/rpg-audio
+CC0-1.0
+
+qubodup
+https://opengameart.org/content/earth-element-magic-spell
+CC0-1.0
+
+Ogrebane
+https://opengameart.org/content/teleport-spell
+CC0-1.0
+
+ViRiX Dreamcore (David Mckee)
+https://opengameart.org/content/magic-sfx-sample
+CC-BY-3.0
+
+Some of the sounds in this project were created by ViRiX Dreamcore (David Mckee) www.soundcloud.com/virix
+CC BY 3.0: https://creativecommons.org/licenses/by/3.0/
+CC0: https://creativecommons.org/publicdomain/zero/1.0/

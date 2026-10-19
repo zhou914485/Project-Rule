@@ -1,0 +1,60 @@
+{
+  "processing": "PCM16 stereo 44100 Hz; remove only trailing samples below -60 dBFS with 20 ms padding; no gain or start changes",
+  "files": [
+    {
+      "area": "Bricks",
+      "original": "Doc/AudioSources/MusicOriginals/Bricks/bgm_area_bricks_intro.ogg",
+      "sha256": "8aac8e4baaadda15a9d2c7b5616c310532b1c2f3e6448f3f3982562fb31ec56a",
+      "playback": "Project-Rule/Assets/_Project/Audio/Music/Bricks/bgm_area_bricks_intro.wav",
+      "original_frames": 543544,
+      "playback_frames": 491309,
+      "sample_rate": 44100,
+      "trimmed_seconds": 1.184467,
+      "playback_seconds": 11.140794
+    },
+    {
+      "area": "Bricks",
+      "original": "Doc/AudioSources/MusicOriginals/Bricks/bgm_area_bricks_loop.ogg",
+      "sha256": "9263170f04d9d6068e14bad547a0cf1d5956a125f343ad15ab3f87466f737b6d",
+      "playback": "Project-Rule/Assets/_Project/Audio/Music/Bricks/bgm_area_bricks_loop.wav",
+      "original_frames": 4401405,
+      "playback_frames": 3878445,
+      "sample_rate": 44100,
+      "trimmed_seconds": 11.858503,
+      "playback_seconds": 87.946599
+    },
+    {
+      "area": "Clockwork",
+      "original": "Doc/AudioSources/MusicOriginals/Clockwork/bgm_area_clockwork_intro.ogg",
+      "sha256": "905db1e22625356ec95926086319eb19805919ede8fe731f90b5accd9f3541b4",
+      "playback": "Project-Rule/Assets/_Project/Audio/Music/Clockwork/bgm_area_clockwork_intro.wav",
+      "original_frames": 238416,
+      "playback_frames": 122421,
+      "sample_rate": 44100,
+      "trimmed_seconds": 2.630272,
+      "playback_seconds": 2.775986
+    },
+    {
+      "area": "Clockwork",
+      "original": "Doc/AudioSources/MusicOriginals/Clockwork/bgm_area_clockwork_loop.ogg",
+      "sha256": "16bf1fd810c63e3f1bb5d7e0b2d6104958d9d8fd8624a9f1c768dc7b4dd5282c",
+      "playback": "Project-Rule/Assets/_Project/Audio/Music/Clockwork/bgm_area_clockwork_loop.wav",
+      "original_frames": 3347466,
+      "playback_frames": 2733799,
+      "sample_rate": 44100,
+      "trimmed_seconds": 13.915351,
+      "playback_seconds": 61.990907
+    },
+    {
+      "area": "Fluffy",
+      "original": "Doc/AudioSources/MusicOriginals/Fluffy/bgm_area_fluffy.ogg",
+      "sha256": "616b25fe852d2691b67e043237dce8f8bacbfa5b58186a595fbb9d5005f91594",
+      "playback": "Project-Rule/Assets/_Project/Audio/Music/Fluffy/bgm_area_fluffy.wav",
+      "original_frames": 3596772,
+      "playback_frames": 3500583,
+      "sample_rate": 44100,
+      "trimmed_seconds": 2.181156,
+      "playback_seconds": 79.378299
+    }
+  ]
+}

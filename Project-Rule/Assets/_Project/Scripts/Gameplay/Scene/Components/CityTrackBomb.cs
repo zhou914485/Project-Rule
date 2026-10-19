@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using RuleGame.Infrastructure;
 using RuleGame.Gameplay.Combat;
@@ -44,6 +45,7 @@ namespace RuleGame.Gameplay.Scene.Components
 
         [Tooltip("伤害出口。留空会在运行时自动找场景里的 CombatSystem。")]
         public CombatSystem Combat;
+        public event Action OnDetonated;
 
         [Header("引爆")]
         [Tooltip("玩家碰到就爆。关掉 = 只能被开关联动引爆。")]
@@ -109,6 +111,7 @@ namespace RuleGame.Gameplay.Scene.Components
             if (_track != null) _track.SetOn(false);
             Shape.enabled = false;
             SetVisible(false);
+            OnDetonated?.Invoke();
         }
 
         private struct State

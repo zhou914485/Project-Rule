@@ -105,6 +105,7 @@ GameObject:
   - component: {fileID: 5161015112288797806}
   - component: {fileID: 253281297527841699}
   - component: {fileID: 4368025456632720651}
+  - component: {fileID: 2398193652446184384}
   m_Layer: 0
   m_Name: CityBomb
   m_TagString: Untagged
@@ -201,7 +202,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a7085f702f0e4752bd2383e7a2978b8b, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: RuleGame.Gameplay::RuleGame.Gameplay.Common.RuleAffectedBody
   _applyFriction: 1
   _applyMass: 1
@@ -216,7 +217,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ccae6c1a6db0317448aad37bc680606d, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: RuleGame.Gameplay::RuleGame.Gameplay.Scene.Components.CityBomb
   Fuse: 0.8
   Radius: 3
@@ -226,3 +227,16 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   Combat: {fileID: 0}
+--- !u!114 &2398193652446184384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2609766463723165044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8d605734018946908f0e729baff9df6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: RuleGame.Presentation::RuleGame.Presentation.Audio.MechanismSfxPresenter
+  _minimumImpactSpeed: 1.5

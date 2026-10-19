@@ -19,6 +19,7 @@ using RuleGame.Development.RuleWheel;
 using RuleGame.UI.RuleWheel;
 using RuleGame.Infrastructure.Rules;
 using RuleGame.Infrastructure;
+using RuleGame.Editor.UI;
 
 namespace RuleGame.Editor.Enemy
 {
@@ -412,6 +413,8 @@ namespace RuleGame.Editor.Enemy
                     Set(Find<RuleWheelPresenter>(scene), "_player", player);
                     Set(Find<RuleSelectionCamera>(scene), "_target", player.transform);
                     Set(Find<EnemyLabControls>(scene), "Player", playerObject.GetComponent<EntityStatus>());
+                    if (Find<EnemyActor>(scene).Definition.IsBoss)
+                        LaunchUISetup.EnsurePlayerVitals(scene, playerObject.GetComponent<EntityStatus>());
                     if (oldPlayer != null) UnityEngine.Object.DestroyImmediate(oldPlayer.gameObject);
                     EditorSceneManager.SaveScene(scene, path);
                 }
@@ -443,6 +446,8 @@ namespace RuleGame.Editor.Enemy
                         Set(Find<RuleWheelPresenter>(scene), "_player", player);
                         Set(Find<RuleSelectionCamera>(scene), "_target", player.transform);
                         Set(Find<EnemyLabControls>(scene), "Player", player.GetComponent<EntityStatus>());
+                        if (enemy.Definition.IsBoss)
+                            LaunchUISetup.EnsurePlayerVitals(scene, player.GetComponent<EntityStatus>());
                         EditorSceneManager.SaveScene(scene, path);
                     }
                     finally { if (opened) EditorSceneManager.CloseScene(scene, true); }
@@ -491,6 +496,8 @@ namespace RuleGame.Editor.Enemy
                 Set(wheel, "_cameraFocus", focus); Set(wheel, "_worldCamera", camera);
                 EnemyLabControls controls = systems.AddComponent<EnemyLabControls>();
                 controls.Enemy = enemy; controls.Player = playerObject.GetComponent<EntityStatus>(); controls.Font = _font;
+                if (enemy.Definition.IsBoss)
+                    LaunchUISetup.EnsurePlayerVitals(scene, playerObject.GetComponent<EntityStatus>());
                 EditorSceneManager.SaveScene(scene, SceneFolder + "/Test_Enemy_" + kind + ".unity");
             }
             finally

@@ -122,6 +122,7 @@ GameObject:
   - component: {fileID: 9715781139566847}
   - component: {fileID: 8721085266057344802}
   - component: {fileID: 5740032521385958856}
+  - component: {fileID: 9144355045196282608}
   m_Layer: 9
   m_Name: BatMinion
   m_TagString: Untagged
@@ -269,15 +270,23 @@ MonoBehaviour:
   Definition: {fileID: 11400000, guid: 9ec6c95f298b08548ae8160d6136598e, type: 2}
   Target: {fileID: 0}
   Combat: {fileID: 0}
+  UseSpawnRelativeArena: 0
+  ArenaSize: {x: 20, y: 20}
+  ArenaOffset: {x: 0, y: 0}
   MinionPrefab: {fileID: 0}
   FlyingMinionPrefab: {fileID: 0}
   Summoner: {fileID: 0}
   WeakPoint: {fileID: 0}
+  PlayerMask:
+    serializedVersion: 2
+    m_Bits: 1
   ProjectileSprite: {fileID: 21300000, guid: 36b2976af0b0e39468f739a7537ef56e, type: 3}
   BeamOrigin: {fileID: 0}
   RuntimeSpawned: 0
   ArenaX: {x: -12, y: 12}
   ArenaY: {x: 0, y: 10}
+  PatrolRange: 0
+  PressContactSwitches: 1
 --- !u!114 &5740032521385958856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -293,6 +302,18 @@ MonoBehaviour:
   _applyFriction: 1
   _applyMass: 1
   _frictionSource: {fileID: 0}
+--- !u!114 &9144355045196282608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9014711446049571874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5734830a1f2e9419a9db2d4bce1d0f9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: RuleGame.Presentation::RuleGame.Presentation.Audio.EnemySfxPresenter
 --- !u!1 &9101009343859833375
 GameObject:
   m_ObjectHideFlags: 0

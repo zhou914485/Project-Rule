@@ -12,8 +12,12 @@ namespace RuleGame.Gameplay.Scene
     [DisallowMultipleComponent]
     public sealed class BootFlowStarter : MonoBehaviour
     {
+        [Tooltip("有开始菜单时关闭，由菜单调用 GameRoot.StartStreaming。")]
+        [SerializeField] private bool _startAutomatically = true;
+
         private void Start()
         {
+            if (!_startAutomatically) return;
             if (GameRoot.Instance == null)
             {
                 Debug.LogError("[BootFlowStarter] 场景里没有 GameRoot，世界不会加载。", this);

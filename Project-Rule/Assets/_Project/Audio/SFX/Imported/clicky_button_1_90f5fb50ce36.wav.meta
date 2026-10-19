@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 7e9d98524db5dff458d3928ea93e7795
+AudioImporter:
+  externalObjects: {}
+  serializedVersion: 8
+  defaultSettings:
+    serializedVersion: 2
+    loadType: 0
+    sampleRateSetting: 0
+    sampleRateOverride: 44100
+    compressionFormat: 0
+    quality: 1
+    conversionMode: 0
+    preloadAudioData: 1
+  platformSettingOverrides: {}
+  forceToMono: 0
+  normalize: 1
+  loadInBackground: 0
+  ambisonic: 0
+  3D: 1
+  userData: '{"Source":"Src\\FilmCow Recorded SFX\\FilmCow Recorded SFX\\clicky button 1.wav","Sha256":"90f5fb50ce3691f9bcecad1f8428bac84bdcdecd86c8d699b56c88df4486c326"}'
+  assetBundleName:
+  assetBundleVariant:

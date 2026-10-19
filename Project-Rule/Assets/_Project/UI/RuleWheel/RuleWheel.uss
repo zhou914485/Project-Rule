@@ -19,12 +19,12 @@
     color: #20201d;
 }
 .wheel-word.long-word { font-size: 16px; }
-.wheel-word.selected { color: #efede1; }
-.wheel-word.unavailable { color: #62625c; }
+.wheel-word.selected { color: #302211; }
+.wheel-word.unavailable { color: #4b4943; }
 .wheel-word.unavailable.selected { color: #20201d; }
-/* 生效中的规则：暖金字块上用深棕色字；选中后深色块上用金色字。 */
+/* 生效中的规则保留暖金色纸牌与深棕色字。 */
 .wheel-word.active { color: #5c3b00; }
-.wheel-word.active.selected { color: #f3c76b; }
+.wheel-word.active.selected { color: #5c3b00; }
 .wheel-feedback {
     position: absolute; left: 350px; top: 610px;
     width: 234px; min-height: 30px;
@@ -35,3 +35,27 @@
 }
 .hidden { display: none; }
 .wheel-root.facing-left .wheel-feedback { left: 66px; }
+
+.wheel-card { position: absolute; background-size: 100% 100%; }
+.attribute-card-0 { background-image: url("project://database/Assets/_Project/UI/Art/RuleWheel/Attribute_01_Paper.png"); }
+.wheel-glow.attribute-card-0 { background-image: url("project://database/Assets/_Project/UI/Art/RuleWheel/Attribute_01_Mask.png"); }
+.attribute-card-1 { background-image: url("project://database/Assets/_Project/UI/Art/RuleWheel/Attribute_02_Paper.png"); }
+.wheel-glow.attribute-card-1 { background-image: url("project://database/Assets/_Project/UI/Art/RuleWheel/Attribute_02_Mask.png"); }
+.attribute-card-2 { background-image: url("project://database/Assets/_Project/UI/Art/RuleWheel/Attribute_03_Paper.png"); }
+.wheel-glow.attribute-card-2 { background-image: url("project://database/Assets/_Project/UI/Art/RuleWheel/Attribute_03_Mask.png"); }
+.attribute-card-3 { background-image: url("project://database/Assets/_Project/UI/Art/RuleWheel/Attribute_04_Paper.png"); }
+.wheel-glow.attribute-card-3 { background-image: url("project://database/Assets/_Project/UI/Art/RuleWheel/Attribute_04_Mask.png"); }
+.attribute-card-4 { background-image: url("project://database/Assets/_Project/UI/Art/RuleWheel/Attribute_05_Paper.png"); }
+.wheel-glow.attribute-card-4 { background-image: url("project://database/Assets/_Project/UI/Art/RuleWheel/Attribute_05_Mask.png"); }
+.attribute-card-5 { background-image: url("project://database/Assets/_Project/UI/Art/RuleWheel/Attribute_06_Paper.png"); }
+.wheel-glow.attribute-card-5 { background-image: url("project://database/Assets/_Project/UI/Art/RuleWheel/Attribute_06_Mask.png"); }
+.relation-card-0 { background-image: url("project://database/Assets/_Project/UI/Art/RuleWheel/Relation_01_Paper.png"); }
+.wheel-glow.relation-card-0 { background-image: url("project://database/Assets/_Project/UI/Art/RuleWheel/Relation_01_Mask.png"); }
+.relation-card-1 { background-image: url("project://database/Assets/_Project/UI/Art/RuleWheel/Relation_02_Paper.png"); }
+.wheel-glow.relation-card-1 { background-image: url("project://database/Assets/_Project/UI/Art/RuleWheel/Relation_02_Mask.png"); }
+.relation-card-2 { background-image: url("project://database/Assets/_Project/UI/Art/RuleWheel/Relation_03_Paper.png"); }
+.wheel-glow.relation-card-2 { background-image: url("project://database/Assets/_Project/UI/Art/RuleWheel/Relation_03_Mask.png"); }
+.relation-card-3 { background-image: url("project://database/Assets/_Project/UI/Art/RuleWheel/Relation_04_Paper.png"); }
+.wheel-glow.relation-card-3 { background-image: url("project://database/Assets/_Project/UI/Art/RuleWheel/Relation_04_Mask.png"); }
+.relation-card-4 { background-image: url("project://database/Assets/_Project/UI/Art/RuleWheel/Relation_05_Paper.png"); }
+.wheel-glow.relation-card-4 { background-image: url("project://database/Assets/_Project/UI/Art/RuleWheel/Relation_05_Mask.png"); }

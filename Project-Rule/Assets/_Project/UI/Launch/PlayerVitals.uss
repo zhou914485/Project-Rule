@@ -1,0 +1,23 @@
+.vitals-root { position: absolute; left: 0; top: 0; right: 0; bottom: 0; }
+.player-vitals {
+    position: absolute; right: 28px; top: 22px;
+    width: 546px;
+    -unity-font-definition: url("project://database/Assets/_Project/UI/Fonts/P4ChineseFont.asset");
+    color: #fff8eb;
+}
+.vital-track { position: relative; width: 546px; height: 58.292px; }
+.energy-track { width: 255.84px; height: 24.96px; align-self: flex-end; margin-right: 23.4px; }
+.vital-image, .vital-clip { position: absolute; left: 0; top: 0; height: 100%; }
+.vital-clip { width: 100%; overflow: hidden; }
+.vital-image { width: 546px; background-size: 100% 100%; }
+.energy-track .vital-image { width: 255.84px; }
+.health-empty { background-image: url("project://database/Assets/_Project/UI/Art/Launch/HealthEmpty.png"); }
+.health-full { background-image: url("project://database/Assets/_Project/UI/Art/Launch/HealthFull.png"); }
+.energy-empty { background-image: url("project://database/Assets/_Project/UI/Art/Launch/EnergyEmpty.png"); }
+.energy-full { background-image: url("project://database/Assets/_Project/UI/Art/Launch/EnergyFull.png"); }
+.vital-label { margin: 2.6px 20.8px 0 0; font-size: 20.8px; -unity-text-align: middle-right; -unity-text-outline-width: 1px; -unity-text-outline-color: #172135; }
+.vital-divisions { position: absolute; left: 5.5%; right: 5.5%; top: 21%; bottom: 20%; flex-direction: row; }
+.vital-division, .vital-division-end { flex-grow: 1; flex-basis: 0; }
+.vital-division { border-right-width: 2px; border-right-color: rgba(30, 20, 28, 0.8); }
+.energy-track .vital-divisions { left: 3.3%; right: 3.3%; top: 26%; bottom: 24%; }
+.energy-track .vital-division { border-right-width: 1.5px; }

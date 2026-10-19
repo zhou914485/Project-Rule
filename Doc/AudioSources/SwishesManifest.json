@@ -1,0 +1,35 @@
+{
+  "author": "artisticdude",
+  "source_page": "https://opengameart.org/content/swishes-sound-pack",
+  "download": "https://opengameart.org/sites/default/files/swishes.zip",
+  "license": "CC0-1.0",
+  "retrieved": "2026-10-18",
+  "processing": "mono PCM16 44100Hz; highpass 120Hz; lowpass 10kHz; gain 0.45; fade-in 3ms",
+  "files": [
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/Swishes/SwordLight_A.wav",
+      "original": "Doc/AudioSources/SwishesOriginals/swish-1.wav",
+      "original_sha256": "9a15c881345c1ce1c39cc31f52f081c8c4dc81fa41111e0079400f39d3ba0e45",
+      "sha256": "33a24d9981d7f6ca44cc358f26ff04f6047714b7e2d3908cd4dfda4873e2cfc9"
+    },
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/Swishes/SwordLight_B.wav",
+      "original": "Doc/AudioSources/SwishesOriginals/swish-3.wav",
+      "original_sha256": "55b100e2c67fa43dad8510e31e85bbd51a68d5ce84a6e0259e21e19030083e24",
+      "sha256": "8223e9e8fc033bfcd9c94b728ee4c88e89ed9e40e2f0383e64d09a2b1e2fe894"
+    },
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/Swishes/SwordHeavy_A.wav",
+      "original": "Doc/AudioSources/SwishesOriginals/swish-8.wav",
+      "original_sha256": "113a3709ad889ad2fcf38eaceaf4eb9d67ffe1e96713fed93a6f0aed08769980",
+      "sha256": "29b956d95279bd906dd5b4b2a9323e0e274d285e31e82139536006a834a5134c"
+    },
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/Swishes/SwordHeavy_B.wav",
+      "original": "Doc/AudioSources/SwishesOriginals/swish-9.wav",
+      "original_sha256": "123883f006ce55feecbff11eea5f87c4493df4399989983037144570a23723c1",
+      "sha256": "62babe43743ab386b0322b5265e9685901e4978f165d5c199913a1f9f9606d1a"
+    }
+  ],
+  "status": "Historical preparation; current runtime sources are recorded by SelectedSfxManifest.json."
+}

@@ -1,0 +1,97 @@
+[
+  {
+    "cue": "BrickBossWindup",
+    "start": 0.0,
+    "seconds": 0.451
+  },
+  {
+    "cue": "BrickBossSlam",
+    "start": 0.851,
+    "seconds": 0.297
+  },
+  {
+    "cue": "BrickBossThrow",
+    "start": 1.549,
+    "seconds": 0.206
+  },
+  {
+    "cue": "BrickBossSplit",
+    "start": 2.155,
+    "seconds": 0.6
+  },
+  {
+    "cue": "ClockBossCharge",
+    "start": 3.155,
+    "seconds": 0.65
+  },
+  {
+    "cue": "ClockBossBarrageWarning",
+    "start": 4.205,
+    "seconds": 0.557
+  },
+  {
+    "cue": "ClockBossBeam",
+    "start": 5.162,
+    "seconds": 0.65
+  },
+  {
+    "cue": "ClockBossRewind",
+    "start": 6.212,
+    "seconds": 0.952
+  },
+  {
+    "cue": "ClockBossStun",
+    "start": 7.564,
+    "seconds": 0.376
+  },
+  {
+    "cue": "RabbitBossBurrow",
+    "start": 8.34,
+    "seconds": 0.417
+  },
+  {
+    "cue": "RabbitBossShot",
+    "start": 9.157,
+    "seconds": 0.34
+  },
+  {
+    "cue": "RabbitBossEmerge",
+    "start": 9.897,
+    "seconds": 0.417
+  },
+  {
+    "cue": "BatBossWindup",
+    "start": 10.715,
+    "seconds": 0.45
+  },
+  {
+    "cue": "BatBossDash",
+    "start": 11.565,
+    "seconds": 0.451
+  },
+  {
+    "cue": "BatBossFlap",
+    "start": 12.416,
+    "seconds": 0.54
+  },
+  {
+    "cue": "BatBossRoar",
+    "start": 13.356,
+    "seconds": 1.0
+  },
+  {
+    "cue": "BossSummon",
+    "start": 14.756,
+    "seconds": 1.1
+  },
+  {
+    "cue": "BossPhaseChange",
+    "start": 16.256,
+    "seconds": 1.4
+  },
+  {
+    "cue": "BossRuleCast",
+    "start": 18.056,
+    "seconds": 1.4
+  }
+]

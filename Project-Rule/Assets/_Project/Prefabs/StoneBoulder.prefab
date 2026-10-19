@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4116193865744291234}
   - component: {fileID: 4725920174152155007}
   - component: {fileID: 4985225761433084136}
+  - component: {fileID: 6563932942982571173}
   m_Layer: 8
   m_Name: StoneBoulder
   m_TagString: Untagged
@@ -137,6 +138,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: RuleGame.Gameplay::RuleGame.Gameplay.Scene.StoneBody
   _pressSwitches: 1
+--- !u!114 &6563932942982571173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 265782365715376042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8d605734018946908f0e729baff9df6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: RuleGame.Presentation::RuleGame.Presentation.Audio.MechanismSfxPresenter
+  _minimumImpactSpeed: 1.5
 --- !u!1 &2636965233617643779
 GameObject:
   m_ObjectHideFlags: 0

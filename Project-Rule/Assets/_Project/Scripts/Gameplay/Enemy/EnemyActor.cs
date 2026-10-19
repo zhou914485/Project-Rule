@@ -87,6 +87,7 @@ namespace RuleGame.Gameplay.Enemy
         public bool AnimationLoop { get; private set; }
         public event Action AnimationChanged;
         public event Action Restored;
+        public bool IsRestoringSnapshot { get; private set; }
         public event Action<EnemyActor> OnDefeated;
         public event Action<EnemyFeedback> Feedback;
         private bool _strikeAnnounced;
@@ -517,18 +518,23 @@ namespace RuleGame.Gameplay.Enemy
         public void RestoreSnapshotState(object state)
         {
             if (!(state is Data data)) return;
-            Defeated = data.Defeated; Facing = data.Facing; _invulnerability = data.Invulnerability;
-            _contactCooldown = data.ContactCooldown;
-            _summons.Clear(); _summons.AddRange(data.Summons);
-            Brain?.Restore(data.Brain);
-            if (_bodyCollider != null) _bodyCollider.enabled = Brain?.BodyEnabled ?? true;
-            ClockBeams?.Restore(data.ClockBeams);
-            _swingTargets.Clear();
-            foreach (IDamageable target in data.SwingTargets) _swingTargets.Add(target);
-            Motor.Restore(data.Velocity, data.Impulse, data.GravityDrift);
-            Navigation?.Restore(data.Navigation);
-            _strikeAnnounced = data.StrikeAnnounced;
-            Restored?.Invoke();
+            IsRestoringSnapshot = true;
+            try
+            {
+                Defeated = data.Defeated; Facing = data.Facing; _invulnerability = data.Invulnerability;
+                _contactCooldown = data.ContactCooldown;
+                _summons.Clear(); _summons.AddRange(data.Summons);
+                Brain?.Restore(data.Brain);
+                if (_bodyCollider != null) _bodyCollider.enabled = Brain?.BodyEnabled ?? true;
+                ClockBeams?.Restore(data.ClockBeams);
+                _swingTargets.Clear();
+                foreach (IDamageable target in data.SwingTargets) _swingTargets.Add(target);
+                Motor.Restore(data.Velocity, data.Impulse, data.GravityDrift);
+                Navigation?.Restore(data.Navigation);
+                _strikeAnnounced = data.StrikeAnnounced;
+                Restored?.Invoke();
+            }
+            finally { IsRestoringSnapshot = false; }
         }
     }
 }

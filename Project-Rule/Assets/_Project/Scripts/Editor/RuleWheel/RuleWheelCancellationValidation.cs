@@ -1,9 +1,10 @@
 using System;
 using System.IO;
-using RuleGame.Development.P3;
+using RuleGame.Core.Rules;
 using RuleGame.Gameplay.Player;
 using RuleGame.Gameplay.Scene.Rules;
 using RuleGame.Infrastructure.Time;
+using RuleGame.Presentation.RuleWheel;
 using RuleGame.UI.RuleWheel;
 using UnityEditor;
 using UnityEditor.SceneManagement;
@@ -22,13 +23,18 @@ namespace RuleGame.Editor.RuleWheel
         private static PlayerController _player;
         private static RuleWheelPresenter _wheel;
         private static Keyboard _keyboard;
+        private static Mouse _mouse;
+        private static RuleDef _costFixture;
+        private static float _originalCost;
         private static RenderTexture _surface;
-        private static int _step, _cycle, _frames;
+        private static int _step, _cycle, _frames, _passed;
         private static float _x, _energy;
         private static double _due;
         private static double _startupDeadline;
-        private static bool _errors;
-        private static string Output => Environment.GetEnvironmentVariable("RULE_WHEEL_OUTPUT") ?? "Temp/RuleWheelCancellation";
+        private static bool _errors, _recording;
+        private static int _captureCount;
+        private static double _captureDue;
+        private static string Output => Environment.GetEnvironmentVariable("RULE_WHEEL_OUTPUT") ?? "Logs/RuleWheelArt";
 
         public static void Run() => Start(false);
         public static void Preview() => Start(true);
@@ -40,6 +46,7 @@ namespace RuleGame.Editor.RuleWheel
             {
                 Directory.CreateDirectory(Output);
                 EditorSceneManager.OpenScene("Assets/_Project/Scenes/SampleScene.unity");
+                RuleWheelArtSetup.Configure();
                 RuleWheelLabBuilder.Build();
                 EditorSceneManager.OpenScene(RuleWheelLabBuilder.ScenePath);
                 SessionState.SetBool(Pending, true);
@@ -67,9 +74,17 @@ namespace RuleGame.Editor.RuleWheel
             Application.runInBackground = true;
             InputSystem.settings.backgroundBehavior = InputSettings.BackgroundBehavior.IgnoreFocus;
             InputSystem.settings.editorInputBehaviorInPlayMode = InputSettings.EditorInputBehaviorInPlayMode.AllDeviceInputAlwaysGoesToGameView;
+            // The legacy lab has a solid dummy at x=3. Keep this input test's
+            // short A/D path clear without changing the saved scene.
+            GameObject.Find("Dummy")?.SetActive(false);
+            GameObject.Find("TestBox")?.SetActive(false);
             _player = UnityEngine.Object.FindAnyObjectByType<PlayerController>();
             _wheel = UnityEngine.Object.FindAnyObjectByType<RuleWheelPresenter>();
             _keyboard = InputSystem.AddDevice<Keyboard>(); _keyboard.MakeCurrent();
+            _mouse = InputSystem.AddDevice<Mouse>(); _mouse.MakeCurrent();
+            _costFixture = AssetDatabase.LoadAssetAtPath<RuleDef>("Assets/_Project/Data/Rules/GravityRevert.asset");
+            _originalCost = _costFixture.ActivationCost;
+            _costFixture.ActivationCost = 7f; // Play-only positive cost; never saved.
             _energy = _player.GetComponent<EntityStatus>().Energy;
             _surface = new RenderTexture(1280, 720, 24); _surface.Create();
             Camera.main.targetTexture = _surface;
@@ -82,6 +97,11 @@ namespace RuleGame.Editor.RuleWheel
         private static void Step()
         {
             EditorApplication.QueuePlayerLoopUpdate();
+            if (_recording && Time.unscaledTimeAsDouble >= _captureDue && _captureCount < 80)
+            {
+                Screenshot($"motion_{_captureCount++:000}.png");
+                _captureDue = Time.unscaledTimeAsDouble + 1.0 / 24.0;
+            }
             if (Time.unscaledTimeAsDouble < _due) return;
             // 新场景首次字体/渲染初始化会阻塞编辑器；开始操作前等真实物理接地，不按墙钟猜。
             if (_cycle == 0 && _step == 0 && !_player.IsGrounded && EditorApplication.timeSinceStartup < _startupDeadline) return;
@@ -135,19 +155,104 @@ namespace RuleGame.Editor.RuleWheel
                         InputSystem.QueueStateEvent(_keyboard, new KeyboardState());
                         break;
                     case 4:
-                        Check(Camera.main.GetComponent<P3FollowCamera>().enabled, "取消后未归还队友跟随摄像机");
+                        Check(!_wheel.WorldCamera.GetComponent<RuleSelectionCamera>().IsFocused, "取消后未归还队友跟随摄像机");
                         if (++_cycle < 4) { _step = 0; break; }
-                        Finish(!_errors, "四轮真实 A/D 移动、属性/关系阶段中途松开 Shift、恢复步长和镜头全部通过。");
+                        InputSystem.QueueStateEvent(_keyboard, new KeyboardState(Key.D));
+                        break;
+                    case 5:
+                        _recording = true; _captureDue = Time.unscaledTimeAsDouble;
+                        InputSystem.QueueStateEvent(_keyboard, new KeyboardState(Key.LeftShift));
+                        break;
+                    case 6:
+                        Check(_wheel.IsOpen && !_wheel.Fan.Mirrored, "朝右的新一轮打开成功");
+                        CheckArt(_wheel.Fan, 6);
+                        CheckArt(_wheel.RelationFan, 5);
+                        Check(_wheel.Fan.Query<VisualElement>(className: "wheel-paper").First().resolvedStyle.opacity > .99f,
+                            "极慢游戏时间下纸牌仍按真实时间完成展开");
+                        _wheel.SelectAttributeIndex(0);
+                        break;
+                    case 7:
+                        _wheel.SelectRelationIndex(0);
+                        HoverRelation(0);
+                        Check(_wheel.Fan.Query<VisualElement>(className: "wheel-paper").First().resolvedStyle.scale.value.x > 1f,
+                            "悬停属性牌轻微抬起放大");
+                        break;
+                    case 8:
+                        Screenshot("art-relation-right.png");
+                        Check(_wheel.RelationFan.Query<VisualElement>(className: "wheel-glow").First().resolvedStyle.opacity > .15f,
+                            "悬停关系牌亮起金色光边");
+                        _energy = _player.GetComponent<EntityStatus>().Energy;
+                        Check(_wheel.ConfirmSelection(), "手绘牌可以确认真实规则");
+                        Check(!_wheel.IsOpen && Mathf.Approximately(Time.timeScale, 1f), "释放反馈立即归还游戏时间");
+                        Check(Mathf.Approximately(_player.GetComponent<EntityStatus>().Energy, _energy - 7f), "真实规则释放恰好结算一次七点能量");
+                        _due = Time.unscaledTimeAsDouble + .06;
+                        return;
+                    case 9:
+                        Screenshot("art-release.png");
+                        Check(_wheel.TryOpen(), "淡出期间可立即重新打开轮盘");
+                        Check(!_wheel.GetComponent<UIDocument>().rootVisualElement.Q("wheelRoot").ClassListContains("hidden"),
+                            "上一次淡出不会隐藏新打开的轮盘");
+                        _wheel.Close();
+                        InputSystem.QueueStateEvent(_keyboard, new KeyboardState(Key.A));
+                        break;
+                    case 10:
+                        _recording = false;
+                        InputSystem.QueueStateEvent(_keyboard, new KeyboardState(Key.A, Key.LeftShift));
+                        break;
+                    case 11:
+                        Check(_wheel.Fan.Mirrored, "向左时使用镜像手绘牌");
+                        _wheel.SelectAttributeIndex(0);
+                        _wheel.SelectRelationIndex(0);
+                        HoverRelation(0);
+                        break;
+                    case 12:
+                        Screenshot("art-relation-left.png");
+                        Check(_wheel.Fan.Query<VisualElement>(className: "wheel-paper").First().resolvedStyle.scale.value.x < 0f,
+                            "镜像只作用于美术纸牌");
+                        Check(_wheel.Fan.Query<Label>(className: "wheel-word").First().resolvedStyle.scale.value.x >= 0f,
+                            "镜像时文字保持正向");
+                        for (int i = 0; i < 6; i++)
+                            Check(_wheel.Fan.IndexAt(_wheel.Fan.OptionPoint(i)) == i, "镜像纸牌命中位置与显示一致：" + i);
+                        _energy = _player.GetComponent<EntityStatus>().Energy;
+                        Check(_wheel.ConfirmSelection(), "已生效规则可通过手绘牌取消");
+                        Check(Mathf.Approximately(_player.GetComponent<EntityStatus>().Energy, _energy), "取消已生效规则不扣能量");
+                        InputSystem.QueueStateEvent(_keyboard, new KeyboardState());
+                        break;
+                    case 13:
+                        Check(!_wheel.IsOpen && !_wheel.WorldCamera.GetComponent<RuleSelectionCamera>().IsFocused, "动效结束不残留输入和镜头接管");
+                        Check(_wheel.GetComponent<UIDocument>().rootVisualElement.Q("wheelRoot").ClassListContains("hidden"), "关闭动效最终隐藏轮盘");
+                        Finish(!_errors, "真实输入取消、手绘贴图、慢时间动效、左右镜像、释放扣费、免费取消与快速重开验证完成。");
                         return;
                 }
                 _due = Time.unscaledTimeAsDouble + 0.35;
             }
-            catch (Exception error) { Finish(false, $"cycle={_cycle}, step={_step}, position={_player.transform.position}, timeScale={Time.timeScale}, managerScale={(TimeManager.Instance != null ? TimeManager.Instance.TimeScale : -1f)}\n{error}"); }
+            catch (Exception error) { Finish(false, $"cycle={_cycle}, step={_step}, position={_player.transform.position}, startX={_x}, velocity={_player.Velocity}, frames={Time.frameCount-_frames}, timeScale={Time.timeScale}, managerScale={(TimeManager.Instance != null ? TimeManager.Instance.TimeScale : -1f)}\n{error}"); }
+        }
+
+        private static void HoverRelation(int index)
+        {
+            Vector2 panel = _wheel.RelationFan.LocalToWorld(_wheel.RelationFan.OptionPoint(index));
+            Vector2 root = _wheel.GetComponent<UIDocument>().rootVisualElement.contentRect.size;
+            var screen = new Vector2(panel.x / root.x * _surface.width, (1f - panel.y / root.y) * _surface.height);
+            InputSystem.QueueStateEvent(_mouse, new MouseState { position = screen });
+        }
+
+        private static void CheckArt(RuleFan fan, int expected)
+        {
+            var cards = fan.Query<VisualElement>(className: "wheel-paper").ToList();
+            Check(cards.Count == expected, "美术纸牌数量：" + expected);
+            foreach (VisualElement card in cards)
+            {
+                Texture2D texture = card.resolvedStyle.backgroundImage.texture;
+                Check(texture != null && AssetDatabase.GetAssetPath(texture).StartsWith("Assets/_Project/UI/Art/RuleWheel/"),
+                    "纸牌引用真实交付贴图");
+            }
         }
 
         private static void Check(bool condition, string detail)
         {
             if (!condition) throw new InvalidOperationException(detail);
+            _passed++;
         }
         private static void Screenshot(string name)
         {
@@ -161,13 +266,14 @@ namespace RuleGame.Editor.RuleWheel
         }
         private static void Finish(bool success, string detail)
         {
+            if (_costFixture != null) _costFixture.ActivationCost = _originalCost;
             EditorApplication.update -= Step;
             SessionState.SetBool(Pending, false);
             Directory.CreateDirectory(Output);
-            File.WriteAllText(Path.Combine(Output, "result.json"), JsonUtility.ToJson(new Report { Success = success, Detail = detail }, true));
+            File.WriteAllText(Path.Combine(Output, "result.json"), JsonUtility.ToJson(new Report { Success = success, Passed = _passed, Detail = detail }, true));
             Debug.Log("[Wheel Cancel] " + detail);
             EditorApplication.Exit(success ? 0 : 1);
         }
-        [Serializable] private sealed class Report { public bool Success; public string Detail; }
+        [Serializable] private sealed class Report { public bool Success; public int Passed; public string Detail; }
     }
 }

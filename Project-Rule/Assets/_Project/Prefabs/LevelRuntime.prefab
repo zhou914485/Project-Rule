@@ -9,6 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4502221175975341964}
+  - component: {fileID: 6689891912237384207}
+  - component: {fileID: 4291043403585637688}
+  - component: {fileID: 8327969779325461075}
   m_Layer: 0
   m_Name: LevelRuntime
   m_TagString: Untagged
@@ -34,9 +37,55 @@ Transform:
   - {fileID: 7550561517234425919}
   - {fileID: 1386674587553236161}
   - {fileID: 703064085621951207}
-  - {fileID: 4563208352257889578}
+  - {fileID: 7237762578797139390}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6689891912237384207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 465974810101199962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b6f176ed11be4c40ba221c870cfdd7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: RuleGame.Presentation::RuleGame.Presentation.Audio.MusicDirector
+  _defaultProfile: {fileID: 11400000, guid: aecd7189a4feb4e349f2ebe193ea80d8, type: 2}
+  _focus: {fileID: 1877025142836952509}
+  _boundaryHysteresis: 1
+  _regionDelay: 0.25
+  _pausedVolume: 0.35
+  _duckSeconds: 0.2
+  _scheduleAhead: 0.5
+--- !u!114 &4291043403585637688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 465974810101199962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 409b352f64a054f0cb228bd97b6664e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: RuleGame.Presentation::RuleGame.Presentation.Audio.SfxPlayer
+  _bank: {fileID: 11400000, guid: c123a1130ff994289986fe76e0fa1e69, type: 2}
+  _volume: 0.85
+  _hearingDistance: 24
+--- !u!114 &8327969779325461075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 465974810101199962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49c7addf7841041ada107382a75e72cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: RuleGame.Presentation::RuleGame.Presentation.Audio.WorldSfxBinder
 --- !u!1 &701508034279411341
 GameObject:
   m_ObjectHideFlags: 0
@@ -55,6 +104,7 @@ GameObject:
   - component: {fileID: 6048151562633117209}
   - component: {fileID: 3563518010594046544}
   - component: {fileID: 372902075844652135}
+  - component: {fileID: 299994958780319301}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -71,7 +121,7 @@ Transform:
   m_GameObject: {fileID: 701508034279411341}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 187.1, y: 4.7, z: 0}
+  m_LocalPosition: {x: -4.05, y: 5.54, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -139,7 +189,6 @@ MonoBehaviour:
   _moveSpeedMax: 6
   _attackMoveSpeedMax: 4
   _groundAccel: 200
-  _lowFrictionGroundAccel: 40
   _jumpSpeed: 14.6884
   _maxAirJumps: 1
   _airJumpSpeed: 10.9299
@@ -331,6 +380,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 983fb798f0ea2174593564c6bc079e38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: RuleGame.Development::RuleGame.Development.RuleWheel.RuleWheelLabUnlocks
+--- !u!114 &299994958780319301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 701508034279411341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9be5dceb144a5490e80e8f159df71a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: RuleGame.Presentation::RuleGame.Presentation.Audio.PlayerSfxPresenter
+  _audio: {fileID: 4291043403585637688}
 --- !u!1 &863040203698951685
 GameObject:
   m_ObjectHideFlags: 0
@@ -358,7 +420,7 @@ Transform:
   m_GameObject: {fileID: 863040203698951685}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 187.1, y: 5.3999996, z: -10}
+  m_LocalPosition: {x: -4.05, y: 6.24, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -583,7 +645,7 @@ Transform:
   m_GameObject: {fileID: 3893316903970576085}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 96.56, y: 0.8300001, z: -10}
+  m_LocalPosition: {x: 1.15, y: -2.8799996, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -742,61 +804,6 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   CustomBlends: {fileID: 0}
---- !u!1 &4271252765685543306
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4563208352257889578}
-  - component: {fileID: 6861529387280889752}
-  m_Layer: 0
-  m_Name: birth
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4563208352257889578
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4271252765685543306}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 19.7, y: 4.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4502221175975341964}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6861529387280889752
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4271252765685543306}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8300608b28f8cc6c39148e8b134e635b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: RuleGame.Gameplay::RuleGame.Gameplay.Scene.PlayerSpawnPoint
-  _id: start
-  _facing: 1
-  _applyWhenStandalone: 1
-  _activateRadius: 1.2
-  _reactivate: 0
-  _onActivated:
-    m_PersistentCalls:
-      m_Calls: []
-  _saveRequested:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &4974943283484232420
 GameObject:
   m_ObjectHideFlags: 0
@@ -809,6 +816,7 @@ GameObject:
   - component: {fileID: 6004299917009494610}
   - component: {fileID: 4518600675149302340}
   - component: {fileID: 5176214626023696707}
+  - component: {fileID: 403698173532593247}
   m_Layer: 0
   m_Name: Rule Wheel
   m_TagString: Untagged
@@ -886,6 +894,88 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: RuleGame.Presentation::RuleGame.Presentation.RuleWheel.RuleSelectionOrbView
   _art: {fileID: 11400000, guid: 9c570e4d34fea6f43a2207b644fdf9e4, type: 2}
+--- !u!114 &403698173532593247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4974943283484232420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95c9062a62c9c401c86360a3cb609554, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: RuleGame.Presentation::RuleGame.Presentation.Audio.RuleWheelSfxPresenter
+  _audio: {fileID: 4291043403585637688}
+--- !u!1 &6252890892048904602
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7237762578797139390}
+  - component: {fileID: 3903833097998827962}
+  - component: {fileID: 409812805840727037}
+  m_Layer: 0
+  m_Name: Player Vitals
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7237762578797139390
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6252890892048904602}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4502221175975341964}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3903833097998827962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6252890892048904602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.UIElements.UIDocument
+  m_PanelSettings: {fileID: 11400000, guid: 4418da73983a94f2a814990459ceca32, type: 2}
+  m_ParentUI: {fileID: 0}
+  sourceAsset: {fileID: 9197481963319205126, guid: 5bdf6d31d2b7241d892331dce644745f, type: 3}
+  m_SortingOrder: 0
+  m_Position: 0
+  m_WorldSpaceSizeMode: 1
+  m_WorldSpaceWidth: 1920
+  m_WorldSpaceHeight: 1080
+  m_PivotReferenceSize: 0
+  m_Pivot: 0
+  m_WorldSpaceCollider: {fileID: 0}
+--- !u!114 &409812805840727037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6252890892048904602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 452b35e8724464234a1bc4ea6879bca4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: RuleGame.UI::RuleGame.UI.Launch.PlayerVitalsPresenter
+  _status: {fileID: 5714247369272765345}
 --- !u!1 &6617420305150054304
 GameObject:
   m_ObjectHideFlags: 0

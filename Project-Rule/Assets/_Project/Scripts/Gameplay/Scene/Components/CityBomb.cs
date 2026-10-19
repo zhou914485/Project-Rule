@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using System.Collections.Generic;
 using RuleGame.Gameplay.Combat;
@@ -11,6 +12,7 @@ namespace RuleGame.Gameplay.Scene.Components
         public float Fuse = .8f, Radius = 3f, Damage = 30f, Knockback = 10f;
         public LayerMask Targets = ~0;
         public CombatSystem Combat;
+        public event Action OnDetonated;
         private bool _armed, _spent;
         private float _remaining;
         private readonly Collider2D[] _hits = new Collider2D[24];
@@ -38,6 +40,7 @@ namespace RuleGame.Gameplay.Scene.Components
                 if (target != null && _targets.Add(target)) Combat.ApplyDamage(this, target, Damage, Knockback);
             }
             _spent = true; _armed = false; Shape.enabled = false; SetVisible(false);
+            OnDetonated?.Invoke();
         }
         private struct State { public bool Armed, Spent; public float Remaining; }
         protected override object CaptureMechanismState() => new State { Armed = _armed, Spent = _spent, Remaining = _remaining };

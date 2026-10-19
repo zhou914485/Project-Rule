@@ -123,6 +123,7 @@ GameObject:
   - component: {fileID: 215027207439530412}
   - component: {fileID: 1443321523564181749}
   - component: {fileID: 4082079653442212652}
+  - component: {fileID: 575635004726707954}
   m_Layer: 9
   m_Name: RabbitBoss
   m_TagString: Untagged
@@ -252,6 +253,9 @@ MonoBehaviour:
   SolidMask:
     serializedVersion: 2
     m_Bits: 256
+  BodyBlockMask:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!114 &215027207439530412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -267,15 +271,23 @@ MonoBehaviour:
   Definition: {fileID: 11400000, guid: 4b9dbd6d3374a4342af4f3d27f35a4d1, type: 2}
   Target: {fileID: 0}
   Combat: {fileID: 0}
+  UseSpawnRelativeArena: 0
+  ArenaSize: {x: 20, y: 20}
+  ArenaOffset: {x: 0, y: 0}
   MinionPrefab: {fileID: 0}
   FlyingMinionPrefab: {fileID: 0}
   Summoner: {fileID: 0}
   WeakPoint: {fileID: 0}
+  PlayerMask:
+    serializedVersion: 2
+    m_Bits: 1
   ProjectileSprite: {fileID: 21300000, guid: 5b03d561158084303bbd97618cd85c2c, type: 3}
   BeamOrigin: {fileID: 0}
   RuntimeSpawned: 0
   ArenaX: {x: -12, y: 12}
   ArenaY: {x: 0, y: 10}
+  PatrolRange: 0
+  PressContactSwitches: 1
 --- !u!114 &1443321523564181749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -304,6 +316,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: RuleGame.Presentation::RuleGame.Presentation.Enemy.EnemyVfxPresenter
   Profile: {fileID: 11400000, guid: 47d3c0ebbe35fcb43b4eb07006c63e60, type: 2}
+--- !u!114 &575635004726707954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2554738494973922244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5734830a1f2e9419a9db2d4bce1d0f9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: RuleGame.Presentation::RuleGame.Presentation.Audio.EnemySfxPresenter
 --- !u!1 &5655515584646370259
 GameObject:
   m_ObjectHideFlags: 0

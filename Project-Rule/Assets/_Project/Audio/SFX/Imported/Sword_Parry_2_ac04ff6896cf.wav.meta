@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 33a954741067bea42896f305e3bab715
+AudioImporter:
+  externalObjects: {}
+  serializedVersion: 8
+  defaultSettings:
+    serializedVersion: 2
+    loadType: 0
+    sampleRateSetting: 0
+    sampleRateOverride: 44100
+    compressionFormat: 0
+    quality: 1
+    conversionMode: 0
+    preloadAudioData: 1
+  platformSettingOverrides: {}
+  forceToMono: 0
+  normalize: 1
+  loadInBackground: 0
+  ambisonic: 0
+  3D: 1
+  userData: '{"Source":"Src\\Free Fantasy SFX Pack By TomMusic\\Free Fantasy SFX Pack By TomMusic\\WAV Files\\SFX\\Attacks\\Sword Attacks Hits and Blocks\\Sword Parry 2.wav","Sha256":"ac04ff6896cf900551eb29e1371a3a18e76914be44780c4fdba6efc0b4d17bc3"}'
+  assetBundleName:
+  assetBundleVariant:

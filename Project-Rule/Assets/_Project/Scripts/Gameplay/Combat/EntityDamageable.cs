@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using RuleGame.Gameplay.Player;
 using RuleGame.Infrastructure;
@@ -62,6 +63,9 @@ namespace RuleGame.Gameplay.Combat
         public bool IsInvincible => !_died && (Invulnerable || Time.time < _invincibleUntil);
 
         public bool IsDead => _died;
+
+        /// <summary>实际扣血后通知表现层；不包含无敌、治疗、挂账纯击退或快照恢复。</summary>
+        public event Action<DamageInfo> OnDamageTaken;
         /// <summary>外部显式控制的免伤开关；独立于受击无敌帧和抗性，不修改共享伤害计算。</summary>
         public bool Invulnerable { get; private set; }
         public void SetInvulnerable(bool invulnerable) => Invulnerable = invulnerable;
@@ -136,10 +140,20 @@ namespace RuleGame.Gameplay.Combat
             float amount = damage.Amount * (1f - _resistance);
             if (amount <= 0f) return;               // 完全免疫：不扣血、不进无敌、也不被击退
 
+            float before = _status.Health;
             _status.ApplyHealthDelta(-amount);
+            float applied = before - _status.Health;
             if (_invincibleSeconds > 0f) _invincibleUntil = Time.time + _invincibleSeconds;
 
             ApplyKnockback(damage);
+
+            if (applied > 0f)
+            {
+                DamageInfo feedback = damage;
+                feedback.Target = this;
+                feedback.Amount = applied;
+                OnDamageTaken?.Invoke(feedback);
+            }
 
             if (_status.Health > 0f) return;
 

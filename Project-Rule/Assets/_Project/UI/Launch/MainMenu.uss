@@ -1,0 +1,79 @@
+.menu-viewport {
+    position: absolute;
+    left: 0; top: 0; right: 0; bottom: 0;
+    background-color: #f7f5e8;
+    overflow: hidden;
+    -unity-font-definition: url("project://database/Assets/_Project/UI/Fonts/P4ChineseFont.asset");
+    color: #433721;
+}
+.menu-artboard {
+    position: absolute;
+    left: 0; top: 0;
+    width: 1920px; height: 1080px;
+    transform-origin: 0 0;
+    background-image: url("project://database/Assets/_Project/UI/Art/Launch/TitleScreen.png");
+    background-size: 100% 100%;
+}
+.art-button {
+    position: absolute;
+    margin: 0; padding: 0;
+    border-width: 0;
+    border-radius: 0;
+    background-color: transparent;
+    background-size: 100% 100%;
+}
+.art-button:hover { background-color: rgba(255, 255, 255, 0.12); }
+.art-button:focus { border-width: 3px; border-color: #f3ca70; }
+.art-button:active { -unity-background-image-tint-color: white; }
+.start-button { left: 1416px; top: 368px; width: 356px; height: 100.8px; }
+.load-button { left: 1416px; top: 513.6px; width: 356px; height: 100.8px; }
+.about-button { left: 1416px; top: 662.4px; width: 356px; height: 100.8px; }
+.settings-button { left: 1800px; top: 28.8px; width: 100px; height: 95.2px; }
+.quit-button { left: 1800px; top: 948px; width: 100px; height: 92px; }
+.start-button:active { background-image: url("project://database/Assets/_Project/UI/Art/Launch/StartPressed.png"); }
+.load-button:active { background-image: url("project://database/Assets/_Project/UI/Art/Launch/LoadPressed.png"); }
+.about-button:active { background-image: url("project://database/Assets/_Project/UI/Art/Launch/AboutPressed.png"); }
+.settings-button:active { background-image: url("project://database/Assets/_Project/UI/Art/Launch/SettingsPressed.png"); }
+.quit-button:active { background-image: url("project://database/Assets/_Project/UI/Art/Launch/QuitPressed.png"); }
+.modal-shade {
+    position: absolute;
+    left: 0; top: 0; right: 0; bottom: 0;
+    background-color: rgba(13, 32, 48, 0.65);
+    justify-content: center;
+    align-items: center;
+}
+.common-panel {
+    width: 600px; max-width: 88%;
+    padding: 44px;
+    background-image: url("project://database/Assets/_Project/UI/Art/Launch/CommonPanel.png");
+    -unity-slice-left: 20; -unity-slice-right: 20;
+    -unity-slice-top: 20; -unity-slice-bottom: 20;
+}
+.modal-title { margin: 0 20px 22px 0; font-size: 30px; -unity-font-style: bold; }
+.modal-copy { margin: 0 0 26px 0; font-size: 20px; white-space: normal; }
+.modal-close {
+    position: absolute; top: 14px; right: 14px;
+    width: 26px; height: 26px;
+    padding: 0; margin: 0; border-width: 0;
+    background-color: transparent;
+    background-image: url("project://database/Assets/_Project/UI/Art/Launch/CommonClose.png");
+}
+.common-button {
+    min-width: 130px; min-height: 46px;
+    padding: 8px 22px; margin: 0 0 0 16px;
+    border-width: 0;
+    color: #433721;
+    font-size: 20px;
+    background-color: transparent;
+    background-image: url("project://database/Assets/_Project/UI/Art/Launch/CommonButton.png");
+    -unity-slice-left: 14; -unity-slice-right: 14;
+    -unity-slice-top: 10; -unity-slice-bottom: 10;
+}
+.common-button:hover { -unity-background-image-tint-color: #fff1c8; }
+.common-button:active { -unity-background-image-tint-color: #c6ab79; }
+.common-button:focus, .modal-close:focus { border-width: 2px; border-color: #614823; }
+.modal-actions { flex-direction: row; justify-content: flex-end; }
+.volume-control { margin-bottom: 26px; font-size: 20px; }
+.volume-control .unity-base-slider__tracker { height: 6px; background-color: #ccb78a; }
+.volume-control .unity-base-slider__dragger { background-color: #4d6688; border-width: 0; width: 18px; height: 18px; }
+.hidden { display: none; }

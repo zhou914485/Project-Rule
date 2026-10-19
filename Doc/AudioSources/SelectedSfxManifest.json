@@ -1,0 +1,1317 @@
+{
+  "version": 1,
+  "license": "CC0-1.0",
+  "selection": "Source-material redesign, not an EQ pass.",
+  "retrieved": "2026-10-18",
+  "entries": [
+    {
+      "Cue": 0,
+      "Name": "Jump",
+      "Clips": [
+        "Assets/_Project/Audio/SFX/Selected/Jump.wav"
+      ],
+      "Volume": 0.42,
+      "PitchMin": 0.98,
+      "PitchMax": 1.02,
+      "selection_reason": "平台跳跃原件的上扬短音，替换低沉布料摩擦；保留同一动作族。"
+    },
+    {
+      "Cue": 1,
+      "Name": "AirJump",
+      "Clips": [
+        "Assets/_Project/Audio/SFX/Selected/Jump.wav"
+      ],
+      "Volume": 0.4,
+      "PitchMin": 1.09,
+      "PitchMax": 1.13,
+      "selection_reason": "同源短上扬音，略升音高区分多段跳。"
+    },
+    {
+      "Cue": 2,
+      "Name": "WallJump",
+      "Clips": [
+        "Assets/_Project/Audio/SFX/Selected/Jump.wav"
+      ],
+      "Volume": 0.44,
+      "PitchMin": 1.03,
+      "PitchMax": 1.07,
+      "selection_reason": "同源弹起声，音高位于地面跳和多段跳之间。"
+    },
+    {
+      "Cue": 3,
+      "Name": "Land",
+      "Clips": [
+        "Assets/_Project/Audio/SFX/PlayerFeedback/PlayerLand.wav",
+        "Assets/_Project/Audio/SFX/Selected/Land_B.wav"
+      ],
+      "Volume": 0.33,
+      "PitchMin": 0.98,
+      "PitchMax": 1.02,
+      "selection_reason": "换为真实鞋底脚步，辅以小比例纸板轻触起音；避免低频合成脚步。"
+    },
+    {
+      "Cue": 4,
+      "Name": "Dash",
+      "Clips": [
+        "Assets/_Project/Audio/SFX/Selected/Dash.wav"
+      ],
+      "Volume": 0.46,
+      "PitchMin": 0.98,
+      "PitchMax": 1.03,
+      "selection_reason": "选用皮带布条快速抽动的高频摩擦段，替换低沉长布料翻动。"
+    },
+    {
+      "Cue": 5,
+      "Name": "SwordLight",
+      "Clips": [
+        "Assets/_Project/Audio/SFX/Swishes/SwordLight_A.wav",
+        "Assets/_Project/Audio/SFX/Swishes/SwordLight_B.wav"
+      ],
+      "Volume": 0.5,
+      "PitchMin": 0.98,
+      "PitchMax": 1.04,
+      "selection_reason": "改用独立刀刃划动录音，两份短空气切割声；不再使用低频棒状破风。"
+    },
+    {
+      "Cue": 6,
+      "Name": "SwordHeavy",
+      "Clips": [
+        "Assets/_Project/Audio/SFX/Swishes/SwordHeavy_A.wav",
+        "Assets/_Project/Audio/SFX/Swishes/SwordHeavy_B.wav"
+      ],
+      "Volume": 0.58,
+      "PitchMin": 0.98,
+      "PitchMax": 1.02,
+      "selection_reason": "刀刃划动较完整的长弧线，靠时长与能量区分重击，避免降调变闷。"
+    },
+    {
+      "Cue": 7,
+      "Name": "Hurt",
+      "Clips": [
+        "Assets/_Project/Audio/SFX/PlayerFeedback/PlayerHurt.wav",
+        "Assets/_Project/Audio/SFX/Selected/Hurt_B.wav"
+      ],
+      "Volume": 0.56,
+      "PitchMin": 0.98,
+      "PitchMax": 1.02,
+      "selection_reason": "重新选真实非语音击打的短脆起音，替换低沉合成重拳，不含怪物叫声。"
+    },
+    {
+      "Cue": 8,
+      "Name": "WheelOpen",
+      "Clips": [
+        "Assets/_Project/Audio/SFX/Selected/WheelOpen.wav"
+      ],
+      "Volume": 0.36,
+      "PitchMin": 1,
+      "PitchMax": 1,
+      "selection_reason": "上扬界面提示，代替宽带开窗噪声。"
+    },
+    {
+      "Cue": 9,
+      "Name": "WheelPreview",
+      "Clips": [
+        "Assets/_Project/Audio/SFX/Selected/WheelPreview.wav"
+      ],
+      "Volume": 0.2,
+      "PitchMin": 1,
+      "PitchMax": 1,
+      "selection_reason": "短拨弦式颗粒，连续扫选时轻且清楚。"
+    },
+    {
+      "Cue": 10,
+      "Name": "WheelConfirm",
+      "Clips": [
+        "Assets/_Project/Audio/SFX/Selected/WheelConfirm.wav"
+      ],
+      "Volume": 0.42,
+      "PitchMin": 1,
+      "PitchMax": 1,
+      "selection_reason": "更明确的清亮确认短音，替换低音确认。"
+    },
+    {
+      "Cue": 11,
+      "Name": "WheelCancel",
+      "Clips": [
+        "Assets/_Project/Audio/SFX/Selected/WheelCancel.wav"
+      ],
+      "Volume": 0.32,
+      "PitchMin": 1,
+      "PitchMax": 1,
+      "selection_reason": "与展开配对的下降音。"
+    },
+    {
+      "Cue": 12,
+      "Name": "WheelBack",
+      "Clips": [
+        "Assets/_Project/Audio/SFX/Selected/WheelBack.wav"
+      ],
+      "Volume": 0.28,
+      "PitchMin": 1,
+      "PitchMax": 1,
+      "selection_reason": "独立返回短点击，取消旧0.92降调。"
+    },
+    {
+      "Cue": 13,
+      "Name": "WheelError",
+      "Clips": [
+        "Assets/_Project/Audio/SFX/Selected/WheelError.wav"
+      ],
+      "Volume": 0.34,
+      "PitchMin": 1,
+      "PitchMax": 1,
+      "selection_reason": "可辨认的拒绝提示音型。"
+    },
+    {
+      "Cue": 14,
+      "Name": "EnemyMelee",
+      "Clips": [
+        "Assets/_Project/Audio/SFX/Swishes/SwordLight_A.wav",
+        "Assets/_Project/Audio/SFX/Swishes/SwordLight_B.wav"
+      ],
+      "Volume": 0.38,
+      "PitchMin": 0.98,
+      "PitchMax": 1.04,
+      "selection_reason": "沿用新刀刃破风族，敌人近战音量低于玩家。"
+    },
+    {
+      "Cue": 15,
+      "Name": "EnemyShot",
+      "Clips": [
+        "Assets/_Project/Audio/SFX/Selected/EnemyShot.wav"
+      ],
+      "Volume": 0.32,
+      "PitchMin": 0.98,
+      "PitchMax": 1.03,
+      "selection_reason": "真正的短能量发射声，替换界面鼠标点击占位。"
+    },
+    {
+      "Cue": 16,
+      "Name": "EnemyBeam",
+      "Clips": [
+        "Assets/_Project/Audio/SFX/Selected/EnemyBeam.wav"
+      ],
+      "Volume": 0.36,
+      "PitchMin": 0.98,
+      "PitchMax": 1.02,
+      "selection_reason": "独立能量束素材，保留发射包络和高频电感。"
+    },
+    {
+      "Cue": 17,
+      "Name": "EnemyHitWood",
+      "Clips": [
+        "Assets/_Project/Audio/SFX/Selected/HitWood_A.wav",
+        "Assets/_Project/Audio/SFX/Selected/HitWood_B.wav"
+      ],
+      "Volume": 0.46,
+      "PitchMin": 0.98,
+      "PitchMax": 1.04,
+      "selection_reason": "真实干木触碰/短敲击，替换低沉合成木头撞击。"
+    },
+    {
+      "Cue": 18,
+      "Name": "EnemyHitMetal",
+      "Clips": [
+        "Assets/_Project/Audio/SFX/Selected/HitMetal_A.wav",
+        "Assets/_Project/Audio/SFX/Selected/HitMetal_B.wav"
+      ],
+      "Volume": 0.42,
+      "PitchMin": 0.98,
+      "PitchMax": 1.03,
+      "selection_reason": "小金属轻敲，保留本身的高频谐振。"
+    },
+    {
+      "Cue": 19,
+      "Name": "EnemyHitSoft",
+      "Clips": [
+        "Assets/_Project/Audio/SFX/Selected/HitSoft_A.wav",
+        "Assets/_Project/Audio/SFX/Selected/HitSoft_B.wav"
+      ],
+      "Volume": 0.46,
+      "PitchMin": 0.98,
+      "PitchMax": 1.04,
+      "selection_reason": "干燥纸板拍击的短啪声，避免毛绒被敲成金属或低频重锤。"
+    },
+    {
+      "Cue": 20,
+      "Name": "EnemyDeathWood",
+      "Clips": [
+        "Assets/_Project/Audio/SFX/Selected/DeathWood.wav"
+      ],
+      "Volume": 0.56,
+      "PitchMin": 0.98,
+      "PitchMax": 1.02,
+      "selection_reason": "真实木材断裂，有碎屑尾音，与单次受击分开。"
+    },
+    {
+      "Cue": 21,
+      "Name": "EnemyDeathMetal",
+      "Clips": [
+        "Assets/_Project/Audio/SFX/Selected/DeathMetal.wav"
+      ],
+      "Volume": 0.5,
+      "PitchMin": 0.98,
+      "PitchMax": 1.02,
+      "selection_reason": "轻金属和薄片碰落组成短散架声，保留清晰颗粒。"
+    },
+    {
+      "Cue": 22,
+      "Name": "EnemyDeathSoft",
+      "Clips": [
+        "Assets/_Project/Audio/SFX/Selected/DeathSoft.wav"
+      ],
+      "Volume": 0.54,
+      "PitchMin": 0.98,
+      "PitchMax": 1.03,
+      "selection_reason": "纸板拍击与短布料散落，保留柔软材质而不使用深低频重击。"
+    },
+    {
+      "Cue": 23,
+      "Name": "SwitchOn",
+      "Clips": [
+        "Assets/_Project/Audio/SFX/Selected/SwitchOn.wav"
+      ],
+      "Volume": 0.42,
+      "PitchMin": 0.99,
+      "PitchMax": 1.03,
+      "selection_reason": "真实金属搭扣起音，替换低沉锁具声。"
+    },
+    {
+      "Cue": 24,
+      "Name": "SwitchOff",
+      "Clips": [
+        "Assets/_Project/Audio/SFX/Selected/SwitchOff.wav"
+      ],
+      "Volume": 0.38,
+      "PitchMin": 0.99,
+      "PitchMax": 1.03,
+      "selection_reason": "另一份机械释放点击，不再把开启声降调复用。"
+    },
+    {
+      "Cue": 25,
+      "Name": "ImpactStone",
+      "Clips": [
+        "Assets/_Project/Audio/SFX/Selected/ImpactStone.wav"
+      ],
+      "Volume": 0.46,
+      "PitchMin": 0.98,
+      "PitchMax": 1.03,
+      "selection_reason": "短硬石颗粒接触，替换较长的低调碎石声。"
+    },
+    {
+      "Cue": 26,
+      "Name": "ImpactMetal",
+      "Clips": [
+        "Assets/_Project/Audio/SFX/Selected/HitMetal_B.wav",
+        "Assets/_Project/Audio/SFX/Selected/HitMetal_A.wav"
+      ],
+      "Volume": 0.42,
+      "PitchMin": 0.98,
+      "PitchMax": 1.03,
+      "selection_reason": "轻金属碰撞，清晰但控制音量，避免连续碰撞刺耳。"
+    },
+    {
+      "Cue": 27,
+      "Name": "ImpactWood",
+      "Clips": [
+        "Assets/_Project/Audio/SFX/Selected/HitWood_B.wav",
+        "Assets/_Project/Audio/SFX/Selected/HitWood_A.wav"
+      ],
+      "Volume": 0.44,
+      "PitchMin": 0.98,
+      "PitchMax": 1.04,
+      "selection_reason": "短木块触碰，不再使用合成木重锤。"
+    },
+    {
+      "Cue": 28,
+      "Name": "BreakStone",
+      "Clips": [
+        "Assets/_Project/Audio/SFX/Selected/BreakStone.wav"
+      ],
+      "Volume": 0.58,
+      "PitchMin": 0.98,
+      "PitchMax": 1.02,
+      "selection_reason": "更完整的石屑崩裂段，替换原低调单块碰撞。"
+    },
+    {
+      "Cue": 29,
+      "Name": "BreakWood",
+      "Clips": [
+        "Assets/_Project/Audio/SFX/Selected/BreakWood.wav"
+      ],
+      "Volume": 0.56,
+      "PitchMin": 0.98,
+      "PitchMax": 1.02,
+      "selection_reason": "另一次真实木材断裂，保留较长的断裂尾音。"
+    },
+    {
+      "Cue": 30,
+      "Name": "Explosion",
+      "Clips": [
+        "Assets/_Project/Audio/SFX/Selected/Explosion.wav"
+      ],
+      "Volume": 0.6,
+      "PitchMin": 0.98,
+      "PitchMax": 1.02,
+      "selection_reason": "换另一份爆炸原件的爆裂起音与颗粒尾部，并加入少量石屑；无引信/燃烧声。"
+    }
+  ],
+  "files": [
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/Selected/Jump.wav",
+      "sha256": "b76e5dc94a79c5acbfd3fe6ce8bde633891e4cbc96f228e979bfabaf9695ceee",
+      "processing": "source excerpts + stated foley layers; gain balance; 0.3ms de-click; 12ms tail fade; mono PCM16 44100Hz; no EQ; no baked pitch shift",
+      "sources": [
+        {
+          "pack": "listener",
+          "source": "Jump.wav",
+          "start": 0.047,
+          "end": 0.45,
+          "gain": 1,
+          "at": 0,
+          "original": "Doc/AudioSources/SelectedOriginals/listener/Jump.wav",
+          "original_sha256": "64f03948ebcae53b0bb079db0120608b471f78c84ea6fe9adb9f4d3a98c000b4",
+          "author": "Listener",
+          "source_page": "https://opengameart.org/content/sound-effects-for-platformer",
+          "license": "CC0-1.0"
+        }
+      ],
+      "metrics": {
+        "duration": 0.4029931972789116,
+        "peak": 0.6275009196403453,
+        "rms": 0.1,
+        "centroid_hz": 3147.172387975947,
+        "above_3k_energy": 0.46516480035802016
+      }
+    },
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/PlayerFeedback/PlayerLand.wav",
+      "sha256": "f011207f72b814cf375d5200602a2f322f0784dbc6ac7f8152dca38cc24abea6",
+      "processing": "source excerpts + stated foley layers; gain balance; 0.3ms de-click; 12ms tail fade; mono PCM16 44100Hz; no EQ; no baked pitch shift",
+      "sources": [
+        {
+          "pack": "rpg",
+          "source": "footstep01.ogg",
+          "start": 0.033,
+          "end": 0.185,
+          "gain": 0.8,
+          "at": 0,
+          "original": "Doc/AudioSources/SelectedOriginals/rpg/footstep01.ogg",
+          "original_sha256": "313472dba31fd0c855376069fa368bb5a198c27251cc8398ef464578b7047a4c",
+          "author": "Kenney",
+          "source_page": "https://kenney.nl/assets/rpg-audio",
+          "license": "CC0-1.0"
+        },
+        {
+          "pack": "cardboard",
+          "source": "impact.2.ogg",
+          "start": 0.141,
+          "end": 0.235,
+          "gain": 0.26,
+          "at": 0,
+          "original": "Doc/AudioSources/SelectedOriginals/cardboard/impact.2.ogg",
+          "original_sha256": "694ca0394d9c4ce49b96738f429bf6ec209610fd1163ede0e8ebf3fada41931e",
+          "author": "StarNinjas",
+          "source_page": "https://opengameart.org/content/10-impactshield-blocks",
+          "license": "CC0-1.0"
+        }
+      ],
+      "metrics": {
+        "duration": 0.1519954648526077,
+        "peak": 0.6415070712063877,
+        "rms": 0.095,
+        "centroid_hz": 688.0925573103893,
+        "above_3k_energy": 0.05602756606040158
+      }
+    },
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/Selected/Land_B.wav",
+      "sha256": "f699bd327bab13efdbb4f20ee53be3983cf2d3ff8eb0ce2550de3941964618c3",
+      "processing": "source excerpts + stated foley layers; gain balance; 0.3ms de-click; 12ms tail fade; mono PCM16 44100Hz; no EQ; no baked pitch shift",
+      "sources": [
+        {
+          "pack": "rpg",
+          "source": "footstep02.ogg",
+          "start": 0.02,
+          "end": 0.19,
+          "gain": 0.8,
+          "at": 0,
+          "original": "Doc/AudioSources/SelectedOriginals/rpg/footstep02.ogg",
+          "original_sha256": "2d9575b7dead6e1217ca113991fc5229e9b6d998ea0726ebbb277e7398ab888f",
+          "author": "Kenney",
+          "source_page": "https://kenney.nl/assets/rpg-audio",
+          "license": "CC0-1.0"
+        },
+        {
+          "pack": "cardboard",
+          "source": "impact.7.ogg",
+          "start": 0.274,
+          "end": 0.39,
+          "gain": 0.24,
+          "at": 0,
+          "original": "Doc/AudioSources/SelectedOriginals/cardboard/impact.7.ogg",
+          "original_sha256": "7380c2fc3ea24064e6691de4fda888230ef85722fd94692d90f24fa593c5def8",
+          "author": "StarNinjas",
+          "source_page": "https://opengameart.org/content/10-impactshield-blocks",
+          "license": "CC0-1.0"
+        }
+      ],
+      "metrics": {
+        "duration": 0.17,
+        "peak": 0.6881187053147534,
+        "rms": 0.095,
+        "centroid_hz": 378.4669878283382,
+        "above_3k_energy": 0.014879995356298446
+      }
+    },
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/Selected/Dash.wav",
+      "sha256": "851629894d1dcf4eec3bb93dafcdb622a49b599cdc6f5dd41e8f705839d2a635",
+      "processing": "source excerpts + stated foley layers; gain balance; 0.3ms de-click; 12ms tail fade; mono PCM16 44100Hz; no EQ; no baked pitch shift",
+      "sources": [
+        {
+          "pack": "rpg",
+          "source": "clothBelt.ogg",
+          "start": 0.49,
+          "end": 0.655,
+          "gain": 1,
+          "at": 0,
+          "original": "Doc/AudioSources/SelectedOriginals/rpg/clothBelt.ogg",
+          "original_sha256": "f29560a2aea95bbfeb643e1e8f56ec2b6f7e32f32ce4e140645a36db81de3253",
+          "author": "Kenney",
+          "source_page": "https://kenney.nl/assets/rpg-audio",
+          "license": "CC0-1.0"
+        }
+      ],
+      "metrics": {
+        "duration": 0.1650113378684807,
+        "peak": 0.8199999999999998,
+        "rms": 0.06131535386231866,
+        "centroid_hz": 5890.286534541321,
+        "above_3k_energy": 0.9548743895909231
+      }
+    },
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/Swishes/SwordLight_A.wav",
+      "sha256": "239706aa0c1a24bc6d375508fd2731c3b3f57e28bf250cdd0fac7cdeca36158e",
+      "processing": "source excerpts + stated foley layers; gain balance; 0.3ms de-click; 12ms tail fade; mono PCM16 44100Hz; no EQ; no baked pitch shift",
+      "sources": [
+        {
+          "pack": "rpg",
+          "source": "knifeSlice.ogg",
+          "start": 0.08,
+          "end": 0.315,
+          "gain": 1,
+          "at": 0,
+          "original": "Doc/AudioSources/SelectedOriginals/rpg/knifeSlice.ogg",
+          "original_sha256": "4cd96dc630bed9840c15f1dd2306da2cc56a4da26a5d3f1a03c5a7265ac5e54f",
+          "author": "Kenney",
+          "source_page": "https://kenney.nl/assets/rpg-audio",
+          "license": "CC0-1.0"
+        }
+      ],
+      "metrics": {
+        "duration": 0.23501133786848072,
+        "peak": 0.7481867082881196,
+        "rms": 0.13,
+        "centroid_hz": 5101.969606285283,
+        "above_3k_energy": 0.7126867355791436
+      }
+    },
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/Swishes/SwordLight_B.wav",
+      "sha256": "acb289d11c9f27377eca3d6ba885f24d5fd277e5981ff1d6329d2b662d23c691",
+      "processing": "source excerpts + stated foley layers; gain balance; 0.3ms de-click; 12ms tail fade; mono PCM16 44100Hz; no EQ; no baked pitch shift",
+      "sources": [
+        {
+          "pack": "rpg",
+          "source": "knifeSlice2.ogg",
+          "start": 0.015,
+          "end": 0.25,
+          "gain": 1,
+          "at": 0,
+          "original": "Doc/AudioSources/SelectedOriginals/rpg/knifeSlice2.ogg",
+          "original_sha256": "6c2064d0ef988d1ec3d56868e823ea8823a5cac00f2742560052633529407def",
+          "author": "Kenney",
+          "source_page": "https://kenney.nl/assets/rpg-audio",
+          "license": "CC0-1.0"
+        }
+      ],
+      "metrics": {
+        "duration": 0.23498866213151928,
+        "peak": 0.8199999999999998,
+        "rms": 0.0700482590216058,
+        "centroid_hz": 4853.360010671161,
+        "above_3k_energy": 0.630078658197815
+      }
+    },
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/Swishes/SwordHeavy_A.wav",
+      "sha256": "433c5e9f9eda1cbaa698b29f9aed3906e82029c7abf16c4467192f8fc268307d",
+      "processing": "source excerpts + stated foley layers; gain balance; 0.3ms de-click; 12ms tail fade; mono PCM16 44100Hz; no EQ; no baked pitch shift",
+      "sources": [
+        {
+          "pack": "rpg",
+          "source": "knifeSlice.ogg",
+          "start": 0.08,
+          "end": 0.365,
+          "gain": 1,
+          "at": 0,
+          "original": "Doc/AudioSources/SelectedOriginals/rpg/knifeSlice.ogg",
+          "original_sha256": "4cd96dc630bed9840c15f1dd2306da2cc56a4da26a5d3f1a03c5a7265ac5e54f",
+          "author": "Kenney",
+          "source_page": "https://kenney.nl/assets/rpg-audio",
+          "license": "CC0-1.0"
+        }
+      ],
+      "metrics": {
+        "duration": 0.2849886621315193,
+        "peak": 0.82,
+        "rms": 0.13073262706311176,
+        "centroid_hz": 5091.541012341713,
+        "above_3k_energy": 0.7127364896902707
+      }
+    },
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/Swishes/SwordHeavy_B.wav",
+      "sha256": "13935e06a0cfeb76b11bf5499c869926a9c98620002a421b35070a2b12171d2c",
+      "processing": "source excerpts + stated foley layers; gain balance; 0.3ms de-click; 12ms tail fade; mono PCM16 44100Hz; no EQ; no baked pitch shift",
+      "sources": [
+        {
+          "pack": "rpg",
+          "source": "knifeSlice2.ogg",
+          "start": 0.015,
+          "end": 0.3,
+          "gain": 1,
+          "at": 0,
+          "original": "Doc/AudioSources/SelectedOriginals/rpg/knifeSlice2.ogg",
+          "original_sha256": "6c2064d0ef988d1ec3d56868e823ea8823a5cac00f2742560052633529407def",
+          "author": "Kenney",
+          "source_page": "https://kenney.nl/assets/rpg-audio",
+          "license": "CC0-1.0"
+        }
+      ],
+      "metrics": {
+        "duration": 0.2849886621315193,
+        "peak": 0.82,
+        "rms": 0.10257674059660535,
+        "centroid_hz": 5485.436964504073,
+        "above_3k_energy": 0.7385790278322479
+      }
+    },
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/PlayerFeedback/PlayerHurt.wav",
+      "sha256": "b9341fd1c448edd565ef1d61b4b1308f7c62b335707db4ead138bfb2fe4e20b5",
+      "processing": "source excerpts + stated foley layers; gain balance; 0.3ms de-click; 12ms tail fade; mono PCM16 44100Hz; no EQ; no baked pitch shift",
+      "sources": [
+        {
+          "pack": "hits",
+          "source": "hit12.mp3.flac",
+          "start": 0.13,
+          "end": 0.385,
+          "gain": 1,
+          "at": 0,
+          "original": "Doc/AudioSources/SelectedOriginals/hits/hit12.mp3.flac",
+          "original_sha256": "52525f064961a3bd752da87fb80a61399a05850a48976733ff623e0c3a91e444",
+          "author": "Independent.nu",
+          "source_page": "https://opengameart.org/content/37-hitspunches",
+          "license": "CC0-1.0"
+        }
+      ],
+      "metrics": {
+        "duration": 0.2549886621315193,
+        "peak": 0.7674366810247285,
+        "rms": 0.14000000000000004,
+        "centroid_hz": 1839.232987684388,
+        "above_3k_energy": 0.25587722380702044
+      }
+    },
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/Selected/Hurt_B.wav",
+      "sha256": "f5d4aae72cc472a24bbd8564b8906439b26869d73c885cac16dea3974192c96e",
+      "processing": "source excerpts + stated foley layers; gain balance; 0.3ms de-click; 12ms tail fade; mono PCM16 44100Hz; no EQ; no baked pitch shift",
+      "sources": [
+        {
+          "pack": "hits",
+          "source": "hit11.mp3.flac",
+          "start": 0.157,
+          "end": 0.415,
+          "gain": 1,
+          "at": 0,
+          "original": "Doc/AudioSources/SelectedOriginals/hits/hit11.mp3.flac",
+          "original_sha256": "106a25515b9c9183103a693d4b66070280324c1887557b0c273130abc0d31825",
+          "author": "Independent.nu",
+          "source_page": "https://opengameart.org/content/37-hitspunches",
+          "license": "CC0-1.0"
+        }
+      ],
+      "metrics": {
+        "duration": 0.2580045351473923,
+        "peak": 0.6171822566850037,
+        "rms": 0.13999999999999999,
+        "centroid_hz": 1788.403017372558,
+        "above_3k_energy": 0.2655243066728722
+      }
+    },
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/Selected/WheelOpen.wav",
+      "sha256": "e59aecea006eb1db0673fa0ccfcf31a00447d6152cd0823b5eec9ad075baeb62",
+      "processing": "source excerpts + stated foley layers; gain balance; 0.3ms de-click; 12ms tail fade; mono PCM16 44100Hz; no EQ; no baked pitch shift",
+      "sources": [
+        {
+          "pack": "interface",
+          "source": "maximize_001.ogg",
+          "start": 0.025,
+          "end": 0.258,
+          "gain": 1,
+          "at": 0,
+          "original": "Doc/AudioSources/SelectedOriginals/interface/maximize_001.ogg",
+          "original_sha256": "fd3e75e1de2f2fda90aceeacaeb0427ac8bddd3b07a6ce2a8f9ba923df3771f9",
+          "author": "Kenney",
+          "source_page": "https://kenney.nl/assets/interface-sounds",
+          "license": "CC0-1.0"
+        }
+      ],
+      "metrics": {
+        "duration": 0.233015873015873,
+        "peak": 0.3250399453277522,
+        "rms": 0.08999999999999998,
+        "centroid_hz": 4464.662110121321,
+        "above_3k_energy": 0.935358892293999
+      }
+    },
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/Selected/WheelPreview.wav",
+      "sha256": "9f0b7f7ff1eca195c59cb598d09966c72f646ec13a344f88c4b8224480a8d57b",
+      "processing": "source excerpts + stated foley layers; gain balance; 0.3ms de-click; 12ms tail fade; mono PCM16 44100Hz; no EQ; no baked pitch shift",
+      "sources": [
+        {
+          "pack": "interface",
+          "source": "pluck_001.ogg",
+          "start": 0,
+          "end": 0.1,
+          "gain": 1,
+          "at": 0,
+          "original": "Doc/AudioSources/SelectedOriginals/interface/pluck_001.ogg",
+          "original_sha256": "be97ec4893a02d6eccfb678daa76c83e34cb2583b834ec2593d2641def739fa4",
+          "author": "Kenney",
+          "source_page": "https://kenney.nl/assets/interface-sounds",
+          "license": "CC0-1.0"
+        }
+      ],
+      "metrics": {
+        "duration": 0.09952380952380953,
+        "peak": 0.82,
+        "rms": 0.07308285228768192,
+        "centroid_hz": 4804.472324993864,
+        "above_3k_energy": 0.26288858990308234
+      }
+    },
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/Selected/WheelConfirm.wav",
+      "sha256": "06f96ee101035ccd39406d4acb117add444c16f16990f965ea0151f313ec3167",
+      "processing": "source excerpts + stated foley layers; gain balance; 0.3ms de-click; 12ms tail fade; mono PCM16 44100Hz; no EQ; no baked pitch shift",
+      "sources": [
+        {
+          "pack": "interface",
+          "source": "confirmation_003.ogg",
+          "start": 0,
+          "end": 0.322,
+          "gain": 1,
+          "at": 0,
+          "original": "Doc/AudioSources/SelectedOriginals/interface/confirmation_003.ogg",
+          "original_sha256": "3091bf0be0497f825769ee0733ca7bdc3bcd59bd6c6e8f2ba8f93d580ff38022",
+          "author": "Kenney",
+          "source_page": "https://kenney.nl/assets/interface-sounds",
+          "license": "CC0-1.0"
+        }
+      ],
+      "metrics": {
+        "duration": 0.3219954648526077,
+        "peak": 0.511907125599765,
+        "rms": 0.1,
+        "centroid_hz": 2552.2289697477013,
+        "above_3k_energy": 0.05717681737954967
+      }
+    },
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/Selected/WheelCancel.wav",
+      "sha256": "c5743cbec47c09c929fc3a2b0dc738c596bad7955d7c520caf3e96bcb0004a90",
+      "processing": "source excerpts + stated foley layers; gain balance; 0.3ms de-click; 12ms tail fade; mono PCM16 44100Hz; no EQ; no baked pitch shift",
+      "sources": [
+        {
+          "pack": "interface",
+          "source": "minimize_001.ogg",
+          "start": 0,
+          "end": 0.258,
+          "gain": 1,
+          "at": 0,
+          "original": "Doc/AudioSources/SelectedOriginals/interface/minimize_001.ogg",
+          "original_sha256": "8481912bc7fa5828924a00ef15b6cd613b994956e0817bd3122065c9b2896d2d",
+          "author": "Kenney",
+          "source_page": "https://kenney.nl/assets/interface-sounds",
+          "license": "CC0-1.0"
+        }
+      ],
+      "metrics": {
+        "duration": 0.2580045351473923,
+        "peak": 0.36150260213406177,
+        "rms": 0.09,
+        "centroid_hz": 4612.805984871332,
+        "above_3k_energy": 0.94149421650598
+      }
+    },
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/Selected/WheelBack.wav",
+      "sha256": "88e9b70624523354742c434e7fb7fb158e9ffcf5596ad8dc71e8bc747fe2cf53",
+      "processing": "source excerpts + stated foley layers; gain balance; 0.3ms de-click; 12ms tail fade; mono PCM16 44100Hz; no EQ; no baked pitch shift",
+      "sources": [
+        {
+          "pack": "interface",
+          "source": "back_001.ogg",
+          "start": 0,
+          "end": 0.061,
+          "gain": 1,
+          "at": 0,
+          "original": "Doc/AudioSources/SelectedOriginals/interface/back_001.ogg",
+          "original_sha256": "07db973f79f6ae0f2edc34561e7592e24d0577455919fb602cb8ecc0da991dcf",
+          "author": "Kenney",
+          "source_page": "https://kenney.nl/assets/interface-sounds",
+          "license": "CC0-1.0"
+        }
+      ],
+      "metrics": {
+        "duration": 0.0609750566893424,
+        "peak": 0.82,
+        "rms": 0.07347421199478243,
+        "centroid_hz": 1594.6749400212896,
+        "above_3k_energy": 0.11653512085383592
+      }
+    },
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/Selected/WheelError.wav",
+      "sha256": "9b48c9bac2d1e8e2a0c221019f38b6328877758681098ff1d86d94933ea5d829",
+      "processing": "source excerpts + stated foley layers; gain balance; 0.3ms de-click; 12ms tail fade; mono PCM16 44100Hz; no EQ; no baked pitch shift",
+      "sources": [
+        {
+          "pack": "interface",
+          "source": "error_003.ogg",
+          "start": 0.01,
+          "end": 0.42,
+          "gain": 1,
+          "at": 0,
+          "original": "Doc/AudioSources/SelectedOriginals/interface/error_003.ogg",
+          "original_sha256": "885b28175c7b511118bcffab95675b48bbac9005cf6514656ebdad979276b3ab",
+          "author": "Kenney",
+          "source_page": "https://kenney.nl/assets/interface-sounds",
+          "license": "CC0-1.0"
+        }
+      ],
+      "metrics": {
+        "duration": 0.41,
+        "peak": 0.7479145808050117,
+        "rms": 0.09000000000000001,
+        "centroid_hz": 2665.733352873477,
+        "above_3k_energy": 0.18925262747196048
+      }
+    },
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/Selected/EnemyShot.wav",
+      "sha256": "76e8b9103a28387079095ace7bedcb83169fa34a720b471491b246d6f170fafa",
+      "processing": "source excerpts + stated foley layers; gain balance; 0.3ms de-click; 12ms tail fade; mono PCM16 44100Hz; no EQ; no baked pitch shift",
+      "sources": [
+        {
+          "pack": "scifi",
+          "source": "laserSmall_002.ogg",
+          "start": 0,
+          "end": 0.344,
+          "gain": 1,
+          "at": 0,
+          "original": "Doc/AudioSources/SelectedOriginals/scifi/laserSmall_002.ogg",
+          "original_sha256": "e70139466c3e801358c9041ee17db7ff82c0e9a9cdf44647ad0ea6b9f8458f63",
+          "author": "Kenney",
+          "source_page": "https://kenney.nl/assets/sci-fi-sounds",
+          "license": "CC0-1.0"
+        }
+      ],
+      "metrics": {
+        "duration": 0.34399092970521544,
+        "peak": 0.704408966645174,
+        "rms": 0.10000000000000002,
+        "centroid_hz": 4005.954487371635,
+        "above_3k_energy": 0.5869825468680745
+      }
+    },
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/Selected/EnemyBeam.wav",
+      "sha256": "e5c7f6fbc2cc2407ecde1e8361b9cccf9a59284b9afb7e609e10a5cba52d90f2",
+      "processing": "source excerpts + stated foley layers; gain balance; 0.3ms de-click; 12ms tail fade; mono PCM16 44100Hz; no EQ; no baked pitch shift",
+      "sources": [
+        {
+          "pack": "scifi",
+          "source": "laserLarge_003.ogg",
+          "start": 0,
+          "end": 0.716,
+          "gain": 1,
+          "at": 0,
+          "original": "Doc/AudioSources/SelectedOriginals/scifi/laserLarge_003.ogg",
+          "original_sha256": "3c7b3c9d856ee31fa1b92d29322f6ee472446627381595baeaba2af35c07135f",
+          "author": "Kenney",
+          "source_page": "https://kenney.nl/assets/sci-fi-sounds",
+          "license": "CC0-1.0"
+        }
+      ],
+      "metrics": {
+        "duration": 0.71578231292517,
+        "peak": 0.82,
+        "rms": 0.11586615517801088,
+        "centroid_hz": 1430.542955111263,
+        "above_3k_energy": 0.1777500697924521
+      }
+    },
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/Selected/HitWood_A.wav",
+      "sha256": "421cc5ffd377acd003ba2d70e0d1e5509a26c918ea9701668afa3395c0cb6e11",
+      "processing": "source excerpts + stated foley layers; gain balance; 0.3ms de-click; 12ms tail fade; mono PCM16 44100Hz; no EQ; no baked pitch shift",
+      "sources": [
+        {
+          "pack": "wood",
+          "source": "impactwood14.mp3.flac",
+          "start": 0.087,
+          "end": 0.34,
+          "gain": 1,
+          "at": 0,
+          "original": "Doc/AudioSources/SelectedOriginals/wood/impactwood14.mp3.flac",
+          "original_sha256": "ffae48900db232721134b7255a88c71febb1f423264e646ed5cbc9e1c35ef218",
+          "author": "Independent.nu",
+          "source_page": "https://opengameart.org/content/35-wooden-crackshitsdestructions",
+          "license": "CC0-1.0"
+        }
+      ],
+      "metrics": {
+        "duration": 0.25299319727891156,
+        "peak": 0.3267245497178259,
+        "rms": 0.12,
+        "centroid_hz": 1574.955746324793,
+        "above_3k_energy": 0.17119756264953534
+      }
+    },
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/Selected/HitWood_B.wav",
+      "sha256": "fba7a55206d41ffc34c3163bad9d33299b00334c795224728d62df2ee67d33ee",
+      "processing": "source excerpts + stated foley layers; gain balance; 0.3ms de-click; 12ms tail fade; mono PCM16 44100Hz; no EQ; no baked pitch shift",
+      "sources": [
+        {
+          "pack": "rpg80",
+          "source": "item_wood_03.ogg",
+          "start": 0.01,
+          "end": 0.26,
+          "gain": 1,
+          "at": 0,
+          "original": "Doc/AudioSources/SelectedOriginals/rpg80/item_wood_03.ogg",
+          "original_sha256": "a1f62c20ac2c294309966037fe66fbd5cddbee5df7ae6d6c29e4b2607a0db1e4",
+          "author": "rubberduck",
+          "source_page": "https://opengameart.org/content/80-cc0-rpg-sfx",
+          "license": "CC0-1.0"
+        }
+      ],
+      "metrics": {
+        "duration": 0.25,
+        "peak": 0.82,
+        "rms": 0.09047125225102268,
+        "centroid_hz": 3047.3557868250728,
+        "above_3k_energy": 0.44190524815051957
+      }
+    },
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/Selected/HitMetal_A.wav",
+      "sha256": "4ec8cb88e060a0e5e37267a419f11a5bac4932fab618faa1b1dd96de1fb73cfd",
+      "processing": "source excerpts + stated foley layers; gain balance; 0.3ms de-click; 12ms tail fade; mono PCM16 44100Hz; no EQ; no baked pitch shift",
+      "sources": [
+        {
+          "pack": "impact",
+          "source": "impactMetal_light_002.ogg",
+          "start": 0,
+          "end": 0.233,
+          "gain": 1,
+          "at": 0,
+          "original": "Doc/AudioSources/SelectedOriginals/impact/impactMetal_light_002.ogg",
+          "original_sha256": "25a96f90a9a1f88a531e824e126f0519504625e5635e65a72e4f31611428db29",
+          "author": "Kenney",
+          "source_page": "https://kenney.nl/assets/impact-sounds",
+          "license": "CC0-1.0"
+        }
+      ],
+      "metrics": {
+        "duration": 0.2328798185941043,
+        "peak": 0.82,
+        "rms": 0.08882882769320169,
+        "centroid_hz": 2921.78984943039,
+        "above_3k_energy": 0.4885273477703436
+      }
+    },
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/Selected/HitMetal_B.wav",
+      "sha256": "103d323677158adee30f4f05db4b54332ba3139fb9252703430b8c099eb87d29",
+      "processing": "source excerpts + stated foley layers; gain balance; 0.3ms de-click; 12ms tail fade; mono PCM16 44100Hz; no EQ; no baked pitch shift",
+      "sources": [
+        {
+          "pack": "impact",
+          "source": "impactMetal_light_004.ogg",
+          "start": 0,
+          "end": 0.21,
+          "gain": 1,
+          "at": 0,
+          "original": "Doc/AudioSources/SelectedOriginals/impact/impactMetal_light_004.ogg",
+          "original_sha256": "9b1c35820fba507081261f19ab5f461f69a5e2627a7d91acdb73ca3cfc997979",
+          "author": "Kenney",
+          "source_page": "https://kenney.nl/assets/impact-sounds",
+          "license": "CC0-1.0"
+        }
+      ],
+      "metrics": {
+        "duration": 0.21,
+        "peak": 0.82,
+        "rms": 0.09289221987993931,
+        "centroid_hz": 2399.0715226113794,
+        "above_3k_energy": 0.3548081338542133
+      }
+    },
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/Selected/HitSoft_A.wav",
+      "sha256": "dddc947dcfc7a5fd8914eb40b3362451e851006686ebcda8b5a2aa702cd8f35b",
+      "processing": "source excerpts + stated foley layers; gain balance; 0.3ms de-click; 12ms tail fade; mono PCM16 44100Hz; no EQ; no baked pitch shift",
+      "sources": [
+        {
+          "pack": "cardboard",
+          "source": "impact.2.ogg",
+          "start": 0.141,
+          "end": 0.25,
+          "gain": 1,
+          "at": 0,
+          "original": "Doc/AudioSources/SelectedOriginals/cardboard/impact.2.ogg",
+          "original_sha256": "694ca0394d9c4ce49b96738f429bf6ec209610fd1163ede0e8ebf3fada41931e",
+          "author": "StarNinjas",
+          "source_page": "https://opengameart.org/content/10-impactshield-blocks",
+          "license": "CC0-1.0"
+        }
+      ],
+      "metrics": {
+        "duration": 0.10900226757369615,
+        "peak": 0.82,
+        "rms": 0.05605077179952964,
+        "centroid_hz": 2152.257804953331,
+        "above_3k_energy": 0.26985548099022516
+      }
+    },
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/Selected/HitSoft_B.wav",
+      "sha256": "b2a28c52524fed6e32e91d325f8615c7fb8dc26e12a0f47a5776c5996fb0d782",
+      "processing": "source excerpts + stated foley layers; gain balance; 0.3ms de-click; 12ms tail fade; mono PCM16 44100Hz; no EQ; no baked pitch shift",
+      "sources": [
+        {
+          "pack": "cardboard",
+          "source": "impact.7.ogg",
+          "start": 0.274,
+          "end": 0.4,
+          "gain": 1,
+          "at": 0,
+          "original": "Doc/AudioSources/SelectedOriginals/cardboard/impact.7.ogg",
+          "original_sha256": "7380c2fc3ea24064e6691de4fda888230ef85722fd94692d90f24fa593c5def8",
+          "author": "StarNinjas",
+          "source_page": "https://opengameart.org/content/10-impactshield-blocks",
+          "license": "CC0-1.0"
+        }
+      ],
+      "metrics": {
+        "duration": 0.1260090702947846,
+        "peak": 0.8199999999999998,
+        "rms": 0.06729610875826977,
+        "centroid_hz": 1430.4704419480481,
+        "above_3k_energy": 0.1472461433792357
+      }
+    },
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/Selected/DeathWood.wav",
+      "sha256": "3025342ea704e69e66b649e0b15e44fb91e1e5c7c31bdcde4a5ea31e6a12df54",
+      "processing": "source excerpts + stated foley layers; gain balance; 0.3ms de-click; 12ms tail fade; mono PCM16 44100Hz; no EQ; no baked pitch shift",
+      "sources": [
+        {
+          "pack": "wood",
+          "source": "crack05.mp3.flac",
+          "start": 0.11,
+          "end": 0.86,
+          "gain": 1,
+          "at": 0,
+          "original": "Doc/AudioSources/SelectedOriginals/wood/crack05.mp3.flac",
+          "original_sha256": "56ab16c95c28892e056bb557524e5575f3a5000f527368285e0320f4ae10585d",
+          "author": "Independent.nu",
+          "source_page": "https://opengameart.org/content/35-wooden-crackshitsdestructions",
+          "license": "CC0-1.0"
+        }
+      ],
+      "metrics": {
+        "duration": 0.75,
+        "peak": 0.82,
+        "rms": 0.11056838941519254,
+        "centroid_hz": 3876.022646820987,
+        "above_3k_energy": 0.5478395505650442
+      }
+    },
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/Selected/DeathMetal.wav",
+      "sha256": "0d450a408fd6e5557b5f38a1116535515f448a8d7f3f2e1bec23e3c991703442",
+      "processing": "source excerpts + stated foley layers; gain balance; 0.3ms de-click; 12ms tail fade; mono PCM16 44100Hz; no EQ; no baked pitch shift",
+      "sources": [
+        {
+          "pack": "impact",
+          "source": "impactMetal_light_000.ogg",
+          "start": 0,
+          "end": 0.373,
+          "gain": 0.8,
+          "at": 0,
+          "original": "Doc/AudioSources/SelectedOriginals/impact/impactMetal_light_000.ogg",
+          "original_sha256": "33b5e6e37c6e9d54e07bf5a89b12c76e879f40c1ea83cdd82714df1d6f9fec6d",
+          "author": "Kenney",
+          "source_page": "https://kenney.nl/assets/impact-sounds",
+          "license": "CC0-1.0"
+        },
+        {
+          "pack": "impact",
+          "source": "impactPlate_light_001.ogg",
+          "start": 0,
+          "end": 0.5,
+          "gain": 0.5,
+          "at": 0.065,
+          "original": "Doc/AudioSources/SelectedOriginals/impact/impactPlate_light_001.ogg",
+          "original_sha256": "947915c2eb6ac57ee08fd3a48b297fd108d69abc72076e79882c21cad0eef56e",
+          "author": "Kenney",
+          "source_page": "https://kenney.nl/assets/impact-sounds",
+          "license": "CC0-1.0"
+        }
+      ],
+      "metrics": {
+        "duration": 0.5649886621315193,
+        "peak": 0.8199999999999998,
+        "rms": 0.07279469040672094,
+        "centroid_hz": 2172.8822595660304,
+        "above_3k_energy": 0.2574775328515074
+      }
+    },
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/Selected/DeathSoft.wav",
+      "sha256": "503f62dca233cd75a6e4ea48ff5167c7a1a324d275853f3cfa798b238f02ea1c",
+      "processing": "source excerpts + stated foley layers; gain balance; 0.3ms de-click; 12ms tail fade; mono PCM16 44100Hz; no EQ; no baked pitch shift",
+      "sources": [
+        {
+          "pack": "cardboard",
+          "source": "impact.3.ogg",
+          "start": 0.342,
+          "end": 0.67,
+          "gain": 1,
+          "at": 0,
+          "original": "Doc/AudioSources/SelectedOriginals/cardboard/impact.3.ogg",
+          "original_sha256": "0323ef813b34fcf63f0d9f63b6d5318029305e95a44f7ce88cdff17210f83dc9",
+          "author": "StarNinjas",
+          "source_page": "https://opengameart.org/content/10-impactshield-blocks",
+          "license": "CC0-1.0"
+        },
+        {
+          "pack": "rpg",
+          "source": "cloth4.ogg",
+          "start": 0.028,
+          "end": 0.25,
+          "gain": 0.3,
+          "at": 0.02,
+          "original": "Doc/AudioSources/SelectedOriginals/rpg/cloth4.ogg",
+          "original_sha256": "e7ab9a6c4466dea874196c61f59bf1da05cfe58748f42fadd695d441a154a99b",
+          "author": "Kenney",
+          "source_page": "https://kenney.nl/assets/rpg-audio",
+          "license": "CC0-1.0"
+        }
+      ],
+      "metrics": {
+        "duration": 0.3280045351473923,
+        "peak": 0.82,
+        "rms": 0.07562237865420135,
+        "centroid_hz": 1658.3007866545574,
+        "above_3k_energy": 0.17000854873153437
+      }
+    },
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/Selected/SwitchOn.wav",
+      "sha256": "4f672b119635918e6990848362c03bafa74b90f55cdcf7462277516e2f7fdb1b",
+      "processing": "source excerpts + stated foley layers; gain balance; 0.3ms de-click; 12ms tail fade; mono PCM16 44100Hz; no EQ; no baked pitch shift",
+      "sources": [
+        {
+          "pack": "rpg",
+          "source": "metalLatch.ogg",
+          "start": 0.038,
+          "end": 0.22,
+          "gain": 1,
+          "at": 0,
+          "original": "Doc/AudioSources/SelectedOriginals/rpg/metalLatch.ogg",
+          "original_sha256": "ba9ba60b172b3ebc131a940f25793cd2e207aca7af73dc80d637277f060f1708",
+          "author": "Kenney",
+          "source_page": "https://kenney.nl/assets/rpg-audio",
+          "license": "CC0-1.0"
+        }
+      ],
+      "metrics": {
+        "duration": 0.1819954648526077,
+        "peak": 0.8199999999999998,
+        "rms": 0.07735824581307695,
+        "centroid_hz": 6767.475482076136,
+        "above_3k_energy": 0.7863684807548256
+      }
+    },
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/Selected/SwitchOff.wav",
+      "sha256": "7e5edb94700e2dee545f4fe8a27c07c107306711f509bbab3e380e08f2016347",
+      "processing": "source excerpts + stated foley layers; gain balance; 0.3ms de-click; 12ms tail fade; mono PCM16 44100Hz; no EQ; no baked pitch shift",
+      "sources": [
+        {
+          "pack": "rpg",
+          "source": "metalClick.ogg",
+          "start": 0.085,
+          "end": 0.32,
+          "gain": 1,
+          "at": 0,
+          "original": "Doc/AudioSources/SelectedOriginals/rpg/metalClick.ogg",
+          "original_sha256": "9851a69d0c613e13bceef08060ecc4148f098ef487927cbebe270d642398a3b3",
+          "author": "Kenney",
+          "source_page": "https://kenney.nl/assets/rpg-audio",
+          "license": "CC0-1.0"
+        }
+      ],
+      "metrics": {
+        "duration": 0.23498866213151928,
+        "peak": 0.82,
+        "rms": 0.050837826208708733,
+        "centroid_hz": 4749.214230297644,
+        "above_3k_energy": 0.5641607289375205
+      }
+    },
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/Selected/ImpactStone.wav",
+      "sha256": "55d39b297ff089254da777155192b93acabebdef010d35edb9ffaab92c6277f2",
+      "processing": "source excerpts + stated foley layers; gain balance; 0.3ms de-click; 12ms tail fade; mono PCM16 44100Hz; no EQ; no baked pitch shift",
+      "sources": [
+        {
+          "pack": "rpg80",
+          "source": "stones_04.ogg",
+          "start": 0.018,
+          "end": 0.383,
+          "gain": 1,
+          "at": 0,
+          "original": "Doc/AudioSources/SelectedOriginals/rpg80/stones_04.ogg",
+          "original_sha256": "66f1cef820f66d86414d481b37a48a7b7ea11f4a5d7358372ebcfb506af0e652",
+          "author": "rubberduck",
+          "source_page": "https://opengameart.org/content/80-cc0-rpg-sfx",
+          "license": "CC0-1.0"
+        }
+      ],
+      "metrics": {
+        "duration": 0.36498866213151926,
+        "peak": 0.82,
+        "rms": 0.05604448353337366,
+        "centroid_hz": 3539.296884824918,
+        "above_3k_energy": 0.5302048889454598
+      }
+    },
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/Selected/BreakStone.wav",
+      "sha256": "93012fa9adf256478f5cbdc74fcf2fac5e07d7d4a068037a778636f2b76fa173",
+      "processing": "source excerpts + stated foley layers; gain balance; 0.3ms de-click; 12ms tail fade; mono PCM16 44100Hz; no EQ; no baked pitch shift",
+      "sources": [
+        {
+          "pack": "rpg80",
+          "source": "stones_03.ogg",
+          "start": 0.033,
+          "end": 0.95,
+          "gain": 1,
+          "at": 0,
+          "original": "Doc/AudioSources/SelectedOriginals/rpg80/stones_03.ogg",
+          "original_sha256": "b86d143d7ef4974c2b97fda9e5d1861482646eec754e15935eeb3680ea0d71da",
+          "author": "rubberduck",
+          "source_page": "https://opengameart.org/content/80-cc0-rpg-sfx",
+          "license": "CC0-1.0"
+        }
+      ],
+      "metrics": {
+        "duration": 0.9170068027210885,
+        "peak": 0.8200000000000001,
+        "rms": 0.03695030413916138,
+        "centroid_hz": 3237.290675055038,
+        "above_3k_energy": 0.5064670511916082
+      }
+    },
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/Selected/BreakWood.wav",
+      "sha256": "29b78589d66b6aaba96b941b573385231946f6ca2cdf6599a587d53f0cb8e1e5",
+      "processing": "source excerpts + stated foley layers; gain balance; 0.3ms de-click; 12ms tail fade; mono PCM16 44100Hz; no EQ; no baked pitch shift",
+      "sources": [
+        {
+          "pack": "wood",
+          "source": "crack01.mp3.flac",
+          "start": 0.175,
+          "end": 1.0,
+          "gain": 1,
+          "at": 0,
+          "original": "Doc/AudioSources/SelectedOriginals/wood/crack01.mp3.flac",
+          "original_sha256": "a25993adc8c2bbfdd80490980d83c27a587f2d3452ee4e5bd784f02c082ec448",
+          "author": "Independent.nu",
+          "source_page": "https://opengameart.org/content/35-wooden-crackshitsdestructions",
+          "license": "CC0-1.0"
+        }
+      ],
+      "metrics": {
+        "duration": 0.8250113378684807,
+        "peak": 0.82,
+        "rms": 0.08939352965429107,
+        "centroid_hz": 3147.1506769697794,
+        "above_3k_energy": 0.46594996053235865
+      }
+    },
+    {
+      "file": "Project-Rule/Assets/_Project/Audio/SFX/Selected/Explosion.wav",
+      "sha256": "27955835f689039cddc8a3e12c3cc779ba0c9efead748cbf9cdda19c01aedcee",
+      "processing": "source excerpts + stated foley layers; gain balance; 0.3ms de-click; 12ms tail fade; mono PCM16 44100Hz; no EQ; no baked pitch shift",
+      "sources": [
+        {
+          "pack": "scifi",
+          "source": "explosionCrunch_002.ogg",
+          "start": 0,
+          "end": 1.1,
+          "gain": 1,
+          "at": 0,
+          "original": "Doc/AudioSources/SelectedOriginals/scifi/explosionCrunch_002.ogg",
+          "original_sha256": "be2b8ddc62e4a24c91e2e77793de98549ce216faf2f323a917e7d6f34321ff97",
+          "author": "Kenney",
+          "source_page": "https://kenney.nl/assets/sci-fi-sounds",
+          "license": "CC0-1.0"
+        },
+        {
+          "pack": "rpg80",
+          "source": "stones_04.ogg",
+          "start": 0.018,
+          "end": 0.383,
+          "gain": 0.3,
+          "at": 0.025,
+          "original": "Doc/AudioSources/SelectedOriginals/rpg80/stones_04.ogg",
+          "original_sha256": "66f1cef820f66d86414d481b37a48a7b7ea11f4a5d7358372ebcfb506af0e652",
+          "author": "rubberduck",
+          "source_page": "https://opengameart.org/content/80-cc0-rpg-sfx",
+          "license": "CC0-1.0"
+        }
+      ],
+      "metrics": {
+        "duration": 1.1,
+        "peak": 0.8199999999999998,
+        "rms": 0.1343627937521504,
+        "centroid_hz": 804.459877007931,
+        "above_3k_energy": 0.03908155377511769
+      }
+    }
+  ]
+}

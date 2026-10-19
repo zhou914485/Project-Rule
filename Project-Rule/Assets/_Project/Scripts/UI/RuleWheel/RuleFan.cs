@@ -18,6 +18,17 @@ namespace RuleGame.UI.RuleWheel
         private bool[] _available = Array.Empty<bool>();
         private bool[] _active = Array.Empty<bool>();
         private Label[] _labels = Array.Empty<Label>();
+        private VisualElement[] _cards = Array.Empty<VisualElement>();
+        private VisualElement[] _glows = Array.Empty<VisualElement>();
+        private float[] _hover = Array.Empty<float>();
+        public const float RevealDuration = .24f;
+        public const float ExitDuration = .18f;
+        private float _reveal = 1f, _exit, _clock;
+        private bool _exiting, _released;
+        private static readonly Vector2[] AttributeSizes = { new(262, 252), new(242, 246), new(218, 240), new(220, 240), new(246, 248), new(264, 254) };
+        private static readonly Vector2[] RelationSizes = { new(262, 258), new(234, 242), new(204, 244), new(234, 252), new(252, 250) };
+        private static readonly float[] AttributeAngles = { -60f, -37f, -14f, 12f, 35f, 59f };
+        private static readonly float[] RelationAngles = { -50f, -27f, -2f, 21f, 46f };
         public int SelectedIndex { get; private set; } = -1;
         public Vector2 Center => contentRect.size * 0.5f;
         public bool Mirrored { get; private set; }
@@ -36,9 +47,19 @@ namespace RuleGame.UI.RuleWheel
             _available = available;
             _active = new bool[words.Length];
             _labels = new Label[words.Length];
+            _cards = new VisualElement[words.Length];
+            _glows = new VisualElement[words.Length];
+            _hover = new float[words.Length];
             SelectedIndex = -1;
             for (int i = 0; i < words.Length; i++)
             {
+                string artwork = (words.Length == 6 ? "attribute-card-" : "relation-card-") + i;
+                var glow = new VisualElement { pickingMode = PickingMode.Ignore };
+                glow.AddToClassList("wheel-card"); glow.AddToClassList("wheel-glow"); glow.AddToClassList(artwork);
+                Add(glow); _glows[i] = glow;
+                var card = new VisualElement { pickingMode = PickingMode.Ignore };
+                card.AddToClassList("wheel-card"); card.AddToClassList("wheel-paper"); card.AddToClassList(artwork);
+                Add(card); _cards[i] = card;
                 var label = new Label(words[i]) { pickingMode = PickingMode.Ignore };
                 label.AddToClassList("wheel-word");
                 label.EnableInClassList("long-word", words[i].Length > 4);
@@ -46,6 +67,7 @@ namespace RuleGame.UI.RuleWheel
                 Add(label);
                 _labels[i] = label;
             }
+            foreach (Label label in _labels) label.BringToFront();
             LayoutWords();
             MarkDirtyRepaint();
         }
@@ -124,49 +146,83 @@ namespace RuleGame.UI.RuleWheel
             return Center + Direction(angle) * radius;
         }
 
+        public void PlayReveal()
+        {
+            _reveal = 0f; _exit = 0f; _exiting = false; _released = false;
+            Array.Clear(_hover, 0, _hover.Length);
+            TickAnimation(0f);
+        }
+
+        public void PlayExit(bool released)
+        {
+            _exiting = true; _released = released; _exit = 0f;
+        }
+
+        public void TickAnimation(float unscaledDelta)
+        {
+            _clock += unscaledDelta;
+            _reveal = Mathf.Min(1f, _reveal + unscaledDelta / RevealDuration);
+            if (_exiting) _exit = Mathf.Min(1f, _exit + unscaledDelta / ExitDuration);
+            for (int i = 0; i < _hover.Length; i++)
+                _hover[i] = Mathf.MoveTowards(_hover[i], i == SelectedIndex && _available[i] ? 1f : 0f, unscaledDelta * 10f);
+            LayoutWords();
+            MarkDirtyRepaint();
+        }
+
         private void LayoutWords()
         {
+            bool attributes = _words.Length == 6;
+            Vector2[] sizes = attributes ? AttributeSizes : RelationSizes;
+            float[] nativeAngles = attributes ? AttributeAngles : RelationAngles;
+            float artScale = (OuterRadius - InnerRadius) / 245f;
             for (int i = 0; i < _labels.Length; i++)
             {
-                Vector2 point = OptionPoint(i);
-                // 只把算法计算的位置写入运行时；字体、字块尺寸与配色仍由 USS 控制。
+                float progress = Mathf.Clamp01((_reveal - i * .045f) / .775f);
+                float eased = 1f - Mathf.Pow(1f - progress, 3f);
+                float hover = _hover[i];
+                float angle = Mathf.Lerp(StartAngle, EndAngle, (i + .5f) / _labels.Length);
+                Vector2 point = OptionPoint(i) + Direction(angle) * (-18f * (1f - eased) + hover * 5f + (_released ? _exit * 16f : -_exit * 8f));
+                Vector2 size = sizes[Mathf.Min(i, sizes.Length - 1)] * artScale;
+                float rotation = angle - nativeAngles[Mathf.Min(i, nativeAngles.Length - 1)];
+                if (Mirrored) rotation = -rotation;
+                float scale = (.82f + eased * .18f + hover * .065f) * (1f + (_released ? _exit * .12f : -_exit * .08f));
+                bool active = i < _active.Length && _active[i];
+                float pulse = .5f + .5f * Mathf.Sin(_clock * 4f);
+                LayoutCard(_cards[i], point, size, rotation, scale);
+                LayoutCard(_glows[i], point, size, rotation, scale + .1f + hover * .03f + (_released ? _exit * .25f : 0f));
+                _cards[i].style.opacity = eased * (_available[i] ? 1f : .72f);
+                _cards[i].style.unityBackgroundImageTintColor = active ? new Color(1f, .83f, .46f)
+                    : Color.Lerp(Color.white, new Color(1f, .88f, .62f), hover);
+                _glows[i].style.unityBackgroundImageTintColor = new Color(1f, .72f, .26f);
+                _glows[i].style.opacity = eased * (active ? .25f : 0f) + hover * (.2f + pulse * .16f) + (_released && i == SelectedIndex ? (1f - _exit) * .5f : 0f);
                 _labels[i].style.left = point.x - WordWidth * .5f;
                 _labels[i].style.top = point.y - WordHeight * .5f;
+                _labels[i].style.opacity = eased;
             }
+        }
+
+        private void LayoutCard(VisualElement card, Vector2 point, Vector2 size, float angle, float scale)
+        {
+            card.style.width = size.x; card.style.height = size.y;
+            card.style.left = point.x - size.x * .5f; card.style.top = point.y - size.y * .5f;
+            card.style.rotate = new Rotate(Angle.Degrees(angle));
+            card.style.scale = new Scale(new Vector3(Mirrored ? -scale : scale, scale, 1f));
         }
 
         private void Draw(MeshGenerationContext context)
         {
-            if (_words.Length == 0 || contentRect.height < 1f) return;
+            if (_words.Length == 0 || contentRect.height < 1f || SelectedIndex < 0 || !_available[SelectedIndex]) return;
             var painter = context.painter2D;
             float slice = (EndAngle - StartAngle) / _words.Length;
-            for (int i = 0; i < _words.Length; i++)
-            {
-                float start = StartAngle + slice * i + 1.2f;
-                float end = StartAngle + slice * (i + 1) - 1.2f;
-                bool highlighted = i < _active.Length && _active[i];
-                bool selected = i == SelectedIndex && _available[i];
-                // 生效中的格位用暖金色填充；被选中时改用金边包住深色块，
-                // 让「这是当前生效的规则」和「我现在指着它」能同时读出来。
-                painter.fillColor = selected ? new Color(0.12f, 0.12f, 0.11f)
-                    : highlighted ? new Color(0.95f, 0.79f, 0.40f)
-                    : _available[i] ? new Color(0.94f, 0.93f, 0.88f) : new Color(0.77f, 0.77f, 0.73f);
-                painter.strokeColor = highlighted && selected
-                    ? new Color(0.95f, 0.79f, 0.40f) : new Color(0.12f, 0.12f, 0.11f);
-                painter.lineWidth = selected || highlighted ? 3f : 1.6f;
-                painter.BeginPath();
-                // 只镜像几何和标签位置，不翻转 VisualElement，避免中文也被反向显示。
-                Vector2 inner = Center + Direction(start) * InnerRadius;
-                float visualStart = Mirrored ? 180f - start : start;
-                float visualEnd = Mirrored ? 180f - end : end;
-                painter.MoveTo(inner);
-                painter.Arc(Center, OuterRadius, Angle.Degrees(visualStart), Angle.Degrees(visualEnd),
-                    Mirrored ? ArcDirection.CounterClockwise : ArcDirection.Clockwise);
-                painter.Arc(Center, InnerRadius, Angle.Degrees(visualEnd), Angle.Degrees(visualStart),
-                    Mirrored ? ArcDirection.Clockwise : ArcDirection.CounterClockwise);
-                painter.ClosePath();
-                painter.Fill(); painter.Stroke();
-            }
+            float angle = StartAngle + slice * (SelectedIndex + .5f);
+            float begin = angle - slice * .32f, end = angle + slice * .32f;
+            if (Mirrored) { begin = 180f - begin; end = 180f - end; }
+            painter.strokeColor = new Color(1f, .8f, .42f, _hover[SelectedIndex] * .7f);
+            painter.lineWidth = 1.5f;
+            painter.BeginPath();
+            painter.Arc(Center, OuterRadius + 7f + (_released ? _exit * 24f : 0f), Angle.Degrees(begin), Angle.Degrees(end),
+                Mirrored ? ArcDirection.CounterClockwise : ArcDirection.Clockwise);
+            painter.Stroke();
         }
     }
 }

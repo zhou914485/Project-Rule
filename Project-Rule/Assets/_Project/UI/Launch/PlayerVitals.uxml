@@ -1,0 +1,44 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+    <ui:Style src="PlayerVitals.uss" />
+    <ui:VisualElement name="vitalsRoot" picking-mode="Ignore" class="vitals-root">
+        <ui:VisualElement picking-mode="Ignore" class="player-vitals">
+            <ui:VisualElement picking-mode="Ignore" class="vital-track">
+                <ui:VisualElement picking-mode="Ignore" class="vital-image health-empty" />
+                <ui:VisualElement name="healthClip" picking-mode="Ignore" class="vital-clip">
+                    <ui:VisualElement picking-mode="Ignore" class="vital-image health-full" />
+                </ui:VisualElement>
+                <ui:VisualElement picking-mode="Ignore" class="vital-divisions">
+                    <ui:VisualElement picking-mode="Ignore" class="vital-division" />
+                    <ui:VisualElement picking-mode="Ignore" class="vital-division" />
+                    <ui:VisualElement picking-mode="Ignore" class="vital-division" />
+                    <ui:VisualElement picking-mode="Ignore" class="vital-division" />
+                    <ui:VisualElement picking-mode="Ignore" class="vital-division" />
+                    <ui:VisualElement picking-mode="Ignore" class="vital-division" />
+                    <ui:VisualElement picking-mode="Ignore" class="vital-division" />
+                    <ui:VisualElement picking-mode="Ignore" class="vital-division" />
+                    <ui:VisualElement picking-mode="Ignore" class="vital-division" />
+                    <ui:VisualElement picking-mode="Ignore" class="vital-division-end" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement picking-mode="Ignore" class="vital-track energy-track">
+                <ui:VisualElement picking-mode="Ignore" class="vital-image energy-empty" />
+                <ui:VisualElement name="energyClip" picking-mode="Ignore" class="vital-clip">
+                    <ui:VisualElement picking-mode="Ignore" class="vital-image energy-full" />
+                </ui:VisualElement>
+                <ui:VisualElement picking-mode="Ignore" class="vital-divisions">
+                    <ui:VisualElement picking-mode="Ignore" class="vital-division" />
+                    <ui:VisualElement picking-mode="Ignore" class="vital-division" />
+                    <ui:VisualElement picking-mode="Ignore" class="vital-division" />
+                    <ui:VisualElement picking-mode="Ignore" class="vital-division" />
+                    <ui:VisualElement picking-mode="Ignore" class="vital-division" />
+                    <ui:VisualElement picking-mode="Ignore" class="vital-division" />
+                    <ui:VisualElement picking-mode="Ignore" class="vital-division" />
+                    <ui:VisualElement picking-mode="Ignore" class="vital-division" />
+                    <ui:VisualElement picking-mode="Ignore" class="vital-division" />
+                    <ui:VisualElement picking-mode="Ignore" class="vital-division-end" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:Label name="vitalsValue" picking-mode="Ignore" class="vital-label" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
