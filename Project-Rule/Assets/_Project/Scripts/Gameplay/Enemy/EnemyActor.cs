@@ -448,7 +448,8 @@ namespace RuleGame.Gameplay.Enemy
         {
             if (_release == null || RuleSystem.Instance == null) return false;
             bool released = _release.TryRelease(attribute, relation, RuleSource.Enemy).Succeeded;
-            if (released) EmitFeedback(EnemyFeedbackKind.RuleCast, transform.position, Motor.Up);
+            if (released) Feedback?.Invoke(new EnemyFeedback(EnemyFeedbackKind.RuleCast, transform.position, Motor.Up,
+                ruleAttribute: attribute, ruleRelation: relation));
             return released;
         }
         public void EmitFeedback(EnemyFeedbackKind kind, Vector3 position, Vector2 direction, Component subject = null)

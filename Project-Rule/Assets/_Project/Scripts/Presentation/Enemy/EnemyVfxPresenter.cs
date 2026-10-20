@@ -144,6 +144,8 @@ namespace RuleGame.Presentation.Enemy
                     break;
                 case EnemyFeedbackKind.RuleCast:
                     CancelFollowing();
+                    // 已携带真实规则身份的施法由星环负责，避免旧通用爆发盖住能量核。
+                    if (cue.RuleAttribute.HasValue) break;
                     Color tint = Color.white;
                     if (_actor.Definition.Kind == EnemyKind.ClockBoss)
                     {

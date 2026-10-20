@@ -50,6 +50,10 @@ namespace RuleGame.UI.RuleWheel
         private bool _closingVisual;
         private float _closeElapsed;
         public event Action SelectionOpened;
+        /// <summary>运行时轮盘接线完成。供独立表现层附加视图，UI 不依赖具体特效程序集。</summary>
+        public static event Action<RuleWheelPresenter> Ready;
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        private static void ResetReady() => Ready = null;
         public event Action<bool> SelectionClosed;
         public event Action<AttributeId> AttributePreviewed;
         public event Action ChoicePreviewed;
@@ -88,6 +92,7 @@ namespace RuleGame.UI.RuleWheel
                 return;
             }
             _session = new RuleSelectionSession(RuleSystem.Instance, _catalog, status, (IRuleUnlocks)_unlocks);
+            Ready?.Invoke(this);
         }
 
         public bool TryOpen()

@@ -30,6 +30,7 @@ namespace RuleGame.Presentation.Enemy
             _anchor = transform.localPosition;
             if (Actor == null) Actor = GetComponentInParent<EnemyActor>();
             EnemyHitFeedback.Attach(Actor, _renderer);
+            RuleWheel.RuleCastVfx.Attach(Actor);
             if (AnimationSet != null)
                 foreach (EnemySpriteSequence sequence in AnimationSet.Sequences) _sequences[sequence.Action] = sequence;
         }

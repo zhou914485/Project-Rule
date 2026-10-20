@@ -14,6 +14,7 @@ namespace RuleGame.Presentation.Enemy
         {
             _color = Body.color; _scale = Body.transform.localScale;
             EnemyHitFeedback.Attach(Actor, Body);
+            RuleWheel.RuleCastVfx.Attach(Actor);
         }
         private void LateUpdate()
         {

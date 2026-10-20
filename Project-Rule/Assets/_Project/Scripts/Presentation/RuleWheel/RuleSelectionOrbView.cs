@@ -48,10 +48,14 @@ namespace RuleGame.Presentation.RuleWheel
         private int _drawFrame, _returnStart;
         private bool _reverseDraw;
 
+        public Vector3 CastOrigin => _halo != null && _phase != Phase.Closed
+            ? _halo.transform.position : _wheel.Player != null ? _wheel.Player.transform.position : transform.position;
+
         private void Awake()
         {
             _wheel = GetComponent<RuleWheelPresenter>();
             _properties = new MaterialPropertyBlock();
+            RuleCastVfx.Attach(this);
         }
         private void OnEnable()
         {
@@ -110,7 +114,7 @@ namespace RuleGame.Presentation.RuleWheel
             _returnStart = _drawFrame;
             _closingGlow = _glow;
             _phase = Phase.Returning; _elapsed = 0f;
-            // 释放和取消都只是柔和消退，没有爆炸、冲击波或抖屏。
+            // 收球动作独立于 RuleCastVfx 的规则生命周期光环。
         }
 
         private void CreateVisuals()

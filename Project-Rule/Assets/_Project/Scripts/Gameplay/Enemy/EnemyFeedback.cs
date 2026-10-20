@@ -1,4 +1,5 @@
 using UnityEngine;
+using RuleGame.Infrastructure.Rules;
 
 namespace RuleGame.Gameplay.Enemy
 {
@@ -21,12 +22,16 @@ namespace RuleGame.Gameplay.Enemy
         public readonly float Damage;
         public readonly bool Staggered;
         public readonly bool Lethal;
+        public readonly AttributeId? RuleAttribute;
+        public readonly RelationId? RuleRelation;
 
         public EnemyFeedback(EnemyFeedbackKind kind, Vector3 position, Vector2 direction, Component subject = null,
-            float damage = 0f, bool staggered = false, bool lethal = false)
+            float damage = 0f, bool staggered = false, bool lethal = false,
+            AttributeId? ruleAttribute = null, RelationId? ruleRelation = null)
         {
             Kind = kind; Position = position; Direction = direction; Subject = subject;
             Damage = damage; Staggered = staggered; Lethal = lethal;
+            RuleAttribute = ruleAttribute; RuleRelation = ruleRelation;
         }
     }
 }
