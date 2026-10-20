@@ -207,7 +207,19 @@ namespace RuleGame.Gameplay.Scene
             if (_box != null) _box.enabled = !broken;
             if (_art != null) _art.enabled = !broken;
             if (changed && broken) OnBroken?.Invoke();
+
+            // 状态一变就写进世界状态仓库：存档点存档时整体带走，卸载的分区也不会丢。
+            RuleGame.Infrastructure.Persistence.WorldStateStore.SetBool(SaveStateKey, broken);
         }
+
+        private void Start()
+        {
+            // 读档恢复：存档里这扇门已经碎了，就别再让它挡一次路。
+            if (RuleGame.Infrastructure.Persistence.WorldStateStore.GetBool(SaveStateKey)) SetBroken(true);
+        }
+
+        /// <summary>存档用的稳定键。</summary>
+        private string SaveStateKey => RuleGame.Infrastructure.Persistence.WorldStateStore.KeyOf(this, "broken");
 
         private void Subscribe()
         {

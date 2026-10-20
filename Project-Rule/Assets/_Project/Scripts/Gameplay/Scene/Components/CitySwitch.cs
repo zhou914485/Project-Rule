@@ -121,12 +121,20 @@ namespace RuleGame.Gameplay.Scene.Components
             else if (Target != null) Target.SetSwitchState(on);
             if (IsOn == on) return;
             IsOn = on; RefreshVisual(); OnChanged.Invoke(IsOn);
+            RuleGame.Infrastructure.Persistence.WorldStateStore.SetBool(SaveStateKey, IsOn);
         }
+
         private void Start()
         {
+            // 读档恢复：这个开关在存档里是按下的，打开场景就要保持按下（连带把它驱动的门也带上）。
+            if (RuleGame.Infrastructure.Persistence.WorldStateStore.TryGet(SaveStateKey, out string saved)) SetOn(saved == "1");
+
             RefreshVisual();
             WarnIfTargetUnsupported();
         }
+
+        /// <summary>存档用的稳定键（场景名 + 层级路径 + 槽位）。</summary>
+        private string SaveStateKey => RuleGame.Infrastructure.Persistence.WorldStateStore.KeyOf(this, "on");
 
         /// <summary>FollowMotor 拖了既不认路径机、也不实现 <see cref="ISwitchTarget"/> 的东西 —— 报一次。</summary>
         private void WarnIfTargetUnsupported()

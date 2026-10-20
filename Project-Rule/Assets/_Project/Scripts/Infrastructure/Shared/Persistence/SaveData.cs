@@ -48,5 +48,15 @@ namespace RuleGame.Infrastructure.Persistence
 
         /// <summary>玩家的能量 / 生命 / 持有物。无玩家实体时为 null。</summary>
         public EntityStatusData PlayerStatus;
+
+        /// <summary>最近一次存档点的编号（<c>PlayerSpawnPoint.Id</c>）。位置由场景里的点提供，只存编号。</summary>
+        public string RespawnId;
+
+        /// <summary>
+        /// 世界状态：可交互场景组件 / 敌人的状态（开关按下 / 门碎掉 / 剑拔出 / 敌人已死 …）。
+        /// </summary>
+        /// <remarks>⚠️ 只是键值对，<b>不含任何 Transform / 物理状态</b>（约束 C5）。键的写法见
+        /// <see cref="WorldStateStore.KeyOf"/>。</remarks>
+        public List<WorldStateRecord> WorldStates = new List<WorldStateRecord>();
     }
 }

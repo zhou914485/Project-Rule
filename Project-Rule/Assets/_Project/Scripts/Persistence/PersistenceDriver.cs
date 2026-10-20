@@ -35,7 +35,7 @@ namespace RuleGame.Persistence
         [SerializeField] private MonoBehaviour _unlockStoreBehaviour;
 
         /// <summary>关卡流程状态机。当前由本驱动持有，见类注释。</summary>
-        public LevelFlow Flow { get; private set; }
+        public ILevelFlow Flow { get; private set; }
 
         /// <summary>存档系统实例（同时是 NPC 台词的 IDialogueHistorySource）。</summary>
         public SaveSystem Save { get; private set; }
@@ -53,13 +53,20 @@ namespace RuleGame.Persistence
             if (_playerStatusBehaviour != null && player == null)
                 Debug.LogWarning("[PersistenceDriver] 配置的玩家状态对象未实现 IEntityStatus，按未接线处理。", this);
 
+            // 没配引用就自己找：玩家 / 解锁存储都在常驻装配里，靠接口认（这一层看不到 Gameplay 类型）。
+            if (player == null) player = FindFirst<IEntityStatus>();
             var unlocks = _unlockStoreBehaviour as IRuleUnlockStore;
+            if (unlocks == null) unlocks = FindFirst<IRuleUnlockStore>();
             if (_unlockStoreBehaviour != null && unlocks == null)
                 Debug.LogWarning("[PersistenceDriver] 配置的解锁存储对象未实现 IRuleUnlockStore，按未接线处理。", this);
 
-            Flow = new LevelFlow();
+            // 优先复用常驻宿主那条真流程（GameRoot 在 -1000 执行序里先建好并写进 Hub）；
+            // 只有直接打开关卡场景、没有 GameRoot 时，才退回一个自己的（那种情况下没有关卡进度可言）。
+            Flow = LevelFlowHub.Current ?? new LevelFlow();
             Save = new SaveSystem(rules, Flow, new FileSaveStorage(), player, unlocks);
             Instance = this;
+
+            CheckpointBus.Requested += HandleCheckpointRequested;
 
             // 启动即读档恢复。无档返回 null，Apply(null) = 干净初态（世界保持设计初态）。
             // 这一步会抑制自动存档，避免加载过程中的关卡事件把半成品写回磁盘。
@@ -71,8 +78,30 @@ namespace RuleGame.Persistence
                            $"激活规则 {data.ActiveRuleIds?.Count ?? 0} 条，历史 {data.History?.Count ?? 0} 条。");
         }
 
+        /// <summary>在场上找一个实现了 <typeparamref name="T"/> 的 MonoBehaviour。</summary>
+        /// <remarks>本层不能引用 Gameplay 的具体类型，只能按接口认。</remarks>
+        private static T FindFirst<T>() where T : class
+        {
+            MonoBehaviour[] all = Object.FindObjectsByType<MonoBehaviour>(
+                FindObjectsInactive.Exclude, FindObjectsSortMode.None);
+            for (int i = 0; i < all.Length; i++)
+            {
+                if (all[i] is T match) return match;
+            }
+            return null;
+        }
+
+        /// <summary>存档点广播：先回满玩家，再把当前世界（含已卸载分区）整体写盘。</summary>
+        private void HandleCheckpointRequested(string spawnPointId)
+        {
+            if (Save == null) return;
+            Save.SaveCheckpoint(spawnPointId);
+            Debug.Log($"[PersistenceDriver] 存档点存档：{spawnPointId}（世界状态 {WorldStateStore.Count} 条）");
+        }
+
         private void OnDestroy()
         {
+            CheckpointBus.Requested -= HandleCheckpointRequested;
             Save?.Dispose();
             Save = null;
             Flow = null;

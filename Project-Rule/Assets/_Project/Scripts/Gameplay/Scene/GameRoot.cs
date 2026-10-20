@@ -70,6 +70,9 @@ namespace RuleGame.Gameplay.Scene
             LevelFlow = new LevelFlow();
             LevelFlow.OnRestartRequested += HandleRestartRequested;
 
+            // 交给基础设施层的静态入口：存档驱动（Persistence 层，看不见 Gameplay）从这里取真流程。
+            LevelFlowHub.Set(LevelFlow);
+
             if (_streamer == null) Debug.LogError("[GameRoot] 缺少 WorldStreamer 组件，世界不会加载。", this);
             // 启动入口尚未放行时，不让 Update 提前加载分区。
             if (_streamer != null) _streamer.enabled = false;
@@ -112,6 +115,7 @@ namespace RuleGame.Gameplay.Scene
 
             if (LevelFlow != null) LevelFlow.OnRestartRequested -= HandleRestartRequested;
 
+            LevelFlowHub.Reset();
             Instance = null;
             TimeManager.Reset();
         }

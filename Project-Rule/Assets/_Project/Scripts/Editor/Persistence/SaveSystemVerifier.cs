@@ -247,6 +247,64 @@ namespace RuleGame.Editor.Persistence
                     $"before={writes8} after={storage8.WriteCount}");
 
             // ==============================================================
+            //  ⑨ 世界状态 + 存档点（2026-10-20：机关 / 敌人状态 + 回满）
+            // ==============================================================
+            h.Section("9 世界状态与存档点");
+
+            const string doorKey = "castle/Door[0]#broken";
+            const string switchKey = "castle/Switch[3]#on";
+
+            // 新游戏必须把上一局留下的机关状态清掉，否则「门还是碎的」会跟着进新档。
+            WorldStateStore.Clear();
+            WorldStateStore.SetBool(doorKey, true);
+            var storage9 = new SaveTestDoubles.MemoryStorage();
+            var rules9 = new RuleSystem(catalog);
+            var flow9 = new LevelFlow();
+            var player9 = new SaveTestDoubles.FakePlayerStatus(12f, 20f);
+            var save9 = new SaveSystem(rules9, flow9, storage9, player9);
+
+            save9.Apply(null);
+            h.Check("新游戏清空世界状态", !WorldStateStore.TryGet(doorKey, out _),
+                    $"count={WorldStateStore.Count}");
+
+            // 机关改变状态 → 写进仓库 → 采集时整体带走。
+            WorldStateStore.SetBool(doorKey, true);
+            WorldStateStore.Set(switchKey, "0");
+            SaveData shot = save9.Capture();
+            h.Check("世界状态进入采集",
+                    shot.WorldStates.Any(r => r.Key == doorKey && r.Value == "1")
+                    && shot.WorldStates.Any(r => r.Key == switchKey && r.Value == "0"),
+                    $"count={shot.WorldStates.Count}");
+
+            // 存档点：编号落档 + 玩家回满。
+            save9.SaveCheckpoint("checkpoint-03");
+            h.Check("存档点编号落档", save9.LatestRespawnId == "checkpoint-03", save9.LatestRespawnId ?? "null");
+            h.Check("存档点回满能量", Mathf.Approximately(player9.Energy, player9.EnergyMax),
+                    $"{player9.Energy}/{player9.EnergyMax}");
+            h.Check("存档点回满生命", Mathf.Approximately(player9.Health, player9.HealthMax),
+                    $"{player9.Health}/{player9.HealthMax}");
+
+            // 跨实例恢复：新系统读同一个盘，世界状态与玩家状态都要回来。
+            WorldStateStore.Clear();     // 模拟重启：内存表是空的
+            var player9b = new SaveTestDoubles.FakePlayerStatus(1f, 1f);
+            var rules9b = new RuleSystem(catalog);
+            var flow9b = new LevelFlow();
+            var save9b = new SaveSystem(rules9b, flow9b, storage9, player9b);
+            SaveData loaded9 = save9b.Load();
+            save9b.Apply(loaded9);
+
+            h.Check("世界状态随档恢复",
+                    WorldStateStore.GetBool(doorKey) && WorldStateStore.TryGet(switchKey, out string sw9) && sw9 == "0",
+                    $"count={WorldStateStore.Count}");
+            h.Check("存档点编号随档恢复", save9b.LatestRespawnId == "checkpoint-03", save9b.LatestRespawnId ?? "null");
+            h.Check("玩家数值随档回满（不是旧值）",
+                    Mathf.Approximately(player9b.Energy, player9b.EnergyMax)
+                    && Mathf.Approximately(player9b.Health, player9b.HealthMax),
+                    $"{player9b.Energy}/{player9b.Health}");
+
+            WorldStateStore.Clear();
+
+            // ==============================================================
             //  清理
             // ==============================================================
             foreach (RuleDef d in defs) Object.DestroyImmediate(d);

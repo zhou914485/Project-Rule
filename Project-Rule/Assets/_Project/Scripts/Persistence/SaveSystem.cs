@@ -49,6 +49,9 @@ namespace RuleGame.Persistence
 
         private bool _isReady;
 
+        /// <summary>最近一次存档点的编号；没存过点是 null。</summary>
+        private string _respawnId;
+
         // ==================================================================
         //  构造 / 生命周期
         // ==================================================================
@@ -92,6 +95,11 @@ namespace RuleGame.Persistence
                 CurrentLevel  = _levelFlow.CurrentLevel,
                 ClearedLevels = new List<int>(_levelFlow.ClearedLevels),
                 PlayerStatus  = _player != null ? _player.ToData() : null,
+                RespawnId     = _respawnId,
+
+                // 世界状态是「全量照片」：组件在改变时写进 WorldStateStore，
+                // 卸载的分区也留在表里，所以这里整体导出即可，不需要枚举场景对象。
+                WorldStates   = WorldStateStore.Export(),
             };
 
             // 历史 / 解锁做元素级拷贝：存档是那一刻的照片，不能与运行时列表共享引用。
@@ -130,8 +138,17 @@ namespace RuleGame.Persistence
                 {
                     _rules.ClearAll();
                     _history.Clear();
+                    _respawnId = null;
+
+                    // 新游戏：世界回到设计初态 —— 清掉上一局留下的机关状态，
+                    // 否则「门还是碎的 / 开关还是按下的」会跟着进新档。
+                    WorldStateStore.Clear();
                     return;
                 }
+
+                // ⓪ 世界状态先灌回仓库：随后加载出来的分区会在 Start 里各自查表恢复。
+                _respawnId = data.RespawnId;
+                WorldStateStore.Import(data.WorldStates);
 
                 // ① 进度（SetProgress 只写状态不发事件，不会在这一步触发自动存档）。
                 _levelFlow.SetProgress(data.CurrentLevel, data.ClearedLevels);
@@ -215,6 +232,40 @@ namespace RuleGame.Persistence
             SaveData data = Capture();
             string json = JsonUtility.ToJson(data);
             _storage.Write(json);
+        }
+
+        /// <summary>
+        /// 存档点存档：先把玩家<b>回满</b>，再按当前世界写一次盘。
+        /// </summary>
+        /// <remarks>
+        /// <para>存档点同时是补给点（玩家走到存档点 = 喘口气），所以先回血回能量再采集 ——
+        /// 采集发生在回满之后，写进档里的就是满状态，读档回来也是满的。</para>
+        /// <para><see cref="WorldStateStore"/> 里已经是全量世界状态（含已卸载分区），
+        /// 所以这里不需要再枚举场景对象。</para>
+        /// </remarks>
+        public void SaveCheckpoint(string respawnPointId)
+        {
+            if (!string.IsNullOrEmpty(respawnPointId)) _respawnId = respawnPointId;
+            RefillPlayer();
+            Save();
+        }
+
+        /// <summary>最近一次存档点编号；没存过点是 null。</summary>
+        public string LatestRespawnId => _respawnId;
+
+        /// <summary>
+        /// 把能量 / 生命回满（并清冷却）。
+        /// </summary>
+        /// <remarks>先 ToData 再改两项再 ApplyData：<c>ApplyData</c> 会整体覆盖，
+        /// 直接传一个新建的 data 会把玩家手里的东西清掉。</remarks>
+        private void RefillPlayer()
+        {
+            if (_player == null) return;
+
+            EntityStatusData full = _player.ToData();
+            full.Energy = _player.EnergyMax;
+            full.Health = _player.HealthMax;
+            _player.ApplyData(full);
         }
 
         public SaveData Load()

@@ -301,7 +301,25 @@ namespace RuleGame.Gameplay.Scene
 
             // 事件先发再隐藏：订阅方可能还要读剑的位置。
             if (_hideAfterPull) gameObject.SetActive(false);
+
+            // 剑拔出来了是永久进度，必须落进世界状态（存档点存档时整体带走）。
+            RuleGame.Infrastructure.Persistence.WorldStateStore.SetBool(SaveStateKey, true);
         }
+
+        private void Start()
+        {
+            // 读档恢复：存档里剑已经被拔走 —— 直接补上能力、隐藏剑，不要再播一遍拔剑动画。
+            if (!RuleGame.Infrastructure.Persistence.WorldStateStore.GetBool(SaveStateKey)) return;
+
+            IsExtracted = true;
+            GrantAbility();
+            RefreshLabel();
+            OnExtracted?.Invoke();
+            if (_hideAfterPull) gameObject.SetActive(false);
+        }
+
+        /// <summary>存档用的稳定键。</summary>
+        private string SaveStateKey => RuleGame.Infrastructure.Persistence.WorldStateStore.KeyOf(this, "extracted");
 
         // ==================================================================
         //  订阅

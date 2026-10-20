@@ -109,7 +109,9 @@ namespace RuleGame.Gameplay.Scene
             PlayerController player = Apply();
             if (player == null) return false;
 
-            Activate(player);
+            // 开局落人**不写盘**：读档刚恢复的存档点（比如 checkpoint-05）不能被开局的
+            // start 点覆盖掉，否则每次启动都会把进度洗回第一关。
+            Activate(player, requestSave: false);
             return true;
         }
 
@@ -135,7 +137,10 @@ namespace RuleGame.Gameplay.Scene
         /// 位置写进玩家自己的状态（<see cref="PlayerController.SetRespawn"/>），本组件不留副本 ——
         /// 玩家在哪、死回哪，只有一份真相。
         /// </remarks>
-        public bool Activate(PlayerController player)
+        public bool Activate(PlayerController player) => Activate(player, requestSave: true);
+
+        /// <param name="requestSave">是否广播「该存盘了」。开局落人传 false（见 <see cref="Arrive"/>）。</param>
+        public bool Activate(PlayerController player, bool requestSave)
         {
             if (player == null) return false;
 
@@ -151,7 +156,15 @@ namespace RuleGame.Gameplay.Scene
 
             _onActivated?.Invoke();
             OnActivated?.Invoke(this);
-            _saveRequested?.Invoke(Id);
+
+            if (requestSave)
+            {
+                _saveRequested?.Invoke(Id);
+
+                // 落盘：走基础设施层的总线，存档驱动订阅后写盘（Gameplay 不认识 Persistence）。
+                // 存档点同时是补给点 —— 落盘时会把玩家回满（见 SaveSystem.SaveCheckpoint）。
+                RuleGame.Infrastructure.Persistence.CheckpointBus.Request(Id);
+            }
             return true;
         }
 

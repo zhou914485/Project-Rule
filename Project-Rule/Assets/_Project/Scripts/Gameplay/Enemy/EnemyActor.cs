@@ -110,8 +110,19 @@ namespace RuleGame.Gameplay.Enemy
             Motor = GetComponent<EnemyMotor>();
             _bodyCollider = GetComponent<BoxCollider2D>();
         }
+        /// <summary>存档用的稳定键（场景名 + 层级路径 + 槽位）。</summary>
+        private string SaveStateKey => RuleGame.Infrastructure.Persistence.WorldStateStore.KeyOf(this, "defeated");
+
         private void Start()
         {
+            // 读档恢复：这只敌人在存档里已经被击败 —— 直接下场，不再初始化行为。
+            if (RuleGame.Infrastructure.Persistence.WorldStateStore.GetBool(SaveStateKey))
+            {
+                Defeated = true;
+                gameObject.SetActive(false);
+                return;
+            }
+
             if (Definition == null) { Debug.LogError("EnemyActor 缺少 EnemyDefinition。", this); enabled = false; return; }
             _arenaOrigin = transform.position;
             _arenaInitialized = true;
@@ -487,6 +498,9 @@ namespace RuleGame.Gameplay.Enemy
         {
             if (Defeated) return;
             Defeated = true;
+
+            // 敌人被击败是永久进度：写进世界状态，存档点存档后不会复活。
+            RuleGame.Infrastructure.Persistence.WorldStateStore.SetBool(SaveStateKey, true);
             Brain?.OnDisabled();
             Motor.Stop();
             foreach (EnemyActor summon in _summons) if (summon != null) summon.gameObject.SetActive(false);
