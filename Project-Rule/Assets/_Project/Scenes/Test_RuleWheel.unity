@@ -207,17 +207,19 @@ MonoBehaviour:
   _maxAirJumps: 1
   _airJumpSpeed: 12.2
   _gravityScale: 3.83
-  _fallGravityMultiplier: 2
-  _maxFallSpeed: 30
+  _fallGravityMultiplier: 1.3
+  _maxFallSpeed: 16
   _frictionDecel: 40
   _airAccel: 40
   _airDrag: 3
   _jumpCutMultiplier: 0.45
   _coyoteTime: 0.1
   _jumpBuffer: 0.12
-  _dashSpeed: 26
-  _dashDuration: 0.18
-  _dashExitSpeedScale: 0.35
+  _dashSpeed: 16.4
+  _dashDuration: 0.28
+  _dashRampUp: 0.05
+  _dashRampDown: 0.06
+  _dashExitSpeedScale: 1
   _maxDashes: 1
   _dashCooldown: 0.25
   _wallClimbEnabled: 1

@@ -9,15 +9,14 @@ namespace RuleGame.Gameplay.Scene
     /// 载重拿走才回弹到自然长度。
     /// </summary>
     /// <remarks>
-    /// <para><b>它是什么</b>：一个简谐振子。压缩量 <c>c</c> 是唯一的自由度（0 = 自然长度，
-    /// 1 = 压到底），弹簧力 <c>k × (目标 − c)</c> 与阻尼力 <c>−阻尼 × c′</c> 一起决定它怎么走。
-    /// 所以「压下去」和「弹回来」都不是插值，是**真的在积分**：会加速、会冲过头（阻尼调得小的时候），
-    /// 最后停在目标压缩量上。</para>
+    /// <para><b>它是什么</b>：一个**真正的弹簧-质量-阻尼系统**。压缩深度 <c>x</c>（米）是唯一的自由度，
+    /// 运动方程 <c>m·x″ = F_载重 − k·x − c·x′</c> 每物理帧积分。
+    /// 所以「压下去」和「弹回来」都不是插值：会加速、会振荡（阻尼小的时候），
+    /// 最后停在 <c>x = F/k</c> 的平衡点上。</para>
     ///
-    /// <para><b>目标压缩量由载重决定</b>：<c>载重 ÷ _fullCompressionMass</c>（夹在 0 ~ 1）。
-    /// 压上去就不再动 —— 这不是「踩一下弹一次」的弹跳板，是**静力学平衡**：
-    /// 压缩到弹簧力顶得住上面的重量为止。东西越重压得越深，压到底（载重 ≥ 阈值）就停在压缩长度；
-    /// 载重拿掉，弹簧才回弹。</para>
+    /// <para><b>压缩深度由胡克定律决定</b>：<c>x = 载重·g / k</c>，夹在 <c>0 ~ 行程</c>。
+    /// 平台位置 = 锚点 + (自然长度 − x) —— 所以「多少力压多深」，不是压到一个固定的档位。
+    /// k 调大压得浅，k 调小压得深；重力规则会改 g，于是同样的东西在不同规则下压得不一样深。</para>
     ///
     /// <para><b>三个阶段</b>：
     /// <list type="bullet">
@@ -30,11 +29,14 @@ namespace RuleGame.Gameplay.Scene
     /// 「载重消失」的那一刻东西已经离开了，没有可弹的对象。要弹跳板请另做一个组件
     /// （<see cref="ISpringSurface"/> 接口与玩家侧的 ⑥′ 还留着，实现它就能弹人）。</para>
     ///
-    /// <para><b>承重靠包围盒判定，不靠接触回调</b>：与 <c>Tube</c> / <c>OneWayGate</c> 同一约定 ——
+    /// <para><b>承重靠形状扫掠判定，不靠接触回调</b>：与 <c>Tube</c> / <c>OneWayGate</c> 同一约定 ——
     /// 玩家是 Kinematic 刚体且 <c>useAttachedTriggers = false</c>，接触 / 触发回调不可靠。
-    /// 这里每物理帧在平台上表面扫一个扁盒子（<see cref="_riderProbe"/> 那么高），把框里
+    /// 每物理帧从平台形状向上扫 <see cref="_riderProbe"/> 那么远，把命中的
     /// **带刚体的东西的质量加起来** —— 玩家、铁箱、石头都算，静态地形没有刚体，压不动它。
     /// 质量规则改的就是 <c>Rigidbody2D.mass</c>，所以会自动生效。</para>
+    ///
+    /// <para><b>锚点按摆放位置推出来</b>：<c>锚点 = 摆放位置 − (0, 自然长度)</c>，开局只算一次。
+    /// 拖动物体时锚点跟着搬 —— 不需要单独摆一个"底部固定点"。</para>
     ///
     /// <para><b>方向恒为世界竖直</b>：弹簧只做上下伸缩，锚点的 <c>x</c> 就是平台的 <c>x</c>。
     /// 不要旋转根物体 —— 位姿由代码按锚点解算，旋转只会被下一帧覆盖掉。</para>
@@ -82,34 +84,30 @@ namespace RuleGame.Gameplay.Scene
         //  配置
         // ==================================================================
 
-        [Header("弹簧（世界坐标）")]
-        [Tooltip("底端固定点。弹簧从这里垂直立起，平台只沿这条线上下动。\n" +
-                 "摆位用 Inspector 上的「锚点 = 平台正下方」按钮。")]
-        [SerializeField] private Vector2 _anchor = Vector2.zero;
-
-        [Tooltip("自然长度：空载时平台**中心**在锚点上方多高。")]
+        [Header("弹簧")]
+        [Tooltip("自然长度：空载时平台**中心**在锚点上方多高。\n" +
+                 "锚点 = 物体摆放位置往下 _restLength —— **拖动物体就能整体搬走**，锚点跟着走。")]
         [SerializeField, Min(0.05f)] private float _restLength = 2f;
 
-        [Tooltip("压缩长度：被压到底时平台中心在锚点上方多高。\n" +
-                 "它和自然长度之差就是弹簧的全部行程 —— 这个差越大，压下去越明显。")]
+        [Tooltip("压到底时平台中心在锚点上方多高（硬限位）。\n" +
+                 "它和自然长度之差 = 最大压缩行程，弹簧最多缩这么多。")]
         [SerializeField, Min(0f)] private float _compressedLength = 0.8f;
 
-        [Header("劲度")]
-        [Tooltip("劲度系数 k。越大越硬：压得更浅、回弹更急。\n" +
-                 "等效角频率 ω = √k（rad/s），压缩到底大约要半个周期 ≈ π/ω 秒。k=90 约 0.33 秒。")]
-        [SerializeField, Min(1f)] private float _springConstant = 90f;
+        [Header("物理")]
+        [Tooltip("劲度系数 k（N/m）。**真的按胡克定律算**：载重 m 时压缩深度 x = m·g / k。\n" +
+                 "k 越大越硬、压得越浅。默认 16：1 kg 的玩家压 0.61 m，8 kg 的铁箱直接压到底（1.2 m）。\n" +
+                 "⚠️ 重力规则会改它 —— 重力越大，同样的东西压得越深。")]
+        [SerializeField, Min(0.1f)] private float _springConstant = 16f;
 
-        [Tooltip("阻尼。越小越会来回振荡（本组件在两端有硬限位，所以过冲会被吃掉，表现为「弹到位就停」）。\n" +
-                 "临界阻尼 ≈ 2√k：k=90 时约 19。取一半左右读起来最有弹性，取临界值则是平滑下落。")]
-        [SerializeField, Min(0f)] private float _damping = 12f;
+        [Tooltip("阻尼（N·s/m）。越小越会来回振荡；临界阻尼 ≈ 2√(k·m)（k=16、m=1 时约 8）。\n" +
+                 "默认 5 ≈ 0.6 倍临界：有弹性但很快停下。")]
+        [SerializeField, Min(0f)] private float _damping = 5f;
+
+        [Tooltip("空载回弹时用的等效质量（kg）。弹簧自己没重量，回弹快慢需要一个质量来算；\n" +
+                 "它只影响**没有载重时**回原长的速度，不影响压缩深度。")]
+        [SerializeField, Min(0.01f)] private float _unloadedMass = 1f;
 
         [Header("承重")]
-        [Tooltip("**压到底需要多少质量**（kg）。载重 = 站在平台上的所有刚体的质量之和。\n" +
-                 "默认 1 = 玩家（1 kg）刚好压到底，跟以前一样。\n" +
-                 "调到 8 = 玩家压不动，得压一个标准铁箱（8 kg）才到底 —— 做成「只有重物才触发」的机关。\n" +
-                 "⚠️ 质量规则会自动改这里的效果：铁箱「×削弱」2.4 kg 只能压到 30%（到不了底，不弹）。")]
-        [SerializeField, Min(0.01f)] private float _fullCompressionMass = 1f;
-
         [Tooltip("承重探测条的高度（世界单位）：在平台上表面往上扫这么高的一条扁盒子。\n" +
                  "太矮会漏掉刚踩上来的一瞬，太高会把从上方掠过的东西一起算进来。")]
         [SerializeField, Min(0.05f)] private float _riderProbe = 0.35f;
@@ -128,6 +126,11 @@ namespace RuleGame.Gameplay.Scene
         [Tooltip("白盒标签。**接正式美术时把这个引用清空** —— 玩法判定不读它。")]
         [SerializeField] private TextMesh _label;
 
+        /// <summary>参数模型版本。0 = 旧的「归一化压缩」那套（k=90 / 阻尼 12 是它的默认值）。</summary>
+        /// <remarks>物理模型的 k 量纲完全不同（N/m），旧值拿过来玩家只压 0.1 米、看起来像坏掉了。
+        /// 这里做一次性迁移：**只在还是旧默认值时**改，玩家自己调过的值不动。</remarks>
+        [SerializeField, HideInInspector] private int _modelVersion = 0;
+
         // ==================================================================
         //  运行时
         // ==================================================================
@@ -142,11 +145,19 @@ namespace RuleGame.Gameplay.Scene
         /// <summary>本物理帧的载重（kg）：平台上方所有刚体的质量之和。</summary>
         private float _loadMass;
 
-        /// <summary>压缩量：0 = 自然长度，1 = 压到底。唯一的自由度。</summary>
-        private float _compression;
+        /// <summary>压缩深度（米，0 ~ <see cref="Travel"/>）。0 = 自然长度。**唯一的自由度。**</summary>
+        private float _squeeze;
 
-        /// <summary>压缩量的变化率（每秒）。弹簧系统的另一半状态。</summary>
-        private float _compressionSpeed;
+        /// <summary>压缩深度的变化率（米/秒）。弹簧系统的另一半状态。</summary>
+        private float _squeezeSpeed;
+
+        /// <summary>世界锚点：开局按摆放位置算出来，之后不再变。</summary>
+        /// <remarks>锚点**不单独配置** —— 它就是「摆放位置往下 <see cref="_restLength"/>」。
+        /// 于是拖动物体时锚点跟着搬，不会像以前那样把平台拽回场景原点。</remarks>
+        private Vector2 _anchor;
+
+        /// <summary>锚点是否已经按摆放位置算过。开局只算一次 —— 之后平台自己会动，不能重算。</summary>
+        private bool _anchored;
 
         /// <summary>本实例**独占**的物理材质 —— 平台表面的摩擦就写在它上面。</summary>
         /// <remarks>⚠️ 不能直接改 <c>Collider2D.sharedMaterial</c>：那是共享的，
@@ -162,10 +173,13 @@ namespace RuleGame.Gameplay.Scene
         public Vector2 Velocity { get; private set; }
 
         /// <summary>当前长度（锚点到平台中心的竖直距离）。</summary>
-        public float CurrentLength => Mathf.LerpUnclamped(_restLength, _compressedLength, _compression);
+        public float CurrentLength => _restLength - _squeeze;
 
         /// <summary>压缩量 0 ~ 1（表现层要抖屏幕 / 播音效可以读它）。</summary>
-        public float Compression => _compression;
+        public float Compression => Travel > 0f ? Mathf.Clamp01(_squeeze / Travel) : 0f;
+
+        /// <summary>压缩深度（米）。真实物理量：载重 m 时平衡在 m·g/k。</summary>
+        public float Squeeze => _squeeze;
 
         /// <summary>本物理帧压在上面的总质量（kg）。没有任何刚体压着就是 0。</summary>
         public float LoadMass => _loadMass;
@@ -173,13 +187,10 @@ namespace RuleGame.Gameplay.Scene
         /// <summary>当前阶段名（调试 / Inspector 显示用）。</summary>
         public string PhaseName => _phase.ToString();
 
-        /// <summary>压到底需要多少质量（kg）。载重达到它，压缩目标才是 1。</summary>
-        public float FullCompressionMass => _fullCompressionMass;
-
-        /// <summary>现在是不是在回弹（这一阶段接触者会被弹飞）。</summary>
+        /// <summary>现在是不是在回弹。</summary>
         public bool IsReleasing => _phase == Phase.Releasing;
 
-        /// <summary>底端锚点（世界坐标）。</summary>
+        /// <summary>底端锚点（世界坐标）。由摆放位置往下 <see cref="RestLength"/> 推出。</summary>
         public Vector2 AnchorPoint => _anchor;
 
         /// <summary>自然长度：空载时平台中心在锚点上方多高。</summary>
@@ -191,6 +202,19 @@ namespace RuleGame.Gameplay.Scene
         /// <summary>行程 = 自然长度 − 压缩长度。0 = 这个弹簧不会动。</summary>
         public float Travel => Mathf.Max(0f, _restLength - _compressedLength);
 
+        /// <summary>
+        /// 给定载重时的**静力学平衡压缩深度**（米）：<c>x = m·g / k</c>，夹在行程内。
+        /// </summary>
+        /// <remarks>重力读的是 <c>Physics2D.gravity</c>，所以重力规则会直接改变它 ——
+        /// 世界变重，同样的东西压得更深；世界变轻，几乎压不动。</remarks>
+        public float EquilibriumSqueeze(float mass)
+        {
+            if (mass <= 0f) return 0f;
+
+            float g = Mathf.Max(0f, -Vector2.Dot(Physics2D.gravity, Vector2.up));
+            return Mathf.Clamp(mass * g / Mathf.Max(_springConstant, 0.01f), 0f, Travel);
+        }
+
         // ==================================================================
         //  生命周期
         // ==================================================================
@@ -199,13 +223,30 @@ namespace RuleGame.Gameplay.Scene
         {
             _body = GetComponent<Rigidbody2D>();
             _plankCollider = GetComponent<Collider2D>();
+            MigrateLegacyTuning();
             ConfigureBody();
             ApplyFriction();
+
+            // 每次进入 play 都按**当前摆放位置**重新算锚点。
+            // ⚠️ 本工程的 Enter Play Mode 不一定重载域，`_anchored` 可能残留上一次 play 的值。
+            _anchored = false;
+            CaptureAnchor();
+
             Rebuild();
         }
 
         private void OnEnable()
         {
+            // ⚠️ **编辑模式什么都不做**（除了刷新柱子）。
+            //    OnEnable 在编辑模式下也会跑 —— 以前这里会调 Rebuild()，它用锚点写
+            //    `_body.position`，于是**一拖动物体就被搬回锚点**（手动加的组件锚点默认正好是
+            //    (0,0) = 场景原点）。这正是「拖动时固定在原点」的真正原因。
+            if (!Application.isPlaying)
+            {
+                UpdateSpringVisual();
+                return;
+            }
+
             // 重开一局 / 对象池取出时也要回到自然长度，不能接着上次的压缩量走。
             if (_body == null)
             {
@@ -214,7 +255,24 @@ namespace RuleGame.Gameplay.Scene
                 ConfigureBody();
             }
             ApplyFriction();
+            CaptureAnchor();
             Rebuild();
+        }
+
+        /// <summary>
+        /// 按**摆放位置**推出世界锚点：锚点在平台正下方 <see cref="_restLength"/> 处。
+        /// </summary>
+        /// <remarks>
+        /// <para>锚点只算一次：之后再调它就会跟着平台自己动，越跑越远。</para>
+        /// <para>⚠️ 这正是「拖动物体时弹簧不会弹回原点」的实现 —— 以前锚点是独立的世界坐标字段，
+        /// 拖物体它不跟着走，运行时平台就被拽回锚点（默认是 <c>(0,0)</c> = 场景原点）。</para>
+        /// </remarks>
+        private void CaptureAnchor()
+        {
+            if (_anchored) return;
+
+            _anchor = (Vector2)transform.position - Vector2.up * _restLength;
+            _anchored = true;
         }
 
         private void OnDestroy()
@@ -257,22 +315,24 @@ namespace RuleGame.Gameplay.Scene
         //  状态机 + 积分
         // ==================================================================
 
-        /// <summary>推进状态机，再按当前阶段的目标积分压缩量。</summary>
+        /// <summary>推进状态机，再按**牛顿第二定律**积分压缩深度。</summary>
         private void Step(float dt, float loadMass)
         {
             bool loaded = loadMass > 0f;
 
-            // 目标压缩量由**载重**决定：压到底需要 _fullCompressionMass 的质量。
-            // 这就是「重力 = 弹簧力」的平衡位置 —— 压上去之后停在这里，**不会自己弹回原长**。
-            // 质量规则会直接改变它：它写的就是 Rigidbody2D.mass。
-            float target = loaded
-                         ? Mathf.Clamp01(loadMass / Mathf.Max(_fullCompressionMass, 0.01f))
-                         : 0f;
+            // 沿压缩方向的重力加速度（世界重力 · 锚点方向）。重力反转时为负 → 取 0，
+            // 东西不会往「天空」那边压弹簧。
+            float gAlong = Mathf.Max(0f, -Vector2.Dot(Physics2D.gravity, Vector2.up));
+
+            // 载重压下来的力（N）。静态平衡时它正好等于弹簧力 k·x —— 这就是压缩深度的来源。
+            float loadForce = loadMass * gAlong;
 
             AdvancePhase(loaded);
 
-            // Releasing 期间目标恒为 0（回弹）；其余时刻一路跟着平衡位置走。
-            Integrate(dt, _phase == Phase.Compressing ? target : 0f);
+            // 运动方程：m·x″ = F_载重 − k·x − c·x′
+            // 平衡点 x = F_载重 / k，所以「多少力就压多深」，不是归一化到某个固定位置。
+            float mass = loaded ? loadMass : _unloadedMass;
+            Integrate(dt, loadForce, Mathf.Max(mass, 0.01f));
         }
 
         private void AdvancePhase(bool loaded)
@@ -295,43 +355,45 @@ namespace RuleGame.Gameplay.Scene
                         _phase = Phase.Compressing;
                         break;
                     }
-                    if (_compression <= 0f && _compressionSpeed <= 0f) _phase = Phase.Idle;
+                    if (_squeeze <= 0f && _squeezeSpeed <= 0f) _phase = Phase.Idle;
                     break;
             }
         }
 
         /// <summary>
-        /// 半隐式欧拉积分一步：<c>c″ = k(target − c) − 阻尼 × c′</c>。
+        /// 半隐式欧拉积分一步：<c>x″ = (F_载重 − k·x − c·x′) / m</c>。
         /// </summary>
         /// <remarks>
-        /// <para>两端都有**硬限位**（压缩量夹在 0 ~ 1）：平台不会缩进锚点里，也不会弹过自然长度
-        /// —— 站人的面必须可预测。撞到限位时把朝外的速度归零，就是「能量被限位吃掉」。</para>
-        /// <para>刚度调得很大时按 <see cref="MaxSubstepAngle"/> 拆子步，否则会数值发散。</para>
+        /// <para><b>这就是胡克定律的动力学形式</b>。载重恒定、没有阻尼时它会在
+        /// <c>x = F/k</c> 附近来回振荡；有阻尼时收敛到那个平衡点。</para>
+        /// <para>两端都有**硬限位**（<c>0 ~ 行程</c>）：平台不会缩进锚点里，也不会被"拉"过自然长度。
+        /// 撞到限位时把朝外的速度归零，就是「能量被限位吃掉」。</para>
+        /// <para>刚度大 / 质量小时按 <see cref="MaxSubstepAngle"/> 拆子步，否则会数值发散。</para>
         /// </remarks>
-        private void Integrate(float dt, float target)
+        private void Integrate(float dt, float loadForce, float mass)
         {
-            float omega = Mathf.Sqrt(_springConstant);
+            float omega = Mathf.Sqrt(_springConstant / mass);
             int substeps = Mathf.Clamp(
                 Mathf.CeilToInt(omega * dt / MaxSubstepAngle), 1, MaxSubsteps);
             float h = dt / substeps;
+            float travel = Travel;
 
             for (int i = 0; i < substeps; i++)
             {
-                float accel = _springConstant * (target - _compression)
-                            - _damping * _compressionSpeed;
+                float accel = (loadForce - _springConstant * _squeeze - _damping * _squeezeSpeed) / mass;
 
-                _compressionSpeed += accel * h;
-                _compression      += _compressionSpeed * h;
+                _squeezeSpeed += accel * h;
+                _squeeze      += _squeezeSpeed * h;
 
-                if (_compression <= 0f)
+                if (_squeeze <= 0f)
                 {
-                    _compression = 0f;
-                    if (_compressionSpeed < 0f) _compressionSpeed = 0f;
+                    _squeeze = 0f;
+                    if (_squeezeSpeed < 0f) _squeezeSpeed = 0f;
                 }
-                else if (_compression >= 1f)
+                else if (_squeeze >= travel)
                 {
-                    _compression = 1f;
-                    if (_compressionSpeed > 0f) _compressionSpeed = 0f;
+                    _squeeze = travel;
+                    if (_squeezeSpeed > 0f) _squeezeSpeed = 0f;
                 }
             }
         }
@@ -428,11 +490,11 @@ namespace RuleGame.Gameplay.Scene
         /// <summary>回到自然长度、清空状态。开局 / 对象池取出时调用。</summary>
         private void Rebuild()
         {
-            _phase            = Phase.Idle;
-            _compression      = 0f;
-            _compressionSpeed = 0f;
+            _phase        = Phase.Idle;
+            _squeeze      = 0f;
+            _squeezeSpeed = 0f;
 
-            // 载重也要清：重开时若东西正好压在平台上，留着上一局的旧值会让第一帧按它算目标。
+            // 载重也要清：重开时若东西正好压在平台上，留着上一局的旧值会让第一帧按它算力。
             _loadMass = 0f;
 
             Velocity = Vector2.zero;
@@ -445,7 +507,17 @@ namespace RuleGame.Gameplay.Scene
             UpdateSpringVisual();
         }
 
-        /// <summary>把弹簧柱按当前长度拉伸。**锚点不动、柱顶跟着平台底面走。**</summary>
+        /// <summary>编辑期用的锚点：总是按**当前摆放位置**推出来的那个。</summary>
+        /// <remarks>⚠️ 编辑模式不要读 <see cref="_anchor"/> —— 本工程的 Enter Play Mode 不一定重载域，
+        /// 退出 play 后那个字段还是上一次运行的值，拖动物体时柱子会错位。</remarks>
+        private Vector2 EditorAnchor()
+            => Application.isPlaying && _anchored
+                ? _anchor
+                : (Vector2)transform.position - Vector2.up * _restLength;
+
+        /// <summary>
+        /// 把弹簧柱按当前长度拉伸。**锚点不动、柱顶跟着平台底面走。**
+        /// </summary>
         /// <remarks>
         /// <para>用**根的局部坐标**而不是世界坐标：根（平台）每个物理帧都在动，
         /// 写成世界坐标的话柱子会留在原地、和平台分家。换算成局部坐标，它才会跟着走。</para>
@@ -455,7 +527,7 @@ namespace RuleGame.Gameplay.Scene
         {
             if (_springVisual == null) return;
 
-            // ⚠️ 编辑模式下 `transform` 可能刚被搬过（生成器摆位 / Inspector 按钮 / 改参数），
+            // ⚠️ 编辑模式下 `transform` 可能刚被搬过（生成器摆位 / 改参数），
             //    而 `Collider2D.bounds` 是**缓存值**，不 SyncTransforms 就会读到搬家前的包围盒 ——
             //    算出来的柱高会莫名其妙多出一段（实测多出整整一个位移量）。
             //    运行时不用同步：物理步刚跑过，bounds 本来就是新的。
@@ -465,10 +537,11 @@ namespace RuleGame.Gameplay.Scene
             // 免得摆位时柱子高度按「平台中心」算、和平台面糊在一起。
             Collider2D plank = _plankCollider != null ? _plankCollider : GetComponent<Collider2D>();
             float plankBottomY = plank != null ? plank.bounds.min.y : transform.position.y;
-            float height = Mathf.Max(plankBottomY - _anchor.y, 0.05f);
+            Vector2 anchor = EditorAnchor();
+            float height = Mathf.Max(plankBottomY - anchor.y, 0.05f);
 
-            _springVisual.localPosition = new Vector3(_anchor.x - transform.position.x,
-                                                      _anchor.y - transform.position.y + height * 0.5f,
+            _springVisual.localPosition = new Vector3(anchor.x - transform.position.x,
+                                                      anchor.y - transform.position.y + height * 0.5f,
                                                       0f);
 
             Vector3 scale = _springVisual.localScale;
@@ -521,24 +594,6 @@ namespace RuleGame.Gameplay.Scene
         //  编辑器
         // ==================================================================
 
-        /// <summary>只给编辑器工具用：不跑动力学，直接把锚点与长度摆到位。</summary>
-        public void SetAnchor(Vector2 anchor)
-        {
-            _anchor = anchor;
-            if (Application.isPlaying) return;
-
-            _compression = 0f;
-            _compressionSpeed = 0f;
-            _phase = Phase.Idle;
-        }
-
-        /// <summary>只给编辑器工具用：把根物体搬到「自然长度」该在的地方。</summary>
-        public void SnapToRest()
-        {
-            transform.position = new Vector3(_anchor.x, _anchor.y + _restLength, transform.position.z);
-            UpdateSpringVisual();
-        }
-
         /// <summary>只给编辑器工具用：接上白盒标签的引用。</summary>
         public void SetWhitebox(Transform springVisual, TextMesh label)
         {
@@ -549,10 +604,10 @@ namespace RuleGame.Gameplay.Scene
         }
 
         /// <summary>白盒标签上该写什么。生成工具和本类共用它，免得两处写歪。</summary>
-        public static string LabelText(float springConstant, float fullCompressionMass)
+        public static string LabelText(float springConstant, float restLength)
         {
             return "弹簧 k" + springConstant.ToString("0.#")
-                 + " · " + fullCompressionMass.ToString("0.#") + "kg";
+                 + " · " + restLength.ToString("0.#") + "m";
         }
 
         private void OnValidate()
@@ -562,37 +617,56 @@ namespace RuleGame.Gameplay.Scene
             if (_restLength < 0.05f) _restLength = 0.05f;
             if (_riderProbe < 0.05f) _riderProbe = 0.05f;
 
+            MigrateLegacyTuning();
             RefreshLabel();
 
             if (Application.isPlaying) return;
+
+            // 编辑期改了长度 / 拖了位置：柱子跟着更新。锚点是按摆放位置推出来的，所以拖动物体
+            // 柱子会一起搬走（这正是「不会弹回原点」的那条）。
             UpdateSpringVisual();
         }
 
-        /// <summary>把当前的 k / 发射速度写进白盒标签。**只在文字真的变了才写** ——
+        /// <summary>
+        /// 旧参数模型（归一化压缩）→ 物理模型的一次性迁移。
+        /// </summary>
+        /// <remarks>只改**旧默认值**（k=90 / 阻尼 12），玩家自己调过的数不动。</remarks>
+        private void MigrateLegacyTuning()
+        {
+            if (_modelVersion >= 1) return;
+
+            if (Mathf.Approximately(_springConstant, 90f)) _springConstant = 16f;
+            if (Mathf.Approximately(_damping, 12f)) _damping = 5f;
+
+            _modelVersion = 1;
+        }
+
+        /// <summary>把当前的 k / 自然长度写进白盒标签。**只在文字真的变了才写** ——
         /// 否则每次脚本重编译都会把场景标脏，提交里全是噪声。</summary>
         private void RefreshLabel()
         {
             if (_label == null) return;
 
-            string wanted = LabelText(_springConstant, _fullCompressionMass);
+            string wanted = LabelText(_springConstant, _restLength);
             if (_label.text != wanted) _label.text = wanted;
         }
 
         private void OnDrawGizmos()
         {
             var plank = GetComponent<Collider2D>();
+            Vector2 anchor = EditorAnchor();
 
             // 弹簧轴：从锚点到自然长度处。
             Gizmos.color = new Color(0.85f, 0.75f, 0.95f, 0.9f);
-            Gizmos.DrawLine(_anchor, new Vector3(_anchor.x, _anchor.y + _restLength, 0f));
+            Gizmos.DrawLine(anchor, new Vector3(anchor.x, anchor.y + _restLength, 0f));
 
             // 行程范围：压缩长度那一端的标记。
             Gizmos.color = new Color(1f, 0.45f, 0.45f, 0.9f);
-            Gizmos.DrawWireSphere(new Vector3(_anchor.x, _anchor.y + _compressedLength, 0f), 0.12f);
+            Gizmos.DrawWireSphere(new Vector3(anchor.x, anchor.y + _compressedLength, 0f), 0.12f);
 
             // 锚点。
             Gizmos.color = new Color(0.55f, 1f, 0.75f, 0.95f);
-            Gizmos.DrawWireSphere(_anchor, 0.18f);
+            Gizmos.DrawWireSphere(anchor, 0.18f);
 
             if (Application.isPlaying)
             {

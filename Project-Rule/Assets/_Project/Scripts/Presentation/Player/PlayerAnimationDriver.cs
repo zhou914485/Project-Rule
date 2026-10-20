@@ -193,6 +193,9 @@ namespace RuleGame.Presentation.Player
             if (_animator != null && _animator.runtimeAnimatorController != null)
                 foreach (AnimationClip clip in _animator.runtimeAnimatorController.animationClips)
                     if (clip.name == "Hero_Hurt") _hurtClipLength = clip.length;
+
+            if (_player != null && _player.GetComponent<DashAfterimage>() == null)
+                _player.gameObject.AddComponent<DashAfterimage>();
         }
 
         private void OnEnable()

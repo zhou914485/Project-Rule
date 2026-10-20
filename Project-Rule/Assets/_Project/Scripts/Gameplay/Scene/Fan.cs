@@ -33,6 +33,12 @@ namespace RuleGame.Gameplay.Scene
     /// <para>⚠️ <b>必须落 Wind 层</b>：玩家的 <c>WindSensor</c> 只查这个层（<c>_windLayer</c>），
     /// 放错层风扇白放、且没有任何报错。生成工具会自动设好。</para>
     ///
+    /// <para><b>只看风、不看风扇</b>：关掉「白盒 → 显示本体」（<see cref="_showBody"/>）只隐藏两个渲染器
+    /// （白盒方块 + 标签），**判定与碰撞体一个都不动** —— 风照常吹。
+    /// 想运行时切换用 <see cref="SetBodyVisible"/>。
+    /// ⚠️ 风道本身只有**编辑器 Gizmo**，没有运行期可视化 —— 关掉本体后，play 里是完全看不见的
+    /// （要做「看得见的风」得另接粒子 / 半透明面片）。</para>
+    ///
     /// <para>⚠️ <b>不要旋转风扇</b>：风向由 <see cref="_direction"/> 决定，风道与碰撞体都按它算；
     /// 旋转对象只会让碰撞体与风道错位。</para>
     ///
@@ -103,6 +109,13 @@ namespace RuleGame.Gameplay.Scene
         [SerializeField, Min(0f)] private float _verticalDamping = 8f;
 
         [Header("白盒")]
+        [Tooltip("**显示本体**（白盒方块 + 文字标签）。关掉后场景里只剩风道 —— 适合正式美术接进来、\n" +
+                 "或想让风吹向看不出从哪来时用。判定 / 碰撞体完全不受影响，风照常吹。")]
+        [SerializeField] private bool _showBody = true;
+
+        [Tooltip("本体白盒方块。留空时自动找子物体上的 SpriteRenderer。**接正式美术时按需清空。**")]
+        [SerializeField] private SpriteRenderer _bodyVisual;
+
         [Tooltip("白盒标签。**接正式美术时把这个引用清空** —— 玩法判定不读它。")]
         [SerializeField] private TextMesh _label;
 
@@ -111,6 +124,9 @@ namespace RuleGame.Gameplay.Scene
         // ==================================================================
 
         private BoxCollider2D _area;
+
+        /// <summary>标签的渲染器缓存（TextMesh 自带一个 MeshRenderer）。</summary>
+        private MeshRenderer _labelRenderer;
 
         /// <summary>出风口（风扇自己）的世界坐标。风道从这里朝外延伸。</summary>
         public Vector2 Origin => transform.position;
@@ -150,6 +166,9 @@ namespace RuleGame.Gameplay.Scene
 
         /// <summary>当前风向。</summary>
         public BlowDirection Direction => _direction;
+
+        /// <summary>本体（白盒方块 + 标签）当前是否显示。</summary>
+        public bool BodyVisible => _showBody;
 
         // ==================================================================
         //  IWindField
@@ -205,7 +224,11 @@ namespace RuleGame.Gameplay.Scene
         //  生命周期
         // ==================================================================
 
-        private void OnEnable() => SyncArea();
+        private void OnEnable()
+        {
+            SyncArea();
+            ApplyBodyVisibility();
+        }
 
         private void OnValidate()
         {
@@ -214,6 +237,40 @@ namespace RuleGame.Gameplay.Scene
 
             SyncArea();
             RefreshLabel();
+            ApplyBodyVisibility();
+        }
+
+        /// <summary>给脚本 / 机关用：运行时切本体的显示状态（风照常吹）。</summary>
+        public void SetBodyVisible(bool visible)
+        {
+            _showBody = visible;
+            ApplyBodyVisibility();
+        }
+
+        /// <summary>把 <see cref="_showBody"/> 落到两个渲染器上。</summary>
+        /// <remarks>
+        /// <para>只关渲染器，**不动碰撞体** —— 碰撞体是 <c>WindSensor</c> 的查询入口，
+        /// 关掉风扇就失效了；也不禁用子物体，避免以后往本体上挂表现组件时被连带断掉。</para>
+        /// <para>引用留空时按子物体自动补齐：老场景里的风扇没有序列化这两个引用，
+        /// 补齐之后开关立刻可用。</para>
+        /// </remarks>
+        private void ApplyBodyVisibility()
+        {
+            ResolveVisuals();
+
+            if (_bodyVisual != null) _bodyVisual.enabled = _showBody;
+            if (_labelRenderer != null) _labelRenderer.enabled = _showBody;
+        }
+
+        /// <summary>补齐白盒引用。编辑器里改了层级也会重新找。</summary>
+        private void ResolveVisuals()
+        {
+            if (_bodyVisual == null) _bodyVisual = GetComponentInChildren<SpriteRenderer>(true);
+
+            if (_label != null && (_labelRenderer == null || _labelRenderer.gameObject != _label.gameObject))
+            {
+                _labelRenderer = _label.GetComponent<MeshRenderer>();
+            }
         }
 
         /// <summary>把风道尺寸写进碰撞体 —— 让 WindSensor 的 OverlapPoint 查得到。</summary>
@@ -237,11 +294,13 @@ namespace RuleGame.Gameplay.Scene
         //  编辑器
         // ==================================================================
 
-        /// <summary>只给编辑器工具用：接上白盒标签的引用。</summary>
-        public void SetWhitebox(TextMesh label)
+        /// <summary>只给编辑器工具用：接上白盒方块与标签的引用。</summary>
+        public void SetWhitebox(SpriteRenderer body, TextMesh label)
         {
-            _label = label;
+            _bodyVisual = body;
+            _label      = label;
             RefreshLabel();
+            ApplyBodyVisibility();
         }
 
         /// <summary>白盒标签上该写什么。生成工具和本类共用它，免得两处写歪。</summary>

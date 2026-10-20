@@ -1003,6 +1003,9 @@ namespace RuleGame.Editor.Level
                     if (tilemap.GetTile(c) == null) continue;
                     if (!hazards.IsHazardCell(c)) continue;
 
+                    // 齿轮这类自带贴图的危险物：逻辑瓦片本身就是最终画面，盖刺会把它挡住。
+                    if (hazards.IsSelfArtCell(c)) continue;
+
                     var regionKit = kitAt(c);
                     var sprite = regionKit != null ? regionKit.Spike : null;
 

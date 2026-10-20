@@ -99,10 +99,10 @@ namespace RuleGame.Gameplay.Player
         [SerializeField] private float _gravityScale = 3.83f;
 
         [Tooltip("下落时的额外重力倍率 —— 落得比升得快，滞空更紧凑。1 = 上下对称。")]
-        [SerializeField, Range(1f, 4f)] private float _fallGravityMultiplier = 2f;
+        [SerializeField, Range(1f, 4f)] private float _fallGravityMultiplier = 1.3f;
 
         [Tooltip("下落速度上限（终端速度）。防止长距离下落越来越快、难以阅读。")]
-        [SerializeField] private float _maxFallSpeed = 30f;
+        [SerializeField] private float _maxFallSpeed = 16f;
 
         [Tooltip("地面减速度基准。实际减速度 = 本值 × 脚下地面材质的摩擦系数 × 摩擦规则缩放。" +
                  "所以「冰面」= 给地面挂一个摩擦很小的 PhysicsMaterial2D。")]
@@ -125,14 +125,22 @@ namespace RuleGame.Gameplay.Player
         [SerializeField] private float _jumpBuffer = 0.12f;
 
         [Header("冲刺")]
-        [Tooltip("冲刺速度。远高于 _moveSpeedMax，要的就是爆发感。")]
-        [SerializeField] private float _dashSpeed = 26f;
+        [Tooltip("冲刺速度的**峰值**（中段平顶）。起手从跑速升上来、收尾再降回去，见下面两个斜坡。")]
+        [SerializeField] private float _dashSpeed = 16.4f;
 
-        [Tooltip("冲刺持续秒数。冲刺距离 = 本值 × _dashSpeed（26 × 0.18 ≈ 4.7 米）。")]
-        [SerializeField] private float _dashDuration = 0.18f;
+        [Tooltip("冲刺持续秒数。**距离不是 峰值 × 时长**，要按梯形曲线积分。\n" +
+                 "60Hz 下当前配置 ≈ 4.34 米，与改版前（26 m/s × 0.18 s 的离散步进）一致。")]
+        [SerializeField] private float _dashDuration = 0.28f;
 
-        [Tooltip("冲刺结束时保留多少速度。1 = 冲完像被弹射出去，0.35 = 收得住。")]
-        [SerializeField, Range(0f, 1f)] private float _dashExitSpeedScale = 0.35f;
+        [Tooltip("起手加速占冲刺时长的比例：跑速 → 峰值。0 = 一按就到峰值。")]
+        [SerializeField, Range(0f, 0.5f)] private float _dashRampUp = 0.05f;
+
+        [Tooltip("收尾减速占冲刺时长的比例：峰值 → 跑速。曲线已经负责收速，别和 _dashExitSpeedScale 叠加。")]
+        [SerializeField, Range(0f, 0.5f)] private float _dashRampDown = 0.06f;
+
+        [Tooltip("冲刺结束时保留多少速度。曲线已把速度降到跑速，这里保持 1 即可；" +
+                 "调小会让收尾猛地一卡。")]
+        [SerializeField, Range(0f, 1f)] private float _dashExitSpeedScale = 1f;
 
         [Tooltip("冲刺次数上限，落地回满。0 = 没有冲刺。")]
         [SerializeField, Range(0, 3)] private int _maxDashes = 1;
@@ -1342,6 +1350,8 @@ namespace RuleGame.Gameplay.Player
 
             DashSpeed            = _dashSpeed,
             DashDuration         = _dashDuration,
+            DashRampUp           = _dashRampUp,
+            DashRampDown         = _dashRampDown,
             DashExitSpeedScale   = _dashExitSpeedScale,
             DashCooldown         = _dashCooldown,
             MaxDashes            = _maxDashes,

@@ -51,6 +51,9 @@ namespace RuleGame.Gameplay.Scene
 
             [Tooltip("击退强度。0 = 不击退。")]
             [Min(0f)] public float Knockback;
+
+            [Tooltip("自带美术：瓦片本身就是要显示的画面（齿轮这类），铺装器不会在上面盖区域套件的刺。")]
+            public bool SelfArt;
         }
 
         [Header("危险瓦片")]
@@ -146,6 +149,17 @@ namespace RuleGame.Gameplay.Scene
             if (_tilemap == null) _tilemap = GetComponent<Tilemap>();
             if (_tilemap == null || _hazards == null) return false;
             return TryMatch(_tilemap.GetTile(cell), out _);
+        }
+
+        /// <summary>
+        /// 这一格的危险瓦片是否**自带美术**（齿轮这类）。铺装器对这类格子不铺刺 ——
+        /// 盖上去会挡住瓦片自己的贴图。
+        /// </summary>
+        public bool IsSelfArtCell(Vector3Int cell)
+        {
+            if (_tilemap == null) _tilemap = GetComponent<Tilemap>();
+            if (_tilemap == null || _hazards == null) return false;
+            return TryMatch(_tilemap.GetTile(cell), out Hazard hazard) && hazard.SelfArt;
         }
 
         // ==================================================================

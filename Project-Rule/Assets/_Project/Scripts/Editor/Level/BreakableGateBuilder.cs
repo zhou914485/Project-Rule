@@ -5,12 +5,15 @@ using RuleGame.Gameplay.Scene;
 namespace RuleGame.Editor.Level
 {
     /// <summary>
-    /// 一键放一扇**白盒单向可破坏门**（顺着一个方向撞它会碎，反方向是墙）。
+    /// 一键放一扇**白盒单向可破坏门**：站到可破坏的一侧挥刀就碎，另一侧是一堵实心的墙。
     /// </summary>
     /// <remarks>
     /// <para>白盒阶段用「方块 + 汉字」占位，与 <c>OneWayGateBuilder</c> / <c>MovingPlatformBuilder</c>
-    /// 同一套约定：<c>Art</c> 子物体是一块竖着的白盒方块，<c>Label</c> 写着 <c>破门 →</c> ——
-    /// 箭头就是「顺着它撞过来门会碎」的方向。</para>
+    /// 同一套约定：<c>Art</c> 子物体是一块白盒方块，<c>Label</c> 写着 <c>破门 →</c> / <c>破门 ↑</c> ——
+    /// 箭头就是「从哪一侧砍得开」。</para>
+    ///
+    /// <para><b>两个入口</b>：④ 竖板（水平方向砍开）、④b 横板（竖直方向砍开）——
+    /// 与单向门的 ③ / ③b 一一对应，关卡里换着摆时形状不用另想。</para>
     ///
     /// <para><b>层级为什么这么分</b>：碰撞箱（<c>BoxCollider2D</c>）挂在根上，
     /// 根 scale 恒为 1、<c>size</c> 直接就是世界尺寸；美术放 <c>Art</c> 子物体上撑缩放。
@@ -22,7 +25,7 @@ namespace RuleGame.Editor.Level
     /// <para><b>不需要刚体</b>：门自己不动，就是一块静态碰撞体 —— 玩家侧的
     /// <c>Rigidbody2D.Slide</c> 查询照样扫得到它。</para>
     ///
-    /// <para>用法：菜单 Tools/规则游戏/地图组件/④ 单向可破坏门。生成后会出现在 Scene 视图中心，
+    /// <para>用法：菜单 Tools/规则游戏/地图组件/④（竖板）或 ④b（横板）。生成后会出现在 Scene 视图中心，
     /// 方向在 Inspector 的「可破坏方向」里改 —— 改完白盒标签和 gizmo 箭头会一起跟着变。</para>
     /// </remarks>
     public static class BreakableGateBuilder
@@ -37,17 +40,54 @@ namespace RuleGame.Editor.Level
         private const string ArtName = "Art";
         private const string LabelName = "Label";
 
-        /// <summary>白盒尺寸（世界单位）：1 格 = 0.5 单位 → 1 格厚 × 8 格高。
-        /// 和单向门同尺寸 —— 8 格高是为了让「从门顶上跳过去」没那么容易（门还是应该配天花板用）。</summary>
-        private static readonly Vector2 Size = new Vector2(0.5f, 4f);
+        /// <summary>水平砍开的白盒尺寸（世界单位）：竖板，1 格厚 × 8 格高。
+        /// 和单向门同尺寸 —— 8 格高是为了让「从门顶上跳过去」没那么容易（水平门还是应该配天花板用）。</summary>
+        internal static readonly Vector2 HorizontalSize = new Vector2(0.5f, 4f);
+
+        /// <summary>竖直砍开的白盒尺寸（世界单位）：横板，8 格宽 × 1 格厚。</summary>
+        internal static readonly Vector2 VerticalSize = new Vector2(4f, 0.5f);
 
         /// <summary>白盒方块的颜色。木色 —— 和蓝色的单向门、黄色的平移平台区分开。</summary>
         private static readonly Color ArtColor = new Color(0.62f, 0.40f, 0.24f, 1f);
 
         private static readonly Color LabelColor = new Color(0.08f, 0.10f, 0.22f, 1f);
 
-        [MenuItem("Tools/规则游戏/地图组件/④ 单向可破坏门（撞开）", false, 53)]
-        public static void CreateGate()
+        /// <summary>某个可破坏方向该用的白盒尺寸。</summary>
+        internal static Vector2 SizeFor(OneWayGate.PassDirection pass)
+        {
+            return IsVertical(pass) ? VerticalSize : HorizontalSize;
+        }
+
+        /// <summary>白盒标签相对门中心的位置：横板放到板外右侧（别挡住站在板上的玩家），竖板写在门中间。</summary>
+        internal static Vector3 LabelOffset(OneWayGate.PassDirection pass, Vector2 size)
+        {
+            return IsVertical(pass)
+                ? new Vector3(size.x * 0.5f + 0.7f, 0f, 0f)
+                : Vector3.zero;
+        }
+
+        internal static bool IsVertical(OneWayGate.PassDirection pass)
+        {
+            return pass == OneWayGate.PassDirection.ToUp || pass == OneWayGate.PassDirection.ToDown;
+        }
+
+        [MenuItem("Tools/规则游戏/地图组件/④ 单向可破坏门（水平 · 从侧面砍开）", false, 53)]
+        public static void CreateHorizontalGate()
+        {
+            CreateGate(OneWayGate.PassDirection.ToRight, HorizontalSize,
+                       "水平砍开：站在门的左侧挥刀就碎，从右侧怎么砍都不算。" +
+                       "门要够高、或者上面有天花板，否则玩家能从门顶跳过去。");
+        }
+
+        [MenuItem("Tools/规则游戏/地图组件/④b 单向可破坏门（竖直 · 从下方砍开）", false, 53)]
+        public static void CreateVerticalGate()
+        {
+            CreateGate(OneWayGate.PassDirection.ToUp, VerticalSize,
+                       "竖直砍开：站在板子下方挥刀就碎，站到板上面砍不算。" +
+                       "把方向改成「从上往下」就是一块只能从上方砍开的天花板。");
+        }
+
+        private static void CreateGate(OneWayGate.PassDirection pass, Vector2 size, string hint)
         {
             Sprite sprite = AssetDatabase.LoadAssetAtPath<Sprite>(SpritePath);
             if (sprite == null)
@@ -72,33 +112,34 @@ namespace RuleGame.Editor.Level
 
             // 碰撞箱挂在根上：根 scale 保持 1，box.size 写的就是世界尺寸。
             var box = root.AddComponent<BoxCollider2D>();
-            box.size = Size;
+            box.size = size;
             box.offset = Vector2.zero;
 
             BreakableGate gate = root.AddComponent<BreakableGate>();
+            gate.SetPass(pass);                    // 先定方向，标签文字跟着它走
 
-            SpriteRenderer art = BuildArt(root, sprite);
-            TextMesh label = BuildLabel(root.transform, gate.Pass);
+            SpriteRenderer art = BuildArt(root, sprite, size);
+            TextMesh label = BuildLabel(root.transform, pass, LabelOffset(pass, size));
             gate.SetWhitebox(art, label);
             EditorUtility.SetDirty(gate);
 
             Selection.activeGameObject = root;
             EditorGUIUtility.PingObject(root);
 
-            Debug.Log($"[地图组件] 已创建 {RootName}（层级 {SolidLayerName}）：{Size.x} × {Size.y} 单位，" +
-                      $"**以物体原点为中心**（上下各 {Size.y * 0.5f}）。" +
-                      $"可破坏方向在 Inspector 的「可破坏方向」里改，默认是「从左往右撞」。" +
-                      $"⚠️ 门只认玩家，敌人和子弹两个方向都会被挡；" +
-                      $"门要够高或者上面有天花板，否则玩家能从门顶跳过去。");
+            string shape = IsVertical(pass) ? "横板" : "竖板";
+            Debug.Log($"[地图组件] 已创建 {RootName}（层级 {SolidLayerName}）：{shape} {size.x} × {size.y} 单位，" +
+                      $"**以物体原点为中心**。{hint}" +
+                      " ⚠️ 只认玩家：站在可破坏的一侧**挥刀**才碎，走过去撞上去不会碎；" +
+                      "敌人和子弹两个方向都被挡。");
         }
 
-        private static SpriteRenderer BuildArt(GameObject root, Sprite sprite)
+        private static SpriteRenderer BuildArt(GameObject root, Sprite sprite, Vector2 size)
         {
             var art = new GameObject(ArtName);
             art.transform.SetParent(root.transform, false);
             Undo.RegisterCreatedObjectUndo(art, "创建单向可破坏门");
             // 方块精灵是 1×1 单位，缩放多少就是世界尺寸多少 —— 和碰撞箱同尺寸。
-            art.transform.localScale = new Vector3(Size.x, Size.y, 1f);
+            art.transform.localScale = new Vector3(size.x, size.y, 1f);
 
             var renderer = art.AddComponent<SpriteRenderer>();
             renderer.sprite = sprite;
@@ -108,7 +149,7 @@ namespace RuleGame.Editor.Level
             return renderer;
         }
 
-        private static TextMesh BuildLabel(Transform parent, OneWayGate.PassDirection pass)
+        private static TextMesh BuildLabel(Transform parent, OneWayGate.PassDirection pass, Vector3 offset)
         {
             var font = AssetDatabase.LoadAssetAtPath<Font>(FontPath);
             if (font == null)
@@ -119,8 +160,8 @@ namespace RuleGame.Editor.Level
 
             var go = new GameObject(LabelName);
             go.transform.SetParent(parent, false);
-            // 写在门**正中央**：箭头就是「顺着它撞过来门会碎」的方向，一眼就能读。
-            go.transform.localPosition = Vector3.zero;
+            // 竖板写在门正中央；横板写到板外右侧 —— 箭头就是「从哪一侧砍得开」。
+            go.transform.localPosition = offset;
             Undo.RegisterCreatedObjectUndo(go, "创建单向可破坏门");
 
             var text = go.AddComponent<TextMesh>();

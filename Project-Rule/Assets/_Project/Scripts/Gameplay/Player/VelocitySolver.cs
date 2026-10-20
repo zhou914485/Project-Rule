@@ -139,10 +139,10 @@ namespace RuleGame.Gameplay.Player
         /// 这就是文档那句「贴到墙……收到 <c>_wallSlideSpeed</c>，之后等速缓降」的实现。</para>
         ///
         /// <para>⚠️ <b>为什么屏蔽而不是事后扣掉</b>：重力加速度是
-        /// <c>9.81 × GravityScale × FallGravityMultiplier</c>（默认 75.1 m/s²），
-        /// 比 <c>WallSlideImpactDecel</c>（默认 60）还大。不屏蔽的话两者对拉，净值仍是
-        /// <b>向下 15 m/s²</b>，实测竖直速度稳定在 <b>−28.8</b>（96% 终端速度）——
-        /// 贴墙等于没减速。屏蔽之后 0.4 秒收到 −6 并保持。</para>
+        /// <c>9.81 × GravityScale × FallGravityMultiplier</c>（默认 48.8 m/s²，2026-10-20 前是 75.1），
+        /// 与 <c>WallSlideImpactDecel</c>（默认 60）同一量级。不屏蔽的话两者对拉，净值只剩
+        /// <b>11.2 m/s²</b>，收向 −6 要 1 秒以上（旧参数下重力反而更大，净值向下 15.1，
+        /// 实测速度稳定在 −28.8，贴墙等于没减速）。屏蔽之后 0.4 秒收到 −6 并保持。</para>
         ///
         /// <para>⚠️ <b>屏蔽必须带「墙真的在托着」这个条件</b>：<see cref="wallSliding"/> 只表示
         /// 「贴墙且在往下」，速度在 <c>−WallSlideSpeed</c> 与 0 之间时墙<b>并不吸收</b>。
@@ -286,7 +286,8 @@ namespace RuleGame.Gameplay.Player
             if (frame.Dash.Dashing)
             {
                 // 冲刺**只改水平速度**：竖直方向的大小不动（那是重力与跳跃的领地）。
-                return frame.Dash.Direction.x * t.DashSpeed;
+                // 大小按梯形曲线走（起手加速 / 中段峰值 / 收尾减速），见 DashSolver.ResolveDashSpeed。
+                return frame.Dash.Direction.x * DashSolver.ResolveDashSpeed(t, frame.Dash.Progress);
             }
 
             if (frame.Contact.Grounded)

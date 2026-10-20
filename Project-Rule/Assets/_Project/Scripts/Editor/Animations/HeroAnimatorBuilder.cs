@@ -42,7 +42,9 @@ namespace RuleGame.Editor.Animations
             PlayerAnimationDriver.StateWeightless,
             "WallSlide", "WallJump",
             // 其它机动
-            "Push", "Land",
+            // Dash 是冲刺专属剪辑（蓄力→前倾→滑行→收势，7 帧 @24fps），2026-10-20 起不再借 Push。
+            // Push 保留在图上但暂时没有入口 —— 推箱子将来要播时再连线。
+            "Dash", "Push", "Land",
             // 反应
             "Hurt", "Die",
             // 战斗
@@ -201,6 +203,7 @@ namespace RuleGame.Editor.Animations
                 { "WallJump",   new Vector3( 880f, -130f) },
 
                 { "Push",       new Vector3(   0f, -260f) },
+                { "Dash",       new Vector3(-220f, -260f) },
 
                 { "Hurt",       new Vector3( 220f, -260f) },
                 { "Die",        new Vector3( 440f, -260f) },
@@ -514,13 +517,13 @@ namespace RuleGame.Editor.Animations
 
         private static void LinkActionStates(Dictionary<string, AnimatorState> s)
         {
-            // ⚠️ 退出必须**同时**要求 Dashing == false。只看接地的话，进入 Push 的那一帧
+            // ⚠️ 退出必须**同时**要求 Dashing == false。只看接地的话，进入 Dash 的那一帧
             //    （冲刺刚开始、Dashing 还是 true）就会立刻被这条过渡弹出去 —— 表现是「冲刺没有动画」。
-            AnimatorStateTransition dashOut = Link(s["Push"], s["Fall"], 0.08f);
+            AnimatorStateTransition dashOut = Link(s["Dash"], s["Fall"], 0.08f);
             When(dashOut, AnimatorConditionMode.IfNot, PlayerAnimationDriver.ParamDashing);
             When(dashOut, AnimatorConditionMode.IfNot, PlayerAnimationDriver.ParamGrounded);
 
-            dashOut = Link(s["Push"], s["Idle"], 0.08f);
+            dashOut = Link(s["Dash"], s["Idle"], 0.08f);
             When(dashOut, AnimatorConditionMode.IfNot, PlayerAnimationDriver.ParamDashing);
             When(dashOut, AnimatorConditionMode.If, PlayerAnimationDriver.ParamGrounded);
 
@@ -608,7 +611,7 @@ namespace RuleGame.Editor.Animations
             t.hasExitTime = false; t.duration = 0.05f; t.hasFixedDuration = true; t.canTransitionToSelf = false;
             When(t, AnimatorConditionMode.If, PlayerAnimationDriver.ParamHurt);
 
-            t = sm.AddAnyStateTransition(s["Push"]);
+            t = sm.AddAnyStateTransition(s["Dash"]);
             t.hasExitTime = false; t.duration = 0.05f; t.hasFixedDuration = true; t.canTransitionToSelf = false;
             When(t, AnimatorConditionMode.If, PlayerAnimationDriver.ParamDashing);
 

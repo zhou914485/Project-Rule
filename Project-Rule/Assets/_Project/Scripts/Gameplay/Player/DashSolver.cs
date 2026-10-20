@@ -75,6 +75,9 @@ namespace RuleGame.Gameplay.Player
 
             decision.Dashing   = IsDashing;
             decision.Direction = _dashDirection;
+            decision.Progress  = IsDashing && tuning.DashDuration > 0f
+                ? Mathf.Clamp01(1f - _dashLeft / tuning.DashDuration)
+                : 0f;
             return decision;
         }
 
@@ -94,8 +97,7 @@ namespace RuleGame.Gameplay.Player
 
         /// <summary>
         /// 冲刺方向：**只有左右两向**。有横向输入就按它，没有就朝当前朝向。
-        /// </summary>
-        /// <remarks>
+        /// </summary>        /// <remarks>
         /// <para>竖直方向恒为 0 —— 冲刺**不动**垂直速度，那是重力与跳跃的领地。
         /// 所以冲刺期间角色照样会被重力拉下去 / 被跳跃顶上去，冲刺只负责「横着推一把」。</para>
         /// <para>⚠️ 这里读的是**原始输入**，不经过 <see cref="VelocitySolver.ResolveMoveDirection"/> ——
@@ -107,6 +109,34 @@ namespace RuleGame.Gameplay.Player
             bool pressing = Mathf.Abs(moveInput.x) > 0.01f;
             float sign = pressing ? Mathf.Sign(moveInput.x) : (facing >= 0f ? 1f : -1f);
             return new Vector2(sign, 0f);
+        }
+
+        /// <summary>
+        /// 冲刺在 <paramref name="progress"/>（0→1）那一刻的水平速度**大小**。
+        /// </summary>
+        /// <remarks>
+        /// <para>形状是「梯形」：起手 <see cref="MotionTuning.DashRampUp"/> 内从跑速线性升到峰值，
+        /// 中段保持峰值，最后 <see cref="MotionTuning.DashRampDown"/> 内退回跑速。两端都接
+        /// <see cref="MotionTuning.MoveSpeedMax"/> 而不是 0 —— 冲刺从跑动里长出来、又落回跑动里，
+        /// 不在起止两帧上造成速度台阶。</para>
+        /// <para>⚠️ <b>距离 = 本函数对时间的积分</b>，不是 峰值 × 时长。改峰值 / 时长 / 两段斜坡
+        /// 任何一项都会改距离；要保持距离不变就按面积换算。</para>
+        /// <para>抽成纯函数是为了可测，与 <see cref="CanDash"/> 同一个理由。</para>
+        /// </remarks>
+        public static float ResolveDashSpeed(MotionTuning tuning, float progress)
+        {
+            float peak = tuning.DashSpeed;
+            float low  = Mathf.Min(tuning.MoveSpeedMax, peak);   // 跑速比峰值还快时退化成平顶
+
+            float up = Mathf.Clamp01(tuning.DashRampUp);
+            if (up > 0f && progress < up) return Mathf.Lerp(low, peak, progress / up);
+
+            float down = Mathf.Clamp01(tuning.DashRampDown);
+            float downStart = 1f - down;
+            if (down > 0f && progress > downStart)
+                return Mathf.Lerp(peak, low, (progress - downStart) / down);
+
+            return peak;
         }
 
         /// <summary>
@@ -122,6 +152,9 @@ namespace RuleGame.Gameplay.Player
 
             /// <summary>冲刺方向，只有水平分量。</summary>
             public Vector2 Direction;
+
+            /// <summary>冲刺进度 0→1，供 <see cref="ResolveDashSpeed"/> 算这一帧的速度。不在冲刺时是 0。</summary>
+            public float Progress;
 
             /// <summary>本帧**刚结束**冲刺 → <see cref="VelocitySolver"/> 按 <c>DashExitSpeedScale</c> 收水平速度。</summary>
             /// <remarks>⚠️ 刻意用布尔而不是「收速系数」：系数默认值会是 0，

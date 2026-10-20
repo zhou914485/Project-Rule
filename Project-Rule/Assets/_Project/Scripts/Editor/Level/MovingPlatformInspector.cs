@@ -53,13 +53,33 @@ namespace RuleGame.Editor.Level
             float length = Vector2.Distance(platform.StartPoint, platform.EndPoint);
             EditorGUILayout.LabelField("行程", $"{length:0.###} 单位");
 
-            if (length > 0f && platform.Speed > 0f)
+            if (length <= 0f)
             {
-                EditorGUILayout.LabelField("单程耗时", $"{length / platform.Speed:0.##} 秒");
+                EditorGUILayout.HelpBox("起点和终点重合，平台不会动。", MessageType.Warning);
+                return;
             }
-            else if (length > 0f)
+
+            if (platform.Speed <= 0f)
             {
                 EditorGUILayout.HelpBox("速度为 0，平台不会动。", MessageType.Warning);
+                return;
+            }
+
+            float oneWay = length / platform.Speed;
+            EditorGUILayout.LabelField("单程耗时", $"{oneWay:0.##} 秒");
+
+            if (platform.Mode == MovingPlatform.PathMode.Ride)
+            {
+                EditorGUILayout.LabelField("一趟往返", $"{oneWay * 2f:0.##} 秒");
+                EditorGUILayout.HelpBox(
+                    "待客模式：没人站上来就不动。踩上平台 → 到终点 → 回到起点停住；\n" +
+                    "回到起点时车上还有人就不再出发，等清空后重新待客。",
+                    MessageType.None);
+
+                if (Application.isPlaying)
+                {
+                    EditorGUILayout.LabelField("当前", platform.OnDuty ? "载客中" : "待客中");
+                }
             }
         }
 

@@ -85,8 +85,7 @@ namespace RuleGame.Editor.Level
             TextMesh label = BuildLabel(root.transform);
 
             var platform = root.AddComponent<SpringPlatform>();
-            // 锚点默认落在平台正下方「自然长度」处：摆好平台、点一下按钮就换位置，不必手敲坐标。
-            platform.SetAnchor(new Vector2(at.x, at.y - DefaultRestLength));
+            // 锚点不用单独配：它就是「摆放位置往下 自然长度」，拖动物体时整体跟着走。
             platform.SetWhitebox(spring.transform, label);
             EditorUtility.SetDirty(platform);
 
@@ -94,8 +93,8 @@ namespace RuleGame.Editor.Level
             EditorGUIUtility.PingObject(root);
 
             Debug.Log($"[地图组件] 已创建 {RootName}（层级 {SolidLayerName}）。" +
-                      $"锚点已放在平台下方 {DefaultRestLength} 个单位处。" +
-                      $"物体压上来会停在「重力 = 弹簧力」的平衡位置（载重 1 kg 时正好压到底），载重拿掉才回弹。" +
+                      $"锚点 = 摆放位置往下 {DefaultRestLength} 米（拖动物体会整体搬走）。" +
+                      $"压缩深度按胡克定律：x = 载重·g / k，k=16 时 1 kg 的玩家压 0.61 米、8 kg 的铁箱压到底。" +
                       $"平台摩擦默认 1.5（普通地面是 1，越大越抓地），在「摩擦」里调。");
         }
 

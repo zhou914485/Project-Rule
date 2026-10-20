@@ -114,9 +114,11 @@ MonoBehaviour:
   _jumpCutMultiplier: 0.45
   _coyoteTime: 0.1
   _jumpBuffer: 0.14
-  _dashSpeed: 26
-  _dashDuration: 0.18
-  _dashExitSpeedScale: 0.35
+  _dashSpeed: 16.4
+  _dashDuration: 0.28
+  _dashRampUp: 0.05
+  _dashRampDown: 0.06
+  _dashExitSpeedScale: 1
   _maxDashes: 1
   _dashCooldown: 0.25
   _wallClimbEnabled: 1

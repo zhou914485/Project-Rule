@@ -77,11 +77,17 @@ namespace RuleGame.Gameplay.Player
         //  冲刺
         // ------------------------------------------------------------------
 
-        /// <summary>冲刺速度。远高于 <see cref="MoveSpeedMax"/>，要的就是爆发感。</summary>
+        /// <summary>冲刺速度的**峰值**。起手与收尾都低于它，见 <see cref="DashRampUp"/>。</summary>
         public float DashSpeed;
 
-        /// <summary>冲刺持续秒数。冲刺距离 = 本值 × <see cref="DashSpeed"/>。</summary>
+        /// <summary>冲刺持续秒数。**距离不是 峰值 × 时长** —— 要按曲线积分，见 <see cref="DashRampUp"/>。</summary>
         public float DashDuration;
+
+        /// <summary>起手加速占冲刺时长的比例：从 <see cref="MoveSpeedMax"/> 线性升到 <see cref="DashSpeed"/>。0 = 瞬间到峰值。</summary>
+        public float DashRampUp;
+
+        /// <summary>收尾减速占冲刺时长的比例：从 <see cref="DashSpeed"/> 线性退回 <see cref="MoveSpeedMax"/>。0 = 结束时仍保持峰值。</summary>
+        public float DashRampDown;
 
         /// <summary>冲刺结束时保留多少水平速度。1 = 冲完像被弹射出去。</summary>
         public float DashExitSpeedScale;

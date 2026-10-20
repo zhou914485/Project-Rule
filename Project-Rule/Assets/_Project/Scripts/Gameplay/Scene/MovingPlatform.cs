@@ -5,9 +5,15 @@ using RuleGame.Infrastructure.Time;
 namespace RuleGame.Gameplay.Scene
 {
     /// <summary>
-    /// 平移平台：在**起点 / 终点之间直线往复**的场景组件（滑板车、升降台、巡逻踏板都用它）。
+    /// 平移平台：在**起点 / 终点之间直线移动**的场景组件（滑板车、升降台、巡逻踏板都用它）。
     /// </summary>
     /// <remarks>
+    /// <para><b>默认是「乘客触发的一趟往返」</b>（<see cref="PathMode.Ride"/>）：
+    /// 平台停在起点待客 → **有人站上来**才出发 → 到终点 → 回到起点停住。
+    /// 回到起点后只要车上还有人就不再待客，等他们下车才重新武装 ——
+    /// 否则一个站在上面不走的乘客会让平台来回抖个不停。
+    /// 另有循环往返 / 单程两种模式给别的机关用。</para>
+    ///
     /// <para><b>只走直线、不旋转</b>：路径就是 <see cref="_start"/> → <see cref="_end"/> 一条线段，
     /// 位置按「已走过的距离 / 全长」插值。匀速，没有缓动 —— 缓动属于表现层，不在这里做。</para>
     ///
@@ -32,14 +38,33 @@ namespace RuleGame.Gameplay.Scene
     [RequireComponent(typeof(Rigidbody2D))]
     public sealed class MovingPlatform : MonoBehaviour, IMovingSurface
     {
+        /// <summary>「落在表面上」的容差：物体边缘与站人面的最大允许间隙（米）。</summary>
+        private const float RiderContactTolerance = 0.08f;
+
         /// <summary>到达端点之后怎么走。</summary>
         public enum PathMode
         {
-            /// <summary>往返：到终点折回起点，循环不停。</summary>
+            /// <summary>循环往返：到终点折回起点，不停。</summary>
             PingPong = 0,
 
             /// <summary>单程：走到终点就停住，不再移动。</summary>
             Once = 1,
+
+            /// <summary>待客往返：站上去才出发 → 到终点 → 回起点停住。**默认**。</summary>
+            Ride = 2,
+        }
+
+        /// <summary>待客模式的阶段。</summary>
+        private enum RidePhase
+        {
+            /// <summary>停在起点等乘客。</summary>
+            Waiting = 0,
+
+            /// <summary>起点 → 终点。</summary>
+            Outbound = 1,
+
+            /// <summary>终点 → 起点。</summary>
+            Returning = 2,
         }
 
         // ==================================================================
@@ -54,24 +79,35 @@ namespace RuleGame.Gameplay.Scene
         [SerializeField] private Vector2 _end = Vector2.zero;
 
         [Tooltip("起始进度：0 = 从起点出发，1 = 从终点出发（单程模式下即终点）。\n" +
-                 "放两台同向的平台时错开相位用。")]
+                 "放两台同向的平台时错开相位用。**待客模式忽略此项**（永远从起点出发）。")]
         [SerializeField, Range(0f, 1f)] private float _startProgress = 0f;
 
         [Header("节奏")]
         [Tooltip("移动速度（单位 / 秒）。")]
         [SerializeField, Min(0f)] private float _speed = 3f;
 
-        [Tooltip("走完单程后怎么办。")]
-        [SerializeField] private PathMode _mode = PathMode.PingPong;
+        [Tooltip("待客：站上去才出发，到终点再回起点停住。\n" +
+                 "循环往返：不停。\n单程：走到终点就停。")]
+        [SerializeField] private PathMode _mode = PathMode.Ride;
 
-        [Tooltip("在两端各停多久（秒）。0 = 到端点立刻折返。")]
+        [Tooltip("停在端点多久（秒）。待客模式下用在**终点**（返回前）；0 = 立刻掉头。")]
         [SerializeField, Min(0f)] private float _waitAtEnds = 0f;
+
+        [Header("乘客触发（仅待客模式）")]
+        [Tooltip("哪些层的东西算「站上来」。Trigger 永远不算。")]
+        [SerializeField] private LayerMask _riderMask = ~0;
+
+        [Tooltip("检测高度（米）：东西落在平台上表面往上一段里，才算站在上面。\n" +
+                 "太小会漏掉悬空一丁点的乘客，太大会把旁边贴着的东西也算进来。")]
+        [SerializeField, Min(0.02f)] private float _riderProbeHeight = 0.35f;
 
         // ==================================================================
         //  运行时
         // ==================================================================
 
         private Rigidbody2D _body;
+        private Collider2D  _ownCollider;
+        private readonly Collider2D[] _riderHits = new Collider2D[8];
 
         /// <summary>沿路径已走过的距离，落在 0 ~ <see cref="_length"/>。</summary>
         private float _travel;
@@ -84,6 +120,15 @@ namespace RuleGame.Gameplay.Scene
 
         /// <summary>单程模式走到头之后置位，从此不再移动。</summary>
         private bool _finished;
+
+        /// <summary>待客模式当前处在哪一程。</summary>
+        private RidePhase _phase = RidePhase.Waiting;
+
+        /// <summary>
+        /// 待客模式能不能出发。跑完一趟回到起点后先关掉，等车上清空才重新打开 ——
+        /// 不然还站在车上的乘客会让它立刻再跑一趟。
+        /// </summary>
+        private bool _armed = true;
 
         private float _length;
         private Vector2 _lastTarget;
@@ -105,6 +150,12 @@ namespace RuleGame.Gameplay.Scene
         /// <summary>移动速度（单位 / 秒）。</summary>
         public float Speed => _speed;
 
+        /// <summary>当前行走模式。</summary>
+        public PathMode Mode => _mode;
+
+        /// <summary>待客模式下是否正载着人跑（已出发、还没回到起点）。</summary>
+        public bool OnDuty => _phase != RidePhase.Waiting;
+
         // ==================================================================
         //  生命周期
         // ==================================================================
@@ -112,6 +163,7 @@ namespace RuleGame.Gameplay.Scene
         private void Awake()
         {
             _body = GetComponent<Rigidbody2D>();
+            _ownCollider = GetComponent<Collider2D>();
             ConfigureBody();
             Rebuild();
         }
@@ -122,6 +174,7 @@ namespace RuleGame.Gameplay.Scene
             if (_body == null)
             {
                 _body = GetComponent<Rigidbody2D>();
+                _ownCollider = GetComponent<Collider2D>();
                 ConfigureBody();
             }
             Rebuild();
@@ -140,7 +193,8 @@ namespace RuleGame.Gameplay.Scene
             float dt = UnityEngine.Time.fixedDeltaTime;
             if (dt <= 0f) return;
 
-            if (!_finished) Advance(dt);
+            if (_mode == PathMode.Ride) StepRide(dt);
+            else StepAuto(dt);
 
             Vector2 target = Evaluate(_travel);
             Velocity = (target - _lastTarget) / dt;
@@ -154,18 +208,19 @@ namespace RuleGame.Gameplay.Scene
         // ==================================================================
 
         /// <summary>把「走了多远」推进 <paramref name="dt"/> 秒。端点停留在这里被消耗掉。</summary>
-        private void Advance(float dt)
+        /// <returns>本帧是否抵达端点。</returns>
+        private bool Advance(float dt)
         {
             if (_waitRemaining > 0f)
             {
                 _waitRemaining -= dt;
-                if (_waitRemaining > 0f) return;
+                if (_waitRemaining > 0f) return false;
 
                 // 停留结束：这一帧剩下的时间不再折算成位移（最多丢掉一个物理步，肉眼看不出）。
                 _waitRemaining = 0f;
             }
 
-            if (_length <= 0f) return;
+            if (_length <= 0f) return false;
 
             _travel += _speed * dt * _forward;
 
@@ -174,27 +229,77 @@ namespace RuleGame.Gameplay.Scene
             if (_forward > 0f && _travel >= _length)
             {
                 _travel = _length;
-                OnReachedEnd();
+                return true;
             }
-            else if (_forward < 0f && _travel <= 0f)
+
+            if (_forward < 0f && _travel <= 0f)
             {
                 _travel = 0f;
-                OnReachedEnd();
+                return true;
             }
+
+            return false;
         }
 
-        private void OnReachedEnd()
+        /// <summary>循环往返 / 单程：不等乘客，按时间自己走。</summary>
+        private void StepAuto(float dt)
         {
-            switch (_mode)
-            {
-                case PathMode.PingPong:
-                    _forward = -_forward;
-                    _waitRemaining = _waitAtEnds;
-                    break;
+            if (_finished) return;
+            if (!Advance(dt)) return;
 
-                case PathMode.Once:
-                    _finished = true;
-                    break;
+            if (_mode == PathMode.Once)
+            {
+                _finished = true;
+                return;
+            }
+
+            // PingPong
+            _forward = -_forward;
+            _waitRemaining = _waitAtEnds;
+        }
+
+        /// <summary>
+        /// 待客往返：起点待客 → 到终点 → 回起点停住。
+        /// </summary>
+        /// <remarks>
+        /// <para><b>为什么回到起点要「重新武装」而不是直接接着待客</b>：跑完一趟时乘客通常还站在上面，
+        /// 直接待客会瞬间满足触发条件，平台就原地来回抖。所以先解除武装，
+        /// 等平台上**没人**了才允许下一次出发。</para>
+        /// <para>乘客中途跳下去也不会取消行程 —— 车照样把这一趟跑完再回起点。</para>
+        /// </remarks>
+        private void StepRide(float dt)
+        {
+            switch (_phase)
+            {
+                case RidePhase.Waiting:
+                    if (!_armed)
+                    {
+                        // 车上清空了才重新待客。
+                        if (!HasRider()) _armed = true;
+                        return;
+                    }
+
+                    if (!HasRider()) return;
+
+                    _phase = RidePhase.Outbound;
+                    _forward = 1f;
+                    _waitRemaining = 0f;
+                    return;
+
+                case RidePhase.Outbound:
+                    if (!Advance(dt)) return;
+
+                    _phase = RidePhase.Returning;
+                    _forward = -1f;
+                    _waitRemaining = _waitAtEnds;
+                    return;
+
+                case RidePhase.Returning:
+                    if (!Advance(dt)) return;
+
+                    _phase = RidePhase.Waiting;
+                    _armed = false;
+                    return;
             }
         }
 
@@ -204,6 +309,74 @@ namespace RuleGame.Gameplay.Scene
             return Vector2.LerpUnclamped(_start, _end, travel / _length);
         }
 
+        /// <summary>
+        /// 算出「站人面」外侧的探测盒（世界坐标）。站人面取**重力反方向**那一面 ——
+        /// 「重力 × 反转」之后人是站在平台另一边的，检测得跟着翻。
+        /// </summary>
+        /// <remarks>只按上下两面处理：「上」在本作里永远是 ±Y（重力只会翻转 / 归零）。</remarks>
+        private bool RiderProbeBox(out Vector2 center, out Vector2 size, out float face, out bool faceUp)
+        {
+            center = Vector2.zero;
+            size = Vector2.zero;
+            face = 0f;
+            faceUp = true;
+
+            Collider2D own = _ownCollider;
+            if (own == null) own = _ownCollider = GetComponent<Collider2D>();
+            if (own == null) return false;
+
+            Bounds b = own.bounds;
+
+            Vector2 up = Physics2D.gravity.sqrMagnitude > 0.0001f
+                ? -Physics2D.gravity.normalized
+                : Vector2.up;
+
+            // 探测带：从表面往「上」一段，里面再收一点皮，避免物体刚好贴着却没被判到。
+            const float skin = 0.02f;
+            faceUp = up.y >= 0f;
+            face = faceUp ? b.max.y : b.min.y;
+
+            float low  = faceUp ? face - skin : face - _riderProbeHeight;
+            float high = faceUp ? face + _riderProbeHeight : face + skin;
+
+            // 横向收一点：贴着侧面站的墙 / 箱子不算「站上来」。
+            float width = Mathf.Max(0.05f, b.size.x - skin * 4f);
+
+            center = new Vector2(b.center.x, (low + high) * 0.5f);
+            size = new Vector2(width, high - low);
+            return true;
+        }
+
+        /// <summary>站人面上有没有东西（玩家 / 敌人 / 箱子都算，Trigger 不算）。</summary>
+        /// <remarks>
+        /// 光「进了探测带」还不够 —— 还要**真的落在表面上**（物体靠平台那一侧的边缘贴着站人面）。
+        /// 否则平台正上方 0.3 米处的天花板 / 横梁也会被当成乘客，平台自己就跑了。
+        /// </remarks>
+        private bool HasRider()
+        {
+            if (!RiderProbeBox(out Vector2 center, out Vector2 size, out float face, out bool faceUp)) return false;
+
+            var filter = new ContactFilter2D { useTriggers = false };
+            filter.SetLayerMask(_riderMask);
+
+            int count = Physics2D.OverlapBox(center, size, 0f, filter, _riderHits);
+            for (int i = 0; i < count; i++)
+            {
+                Collider2D hit = _riderHits[i];
+                if (hit == null || hit == _ownCollider) continue;
+                if (_body != null && hit.attachedRigidbody == _body) continue;   // 自己的子碰撞体
+
+                // 物体朝平台那一侧的边缘。接地时它与站人面只差接触间隙（~0.01）。
+                Bounds hb = hit.bounds;
+                float standingEdge = faceUp ? hb.min.y : hb.max.y;
+                if (Mathf.Abs(standingEdge - face) > RiderContactTolerance) continue;
+
+                return true;
+            }
+
+            return false;
+        }
+
         /// <summary>按配置把内部状态摆回初始位置，并立刻落到位。</summary>
         private void Rebuild()
         {
@@ -211,7 +384,13 @@ namespace RuleGame.Gameplay.Scene
             _forward = 1f;
             _finished = false;
             _waitRemaining = 0f;
-            _travel = Mathf.Clamp01(_startProgress) * _length;
+            _phase = RidePhase.Waiting;
+            _armed = true;
+
+            // 待客模式永远从起点出发；其余模式用起始进度错开相位。
+            _travel = _mode == PathMode.Ride
+                ? 0f
+                : Mathf.Clamp01(_startProgress) * _length;
 
             // 单程 + 从终点出发 = 已经没有地方可去。
             if (_mode == PathMode.Once && _travel >= _length && _length > 0f)
@@ -285,6 +464,14 @@ namespace RuleGame.Gameplay.Scene
 
             Gizmos.color = new Color(1f, 0.5f, 0.3f, 0.9f);
             Gizmos.DrawWireSphere(b, 0.18f);
+
+            // 待客模式：把「站人面」画出来 —— 踩进这个框才会出发。
+            if (_mode == PathMode.Ride
+                && RiderProbeBox(out Vector2 probeCenter, out Vector2 probeSize, out _, out _))
+            {
+                Gizmos.color = new Color(0.4f, 1f, 0.6f, 0.25f);
+                Gizmos.DrawWireCube(probeCenter, probeSize);
+            }
 
             // 播放中额外把「现在走到哪了」标出来。
             if (!Application.isPlaying || length <= 0f) return;

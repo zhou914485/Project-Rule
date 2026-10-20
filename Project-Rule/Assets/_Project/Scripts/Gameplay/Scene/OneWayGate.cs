@@ -36,8 +36,16 @@ namespace RuleGame.Gameplay.Scene
     /// 那是这类机关唯一会把人夹住 / 弹飞的翻车点。走出判定区那条路另加了一道「与门不重叠」的保险，
     /// 见 <see cref="FixedUpdate"/>。</para>
     ///
+    /// <para><b>竖直方向（<see cref="PassDirection.ToUp"/> / <see cref="PassDirection.ToDown"/>）</b>：
+    /// 判定完全不变，只是把轴换成竖直的 —— 门这时是一块**横板**。
+    /// <c>ToUp</c> = 从下往上钻得过去，整个人越过之后碰撞体恢复，于是能站在上面、掉不回来；
+    /// <c>ToDown</c> 反过来，只能往下钻、爬不回。
+    /// 白盒尺寸必须跟着方向走（水平门竖板、竖直门横板），见 <c>OneWayGateBuilder</c>。
+    /// 注意通过方向是**固定的**，不跟重力翻 —— 重力规则反转后，门依然只按这条路放行
+    /// （要「实心面跟着重力翻」的是 ⑪ 跳穿平台，不是这扇门）。</para>
+    ///
     /// <para><b>只认玩家</b>：敌人 / 子弹两个方向都会被挡（设计上单向门是玩家的通路）。
-    /// 另外门要做得比玩家的跳跃高度高，或者上面有天花板 —— 否则他能从门顶上跳过去。</para>
+    /// 另外水平门要做得比玩家的跳跃高度高，或者上面有天花板 —— 否则他能从门顶上跳过去。</para>
     /// </remarks>
     [DisallowMultipleComponent]
     [RequireComponent(typeof(BoxCollider2D))]
@@ -69,7 +77,7 @@ namespace RuleGame.Gameplay.Scene
 
         [Header("判定")]
         [Tooltip("判定区：以碰撞体的包围盒为中心，四个方向各外扩这么多（世界单位）。\n" +
-                 "必须大于玩家的半宽（约 0.5）—— 否则人还压在门上就会被判成「已离开判定区」。\n" +
+                 "必须大于玩家碰撞体的半宽 / 半高（约 0.6）—— 否则人还压在门上就会被判成「已离开判定区」。\n" +
                  "填得越大，门在越远的地方就开始让路。")]
         [SerializeField, Min(0.1f)] private float _reach = 1.5f;
 
@@ -112,6 +120,15 @@ namespace RuleGame.Gameplay.Scene
 
         /// <summary>允许通过的方向。</summary>
         public PassDirection Pass => _pass;
+
+        /// <summary>
+        /// 通过方向是不是竖直的（<see cref="PassDirection.ToUp"/> / <see cref="PassDirection.ToDown"/>）。
+        /// </summary>
+        /// <remarks>白盒工具用它决定「横板还是竖板」；玩法判定本身只认 <see cref="Axis"/>。</remarks>
+        public bool PassesVertically
+        {
+            get { return _pass == PassDirection.ToUp || _pass == PassDirection.ToDown; }
+        }
 
         /// <summary>通过方向的单位向量 —— 门的所有判定都在这条轴上算。</summary>
         public Vector2 Axis

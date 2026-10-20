@@ -1,0 +1,14 @@
+var pc = GameObject.Find("Player").GetComponent("PlayerController");
+var T = pc.GetType();
+var F = System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static;
+var fscale = T.GetProperty("FrictionScale", F);
+var finv   = T.GetProperty("FrictionInverted", F);
+var sb = new System.Text.StringBuilder();
+sb.Append("FrictionScale=").Append(fscale == null ? "MISSING" : fscale.GetValue(null)).AppendLine();
+sb.Append("FrictionInverted=").Append(finv == null ? "MISSING" : finv.GetValue(null)).AppendLine();
+var F2 = System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance;
+sb.Append("_moveInput=").Append(T.GetField("_moveInput", F2).GetValue(pc)).AppendLine();
+sb.Append("_facing=").Append(T.GetField("_facing", F2).GetValue(pc)).AppendLine();
+var vel = T.GetProperty("Velocity");
+sb.Append("Velocity=").Append(vel.GetValue(pc));
+return sb.ToString();

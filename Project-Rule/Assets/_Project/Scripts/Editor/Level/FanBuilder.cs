@@ -67,11 +67,11 @@ namespace RuleGame.Editor.Level
             var area = root.AddComponent<BoxCollider2D>();
             area.isTrigger = true;
 
-            BuildBody(root.transform, sprite);
+            SpriteRenderer body = BuildBody(root.transform, sprite);
             TextMesh label = BuildLabel(root.transform);
 
             var fan = root.AddComponent<Fan>();
-            fan.SetWhitebox(label);
+            fan.SetWhitebox(body, label);
             EditorUtility.SetDirty(fan);
 
             Selection.activeGameObject = root;
@@ -85,11 +85,13 @@ namespace RuleGame.Editor.Level
                       "· 调间距：改「力的梯度」—— 相邻重力档的落点间距 = m·Δg ÷ 梯度（梯度越小分得越开）\n" +
                       "· 调阻尼：「空气阻力」水平竖直都收；「竖直阻尼」只收 y 速度 —— 人在风里上下弹就加它\n" +
                       "· 朝上吹时 Scene 里会画出 ×削弱 / 正常 / ×增强 三条平衡高度线（「预览」里可关）\n" +
+                      "· 只想看风、不想看见风扇：关掉「白盒 → 显示本体」（风照常吹）\n" +
                       "⚠️ 风道下方要有地形：风是判定不是墙，被托出风道边缘的人会直接掉下去。");
         }
 
         /// <summary>机身白盒：一块占位方块。风道本身不铺美术，由 Gizmo 与碰撞体示意。</summary>
-        private static void BuildBody(Transform parent, Sprite sprite)
+        /// <returns>机身的渲染器 —— 交给 <see cref="Fan.SetWhitebox"/>，「显示本体」开关靠它隐藏。</returns>
+        private static SpriteRenderer BuildBody(Transform parent, Sprite sprite)
         {
             var go = new GameObject(ArtName);
             go.transform.SetParent(parent, false);
@@ -102,6 +104,8 @@ namespace RuleGame.Editor.Level
             renderer.color = ArtColor;
             // 与地形美术同层之下、角色之后：人从风扇前面走过。
             renderer.sortingOrder = -1;
+
+            return renderer;
         }
 
         private static TextMesh BuildLabel(Transform parent)

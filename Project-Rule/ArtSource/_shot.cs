@@ -1,0 +1,17 @@
+var go = GameObject.Find("Player");
+var cam = Camera.main;
+var p = go.transform.position;
+cam.transform.position = new Vector3(p.x, p.y + 0.5f, -10f);
+float old = cam.orthographicSize;
+cam.orthographicSize = 1.4f;
+int W = 800, Hh = 700;
+var rt = new RenderTexture(W, Hh, 24, RenderTextureFormat.ARGB32);
+var pt = cam.targetTexture; var pa = RenderTexture.active;
+cam.targetTexture = rt; cam.Render();
+RenderTexture.active = rt;
+var tex = new Texture2D(W, Hh, TextureFormat.RGB24, false);
+tex.ReadPixels(new Rect(0, 0, W, Hh), 0, 0); tex.Apply();
+RenderTexture.active = pa; cam.targetTexture = pt; cam.orthographicSize = old;
+System.IO.File.WriteAllBytes("D:/Users/lenovo/Documents/GitHub/Project-Rule/Project-Rule/ArtSource/_newshot.png", tex.EncodeToPNG());
+var sr = go.GetComponentInChildren<SpriteRenderer>();
+return "sprite=" + (sr.sprite == null ? "null" : sr.sprite.name) + " world=" + sr.bounds.size.y.ToString("F3");

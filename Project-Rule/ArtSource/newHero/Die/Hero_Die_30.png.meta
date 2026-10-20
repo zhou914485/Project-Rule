@@ -1,0 +1,561 @@
+fileFormatVersion: 2
+guid: 5e962a1abfa440045997d49923069b88
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2560054016260962162
+    second: Hero_Die_30_0
+  - first:
+      213: 2243443786233592528
+    second: Hero_Die_30_1
+  - first:
+      213: 1455114766214978937
+    second: Hero_Die_30_2
+  - first:
+      213: -3176730477920919627
+    second: Hero_Die_30_3
+  - first:
+      213: -8395702716410234906
+    second: Hero_Die_30_4
+  - first:
+      213: -4579693117075445007
+    second: Hero_Die_30_5
+  - first:
+      213: -2483870397320827468
+    second: Hero_Die_30_6
+  - first:
+      213: 1398743366014371234
+    second: Hero_Die_30_7
+  - first:
+      213: -7761765065681403136
+    second: Hero_Die_30_8
+  - first:
+      213: 5320312793810258209
+    second: Hero_Die_30_9
+  - first:
+      213: -2093139587582135899
+    second: Hero_Die_30_10
+  - first:
+      213: -571073429105558410
+    second: Hero_Die_30_11
+  - first:
+      213: -6060059297060404977
+    second: Hero_Die_30_12
+  - first:
+      213: 5367242346971616639
+    second: Hero_Die_30_13
+  - first:
+      213: -5476110057340512646
+    second: Hero_Die_30_14
+  - first:
+      213: 3257206370727605940
+    second: Hero_Die_30_15
+  - first:
+      213: 639535639834088921
+    second: Hero_Die_30_16
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Hero_Die_30_0
+      rect:
+        serializedVersion: 2
+        x: 243
+        y: 372
+        width: 95
+        height: 148
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8804fa9f6cd87cd0800000000000000
+      internalID: -2560054016260962162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Die_30_1
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 512
+        width: 47
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0dab200cc30522f10800000000000000
+      internalID: 2243443786233592528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Die_30_2
+      rect:
+        serializedVersion: 2
+        x: 703
+        y: 509
+        width: 43
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97d5bab9b2b913410800000000000000
+      internalID: 1455114766214978937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Die_30_3
+      rect:
+        serializedVersion: 2
+        x: 388
+        y: 434
+        width: 44
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5bfdd5c167cf9e3d0800000000000000
+      internalID: -3176730477920919627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Die_30_4
+      rect:
+        serializedVersion: 2
+        x: 542
+        y: 457
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e7f59c9cd87c7b80800000000000000
+      internalID: -8395702716410234906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Die_30_5
+      rect:
+        serializedVersion: 2
+        x: 187
+        y: 394
+        width: 54
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1faaa60df59a170c0800000000000000
+      internalID: -4579693117075445007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Die_30_6
+      rect:
+        serializedVersion: 2
+        x: 379
+        y: 411
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4bd6593a805878dd0800000000000000
+      internalID: -2483870397320827468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Die_30_7
+      rect:
+        serializedVersion: 2
+        x: 482
+        y: 401
+        width: 46
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a588373ea5596310800000000000000
+      internalID: 1398743366014371234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Die_30_8
+      rect:
+        serializedVersion: 2
+        x: 570
+        y: 341
+        width: 63
+        height: 99
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 003060edbcba84490800000000000000
+      internalID: -7761765065681403136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Die_30_9
+      rect:
+        serializedVersion: 2
+        x: 619
+        y: 417
+        width: 39
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 129c6093c4c85d940800000000000000
+      internalID: 5320312793810258209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Die_30_10
+      rect:
+        serializedVersion: 2
+        x: 675
+        y: 416
+        width: 29
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a1fbd092aca3f2e0800000000000000
+      internalID: -2093139587582135899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Die_30_11
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 376
+        width: 37
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67cbf7dedb32318f0800000000000000
+      internalID: -571073429105558410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Die_30_12
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 365
+        width: 31
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0149e84d2856eba0800000000000000
+      internalID: -6060059297060404977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Die_30_13
+      rect:
+        serializedVersion: 2
+        x: 449
+        y: 354
+        width: 55
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f755daa4a764c7a40800000000000000
+      internalID: 5367242346971616639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Die_30_14
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 24
+        width: 715
+        height: 346
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a765641aae2f004b0800000000000000
+      internalID: -5476110057340512646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Die_30_15
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 325
+        width: 37
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b6bb5fcfebe33d20800000000000000
+      internalID: 3257206370727605940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hero_Die_30_16
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 178
+        width: 49
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d55389a64610e800800000000000000
+      internalID: 639535639834088921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Hero_Die_30_0: -2560054016260962162
+      Hero_Die_30_1: 2243443786233592528
+      Hero_Die_30_10: -2093139587582135899
+      Hero_Die_30_11: -571073429105558410
+      Hero_Die_30_12: -6060059297060404977
+      Hero_Die_30_13: 5367242346971616639
+      Hero_Die_30_14: -5476110057340512646
+      Hero_Die_30_15: 3257206370727605940
+      Hero_Die_30_16: 639535639834088921
+      Hero_Die_30_2: 1455114766214978937
+      Hero_Die_30_3: -3176730477920919627
+      Hero_Die_30_4: -8395702716410234906
+      Hero_Die_30_5: -4579693117075445007
+      Hero_Die_30_6: -2483870397320827468
+      Hero_Die_30_7: 1398743366014371234
+      Hero_Die_30_8: -7761765065681403136
+      Hero_Die_30_9: 5320312793810258209
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

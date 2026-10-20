@@ -6,7 +6,7 @@ using RuleGame.Infrastructure.Time;
 namespace RuleGame.Gameplay.Scene
 {
     /// <summary>
-    /// 单向可破坏门：**站在可破坏的那一侧、面朝门挥一刀，门就碎；另一侧是一堵实心的墙**。
+    /// 单向可破坏门：**站在可破坏的那一侧挥一刀，门就碎；另一侧是一堵实心的墙**。
     /// </summary>
     /// <remarks>
     /// <para><b>与 <see cref="OneWayGate"/> 的区别</b>：单向门是**让路** —— 玩家走过去，门还留着，
@@ -15,9 +15,9 @@ namespace RuleGame.Gameplay.Scene
     /// 「可破坏方向」和单向门的「允许通过方向」是同一个朝向 —— 都是「这扇门朝哪边开」，
     /// 关卡里换组件时方向不用重新想。</para>
     ///
-    /// <para><b>怎么才算「砍开了」</b>：玩家中心进到判定区、还站在**进侧**（可破坏的那一侧）、
-    /// 且**面朝门** —— 这时挥刀才算。见 <see cref="InBreakZone"/> 与 <see cref="FacesGate"/>。
-    /// 背对着门砍、绕着门走到另一侧砍、或者只是走过去撞上，都不算。</para>
+    /// <para><b>怎么才算「砍开了」</b>：玩家中心进到判定区、还站在**进侧**（可破坏的那一侧），
+    /// 这时挥刀就算 —— **不看朝向**（背对着砍也算，竖直方向的门本来也没有「朝向」可看）。
+    /// 见 <see cref="InBreakZone"/>。绕到另一侧挥刀、或者只是走过去撞上，都不算。</para>
     ///
     /// <para><b>怎么知道玩家挥刀了</b>：订阅 <see cref="PlayerController.OnAttacked"/> /
     /// <see cref="PlayerController.OnHeavyAttacked"/>（轻击连段的每一下、以及重击起手都会发）。
@@ -49,11 +49,11 @@ namespace RuleGame.Gameplay.Scene
         // ==================================================================
 
         [Header("可破坏方向")]
-        [Tooltip("玩家站在这一侧、面朝门挥刀，门会被砍碎；从另一侧来是一堵实心的墙。")]
+        [Tooltip("玩家站在这一侧挥刀，门会被砍碎（不看朝向）；从另一侧来是一堵实心的墙。")]
         [SerializeField] private OneWayGate.PassDirection _pass = OneWayGate.PassDirection.ToRight;
 
         [Tooltip("判定区：以碰撞体的包围盒为中心，四个方向各外扩这么多（世界单位）。\n" +
-                 "玩家中心进到这里、站在可破坏的一侧、面朝门挥刀，门就碎。\n" +
+                 "玩家中心进到这里、站在可破坏的一侧、挥一刀，门就碎。\n" +
                  "默认 1 约等于「贴到门、以及再退开一步」的范围。")]
         [SerializeField, Min(0.1f)] private float _reach = 1f;
 
@@ -152,7 +152,6 @@ namespace RuleGame.Gameplay.Scene
 
             Bounds gate = GateBounds();
             if (!InBreakZone(gate, body.center, Axis, _reach)) return;
-            if (!FacesGate(gate.center, body.center, _player.Facing)) return;
 
             SetBroken(true);
         }
@@ -180,24 +179,6 @@ namespace RuleGame.Gameplay.Scene
             float r = Mathf.Max(0.1f, reach);
             return Mathf.Abs(along)  <= HalfExtent(gate, axis)  + r
                 && Mathf.Abs(across) <= HalfExtent(gate, perp) + r;
-        }
-
-        /// <summary>
-        /// 挥刀的方向对不对（纯函数，便于断言）：**面朝门，不能背对着砍**。
-        /// </summary>
-        /// <remarks>
-        /// <para>比较的就是玩家的 <c>Facing</c> —— 和攻击盒的朝向是同一个量
-        /// （<c>PerformAttackHit</c> 也按它摆盒子），所以「判定说打得着」和「这一刀挥向哪边」
-        /// 永远一致。</para>
-        /// <para>横版角色只有左右朝向，所以门正在**正上 / 正下方**时不做朝向判定
-        /// （<c>dx ≈ 0</c>）—— 竖直方向的门（<c>ToUp</c> / <c>ToDown</c>）只管位置。</para>
-        /// </remarks>
-        public static bool FacesGate(Vector2 gateCenter, Vector2 playerCenter, float facing)
-        {
-            float dx = gateCenter.x - playerCenter.x;
-            if (Mathf.Abs(dx) < 0.01f) return true;
-
-            return Mathf.Sign(dx) * facing > 0f;
         }
 
         private void SetBroken(bool broken)
@@ -361,11 +342,11 @@ namespace RuleGame.Gameplay.Scene
             Gizmos.color = new Color(1f, 0.62f, 0.22f, 0.9f);
             Gizmos.DrawWireCube(gate.center, gate.size);
 
-            // 判定区：玩家中心进到这里、面朝门挥刀，门就碎。
+            // 判定区：玩家中心进到这里、站在可破坏的一侧挥刀，门就碎。
             Gizmos.color = new Color(1f, 0.45f, 0.35f, 0.5f);
             Gizmos.DrawWireCube(gate.center, gate.size + new Vector3(_reach * 2f, _reach * 2f, 0f));
 
-            // 可破坏方向：从「进侧」指向门里的箭头 —— 站在它的起点这一侧，面朝门砍。
+            // 可破坏方向：从「进侧」指向门里的箭头 —— 站在它的起点这一侧砍。
             Gizmos.color = new Color(1f, 0.9f, 0.25f, 1f);
             float arm = HalfExtent(gate, axis) + 0.6f;
             var from = (Vector2)gate.center - axis * arm;
