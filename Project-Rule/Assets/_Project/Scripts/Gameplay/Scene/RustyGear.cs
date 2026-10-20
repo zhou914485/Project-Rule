@@ -137,6 +137,15 @@ namespace RuleGame.Gameplay.Scene
             AdvanceSpin(dt);
         }
 
+        private void Start()
+        {
+            // 读档恢复：齿轮在存档里已经转起来了。
+            if (RuleGame.Infrastructure.Persistence.WorldStateStore.GetBool(SaveStateKey)) SetActivated(true);
+        }
+
+        /// <summary>存档用的稳定键。</summary>
+        private string SaveStateKey => RuleGame.Infrastructure.Persistence.WorldStateStore.KeyOf(this, "activated");
+
         // ==================================================================
         //  评估
         // ==================================================================
@@ -179,6 +188,7 @@ namespace RuleGame.Gameplay.Scene
             if (IsActivated == activated) return;
 
             IsActivated = activated;
+            RuleGame.Infrastructure.Persistence.WorldStateStore.SetBool(SaveStateKey, activated);
 
             if (activated)
             {

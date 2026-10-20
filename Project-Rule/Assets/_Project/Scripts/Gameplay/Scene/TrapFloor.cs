@@ -195,7 +195,18 @@ namespace RuleGame.Gameplay.Scene
             _running = false;
             _collapsed = true;
             OnCollapsed?.Invoke();
+
+            RuleGame.Infrastructure.Persistence.WorldStateStore.SetBool(SaveStateKey, true);   // 塌了就是永久进度
         }
+
+        private void Start()
+        {
+            // 读档恢复：存档里这块地板已经塌了，重进关卡不该再站上去。
+            if (RuleGame.Infrastructure.Persistence.WorldStateStore.GetBool(SaveStateKey)) Collapse();
+        }
+
+        /// <summary>存档用的稳定键。</summary>
+        private string SaveStateKey => RuleGame.Infrastructure.Persistence.WorldStateStore.KeyOf(this, "collapsed");
 
         /// <summary>用那一格被隐藏的墙皮图当碎块 —— 不用另做预制体，颜色天然一致。</summary>
         private void SpawnDebris(CellOp op)

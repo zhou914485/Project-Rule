@@ -296,6 +296,7 @@ namespace RuleGame.Gameplay.Scene
 
             IsPressed = pressed;
             ApplyCapPose();
+            RuleGame.Infrastructure.Persistence.WorldStateStore.SetBool(SaveStateKey, pressed);
 
             if (pressed)
             {
@@ -309,6 +310,15 @@ namespace RuleGame.Gameplay.Scene
                 OnReleased?.Invoke();
             }
         }
+
+        private void Start()
+        {
+            // 读档恢复：存档里这个按钮是按下的（压板 / 撞针都算）。
+            if (RuleGame.Infrastructure.Persistence.WorldStateStore.GetBool(SaveStateKey)) SetPressed(true);
+        }
+
+        /// <summary>存档用的稳定键。</summary>
+        private string SaveStateKey => RuleGame.Infrastructure.Persistence.WorldStateStore.KeyOf(this, "pressed");
 
         /// <summary>把帽摆到当前形态该在的位置。</summary>
         /// <remarks>⚠️ 按**轴对齐**算：方向直接当世界方向用在局部坐标上。

@@ -145,6 +145,10 @@ namespace RuleGame.Gameplay.Scene
             Subscribe();
             ValidateWiring();
 
+            // 读档恢复：拼图在存档里已经解开。只标记状态、**不重放按钮** ——
+            // 它驱动的门 / 电梯自己也有存档状态，重放会对已经开着的目标再推一次。
+            if (RuleGame.Infrastructure.Persistence.WorldStateStore.GetBool(SaveStateKey)) _solved = true;
+
             // 场景可能是「已经拼好」的状态存下来的：开局先对一次。
             Evaluate();
         }
@@ -201,6 +205,9 @@ namespace RuleGame.Gameplay.Scene
             Evaluate();
         }
 
+        /// <summary>存档用的稳定键。</summary>
+        private string SaveStateKey => RuleGame.Infrastructure.Persistence.WorldStateStore.KeyOf(this, "solved");
+
         private void Evaluate()
         {
             if (_solved || _sockets == null || _sockets.Length == 0) return;
@@ -211,6 +218,7 @@ namespace RuleGame.Gameplay.Scene
             }
 
             _solved = true;
+            RuleGame.Infrastructure.Persistence.WorldStateStore.SetBool(SaveStateKey, true);
 
             if (_logEvents) Debug.Log("[拼装缺口] 两个都合体了 —— 发事件（按一次按钮）。", this);
 

@@ -455,7 +455,18 @@ namespace RuleGame.Gameplay.Scene
 
             _solid = solid;
             if (_collider != null) _collider.enabled = solid;
+
+            RuleGame.Infrastructure.Persistence.WorldStateStore.SetBool(SaveStateKey, solid);
         }
+
+        private void Start()
+        {
+            // 读档恢复：存档里这块单向平台是「放行」状态。
+            if (RuleGame.Infrastructure.Persistence.WorldStateStore.TryGet(SaveStateKey, out string saved) && saved == "0") SetSolid(false);
+        }
+
+        /// <summary>存档用的稳定键。</summary>
+        private string SaveStateKey => RuleGame.Infrastructure.Persistence.WorldStateStore.KeyOf(this, "solid");
 
         /// <summary>重力翻转时把视觉一起翻过来：否则玩家会看到「平台还是正的，人却挂在下面」。</summary>
         private void UpdateVisual(Vector2 normal)

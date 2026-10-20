@@ -167,6 +167,7 @@ namespace RuleGame.Gameplay.Scene
             {
                 _turning = false;
                 _used = true;
+                RuleGame.Infrastructure.Persistence.WorldStateStore.SetBool(SaveStateKey, true);
             }
 
             Apply(_turned);
@@ -175,6 +176,18 @@ namespace RuleGame.Gameplay.Scene
         // ==================================================================
         //  内部
         // ==================================================================
+
+        private void Start()
+        {
+            // 读档恢复：这根管子已经翻过了 —— 直接摆到转完的位姿，不再播一遍。
+            if (!RuleGame.Infrastructure.Persistence.WorldStateStore.GetBool(SaveStateKey)) return;
+            _used = true;
+            _turned = 1f;
+            Apply(1f);
+        }
+
+        /// <summary>存档用的稳定键。</summary>
+        private string SaveStateKey => RuleGame.Infrastructure.Persistence.WorldStateStore.KeyOf(this, "used");
 
         /// <summary>开始翻转：锁定支点与起始位姿。时长填 0 时直接瞬间到位。</summary>
         private void Begin()
@@ -190,6 +203,7 @@ namespace RuleGame.Gameplay.Scene
             {
                 Apply(1f);
                 _used = true;
+                RuleGame.Infrastructure.Persistence.WorldStateStore.SetBool(SaveStateKey, true);
                 return;
             }
 

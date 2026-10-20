@@ -40,11 +40,45 @@ namespace RuleGame.Gameplay.Travel
             if (!_unlocked.Add(stationId)) return false;
 
             Unlocked?.Invoke(stationId);
+            SaveUnlocked();
             return true;
         }
 
         /// <summary>调试 / 重开用：清空所有解锁记录。</summary>
-        public void ResetAll() => _unlocked.Clear();
+        public void ResetAll()
+        {
+            _unlocked.Clear();
+            SaveUnlocked();
+        }
+
+        // ==================================================================
+        //  存档：已解锁车站（挂在玩家身上，用固定键，不走场景路径）
+        // ==================================================================
+
+        private const string SaveKey = "global/trainpass#unlocked";
+
+        private void Start()
+        {
+            // 读档恢复：把存档里的车站重新解锁（走 Unlock，订阅方照常收到事件）。
+            if (!RuleGame.Infrastructure.Persistence.WorldStateStore.TryGet(SaveKey, out string saved) || string.IsNullOrEmpty(saved)) return;
+
+            string[] ids = saved.Split(',');
+            for (int i = 0; i < ids.Length; i++)
+            {
+                if (!string.IsNullOrEmpty(ids[i])) Unlock(ids[i]);
+            }
+        }
+
+        private void SaveUnlocked()
+        {
+            var sb = new System.Text.StringBuilder();
+            foreach (string id in _unlocked)
+            {
+                if (sb.Length > 0) sb.Append(',');
+                sb.Append(id);
+            }
+            RuleGame.Infrastructure.Persistence.WorldStateStore.Set(SaveKey, sb.ToString());
+        }
 
         /// <summary>找玩家身上的车票；没有就挂一个。</summary>
         public static TrainPass Ensure(PlayerController player)

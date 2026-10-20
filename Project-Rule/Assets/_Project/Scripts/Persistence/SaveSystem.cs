@@ -179,6 +179,9 @@ namespace RuleGame.Persistence
                 // 无论上面哪一步抛异常都要解除抑制，否则后续存档全哑火。
                 _applying = false;
                 _isReady = true;
+
+                // 读档到此结束：之后组件的状态写入才允许落进仓库（否则 OnEnable 的默认值会冲掉存档）。
+                WorldStateStore.MarkLoaded();
             }
         }
 

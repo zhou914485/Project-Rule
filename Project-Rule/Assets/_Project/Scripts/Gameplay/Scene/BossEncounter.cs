@@ -181,11 +181,23 @@ namespace RuleGame.Gameplay.Scene
             _topClosed = true;
         }
 
+        private void Start()
+        {
+            // 读档恢复：Boss 在存档里已经通关 —— 直接把阶段拉到 Cleared，别再重新开战。
+            if (!RuleGame.Infrastructure.Persistence.WorldStateStore.GetBool(SaveStateKey)) return;
+            Current = Phase.Cleared;
+            PhaseChanged?.Invoke(Current);
+        }
+
+        /// <summary>存档用的稳定键。</summary>
+        private string SaveStateKey => RuleGame.Infrastructure.Persistence.WorldStateStore.KeyOf(this, "cleared");
+
         private void Clear()
         {
             if (Current == Phase.Cleared) return;
 
             Current = Phase.Cleared;
+            RuleGame.Infrastructure.Persistence.WorldStateStore.SetBool(SaveStateKey, true);   // Boss 通关是永久进度
 
             SetGates(_sideDoors, true);
             SetGate(_topGate, true);

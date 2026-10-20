@@ -218,7 +218,18 @@ namespace RuleGame.Gameplay.Scene
             _open = open;
             if (_box != null) _box.enabled = !open;
             if (_indicator != null) _indicator.color = open ? _openTint : _idleTint;
+
+            RuleGame.Infrastructure.Persistence.WorldStateStore.SetBool(SaveStateKey, open);
         }
+
+        private void Start()
+        {
+            // 读档恢复：这扇单向门在存档里是开的。
+            if (RuleGame.Infrastructure.Persistence.WorldStateStore.GetBool(SaveStateKey)) SetOpen(true);
+        }
+
+        /// <summary>存档用的稳定键。</summary>
+        private string SaveStateKey => RuleGame.Infrastructure.Persistence.WorldStateStore.KeyOf(this, "open");
 
         /// <summary>玩家身体碰撞体的当前包围盒（世界坐标）。</summary>
         private bool TryGetPlayerBounds(out Bounds body)

@@ -18,6 +18,20 @@ namespace RuleGame.Infrastructure.Persistence
     {
         private static readonly Dictionary<string, string> States = new Dictionary<string, string>(128);
 
+        /// <summary>
+        /// 存档是否已经灌进来过。
+        /// </summary>
+        /// <remarks>
+        /// <para>组件在 <c>OnEnable</c> / <c>Awake</c> 里经常先写一遍默认值（<c>SetOpen(false)</c>
+        /// 之类）。那些写入发生在读档之前，会把存档里的状态冲成默认值。</para>
+        /// <para>所以<b>只有 <see cref="MarkLoaded"/> 之后才允许写</b>：<c>SaveSystem.Apply</c>
+        /// 结束时打开它。读档之前的写入一律丢弃，组件在 <c>Start</c> 里自己查表恢复。</para>
+        /// </remarks>
+        public static bool IsLoaded { get; private set; }
+
+        /// <summary>读档流程结束（无论有没有档）：此后组件的写入才生效。</summary>
+        public static void MarkLoaded() => IsLoaded = true;
+
         /// <summary>键的稳定写法：<c>场景名/层级路径#槽位</c>。层级路径带兄弟序号，重名对象也能区分。</summary>
         /// <remarks>组件改名 / 挪父级会让键变化 —— 那时旧状态自然失效，不会串到别的对象上。</remarks>
         public static string KeyOf(Component owner, string slot)
@@ -45,6 +59,7 @@ namespace RuleGame.Infrastructure.Persistence
         /// <summary>写一条状态；值不变时不重复写（写入很频繁，省掉无意义的字典操作）。</summary>
         public static void Set(string key, string value)
         {
+            if (!IsLoaded) return;          // 读档前的默认值写入：丢弃，见 IsLoaded 的说明
             if (string.IsNullOrEmpty(key)) return;
             if (States.TryGetValue(key, out string old) && old == value) return;
             States[key] = value;
@@ -64,8 +79,12 @@ namespace RuleGame.Infrastructure.Persistence
         /// <summary>写一个布尔状态。</summary>
         public static void SetBool(string key, bool value) => Set(key, value ? "1" : "0");
 
-        /// <summary>清空（新游戏 / 读档前）。</summary>
-        public static void Clear() => States.Clear();
+        /// <summary>清空（新游戏 / 读档前）。同时把「已就绪」关掉，等 Apply 结束再打开。</summary>
+        public static void Clear()
+        {
+            States.Clear();
+            IsLoaded = false;
+        }
 
         /// <summary>导出成可序列化的列表（存盘用）。</summary>
         public static List<WorldStateRecord> Export()
