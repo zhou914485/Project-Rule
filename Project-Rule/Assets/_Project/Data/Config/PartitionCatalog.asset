@@ -15,8 +15,8 @@ MonoBehaviour:
   _partitions:
   - PartitionId: 1
     ScenePath: Assets/_Project/Scenes/Start/Level_Start_01.unity
-    Center: {x: -8.5, y: 9.25}
-    Size: {x: 68, y: 38.5}
+    Center: {x: -13, y: -0.99500084}
+    Size: {x: 69, y: 48.01}
     LoadRadius: 0
     AlwaysLoaded: 0
   - PartitionId: 2
