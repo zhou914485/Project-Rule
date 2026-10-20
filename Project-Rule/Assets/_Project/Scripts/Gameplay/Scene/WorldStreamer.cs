@@ -368,11 +368,28 @@ namespace RuleGame.Gameplay.Scene
             PlayerSpawnPoint[] points = FindObjectsByType<PlayerSpawnPoint>(FindObjectsInactive.Exclude);
             if (points.Length == 0) return;      // 这一片没有落点，等下一片
 
-            PlayerSpawnPoint chosen = FindSpawn(points, _startEntryId);
+            // ① 续档优先：存档里记着「上次存档点」，就落在它上面。
+            //    找不到（那一片还没加载出来 / 被删了）才退回场景配置的入口点。
+            string savedId = RuleGame.Infrastructure.Persistence.LoadContext.RespawnId;
+            PlayerSpawnPoint chosen = null;
+            if (!string.IsNullOrEmpty(savedId))
+            {
+                chosen = FindSpawn(points, savedId);
+                if (chosen == null)
+                {
+                    Debug.LogWarning($"[WorldStreamer] 存档点 \"{savedId}\" 不在已加载的分区里，" +
+                                     $"退回入口点 \"{_startEntryId}\"。", this);
+                }
+            }
+
+            if (chosen == null) chosen = FindSpawn(points, _startEntryId);
             if (chosen == null) chosen = FindSpawn(points, PlayerSpawnPoint.DefaultId);
             if (chosen == null) return;
 
             if (!chosen.Arrive()) return;        // 玩家还没就位：下一轮再试
+
+            // 落点用掉了：后续 Refresh 不要再尝试存档点（否则分区间来回加载会反复搬人）。
+            RuleGame.Infrastructure.Persistence.LoadContext.ConsumeRespawnId();
             _startSpawnApplied = true;
         }
 

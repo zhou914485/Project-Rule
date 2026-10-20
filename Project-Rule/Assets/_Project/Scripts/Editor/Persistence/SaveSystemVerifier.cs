@@ -304,6 +304,15 @@ namespace RuleGame.Editor.Persistence
 
             WorldStateStore.Clear();
 
+            // 读档上下文：场景层靠它决定「续档」以及落在哪个点。
+            LoadContext.SetFromSave(loaded9);
+            h.Check("续档上下文：ContinueGame = true", LoadContext.ContinueGame, LoadContext.ContinueGame.ToString());
+            h.Check("续档上下文：带上存档点编号", LoadContext.RespawnId == "checkpoint-03", LoadContext.RespawnId ?? "null");
+
+            LoadContext.SetFromSave(null);
+            h.Check("新游戏上下文：ContinueGame = false", !LoadContext.ContinueGame && LoadContext.RespawnId == null,
+                    $"{LoadContext.ContinueGame}/{LoadContext.RespawnId ?? "null"}");
+
             // ==============================================================
             //  清理
             // ==============================================================

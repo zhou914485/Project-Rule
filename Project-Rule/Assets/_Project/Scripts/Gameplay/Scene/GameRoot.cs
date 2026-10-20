@@ -92,8 +92,11 @@ namespace RuleGame.Gameplay.Scene
 
             // 正式开局：把能力锁上、规则只留 Gravity × Revert。
             // 调试场景通常不经过这里，所以那边仍然是全解锁（见 PlayerProgress 的开发期开关）。
+            //
+            // ⚠️ 续档时**不能**调 StartNewGame：它会把刚读回来的解锁词条清空（存档白读）。
             PlayerProgress progress = GetComponentInChildren<PlayerProgress>(true);
-            if (progress != null) progress.StartNewGame();
+            bool continuing = RuleGame.Infrastructure.Persistence.LoadContext.ContinueGame;
+            if (progress != null && !continuing) progress.StartNewGame();
 
             // 开局即「一关开始」：进度状态机立起来，UI / 存档可以订阅。
             // 分区切换本身不发这个事件 —— 玩家走过边界不该被当成「又开了一关」。

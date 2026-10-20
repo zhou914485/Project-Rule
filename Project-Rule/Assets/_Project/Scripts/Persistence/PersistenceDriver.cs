@@ -73,6 +73,9 @@ namespace RuleGame.Persistence
             SaveData data = Save.Load();
             Save.Apply(data);
 
+            // 告诉场景层「这次是续档 / 该落在哪个点」（Gameplay 看不见本层，走 Infrastructure 的静态入口）。
+            LoadContext.SetFromSave(data);
+
             if (data == null) Debug.Log("[PersistenceDriver] 未找到存档，以新游戏启动。");
             else Debug.Log($"[PersistenceDriver] 存档已恢复：第 {data.CurrentLevel} 关，" +
                            $"激活规则 {data.ActiveRuleIds?.Count ?? 0} 条，历史 {data.History?.Count ?? 0} 条。");
