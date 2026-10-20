@@ -24,7 +24,7 @@ MonoBehaviour:
   EnergyRegen: 2
   RuleAttribute: 0
   RuleRelation: 4
-  MoveSpeed: 5
+  MoveSpeed: 3.5
   AttackRange: 3.5
   AttackCooldown: 1.8
   ProjectileBudget: 192
@@ -113,6 +113,9 @@ MonoBehaviour:
   ClockSecondRotationPeriod: 6
   ClockCoreWindow: 3
   ClockCoreHealth: 15
+  MinionSenseRange: 8
+  MinionLeashRange: 12
+  MinionTargetMemory: 2
   Timings:
   - Action: Walk
     Duration: 0.625

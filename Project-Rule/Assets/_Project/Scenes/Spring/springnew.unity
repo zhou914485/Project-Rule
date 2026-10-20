@@ -891,8 +891,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5615f16b25e964b410e1b1af0f83f3c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: RuleGame.Gameplay::RuleGame.Gameplay.Scene.MovingPlatform
-  _start: {x: -126.28, y: -21.28}
-  _end: {x: -102.59, y: -21.31}
+  _start: {x: 0, y: 0}
+  _end: {x: 23.690002, y: -0.02999878}
+  _pathIsRelative: 1
   _startProgress: 0
   _speed: 3
   _mode: 2
@@ -2750,8 +2751,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5615f16b25e964b410e1b1af0f83f3c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: RuleGame.Gameplay::RuleGame.Gameplay.Scene.MovingPlatform
-  _start: {x: -100.71, y: 4.26}
-  _end: {x: -122.31, y: 4.32}
+  _start: {x: 0, y: 0}
+  _end: {x: -21.599998, y: 0.059999943}
+  _pathIsRelative: 1
   _startProgress: 0
   _speed: 3
   _mode: 2
@@ -190464,7 +190466,7 @@ Tilemap:
     m_Data: {fileID: 21300000, guid: a824577b03044dcf84aae195d17ad40f, type: 3}
   m_TileMatrixArray:
   - serializedVersion: 2
-    m_RefCount: 19005
+    m_RefCount: 18729
     m_Data:
       e00: 1
       e01: 0
@@ -190487,7 +190489,7 @@ Tilemap:
     m_RefCount: 17140
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   - serializedVersion: 2
-    m_RefCount: 1493
+    m_RefCount: 1355
     m_Data: {r: 1, g: 0.15, b: 0.15, a: 1}
   - serializedVersion: 2
     m_RefCount: 219
@@ -194041,8 +194043,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5615f16b25e964b410e1b1af0f83f3c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: RuleGame.Gameplay::RuleGame.Gameplay.Scene.MovingPlatform
-  _start: {x: -74.85, y: 18.25}
-  _end: {x: -88.25, y: 18.32}
+  _start: {x: 0, y: 0}
+  _end: {x: -13.400002, y: 0.069999695}
+  _pathIsRelative: 1
   _startProgress: 0
   _speed: 3
   _mode: 2
@@ -198309,8 +198312,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5615f16b25e964b410e1b1af0f83f3c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: RuleGame.Gameplay::RuleGame.Gameplay.Scene.MovingPlatform
-  _start: {x: -88.31, y: 4.11}
-  _end: {x: -76.42, y: 4.11}
+  _start: {x: 0, y: 0}
+  _end: {x: 11.889999, y: 0}
+  _pathIsRelative: 1
   _startProgress: 0
   _speed: 3
   _mode: 2
@@ -201847,6 +201851,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 49.200005
       objectReference: {fileID: 0}
+    - target: {fileID: 7550561517234425919, guid: 7419d674258442642bf2949c91cc6c2a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -202497,8 +202505,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5615f16b25e964b410e1b1af0f83f3c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: RuleGame.Gameplay::RuleGame.Gameplay.Scene.MovingPlatform
-  _start: {x: -77.32, y: 11.77}
-  _end: {x: -85.98, y: 11.77}
+  _start: {x: 0, y: 0}
+  _end: {x: -8.660004, y: 0}
+  _pathIsRelative: 1
   _startProgress: 0
   _speed: 3
   _mode: 0
@@ -205281,8 +205290,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5615f16b25e964b410e1b1af0f83f3c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: RuleGame.Gameplay::RuleGame.Gameplay.Scene.MovingPlatform
-  _start: {x: -94.37, y: 18.28}
-  _end: {x: -105.62, y: 18.19}
+  _start: {x: 0, y: 0}
+  _end: {x: -11.25, y: -0.09000015}
+  _pathIsRelative: 1
   _startProgress: 0
   _speed: 3
   _mode: 2
@@ -205625,8 +205635,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5615f16b25e964b410e1b1af0f83f3c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: RuleGame.Gameplay::RuleGame.Gameplay.Scene.MovingPlatform
-  _start: {x: -75.75, y: -2.28}
-  _end: {x: -103.41, y: -2.23}
+  _start: {x: 27.660004, y: -0.049999952}
+  _end: {x: 0, y: 0}
+  _pathIsRelative: 1
   _startProgress: 0
   _speed: 3
   _mode: 2
@@ -205756,8 +205767,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5615f16b25e964b410e1b1af0f83f3c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: RuleGame.Gameplay::RuleGame.Gameplay.Scene.MovingPlatform
-  _start: {x: -77.58, y: -12.77}
-  _end: {x: -53.33, y: -12.82}
+  _start: {x: 0, y: 0}
+  _end: {x: 24.25, y: -0.049999237}
+  _pathIsRelative: 1
   _startProgress: 0
   _speed: 3
   _mode: 2
@@ -206593,8 +206605,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5615f16b25e964b410e1b1af0f83f3c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: RuleGame.Gameplay::RuleGame.Gameplay.Scene.MovingPlatform
-  _start: {x: -64.19, y: -16.28}
-  _end: {x: -49.36, y: -16.33}
+  _start: {x: -14.830002, y: 0.049999237}
+  _end: {x: 0, y: 0}
+  _pathIsRelative: 1
   _startProgress: 0
   _speed: 3
   _mode: 2

@@ -21,12 +21,44 @@ MonoBehaviour:
   ContactInterval: 0.4
   ContactPadding: 0.05
   Energy: 100
+  EnergyPerHit: 4
   EnergyRegen: 14
   RuleAttribute: 1
   RuleRelation: 3
   MoveSpeed: 3.4
   AttackRange: 5.5
-  AttackCooldown: 0.7
+  AttackCooldown: 0.9
+  ProjectileBudget: 192
+  ProjectileLifetime: 7
+  BrickGroundWaves: 1
+  BrickWaveInterval: 0.24
+  BrickSlamRange: 0
+  BrickThrowCount: 1
+  BrickThrowSpread: 54
+  BrickThrowSpeed: 9
+  RabbitLobCount: 1
+  RabbitGroundVolleyCount: 1
+  RabbitGroundMagicInterval: 8
+  RabbitGroundFanCount: 0
+  RabbitGroundFanSpread: 60
+  RabbitGroundFanSpeed: 14
+  RabbitGroundArcStagger: 1
+  RabbitLandingSpread: 1.1
+  RabbitFanCount: 3
+  RabbitFanSpread: 0
+  BatVolleyWaves: 4
+  BatFanCount: 5
+  BatVolleyInterval: 0.25
+  BatFanSpread: 48
+  BatRingCount: 0
+  ClockTimeRuleInterval: 2.2
+  ClockExtraBarrageEnabled: 0
+  ClockBurstCount: 24
+  ClockBurstInterval: 2
+  ClockBurstWarning: 0.45
+  ClockBurstSpeed: 8.5
+  ClockBeamWidth: 0.32
+  ClockBeamWidthStep: 0.13
   BossRestDuration: 0.4
   ClockBeamVolleysBeforeRest: 2
   BrickAdvanceDuration: 0.9
@@ -48,6 +80,7 @@ MonoBehaviour:
   RabbitBurstInterval: 0.35
   RabbitRepositionDuration: 2
   RabbitAimLockLead: 0.35
+  RabbitThrowArcHeight: 1
   RabbitAirHeight: 2.4
   RabbitAirMoveDuration: 1.8
   RabbitAirSpeedMultiplier: 1.6
@@ -89,16 +122,43 @@ MonoBehaviour:
   ClockSecondRotationPeriod: 1
   ClockCoreWindow: 1.15
   ClockCoreHealth: 15
-  ClockBurstWarning: 0.45
-  ClockBeamWidth: 0.32
-  ClockBeamWidthStep: 0.13
-  ClockBurstInterval: 1.6
-  ClockBurstSpeed: 8.5
-  ProjectileLifetime: 7
-  ClockBurstCount: 24
-  ClockExtraBarrageEnabled: 0
-  ProjectileBudget: 192
-  ClockTimeRuleInterval: 2.2
+  MinionSenseRange: 6
+  MinionPatrolDistance: 3
+  MinionIgnoreDuration: 3
+  MinionLeashRange: 8
+  MinionTargetMemory: 1.5
+  MinionStaggerThreshold: 12
+  MinionHurtDuration: 0.25
+  MinionPreferredRange: 4
+  MinionAimLockFraction: 0.25
+  MinionNavigationEnabled: 1
+  MinionJumpHeight: 1.6
+  MinionMaxDrop: 2.5
+  MinionNavigationSpacing: 0.5
+  MinionRepathInterval: 0.65
+  MinionReassembles: 0
+  MinionRespawnDelay: 7
+  MinionFuseDuration: 1
+  MinionExplosionRadius: 2.5
+  MinionHopInterval: 0.5
+  MinionHopHeight: 2
+  MinionHighHopHeight: 3.2
+  MinionMouseRange: 8
+  MinionMouseCooldown: 3
+  MinionHugDuration: 3
+  MinionHugTickInterval: 1
+  MinionSkillInterval: 5
+  MinionSlideDuration: 1.2
+  MinionDashMultiplier: 3
+  MinionProjectileSpeed: 7
+  RadiationRadius: 8
+  RadiationWarning: 0.75
+  RadiationDuration: 4
+  RadiationRest: 2
+  RadiationHitInterval: 0.5
+  TopRestitution: 0.9
+  TopImpactCooldown: 0.12
+  TopInitialDirection: 1
   Timings:
   - Action: Walk
     Duration: 0.625

@@ -200,7 +200,12 @@ namespace RuleGame.Gameplay.Enemy
                     SteerTo(_destination, 0.35f);
                     if (Impact())
                     {
-                        if (name == "Roar") Actor.SpawnMinions(true, 3);
+                        if (name == "Roar")
+                        {
+                            Actor.SpawnMinions(true, 3);
+                            // 不立刻下令的话，飞行召唤物会一直绕出生点盘旋，永远不去追玩家。
+                            Actor.CommandSummons();
+                        }
                         else if (name == "WingSpread") Actor.CastRule();
                         else Actor.CommandSummons();
                         if (Config.BatRingCount > 0) Actor.ShootRing(Config.BatRingCount, 8f, Age * 23f);

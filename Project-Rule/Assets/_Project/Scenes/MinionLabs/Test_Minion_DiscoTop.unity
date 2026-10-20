@@ -1451,12 +1451,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5615f16b25e964b410e1b1af0f83f3c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: RuleGame.Gameplay::RuleGame.Gameplay.Scene.MovingPlatform
-  _start: {x: -9, y: 2.8}
-  _end: {x: -2, y: 2.8}
+  _start: {x: 0, y: 0}
+  _end: {x: 7, y: 0}
+  _pathIsRelative: 1
   _startProgress: 0
   _speed: 1.5
   _mode: 0
   _waitAtEnds: 0
+  _riderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  _riderProbeHeight: 0.35
 --- !u!50 &1324775976
 Rigidbody2D:
   serializedVersion: 5

@@ -73,6 +73,9 @@ namespace RuleGame.Editor.Level
             // 默认是待客模式：放下来先停在起点，玩家踩上去才出发。
             // 默认给一段可见的行程，省得忘了填终点；要站着不动就把终点拖到起点上。
             platform.SetPath(at, at + new Vector3(DefaultRun, 0f, 0f));
+            // 路径存成相对本物体的偏移：以后拖动平台 / 整关平移，终点不会留在原地。
+            // Reset() 通常已经切好了；这里再点一次，编辑器脚本里 AddComponent 不跑 Reset 的版本也不会漏。
+            platform.ConvertPathToRelative();
             EditorUtility.SetDirty(platform);
 
             Selection.activeGameObject = root;

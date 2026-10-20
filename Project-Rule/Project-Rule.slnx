@@ -17,6 +17,7 @@
   <Project Path="RuleGame.Npcs.Editor.csproj" />
   <Project Path="RuleGame.Dialogue.Editor.csproj" />
   <Project Path="RuleGame.NpcLab.csproj" />
+  <Project Path="RuleGame.Persistence.csproj" />
   <Project Path="RuleGame.Dialogue.Lab.csproj" />
   <Project Path="RuleGame.Dialogue.UI.csproj" />
 </Solution>

@@ -17,8 +17,15 @@ namespace RuleGame.Gameplay.Scene
     /// <para><b>只走直线、不旋转</b>：路径就是 <see cref="_start"/> → <see cref="_end"/> 一条线段，
     /// 位置按「已走过的距离 / 全长」插值。匀速，没有缓动 —— 缓动属于表现层，不在这里做。</para>
     ///
-    /// <para><b>坐标是世界坐标</b>：终点填成世界坐标，肉眼对着场景拖最省事；
+    /// <para><b>坐标是相对本物体的偏移</b>（<see cref="_pathIsRelative"/> = true）：
+    /// 起点 / 终点存的是「离本物体摆放位置多远」，于是**拖动物体就是整条路径跟着走** ——
+    /// 关卡整体挪位置时不会出现「平台搬了、终点还留在原地」。
     /// 编辑器工具栏里有两个「把起点/终点设为当前位置」按钮，摆好再点一下就行。</para>
+    ///
+    /// <para>⚠️ 参照点只在 <see cref="Awake"/> 记一次（那时平台还没被搬走），
+    /// 之后播放中再怎么移动都不会重算 —— 否则平台一动，路径就跟着自己跑偏。
+    /// 沿用的先例见 <see cref="SpringPlatform"/> / <see cref="RailLift"/>。
+    /// 旧资产（<see cref="_pathIsRelative"/> = false）仍按**世界坐标**解释，用迁移工具一次性转过来。</para>
     ///
     /// <para><b>刚体是 Kinematic</b>：位移完全由代码决定，物理不会替它解算。
     /// 位置用 <c>Rigidbody2D.MovePosition</c> 提交 —— 它在**物理步进时**生效，
@@ -71,12 +78,16 @@ namespace RuleGame.Gameplay.Scene
         //  配置
         // ==================================================================
 
-        [Header("路径（世界坐标）")]
-        [Tooltip("起点。进入播放时平台会被搬到这里。")]
+        [Header("路径（相对本物体的偏移）")]
+        [Tooltip("起点。相对**本物体的摆放位置**的偏移 —— 拖动物体，整条路径跟着走。\n" +
+                 "进入播放时平台会被搬到这里。")]
         [SerializeField] private Vector2 _start = Vector2.zero;
 
         [Tooltip("终点。和起点重合 = 不会动的平台。")]
         [SerializeField] private Vector2 _end = Vector2.zero;
+
+        [Tooltip("旧资产的开关：不勾时上面两个值按**世界坐标**解释（迁移工具会把它勾上并换算成偏移）。")]
+        [SerializeField, HideInInspector] private bool _pathIsRelative = false;
 
         [Tooltip("起始进度：0 = 从起点出发，1 = 从终点出发（单程模式下即终点）。\n" +
                  "放两台同向的平台时错开相位用。**待客模式忽略此项**（永远从起点出发）。")]
@@ -133,6 +144,28 @@ namespace RuleGame.Gameplay.Scene
         private float _length;
         private Vector2 _lastTarget;
 
+        /// <summary>
+        /// 路径偏移的参照点：<see cref="Awake"/> 时的摆放位置。
+        /// </summary>
+        /// <remarks>
+        /// <para>只在 <see cref="Awake"/> 记一次。平台每个物理帧都在动，之后再读 <c>transform.position</c>
+        /// 就是把参照点拴在自己身上，路径会跟着自己漂。</para>
+        /// <para>编辑模式下不缓存：直接读 <c>transform.position</c>，这样拖动物体时 Gizmo 与 Inspector
+        /// 上的路径是**立刻**跟着走的。</para>
+        /// </remarks>
+        private Vector2 _pathAnchor;
+        private bool _anchorCaptured;
+
+        /// <summary>路径偏移的世界参照点。播放中 = 摆放位置，编辑中 = 当前位置。</summary>
+        private Vector2 PathAnchor =>
+            Application.isPlaying && _anchorCaptured ? _pathAnchor : (Vector2)transform.position;
+
+        /// <summary>起点的世界坐标。</summary>
+        private Vector2 StartWorld => _pathIsRelative ? PathAnchor + _start : _start;
+
+        /// <summary>终点的世界坐标。</summary>
+        private Vector2 EndWorld => _pathIsRelative ? PathAnchor + _end : _end;
+
         /// <summary>本物理帧的平台速度（单位 / 秒）。踩在上面的实体读它，见 <see cref="IMovingSurface"/>。</summary>
         /// <remarks>由「这一步实际走了多远 ÷ dt」算出，与位移严格一致 ——
         /// 承载方加进自己的速度后，走出的距离与平台**逐帧相等**，不会累积漂移。</remarks>
@@ -142,10 +175,10 @@ namespace RuleGame.Gameplay.Scene
         public float Length => _length;
 
         /// <summary>起点（世界坐标）。</summary>
-        public Vector2 StartPoint => _start;
+        public Vector2 StartPoint => StartWorld;
 
         /// <summary>终点（世界坐标）。</summary>
-        public Vector2 EndPoint => _end;
+        public Vector2 EndPoint => EndWorld;
 
         /// <summary>移动速度（单位 / 秒）。</summary>
         public float Speed => _speed;
@@ -162,6 +195,10 @@ namespace RuleGame.Gameplay.Scene
 
         private void Awake()
         {
+            // ⚠️ 必须排在 Rebuild() 前面：它会把平台搬到起点，再读就拿不到摆放位置了。
+            _pathAnchor = transform.position;
+            _anchorCaptured = true;
+
             _body = GetComponent<Rigidbody2D>();
             _ownCollider = GetComponent<Collider2D>();
             ConfigureBody();
@@ -305,8 +342,9 @@ namespace RuleGame.Gameplay.Scene
 
         private Vector2 Evaluate(float travel)
         {
-            if (_length <= 0f) return _start;
-            return Vector2.LerpUnclamped(_start, _end, travel / _length);
+            Vector2 start = StartWorld;
+            if (_length <= 0f) return start;
+            return Vector2.LerpUnclamped(start, EndWorld, travel / _length);
         }
 
         /// <summary>
@@ -380,7 +418,7 @@ namespace RuleGame.Gameplay.Scene
         /// <summary>按配置把内部状态摆回初始位置，并立刻落到位。</summary>
         private void Rebuild()
         {
-            _length = Vector2.Distance(_start, _end);
+            _length = Vector2.Distance(StartWorld, EndWorld);
             _forward = 1f;
             _finished = false;
             _waitRemaining = 0f;
@@ -424,25 +462,60 @@ namespace RuleGame.Gameplay.Scene
         // ==================================================================
 
         /// <summary>只给编辑器工具用：不动内部账本，直接改两个端点。</summary>
+        /// <param name="start">起点（**世界坐标**）。</param>
+        /// <param name="end">终点（**世界坐标**）。</param>
+        /// <remarks>相对模式在这里换算成偏移，调用方一律按世界坐标填 —— 编辑器工具不用关心存储形式。</remarks>
         public void SetPath(Vector2 start, Vector2 end)
         {
-            _start = start;
-            _end = end;
+            if (_pathIsRelative)
+            {
+                Vector2 anchor = PathAnchor;
+                _start = start - anchor;
+                _end = end - anchor;
+            }
+            else
+            {
+                _start = start;
+                _end = end;
+            }
+
             // 立刻跟上，否则编辑模式下 Length 会一直是旧值（Rebuild 只在播放时跑）。
-            _length = Vector2.Distance(_start, _end);
+            _length = Vector2.Distance(start, end);
+        }
+
+        /// <summary>
+        /// 只给编辑器迁移工具用：把当前按世界坐标存的端点就地换算成相对偏移。
+        /// </summary>
+        /// <returns>真的改了吗（已经是相对模式就返回 false，可重复调用）。</returns>
+        public bool ConvertPathToRelative()
+        {
+            if (_pathIsRelative) return false;
+
+            Vector2 anchor = transform.position;
+            _start -= anchor;
+            _end -= anchor;
+            _pathIsRelative = true;
+            _length = Vector2.Distance(StartWorld, EndWorld);
+            return true;
+        }
+
+        private void Reset()
+        {
+            // 编辑器里 AddComponent 会调到这里：新组件默认走相对语义。
+            _pathIsRelative = true;
         }
 
         private void OnValidate()
         {
             if (Application.isPlaying) return;
 
-            _length = Vector2.Distance(_start, _end);
+            _length = Vector2.Distance(StartWorld, EndWorld);
         }
 
         private void OnDrawGizmos()
         {
-            Vector2 a = _start;
-            Vector2 b = _end;
+            Vector2 a = StartWorld;
+            Vector2 b = EndWorld;
             float length = Vector2.Distance(a, b);
 
             Gizmos.color = new Color(0.25f, 0.75f, 1f, 0.9f);
