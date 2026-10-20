@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc8eba0708fb20b419c0cb99a4662c19, type: 3}
   m_Name: Brick_Backdrop
   m_EditorClassIdentifier: RuleGame.Presentation::RuleGame.Presentation.SceneComponents.BackdropProfile
-  _sprite: {fileID: 21300000, guid: f669533415f42724fa12516a56846a4e, type: 3}
-  _tint: {r: 0.91, g: 0.839, b: 0.804, a: 1}
-  _clearColor: {r: 0.91, g: 0.839, b: 0.804, a: 1}
+  _sprite: {fileID: 752238809330873452, guid: e711d8eb0419b494ba23c90bc1d38d3c, type: 3}
+  _tint: {r: 1, g: 1, b: 1, a: 1}
+  _clearColor: {r: 0.894, g: 0.827, b: 0.859, a: 1}
   _fadeSeconds: 0.35

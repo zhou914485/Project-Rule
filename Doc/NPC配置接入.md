@@ -51,6 +51,24 @@ Unity 资源均位于 `Assets/_Project/`：
 
 已有的 `Data/Dialogue/NpcBarks.yarn`、原三位试播 NPC 和 `DialogueLab` 不替换。新台词在 `Data/Npcs/ConfiguredNpcs.yarn`，直接修改正文即可。表中概念例句用于首轮配置，居民四句是试播文案，尚未视为正式剧情定稿。
 
+## 镇长资格门（通往魔王城）
+
+镇长的资格事件除了走 `_onQualificationGranted`，还会写一个全局存档键并广播静态事件：
+
+- 存档键：`NpcActor.MayorQualifiedKey = "npc.mayor.qualified"`
+- 静态事件：`NpcActor.MayorQualified`
+- 触发时机：镇长读完 `Talk2` → `PassKey` 动作结束后（`CompleteAction`）
+
+门使用 `MayorQualificationGate`：
+
+1. 把 `MayorQualificationGate` 挂在**头顶那扇门**上
+2. 门带 `CityPathMotor`：`_gate` 留空，会自动取同物体上的电机；门只靠碰撞体挡路时，把碰撞体拖进 `_blocker`
+3. 不需要把镇长拖进来 —— 门订阅静态事件，跨分区也能收到
+4. `Open()` 会再检查一次 `PlayerProgress.HasAllUnlocks`；即使白盒把镇长 `_abilityReady` 手动打开，门也不会提前开
+5. 开门状态写回同一个键；读档 / 分区重新加载时门直接恢复打开
+
+Level_Center 中心小镇的头顶天花在 `y≈32`；镇长在 `(-3.65, 26.71)` 附近，正上方有缺口。已在 `Level_Center` 的 `(-3.65, 31.5)` 放了 `Prefabs/MayorGate.prefab` 实例（`CityGate` + `MayorQualificationGate`，默认宽 4m）；`_gate` 留空，开门时它会沿 `EndOffset (0,4)` 向上滑开。如果门框高度/宽度不对，直接在 Scene 里挪位置或调 Scale / `EndOffset`。
+
 ## 条件与事件
 
 条件引用必须由实际负责系统更新 `DialogueSceneFlag.SetValue(bool)`。空引用视为未满足，不根据当前规则、血量或场景名称猜测任务进度。

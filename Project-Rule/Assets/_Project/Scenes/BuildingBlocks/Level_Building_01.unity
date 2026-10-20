@@ -37190,9 +37190,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a139baac885c02e42b5f984ed1f14976, type: 3}
   m_Name: 
   m_EditorClassIdentifier: RuleGame.Presentation::RuleGame.Presentation.SceneComponents.BackdropZone
-  _profile: {fileID: 11400000, guid: 421974f3c9e753b44ab367f5d5c76840, type: 2}
   _size: {x: 280, y: 84}
+  _parts: []
   _priority: 0
+  _profile: {fileID: 11400000, guid: 421974f3c9e753b44ab367f5d5c76840, type: 2}
+  _music: {fileID: 11400000, guid: aecd7189a4feb4e349f2ebe193ea80d8, type: 2}
 --- !u!4 &552898779
 Transform:
   m_ObjectHideFlags: 0
@@ -37202,7 +37204,7 @@ Transform:
   m_GameObject: {fileID: 552898777}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 121, y: -72, z: 0}
+  m_LocalPosition: {x: 119.5, y: -64.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -283745,6 +283747,7 @@ MonoBehaviour:
   - Tile: {fileID: 11400000, guid: 2fc01a07aa6943e4ebfc4f6172659003, type: 2}
     Damage: 10
     Knockback: 6
+    SelfArt: 0
   _scanInterval: 0.05
   _repeatInterval: 0.5
   _combat: {fileID: 0}
@@ -302723,9 +302726,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a139baac885c02e42b5f984ed1f14976, type: 3}
   m_Name: 
   m_EditorClassIdentifier: RuleGame.Presentation::RuleGame.Presentation.SceneComponents.BackdropZone
-  _profile: {fileID: 11400000, guid: 922cea6ca3114d440923ba9ddc7140bb, type: 2}
   _size: {x: 40, y: 20.95}
+  _parts: []
   _priority: 10
+  _profile: {fileID: 11400000, guid: 922cea6ca3114d440923ba9ddc7140bb, type: 2}
+  _music: {fileID: 11400000, guid: 503b084ffc2c48cab843066c96ec2270, type: 2}
 --- !u!4 &1947869100
 Transform:
   m_ObjectHideFlags: 0

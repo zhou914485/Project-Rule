@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc8eba0708fb20b419c0cb99a4662c19, type: 3}
+  m_Name: Station_Backdrop
+  m_EditorClassIdentifier: RuleGame.Presentation::RuleGame.Presentation.SceneComponents.BackdropProfile
+  _sprite: {fileID: -2331939665442883455, guid: 82b1eb8e1401602468ec78c2b1268a6d, type: 3}
+  _tint: {r: 1, g: 1, b: 1, a: 1}
+  _clearColor: {r: 0.576, g: 0.773, b: 0.851, a: 1}
+  _fadeSeconds: 0.35

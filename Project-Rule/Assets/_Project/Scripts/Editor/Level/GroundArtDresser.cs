@@ -312,7 +312,7 @@ namespace RuleGame.Editor.Level
             pieces += DressOneWay(artRoot, oneWay, tilemap, grid, cell, kits, kitAt);
 
             // 刺：跟着区域套件走（积木王国 = 旧版红色带凸起瓦片），不参与墙皮铺装。
-            pieces += DressSpikes(artRoot, hazards, tilemap, grid, cell, kitAt, solid, kits);
+            pieces += DressSpikes(artRoot, hazards, tilemap, grid, cell, kitAt, solid, kits.DefaultSpikes);
 
             var logicRenderer = tilemap.GetComponent<TilemapRenderer>();
             if (logicRenderer != null && logicRenderer.enabled)
@@ -857,8 +857,27 @@ namespace RuleGame.Editor.Level
                 sr.sortingOrder = ArtSortingOrder;
                 count++;
             }
+            // ⚠️ 九宫格只铺实心格；刺（Hazard 格）不是实心，走的是自己的那一趟。
+            // 这里以前直接 return —— 于是九宫格套件的场景（出生点那个分区）**一格刺都不铺**。
+            int spikes = DressSpikes(artRoot, hazards, tilemap, grid, cell,
+                                     p => region.ResolveKit(grid.CellToWorld(p)), solid, LoadDefaultSpikes());
+
+            // 白盒收尾：九宫格路径以前没关白盒，刺的红色占位会和美术叠在一起。
+            var logicRenderer = tilemap.GetComponent<TilemapRenderer>();
+            if (logicRenderer != null && logicRenderer.enabled)
+            {
+                logicRenderer.enabled = false;
+                EditorUtility.SetDirty(logicRenderer);
+            }
+            var maskLayer = root.GetComponentInChildren<MaskLayer>(true);
+            if (maskLayer != null)
+            {
+                maskLayer.SetEditorAlpha(1f);
+                EditorUtility.SetDirty(maskLayer);
+            }
+
             UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(tilemap.gameObject.scene);
-            Debug.Log($"[铺装] 九宫格铺了 {count} 格（套件：{defaultKit.DisplayName}）");
+            Debug.Log($"[铺装] 九宫格铺了 {count} 格（套件：{defaultKit.DisplayName}），刺 {spikes} 个。白盒层已隐藏。");
             return true;
         }
 
@@ -1186,7 +1205,7 @@ namespace RuleGame.Editor.Level
         private static int DressSpikes(Transform artRoot, HazardField hazards, Tilemap tilemap,
                                        GridLayout grid, Vector3 cell,
                                        System.Func<Vector3Int, TileRegionKit> kitAt,
-                                       HashSet<Vector3Int> solid, Kit kits)
+                                       HashSet<Vector3Int> solid, List<Sprite> defaultSpikes)
         {
             if (hazards == null) return 0;
 
@@ -1218,8 +1237,8 @@ namespace RuleGame.Editor.Level
 
                     // 区域套件没配刺 → 用**默认刺**（荆棘玫瑰花丛，开始场景那套）；
                     // 都没有才跳过（保持逻辑瓦片原样）。
-                    if (sprite == null && kits.DefaultSpikes != null && kits.DefaultSpikes.Count > 0)
-                        sprite = kits.DefaultSpikes[VariantIndex(c, kits.DefaultSpikes.Count, 0)];
+                    if (sprite == null && defaultSpikes != null && defaultSpikes.Count > 0)
+                        sprite = defaultSpikes[VariantIndex(c, defaultSpikes.Count, 0)];
                     if (sprite == null) continue;
 
                     var go = new GameObject("Spike_" + sprite.name);
@@ -1337,6 +1356,22 @@ namespace RuleGame.Editor.Level
             public List<Sprite> DefaultSpikes;
         }
 
+        /// <summary>
+        /// 默认刺 = 荆棘玫瑰花丛（本地文档/功能组件-通用 交付图，已导入 Art/Sprites/Tiles/Hazards）。
+        /// </summary>
+        /// <remarks>九宫格路径与老路径**都要用**它，所以抽出来共享。</remarks>
+        private static List<Sprite> LoadDefaultSpikes()
+        {
+            var list = new List<Sprite>();
+            for (int i = 1; i <= 4; i++)
+            {
+                var s = AssetDatabase.LoadAssetAtPath<Sprite>(
+                    $"Assets/_Project/Art/Sprites/Tiles/Hazards/ThornBush_{i:00}.png");
+                if (s != null) list.Add(s);
+            }
+            return list;
+        }
+
         private static Kit LoadKits()
         {
             Sprite L(string n) => AssetDatabase.LoadAssetAtPath<Sprite>(StoneFolder + n + ".png");
@@ -1353,12 +1388,7 @@ namespace RuleGame.Editor.Level
                 WallBlocks = new List<Sprite>(),
                 DefaultSpikes = new List<Sprite>(),
             };
-            // 默认刺 = 荆棘玫瑰花丛（本地文档/功能组件-通用 交付图，已导入 Art/Sprites/Tiles/Hazards）
-            for (int i = 1; i <= 4; i++)
-            {
-                var s = AssetDatabase.LoadAssetAtPath<Sprite>($"Assets/_Project/Art/Sprites/Tiles/Hazards/ThornBush_{i:00}.png");
-                if (s != null) kit.DefaultSpikes.Add(s);
-            }
+            kit.DefaultSpikes.AddRange(LoadDefaultSpikes());
             for (int i = 1; i <= 16; i++)
             {
                 var b = L($"Spawn/Wall_Stone_Block_{i:00}");

@@ -2,43 +2,72 @@
   "generatedBy": "Tools/Art/prepare_backdrops.py",
   "items": [
     {
-      "source": "本地文档/纯色大背景/出生地/出生地-4.png",
-      "output": "Project-Rule/Assets/_Project/Art/Sprites/Backdrops/Gradient/Start_Backdrop.png",
+      "source": "本地文档/背景（重制完成/出生点/丛林.png",
+      "output": "Project-Rule/Assets/_Project/Art/Sprites/Backdrops/Painted/Start_Backdrop.png",
       "sourceSize": [
-        1280,
-        720
+        4800,
+        2700
       ],
       "outputSize": [
-        1024,
-        576
+        2048,
+        1152
       ],
-      "pixelsPerUnit": 64,
-      "worldSize": [
-        16.0,
-        9.0
-      ],
-      "note": "出生地/默认背景，暖白渐变"
+      "note": "出生点·外景（默认）"
     },
     {
-      "source": "本地文档/纯色大背景/积木/积木-1.png",
-      "output": "Project-Rule/Assets/_Project/Art/Sprites/Backdrops/Gradient/Brick_Backdrop.png",
+      "source": "本地文档/背景（重制完成/出生点/树林.png",
+      "output": "Project-Rule/Assets/_Project/Art/Sprites/Backdrops/Painted/StartGrove_Backdrop.png",
       "sourceSize": [
-        1280,
-        720
+        4800,
+        2700
       ],
       "outputSize": [
-        1024,
-        576
+        2048,
+        1152
       ],
-      "pixelsPerUnit": 64,
-      "worldSize": [
-        16.0,
-        9.0
-      ],
-      "note": "积木王国背景，淡紫到米黄"
+      "note": "出生点·外景变体"
     },
     {
-      "source": "本地文档/积木室内背景.png",
+      "source": "本地文档/背景（重制完成/出生点/冒险家协会.png",
+      "output": "Project-Rule/Assets/_Project/Art/Sprites/Backdrops/Painted/GuildHall_Backdrop.png",
+      "sourceSize": [
+        4800,
+        2700
+      ],
+      "outputSize": [
+        2048,
+        1152
+      ],
+      "note": "出生点·协会内厅"
+    },
+    {
+      "source": "本地文档/背景（重制完成/车站/车站.png",
+      "output": "Project-Rule/Assets/_Project/Art/Sprites/Backdrops/Painted/Station_Backdrop.png",
+      "sourceSize": [
+        4800,
+        2700
+      ],
+      "outputSize": [
+        2048,
+        1152
+      ],
+      "note": "车站·外景"
+    },
+    {
+      "source": "本地文档/背景（重制完成/积木王国/积木外景.png",
+      "output": "Project-Rule/Assets/_Project/Art/Sprites/Backdrops/Painted/Brick_Backdrop.png",
+      "sourceSize": [
+        4800,
+        2700
+      ],
+      "outputSize": [
+        2048,
+        1152
+      ],
+      "note": "积木王国·外景"
+    },
+    {
+      "source": "本地文档/背景（重制完成/积木王国/积木室内背景.png",
       "output": "Project-Rule/Assets/_Project/Art/Sprites/Backdrops/Painted/BrickBoss_Backdrop.png",
       "sourceSize": [
         4800,
@@ -48,12 +77,85 @@
         2048,
         1152
       ],
-      "pixelsPerUnit": 128,
-      "worldSize": [
-        16.0,
-        9.0
+      "note": "积木王国·Boss"
+    },
+    {
+      "source": "本地文档/背景（重制完成/发条王国/齿轮外景.png",
+      "output": "Project-Rule/Assets/_Project/Art/Sprites/Backdrops/Painted/Clockwork_Backdrop.png",
+      "sourceSize": [
+        4800,
+        2700
       ],
-      "note": "积木 BOSS 房背景，室内手绘"
+      "outputSize": [
+        2048,
+        1152
+      ],
+      "note": "发条王国·外景"
+    },
+    {
+      "source": "本地文档/背景（重制完成/发条王国/钟表boss_20261021_035223.png",
+      "output": "Project-Rule/Assets/_Project/Art/Sprites/Backdrops/Painted/ClockworkBoss_Backdrop.png",
+      "sourceSize": [
+        2048,
+        1152
+      ],
+      "outputSize": [
+        2048,
+        1152
+      ],
+      "note": "发条王国·Boss"
+    },
+    {
+      "source": "本地文档/背景（重制完成/毛绒王国/玩具堆.png",
+      "output": "Project-Rule/Assets/_Project/Art/Sprites/Backdrops/Painted/Plush_Backdrop.png",
+      "sourceSize": [
+        4800,
+        2700
+      ],
+      "outputSize": [
+        2048,
+        1152
+      ],
+      "note": "毛绒王国·外景"
+    },
+    {
+      "source": "本地文档/背景（重制完成/毛绒王国/舞台.png",
+      "output": "Project-Rule/Assets/_Project/Art/Sprites/Backdrops/Painted/PlushBoss_Backdrop.png",
+      "sourceSize": [
+        4800,
+        2700
+      ],
+      "outputSize": [
+        2048,
+        1152
+      ],
+      "note": "毛绒王国·Boss"
+    },
+    {
+      "source": "本地文档/背景（重制完成/魔王城/外景.png",
+      "output": "Project-Rule/Assets/_Project/Art/Sprites/Backdrops/Painted/Demon_Backdrop.png",
+      "sourceSize": [
+        4800,
+        2700
+      ],
+      "outputSize": [
+        2048,
+        1152
+      ],
+      "note": "魔王城·外景"
+    },
+    {
+      "source": "本地文档/背景（重制完成/魔王城/宫殿.png",
+      "output": "Project-Rule/Assets/_Project/Art/Sprites/Backdrops/Painted/DemonHall_Backdrop.png",
+      "sourceSize": [
+        2048,
+        1152
+      ],
+      "outputSize": [
+        2048,
+        1152
+      ],
+      "note": "魔王城·王座厅"
     }
   ]
 }

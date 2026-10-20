@@ -3,6 +3,7 @@
   "files": [
     {
       "area": "Bricks",
+      "role": "intro",
       "original": "Doc/AudioSources/MusicOriginals/Bricks/bgm_area_bricks_intro.ogg",
       "sha256": "8aac8e4baaadda15a9d2c7b5616c310532b1c2f3e6448f3f3982562fb31ec56a",
       "playback": "Project-Rule/Assets/_Project/Audio/Music/Bricks/bgm_area_bricks_intro.wav",
@@ -14,6 +15,7 @@
     },
     {
       "area": "Bricks",
+      "role": "loop",
       "original": "Doc/AudioSources/MusicOriginals/Bricks/bgm_area_bricks_loop.ogg",
       "sha256": "9263170f04d9d6068e14bad547a0cf1d5956a125f343ad15ab3f87466f737b6d",
       "playback": "Project-Rule/Assets/_Project/Audio/Music/Bricks/bgm_area_bricks_loop.wav",
@@ -24,7 +26,32 @@
       "playback_seconds": 87.946599
     },
     {
+      "area": "Bricks",
+      "role": "intro",
+      "original": "Doc/AudioSources/MusicOriginals/Bricks/bgm_boss_bricks_intro.ogg",
+      "sha256": "26ab874e1178cc269f8a8b482235ea34b53f62e492b21a3b3c0cf90c7cb1072b",
+      "playback": "Project-Rule/Assets/_Project/Audio/Music/Bricks/bgm_boss_bricks_intro.wav",
+      "original_frames": 161344,
+      "playback_frames": 98902,
+      "sample_rate": 44100,
+      "trimmed_seconds": 1.415918,
+      "playback_seconds": 2.242676
+    },
+    {
+      "area": "Bricks",
+      "role": "loop",
+      "original": "Doc/AudioSources/MusicOriginals/Bricks/bgm_boss_bricks_loop.ogg",
+      "sha256": "738b54c547c10e5347ab02de476f0da8f1fb4497e482851c01130521dac654dc",
+      "playback": "Project-Rule/Assets/_Project/Audio/Music/Bricks/bgm_boss_bricks_loop.wav",
+      "original_frames": 2854208,
+      "playback_frames": 2718707,
+      "sample_rate": 44100,
+      "trimmed_seconds": 3.072585,
+      "playback_seconds": 61.648685
+    },
+    {
       "area": "Clockwork",
+      "role": "intro",
       "original": "Doc/AudioSources/MusicOriginals/Clockwork/bgm_area_clockwork_intro.ogg",
       "sha256": "905db1e22625356ec95926086319eb19805919ede8fe731f90b5accd9f3541b4",
       "playback": "Project-Rule/Assets/_Project/Audio/Music/Clockwork/bgm_area_clockwork_intro.wav",
@@ -36,6 +63,7 @@
     },
     {
       "area": "Clockwork",
+      "role": "loop",
       "original": "Doc/AudioSources/MusicOriginals/Clockwork/bgm_area_clockwork_loop.ogg",
       "sha256": "16bf1fd810c63e3f1bb5d7e0b2d6104958d9d8fd8624a9f1c768dc7b4dd5282c",
       "playback": "Project-Rule/Assets/_Project/Audio/Music/Clockwork/bgm_area_clockwork_loop.wav",
@@ -46,15 +74,112 @@
       "playback_seconds": 61.990907
     },
     {
+      "area": "Clockwork",
+      "role": "intro",
+      "original": "Doc/AudioSources/MusicOriginals/Clockwork/bgm_boss_clockwork_intro.ogg",
+      "sha256": "e53ba75714632811fc8accce4020bd3abb38325976a7247b27e9dbba5c2a8b48",
+      "playback": "Project-Rule/Assets/_Project/Audio/Music/Clockwork/bgm_boss_clockwork_intro.wav",
+      "original_frames": 307520,
+      "playback_frames": 181875,
+      "sample_rate": 44100,
+      "trimmed_seconds": 2.849093,
+      "playback_seconds": 4.12415
+    },
+    {
+      "area": "Clockwork",
+      "role": "loop",
+      "original": "Doc/AudioSources/MusicOriginals/Clockwork/bgm_boss_clockwork_loop.ogg",
+      "sha256": "e445f5cbe04cc27587a9a9ec55fd23249efab9d04230d3a6215bf569b109f2b6",
+      "playback": "Project-Rule/Assets/_Project/Audio/Music/Clockwork/bgm_boss_clockwork_loop.wav",
+      "original_frames": 2951104,
+      "playback_frames": 2359051,
+      "sample_rate": 44100,
+      "trimmed_seconds": 13.425238,
+      "playback_seconds": 53.49322
+    },
+    {
+      "area": "Dungeon",
+      "role": "single",
+      "original": "Doc/AudioSources/MusicOriginals/Dungeon/bgm_area_dungeon.ogg",
+      "sha256": "0a0ccc18e9835197b63f2dc171afa24d3baebf4d4c6ee4145007384ecfb8164f",
+      "playback": "Project-Rule/Assets/_Project/Audio/Music/Dungeon/bgm_area_dungeon.wav",
+      "original_frames": 3774400,
+      "playback_frames": 3721162,
+      "sample_rate": 44100,
+      "trimmed_seconds": 1.207211,
+      "playback_seconds": 84.380091
+    },
+    {
+      "area": "Dungeon",
+      "role": "intro",
+      "original": "Doc/AudioSources/MusicOriginals/Dungeon/bgm_boss_dungeon_intro.ogg",
+      "sha256": "f4e92c1dfc473c7571f5de5cf32d65f5f50e30bfeaaf4cd53ae3b34bbd4278af",
+      "playback": "Project-Rule/Assets/_Project/Audio/Music/Dungeon/bgm_boss_dungeon_intro.wav",
+      "original_frames": 154944,
+      "playback_frames": 109168,
+      "sample_rate": 44100,
+      "trimmed_seconds": 1.038005,
+      "playback_seconds": 2.475465
+    },
+    {
+      "area": "Dungeon",
+      "role": "loop",
+      "original": "Doc/AudioSources/MusicOriginals/Dungeon/bgm_boss_dungeon_loop.ogg",
+      "sha256": "d2b8afae1214e964bd95b88874afc600e1a49078ace40367832aa8b4d82eff3c",
+      "playback": "Project-Rule/Assets/_Project/Audio/Music/Dungeon/bgm_boss_dungeon_loop.wav",
+      "original_frames": 4048960,
+      "playback_frames": 3169273,
+      "sample_rate": 44100,
+      "trimmed_seconds": 19.947551,
+      "playback_seconds": 71.865601
+    },
+    {
       "area": "Fluffy",
+      "role": "single",
       "original": "Doc/AudioSources/MusicOriginals/Fluffy/bgm_area_fluffy.ogg",
-      "sha256": "616b25fe852d2691b67e043237dce8f8bacbfa5b58186a595fbb9d5005f91594",
+      "sha256": "e348620413674a355b88dd6ef77fb97eb1dadebb1fff9cc8e28157011d3e2534",
       "playback": "Project-Rule/Assets/_Project/Audio/Music/Fluffy/bgm_area_fluffy.wav",
       "original_frames": 3596772,
       "playback_frames": 3500583,
       "sample_rate": 44100,
       "trimmed_seconds": 2.181156,
       "playback_seconds": 79.378299
+    },
+    {
+      "area": "Fluffy",
+      "role": "single",
+      "original": "Doc/AudioSources/MusicOriginals/Fluffy/bgm_boss_fluffy.ogg",
+      "sha256": "94c7ebf3defb03c3542ca6fb56eb22a0df8da094fcff6a399e8d0072d7bc678e",
+      "playback": "Project-Rule/Assets/_Project/Audio/Music/Fluffy/bgm_boss_fluffy.wav",
+      "original_frames": 2646336,
+      "playback_frames": 2596322,
+      "sample_rate": 44100,
+      "trimmed_seconds": 1.134104,
+      "playback_seconds": 58.873515
+    },
+    {
+      "area": "Theme",
+      "role": "single",
+      "original": "Doc/AudioSources/MusicOriginals/Theme/bgm_theme_musicbox.ogg",
+      "sha256": "ff46605a66dbc7ee515d43f611ac1038b9db0da26e387d1f935d5800244b9722",
+      "playback": "Project-Rule/Assets/_Project/Audio/Music/Theme/bgm_theme_musicbox.wav",
+      "original_frames": 3547072,
+      "playback_frames": 3503069,
+      "sample_rate": 44100,
+      "trimmed_seconds": 0.9978,
+      "playback_seconds": 79.434671
+    },
+    {
+      "area": "Village",
+      "role": "single",
+      "original": "Doc/AudioSources/MusicOriginals/Village/bgm_area_village.ogg",
+      "sha256": "db34e66795c4cd854c031dfe9da025a1d9b3e898d21b90b4eed202280e89d2db",
+      "playback": "Project-Rule/Assets/_Project/Audio/Music/Village/bgm_area_village.wav",
+      "original_frames": 5945152,
+      "playback_frames": 5834392,
+      "sample_rate": 44100,
+      "trimmed_seconds": 2.511565,
+      "playback_seconds": 132.299138
     }
   ]
 }

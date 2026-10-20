@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc8eba0708fb20b419c0cb99a4662c19, type: 3}
   m_Name: Start_Backdrop
   m_EditorClassIdentifier: RuleGame.Presentation::RuleGame.Presentation.SceneComponents.BackdropProfile
-  _sprite: {fileID: 21300000, guid: 562b503fd2ba35e41a3bad39e30708b8, type: 3}
-  _tint: {r: 0.941, g: 0.89, b: 0.812, a: 1}
-  _clearColor: {r: 0.941, g: 0.89, b: 0.812, a: 1}
+  _sprite: {fileID: 3321095756268396055, guid: 852bfadb4edfbb14192a81aa5f37b901, type: 3}
+  _tint: {r: 1, g: 1, b: 1, a: 1}
+  _clearColor: {r: 0.545, g: 0.737, b: 0.682, a: 1}
   _fadeSeconds: 0.35

@@ -37,5 +37,17 @@ MonoBehaviour:
     Size: {x: 156.5, y: 53}
     LoadRadius: 0
     AlwaysLoaded: 0
+  - PartitionId: 5
+    ScenePath: Assets/_Project/Scenes/Castle/plush.unity
+    Center: {x: 129.505, y: 16.605}
+    Size: {x: 163.01001, y: 87.01}
+    LoadRadius: 0
+    AlwaysLoaded: 0
+  - PartitionId: 6
+    ScenePath: Assets/_Project/Scenes/Spring/springnew.unity
+    Center: {x: -36, y: 20.800001}
+    Size: {x: 277, y: 90.4}
+    LoadRadius: 0
+    AlwaysLoaded: 0
   _defaultLoadRadius: 12
   _unloadHysteresis: 8
