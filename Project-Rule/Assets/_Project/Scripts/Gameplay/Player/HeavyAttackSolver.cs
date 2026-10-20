@@ -35,6 +35,14 @@ namespace RuleGame.Gameplay.Player
         /// <summary>冷却剩余秒数，≤ 0 表示可以起手。</summary>
         public float CooldownLeft => _cooldownLeft > 0f ? _cooldownLeft : 0f;
 
+        /// <summary>打断仍消耗本次重击冷却，不能靠受击反复重开。</summary>
+        public void Cancel(MotionTuning tuning)
+        {
+            if (IsBusy) _cooldownLeft = Mathf.Max(_cooldownLeft, tuning.HeavyCooldown);
+            _phase = Phase.None;
+            _timer = 0f;
+        }
+
         /// <summary>
         /// 推进一帧并给出结论。
         /// </summary>

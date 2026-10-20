@@ -35,6 +35,14 @@ namespace RuleGame.Gameplay.Player
         /// <summary>本次落地以来已用掉几段跳（供 HUD / 调试浮层算剩余）。</summary>
         public int JumpsUsed => _jumpsUsed;
 
+        /// <summary>打断只清输入缓冲，不凭空补回空中跳数。</summary>
+        public void ClearBufferedInput()
+        {
+            _jumpPressed = false;
+            _jumpCutQueued = false;
+            _bufferLeft = 0f;
+        }
+
         /// <summary>
         /// 推进一帧并给出结论。
         /// </summary>

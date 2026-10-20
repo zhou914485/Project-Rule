@@ -230,7 +230,7 @@ namespace RuleGame.Editor.Animations
 
             typeof(EntityDamageable).GetField("_died", PrivateInstance)
                 ?.SetValue(_damageable, false);
-            typeof(EntityDamageable).GetField("_invincibleUntil", PrivateInstance)
+            typeof(EntityDamageable).GetField("_invincibleLeft", PrivateInstance)
                 ?.SetValue(_damageable, 0f);
         }
 

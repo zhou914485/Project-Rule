@@ -62,7 +62,7 @@ namespace RuleGame.Gameplay.Player
                                                     tuning.KnockbackDecay * dt);
 
             Vector2 slideVelocity = _velocity + _externalVelocity;
-            bool carrying = contact.Grounded && Vector2.Dot(_velocity, contact.Up) <= .01f
+            bool carrying = contact.Grounded && Vector2.Dot(_velocity + _externalVelocity, contact.Up) <= .01f
                 && _platform != null && _platformDisplacement.sqrMagnitude > .000001f;
             if (carrying) slideVelocity += _platformDisplacement / Mathf.Max(.0001f, dt);
 
@@ -136,6 +136,16 @@ namespace RuleGame.Gameplay.Player
         /// <remarks><b>不能</b>直接写 <c>Rigidbody2D.linearVelocity</c>：本类每个物理帧都会整体
         /// 覆盖速度，那样写进去的冲量活不过一帧。</remarks>
         public void AddImpulse(Vector2 impulse) => _externalVelocity += impulse;
+
+        /// <summary>受击收掉自主动量，保留伤害入口刚施加的真实击退与抗性结果。</summary>
+        public void CancelSelfMotion()
+        {
+            _velocity = Vector2.zero;
+            _wallSliding = false;
+        }
+
+        /// <summary>短定格不提交移动，也不消耗已保存的击退。</summary>
+        public void FreezeStep() => _body.linearVelocity = Vector2.zero;
         /// <summary>由支撑平台在本帧玩家移动前提交。起跳时自动丢弃，不写入玩家自主速度。</summary>
         public void CarryOnPlatform(Vector2 displacement, Collider2D platform)
         {
@@ -173,7 +183,8 @@ namespace RuleGame.Gameplay.Player
         private Rigidbody2D.SlideMovement BuildSlideMovement(MotionTuning tuning, ContactSensor.State contact)
         {
             // 上升途中不加吸附，否则起跳会被按回地面。
-            bool anchored = contact.Grounded && Vector2.Dot(_velocity, contact.Up) <= 0.01f;
+            // 向上的外部击退也必须脱离地面，不能被贴地吸附按回去。
+            bool anchored = contact.Grounded && Vector2.Dot(_velocity + _externalVelocity, contact.Up) <= 0.01f;
 
             return new Rigidbody2D.SlideMovement
             {

@@ -2,6 +2,8 @@ using System;
 using UnityEngine;
 using RuleGame.Gameplay.Player;
 using RuleGame.Infrastructure;
+using RuleGame.Infrastructure.Snapshot;
+using RuleGame.Infrastructure.Time;
 
 namespace RuleGame.Gameplay.Combat
 {
@@ -54,7 +56,8 @@ namespace RuleGame.Gameplay.Combat
         // ==================================================================
 
         private IKnockbackReceiver _knockbackReceiver;
-        private float _invincibleUntil;
+        private float _invincibleLeft;
+        private SnapshotSystem _snapshots;
         private bool  _died;
 
         /// <summary>
@@ -64,7 +67,9 @@ namespace RuleGame.Gameplay.Combat
         public Faction Faction => _faction;
 
         /// <summary>无敌帧内（或已死亡）：再来伤害也不会结算。</summary>
-        public bool IsInvincible => !_died && (Invulnerable || Time.time < _invincibleUntil);
+        public bool IsInvincible => !_died && (Invulnerable || _invincibleLeft > 0f);
+        /// <summary>只读的临时无敌余量，供表现层提示；调试免伤不应永久闪烁。</summary>
+        public float InvincibilityRemaining => _died ? 0f : _invincibleLeft;
 
         public bool IsDead => _died;
 
@@ -92,7 +97,7 @@ namespace RuleGame.Gameplay.Combat
                 _status.ApplyHealthDelta(_status.HealthMax - _status.Health);
             }
 
-            _invincibleUntil = Time.time + Mathf.Max(_invincibleSeconds, 1f);
+            _invincibleLeft = Mathf.Max(_invincibleSeconds, 1f);
         }
 
         // ==================================================================
@@ -109,6 +114,43 @@ namespace RuleGame.Gameplay.Combat
                 Debug.LogWarning("[EntityDamageable] 未指定 CombatSystem，死亡不会广播给关卡流程。", this);
 
             _knockbackReceiver = GetComponent<IKnockbackReceiver>();
+        }
+
+        private void OnEnable() => BindSnapshots();
+
+        private void Update()
+        {
+            BindSnapshots();
+            AdvanceInvincibility(Time.deltaTime);
+        }
+
+        private void AdvanceInvincibility(float deltaTime)
+        {
+            // 游戏暂停不修改 timeScale，无敌窗口必须和角色一起冻结。
+            if (_status == null || _status.IsPaused || TimeManager.Instance?.IsPaused == true) return;
+            _invincibleLeft = Mathf.Max(0f, _invincibleLeft - deltaTime);
+        }
+
+        private void OnDisable()
+        {
+            if (_snapshots != null) _snapshots.OnRestored -= OnRestored;
+            _snapshots = null;
+            _invincibleLeft = 0f;
+        }
+
+        private void BindSnapshots()
+        {
+            if (_snapshots == SnapshotSystem.Instance) return;
+            if (_snapshots != null) _snapshots.OnRestored -= OnRestored;
+            _snapshots = SnapshotSystem.Instance;
+            if (_snapshots != null) _snapshots.OnRestored += OnRestored;
+        }
+
+        private void OnRestored()
+        {
+            // EntityStatus 冷却也采用同一语义：不把未来的无敌或死亡标记带回过去。
+            _invincibleLeft = 0f;
+            _died = _status != null && _status.Health <= 0f;
         }
 
         // ==================================================================
@@ -154,7 +196,7 @@ namespace RuleGame.Gameplay.Combat
             float before = _status.Health;
             _status.ApplyHealthDelta(-amount);
             float applied = before - _status.Health;
-            if (_invincibleSeconds > 0f) _invincibleUntil = Time.time + _invincibleSeconds;
+            if (_invincibleSeconds > 0f) _invincibleLeft = _invincibleSeconds;
 
             ApplyKnockback(damage);
 

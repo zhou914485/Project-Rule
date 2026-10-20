@@ -7,6 +7,7 @@ using RuleGame.Gameplay.Combat;
 using RuleGame.Gameplay.Common;
 using RuleGame.Infrastructure.Interaction;
 using RuleGame.Infrastructure.Rules;
+using RuleGame.Infrastructure.Snapshot;
 
 namespace RuleGame.Gameplay.Player
 {
@@ -196,6 +197,14 @@ namespace RuleGame.Gameplay.Player
         [Header("击退")]
         [Tooltip("外部冲量每秒的衰减量。")]
         [SerializeField] private float _knockbackDecay = 30f;
+
+        [Header("受击节奏")]
+        [Tooltip("角色命中定格的游戏秒数；不改变全局时间倍率。")]
+        [SerializeField, Range(0f, .12f)] private float _hurtImpactPause = .055f;
+        [Tooltip("定格之后的短硬直；期间保留重力、风和碰撞，阻止自主动作。")]
+        [SerializeField, Range(.1f, .5f)] private float _hurtRecovery = .22f;
+        [Tooltip("受击硬直内的外部击退衰减；较慢收速，让接触伤害也能弹开约一个身位。")]
+        [SerializeField, Min(0f)] private float _hurtKnockbackDecay = 20f;
 
         [Header("推动（重物）")]
         /// <summary>
@@ -389,6 +398,11 @@ namespace RuleGame.Gameplay.Player
 
         /// <summary>死亡标记的持有者；复活要清它。同物体上没有就不清（只回血）。</summary>
         private EntityDamageable _damageable;
+        private SnapshotSystem _hurtSnapshots;
+        private float _hurtPauseLeft, _hurtRecoveryLeft;
+        public bool IsHurt => _hurtPauseLeft > 0f || _hurtRecoveryLeft > 0f;
+        public bool IsInHurtImpactPause => _hurtPauseLeft > 0f;
+        public float HurtRecoveryDuration => _hurtRecovery;
 
         // ---------------- 落点（内存，不落盘 —— 约束 C5） ----------------
 
@@ -542,9 +556,52 @@ namespace RuleGame.Gameplay.Player
         {
             EnsureInit("OnEnable");     // 组件被重新启用时补齐（Awake 可能根本没跑过）
             _input?.Enable();
+            if (_damageable != null) _damageable.OnDamageTaken += HandleDamageTaken;
+            BindHurtSnapshots();
         }
 
-        private void OnDisable() => _input?.Disable();
+        private void OnDisable()
+        {
+            _input?.Disable();
+            if (_damageable != null) _damageable.OnDamageTaken -= HandleDamageTaken;
+            if (_hurtSnapshots != null) _hurtSnapshots.OnRestored -= ClearHurt;
+            _hurtSnapshots = null;
+            ClearHurt();
+        }
+
+        private void BindHurtSnapshots()
+        {
+            if (_hurtSnapshots == SnapshotSystem.Instance) return;
+            if (_hurtSnapshots != null) _hurtSnapshots.OnRestored -= ClearHurt;
+            _hurtSnapshots = SnapshotSystem.Instance;
+            if (_hurtSnapshots != null) _hurtSnapshots.OnRestored += ClearHurt;
+        }
+
+        private void HandleDamageTaken(RuleGame.Infrastructure.DamageInfo damage)
+        {
+            if (!isActiveAndEnabled || !EnsureInit(nameof(HandleDamageTaken))) return;
+            MotionTuning tuning = BuildTuning();
+            _dash.Cancel(tuning);
+            _attack.Cancel();
+            _heavy.Cancel(tuning);
+            _jump.ClearBufferedInput();
+            _input.Tick(true);
+            _mover.CancelSelfMotion();
+            _mover.FreezeStep();
+            _hurtPauseLeft = _hurtImpactPause;
+            _hurtRecoveryLeft = _hurtRecovery;
+        }
+
+        private void ClearHurt()
+        {
+            _hurtPauseLeft = _hurtRecoveryLeft = 0f;
+            _dash?.Cancel(BuildTuning());
+            _attack?.Cancel();
+            _heavy?.Cancel(BuildTuning());
+            _jump?.ClearBufferedInput();
+            _mover?.Halt();
+            _mover?.FreezeStep();
+        }
 
         // ==================================================================
         //  输入（视觉帧）
@@ -552,8 +609,9 @@ namespace RuleGame.Gameplay.Player
 
         private void Update()
         {
-            // 暂停 / 已阵亡 / 被 UI 接管 / 门禁刚释放的恢复帧 —— 四种都不读键，并清空粘滞标记。
-            _input.Tick(IsPaused || IsDead || _input.IsSuppressed);
+            BindHurtSnapshots();
+            // 暂停 / 阵亡 / 受击 / UI 接管及门禁恢复帧都清空动作输入。
+            _input.Tick(IsPaused || IsDead || IsHurt || _input.IsSuppressed);
 
             // 倒计时与「落点」有关，与输入无关，所以放在门禁之外。
             TickRespawn();
@@ -609,11 +667,19 @@ namespace RuleGame.Gameplay.Player
             //（文档 §5）—— 不需要额外的暂停分支。
             if (IsPaused)
             {
-                _mover.Halt();
+                if (IsHurt) _mover.FreezeStep();
+                else _mover.Halt();
                 return;
             }
 
             float dt = Time.fixedDeltaTime;
+            if (IsInHurtImpactPause)
+            {
+                _hurtPauseLeft = Mathf.Max(0f, _hurtPauseLeft - dt);
+                _input.Sample();
+                _mover.FreezeStep();
+                return;
+            }
 
             // 参数每物理帧重打包一次（运行期改字段立刻生效），这一帧内共用同一份。
             MotionTuning tuning = BuildTuning();
@@ -623,6 +689,7 @@ namespace RuleGame.Gameplay.Player
 
             // ① 接触：Sense 内部先解出「上」方向（探测得先知道哪边是下），再扫地面与左右墙。
             PlayerInput.State   input   = _input.Sample();
+            if (IsHurt || IsDead) input = default;
             // 时间恒定：窗口内的定点回溯。窗口没开时 TryRewind() 返回 false，是空操作。
             // 放在物理帧：回溯会直接写回所有实体的刚体位置，与物理步进同一节拍更安全。
             if (input.RewindPressed) TryRewindTime();
@@ -704,6 +771,7 @@ namespace RuleGame.Gameplay.Player
             //    方向取 _mover.Facing（**换算后**的朝向）：摩擦反转时按右往左走，
             //    推的方向要跟着人实际去的方向，不能跟按键。
             _push.Push(tuning, input.Move, _mover.Facing);
+            _hurtRecoveryLeft = Mathf.Max(0f, _hurtRecoveryLeft - dt);
         }
 
         // ==================================================================
@@ -1016,6 +1084,7 @@ namespace RuleGame.Gameplay.Player
         /// </remarks>
         public void TeleportTo(Vector2 position)
         {
+            ClearHurt();
             _mover?.Halt();
 
             if (_body != null)
@@ -1294,7 +1363,7 @@ namespace RuleGame.Gameplay.Player
 
             WindLayer            = _windLayer,
 
-            KnockbackDecay       = _knockbackDecay,
+            KnockbackDecay       = IsHurt ? _hurtKnockbackDecay : _knockbackDecay,
 
             PushStrength         = _pushStrength,
             PushProbeDistance    = _pushProbeDistance,

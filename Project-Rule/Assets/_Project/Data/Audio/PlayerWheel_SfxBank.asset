@@ -75,7 +75,8 @@ MonoBehaviour:
     MaxVoices: 4
     Priority: 64
   - Cue: 7
-    Clips: []
+    Clips:
+    - {fileID: 8300000, guid: 20b941c90ab7645ecafec6b4159c7924, type: 3}
     Volume: 0.56
     Pitch: {x: 0.98, y: 1.02}
     MinInterval: 0.06

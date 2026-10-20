@@ -80,7 +80,7 @@ namespace RuleGame.Editor.Animations
                 {
                     case 0:
                         _receiver.ApplyDamage(new DamageInfo { Amount = 10f });
-                        _due = Time.time + .18f; _step++; break;
+                        _due = Time.time + .07f; _step++; break;
                     case 1:
                         Check(_status.Health == 90f && InState(_animator, "Hurt"), "实际掉血触发受伤状态");
                         var hurt = AssetDatabase.LoadAssetAtPath<AnimationClip>("Assets/_Project/Art/Animations/Hero/Hero_Hurt.anim");
@@ -90,7 +90,7 @@ namespace RuleGame.Editor.Animations
                         _animator.SetTrigger(PlayerAnimationDriver.ParamLand);
                         _animator.SetTrigger(PlayerAnimationDriver.ParamAttack);
                         _animator.SetTrigger(PlayerAnimationDriver.ParamHeavy);
-                        _due = Time.time + .15f; _step++; break;
+                        _due = Time.time + .05f; _step++; break;
                     case 2:
                         Check(InState(_animator, "Hurt"), "受伤动画不被落地或攻击立即覆盖");
                         _animator.ResetTrigger(PlayerAnimationDriver.ParamLand);

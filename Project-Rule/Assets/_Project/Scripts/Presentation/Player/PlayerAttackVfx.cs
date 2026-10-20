@@ -169,7 +169,7 @@ namespace RuleGame.Presentation.Player
         private void LateUpdate()
         {
             BindSnapshots();
-            if (!_player.isActiveAndEnabled || (_status != null && _status.Health <= 0f))
+            if (!_player.isActiveAndEnabled || _player.IsHurt || (_status != null && _status.Health <= 0f))
             {
                 Clear();
                 return;

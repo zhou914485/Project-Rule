@@ -1,5 +1,7 @@
 using UnityEngine;
 using RuleGame.Gameplay.Player;
+using RuleGame.Gameplay.Combat;
+using RuleGame.Infrastructure.Snapshot;
 
 namespace RuleGame.Presentation.Player
 {
@@ -126,6 +128,8 @@ namespace RuleGame.Presentation.Player
         [SerializeField] private Animator         _animator;
         [SerializeField] private SpriteRenderer   _renderer;
         [SerializeField] private EntityStatus     _status;
+        private float _hurtClipLength = .5833333f;
+        private SnapshotSystem _reactionSnapshots;
 
         // ==================================================================
         //  运行时
@@ -183,6 +187,12 @@ namespace RuleGame.Presentation.Player
             // 旧场景和运行时生成的玩家同样接入，无需逐份修改 Prefab/场景。
             if (_player != null && _player.GetComponent<PlayerAttackVfx>() == null)
                 _player.gameObject.AddComponent<PlayerAttackVfx>();
+            if (_player != null && _player.GetComponent<EntityDamageable>() != null
+                && _player.GetComponent<PlayerHurtFeedback>() == null)
+                _player.gameObject.AddComponent<PlayerHurtFeedback>();
+            if (_animator != null && _animator.runtimeAnimatorController != null)
+                foreach (AnimationClip clip in _animator.runtimeAnimatorController.animationClips)
+                    if (clip.name == "Hero_Hurt") _hurtClipLength = clip.length;
         }
 
         private void OnEnable()
@@ -210,6 +220,8 @@ namespace RuleGame.Presentation.Player
 
         private void OnDisable()
         {
+            if (_reactionSnapshots != null) _reactionSnapshots.OnRestored -= ResetReactionAfterRewind;
+            _reactionSnapshots = null;
             // 驱动被关掉就把复活放行：等待只能由本类解除，没人解除会把人永远卡在死亡里。
             ReleaseDeathWait();
 
@@ -228,6 +240,12 @@ namespace RuleGame.Presentation.Player
 
         private void Update()
         {
+            if (_reactionSnapshots != SnapshotSystem.Instance)
+            {
+                if (_reactionSnapshots != null) _reactionSnapshots.OnRestored -= ResetReactionAfterRewind;
+                _reactionSnapshots = SnapshotSystem.Instance;
+                if (_reactionSnapshots != null) _reactionSnapshots.OnRestored += ResetReactionAfterRewind;
+            }
             if (_animator == null)
             {
                 if (!_warnedNoAnimator)
@@ -240,7 +258,10 @@ namespace RuleGame.Presentation.Player
 
             // 暂停：动画要一起冻住。D18 用 Physics2D.simulationMode 停物理、**不改** timeScale，
             // 所以这里必须显式停，否则拼装界面一开角色还在原地跑。
-            _animator.speed = (_status != null && _status.IsPaused) ? 0f : 1f;
+            bool hurtPlaying = _animator.GetCurrentAnimatorStateInfo(0).shortNameHash == HurtState
+                || _animator.IsInTransition(0) && _animator.GetNextAnimatorStateInfo(0).shortNameHash == HurtState;
+            _animator.speed = (_status != null && _status.IsPaused) || _player.IsInHurtImpactPause ? 0f
+                : hurtPlaying ? _hurtClipLength / Mathf.Max(.1f, _player.HurtRecoveryDuration) : 1f;
 
             // 受伤/死亡期间仍更新移动参数，但低优先级 AnyState 过渡不能抢走演出。
             bool reacting = IsReactionState(_animator.GetCurrentAnimatorStateInfo(0))
@@ -254,6 +275,12 @@ namespace RuleGame.Presentation.Player
 
         private static bool IsReactionState(AnimatorStateInfo state)
             => state.shortNameHash == HurtState || state.shortNameHash == DieState;
+
+        private void ResetReactionAfterRewind()
+        {
+            if (_status != null && _status.Health > 0f) ResetAfterRespawn();
+            if (_status != null) _lastHealth = _status.Health;
+        }
 
         /// <summary>
         /// 朝向**必须放在 LateUpdate**，不能和上面的参数一起写在 <c>Update</c> 里。

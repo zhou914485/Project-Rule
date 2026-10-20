@@ -34,6 +34,15 @@ namespace RuleGame.Gameplay.Player
         /// <summary>当前连段打到第几刀（0 起数）；没在出招时是 −1。</summary>
         public int ComboIndex => _comboIndex;
 
+        /// <summary>受击打断：连段与待兑现的下一刀一起丢弃。</summary>
+        public void Cancel()
+        {
+            _phase = Phase.None;
+            _timer = 0f;
+            _comboIndex = -1;
+            _buffered = false;
+        }
+
         /// <summary>
         /// 推进一帧并给出结论。
         /// </summary>

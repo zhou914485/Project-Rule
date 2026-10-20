@@ -34,6 +34,12 @@ namespace RuleGame.Gameplay.Player
         /// </summary>
         public void Reset(MotionTuning tuning) => _dashesLeft = tuning.MaxDashes;
 
+        /// <summary>受击结束冲刺，保留已消耗的次数与冷却。</summary>
+        public void Cancel(MotionTuning tuning)
+        {
+            if (IsDashing) EndDash(tuning);
+        }
+
         /// <summary>
         /// 推进一帧并给出结论。
         /// </summary>
