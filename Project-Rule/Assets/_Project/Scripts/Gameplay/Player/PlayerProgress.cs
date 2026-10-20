@@ -22,7 +22,8 @@ namespace RuleGame.Gameplay.Player
     /// <see cref="ClaimedSourceIds"/> 这几个小集合（约束 C5：不序列化物理状态）。</para>
     /// </remarks>
     [DisallowMultipleComponent]
-    public sealed class PlayerProgress : MonoBehaviour, IRuleUnlocks, ICityRewardReceiver
+    public sealed class PlayerProgress : MonoBehaviour, IRuleUnlocks, ICityRewardReceiver,
+        RuleGame.Infrastructure.Persistence.IRuleUnlockStore
     {
         [SerializeField] private PlayerController _player;
 
@@ -149,6 +150,46 @@ namespace RuleGame.Gameplay.Player
         }
 
         /// <summary>场景里找玩家身上的账本（没有返回 null）。</summary>
+        // ==================================================================
+        //  IRuleUnlockStore：存档桥接（显式实现，避免与游戏内用的枚举集合重名冲突）
+        // ==================================================================
+
+        IReadOnlyList<string> RuleGame.Infrastructure.Persistence.IRuleUnlockStore.UnlockedAttributes
+            => ToNameList(_attributes);
+
+        IReadOnlyList<string> RuleGame.Infrastructure.Persistence.IRuleUnlockStore.UnlockedRelations
+            => ToNameList(_relations);
+
+        /// <summary>把存档里的词条名灌回来。名字对不上（旧档 / 配置改名）就跳过并留痕。</summary>
+        void RuleGame.Infrastructure.Persistence.IRuleUnlockStore.RestoreUnlocks(
+            IEnumerable<string> attributes, IEnumerable<string> relations)
+        {
+            if (attributes != null)
+            {
+                foreach (string name in attributes)
+                {
+                    if (Enum.TryParse(name, true, out AttributeId attr)) UnlockAttribute(attr);
+                    else Debug.LogWarning($"[PlayerProgress] 存档里的属性词条无法识别，已跳过：\"{name}\"。", this);
+                }
+            }
+
+            if (relations != null)
+            {
+                foreach (string name in relations)
+                {
+                    if (Enum.TryParse(name, true, out RelationId rel)) UnlockRelation(rel);
+                    else Debug.LogWarning($"[PlayerProgress] 存档里的关系词条无法识别，已跳过：\"{name}\"。", this);
+                }
+            }
+        }
+
+        private static IReadOnlyList<string> ToNameList<T>(IEnumerable<T> values)
+        {
+            var list = new List<string>();
+            foreach (T v in values) list.Add(v.ToString());
+            return list;
+        }
+
         public static PlayerProgress Find()
             => UnityEngine.Object.FindAnyObjectByType<PlayerProgress>();
 
