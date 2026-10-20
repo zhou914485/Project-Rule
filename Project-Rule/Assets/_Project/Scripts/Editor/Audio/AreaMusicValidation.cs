@@ -5,6 +5,7 @@ using System.Linq;
 using RuleGame.Infrastructure.Rules;
 using RuleGame.Infrastructure.Time;
 using RuleGame.Presentation.Audio;
+using RuleGame.Presentation.SceneComponents;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
@@ -23,6 +24,7 @@ namespace RuleGame.Editor.Audio
         private static Transform _focus;
         private static MusicProfile _bricks, _clock, _fluffy;
         private static MusicRegion _brickRegion, _clockRegion, _fluffyRegion;
+        private static BackdropZone _musicBackdrop;
         private static UnityEngine.SceneManagement.Scene _preloaded;
         private static int _step, _sample;
         private static double _due, _deadline, _firstStart;
@@ -88,6 +90,7 @@ namespace RuleGame.Editor.Audio
                 _brickRegion = MakeRegion("Bricks", 0f);
                 _clockRegion = MakeRegion("Clockwork", 20f);
                 _fluffyRegion = MakeRegion("Fluffy", 40f);
+                _musicBackdrop = MakeMusicBackdrop("MusicValidation_Backdrop", _fluffy, 60f);
                 var host = new GameObject("MusicValidation_Director");
                 host.SetActive(false);
                 _director = host.AddComponent<MusicDirector>();
@@ -112,6 +115,18 @@ namespace RuleGame.Editor.Audio
             serialized.FindProperty("_size").vector2Value = new Vector2(20f, 30f);
             serialized.ApplyModifiedPropertiesWithoutUndo();
             return region;
+        }
+
+        private static BackdropZone MakeMusicBackdrop(string name, MusicProfile music, float x)
+        {
+            var go = new GameObject(name);
+            go.transform.position = new Vector3(x, 0f, 0f);
+            var zone = go.AddComponent<BackdropZone>();
+            var serialized = new SerializedObject(zone);
+            serialized.FindProperty("_music").objectReferenceValue = music;
+            serialized.FindProperty("_size").vector2Value = new Vector2(20f, 30f);
+            serialized.ApplyModifiedPropertiesWithoutUndo();
+            return zone;
         }
 
         private static AudioSource Source(AudioClip clip) => _director.GetComponentsInChildren<AudioSource>().First(s => s.clip == clip);
@@ -244,6 +259,16 @@ namespace RuleGame.Editor.Audio
                             "暂停期间重新启用仍正确绑定音乐与压低状态");
                         Check(_director.GetComponentsInChildren<AudioSource>().Length == 4, "重新启用无声源或订阅累积");
                         Check(_director.ScheduledStart == _director.ScheduledLoopStart, "重新启用不会重复已听过的前奏");
+                        TimeManager.Instance.SetPaused(false);
+                        _focus.position = new Vector3(60f, 0f, 0f);
+                        // 重新启用后的默认曲还在淡化（1.5 s），第三首要等它结束才能排程，留足 5 s。
+                        _due = Now + 5d;
+                        break;
+                    case 17:
+                        Check(_director.CurrentProfile == _fluffy && !_director.IsTransitioning,
+                            "合并后的 BackdropZone 音乐字段也能驱动切曲");
+                        Check(_director.CurrentRegion == _musicBackdrop,
+                            "音乐归属解析到带音乐的 BackdropZone，而不是旁边的 MusicRegion");
                         Finish(true);
                         break;
                 }

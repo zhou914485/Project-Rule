@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using RuleGame.Gameplay.Player;
 using RuleGame.Infrastructure.Time;
+using RuleGame.Presentation.SceneComponents;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -29,7 +30,7 @@ namespace RuleGame.Presentation.Audio
         private readonly Deck[] _decks = new Deck[2];
         private readonly float[] _fadeFrom = new float[2];
         private ITimeManager _time;
-        private MusicRegion _region;
+        private AreaZone _region;
         private MusicProfile _candidate, _desired;
         private float _candidateTime, _duckGain = 1f, _focusRetry;
         private double _fadeStart, _fadeDuration;
@@ -38,7 +39,7 @@ namespace RuleGame.Presentation.Audio
         private float _pauseTarget = 1f;
 
         public MusicProfile CurrentProfile => _target >= 0 ? _decks[_target]?.Profile : null;
-        public MusicRegion CurrentRegion => _region;
+        public AreaZone CurrentRegion => _region;
         public float PauseGain => _duckGain;
         public bool IsTransitioning => _fading;
         public double ScheduledLoopStart => _target >= 0 ? _decks[_target].LoopStart : 0d;
@@ -122,9 +123,11 @@ namespace RuleGame.Presentation.Audio
 
         public void RefreshRegion(bool immediate = false)
         {
-            if (_focus != null) _region = MusicRegion.Resolve(_focus.position, _region, _boundaryHysteresis);
-            else _region = null;
-            MusicProfile next = _region != null ? _region.Profile : _defaultProfile;
+            _region = _focus != null
+                ? AreaZone.Resolve(_focus.position, _region, _boundaryHysteresis,
+                    zone => zone.Music != null && zone.Music.IsPlayable)
+                : null;
+            MusicProfile next = _region != null ? _region.Music : _defaultProfile;
             if (next != _candidate)
             {
                 _candidate = next;

@@ -20,6 +20,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Project/Scenes/Castle/castle.unity
     guid: 6f0958bfdc9f6f941827dc30936f7d03
+  - enabled: 1
+    path: Assets/_Project/Scenes/Castle/plush.unity
+    guid: d0a1c38d64bef9f4fb2c021755d40a97
+  - enabled: 1
+    path: Assets/_Project/Scenes/Spring/springnew.unity
+    guid: 5c683c74395c3d344b9c54507e5d0e84
   m_configObjects:
     com.unity.dt.app-ui: {fileID: 11400000, guid: 1b1c20d82303e4b5781c3ef50ac1449f, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

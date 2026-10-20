@@ -255,6 +255,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: RuleGame.Persistence::RuleGame.Persistence.PersistenceDriver
   _playerStatusBehaviour: {fileID: 0}
   _unlockStoreBehaviour: {fileID: 0}
+  _progressStoreBehaviour: {fileID: 0}
 --- !u!4 &533479198
 Transform:
   m_ObjectHideFlags: 0
@@ -354,11 +355,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2277102959006401092, guid: 3d9ba9685861f8f46b65e40f45026839, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.05
+      value: -4.08
       objectReference: {fileID: 0}
     - target: {fileID: 2277102959006401092, guid: 3d9ba9685861f8f46b65e40f45026839, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.24
+      value: 6.3999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 2277102959006401092, guid: 3d9ba9685861f8f46b65e40f45026839, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 3856651897249922466, guid: 3d9ba9685861f8f46b65e40f45026839, type: 3}
       propertyPath: m_Enabled
