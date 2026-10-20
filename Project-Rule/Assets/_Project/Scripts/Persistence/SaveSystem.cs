@@ -52,6 +52,9 @@ namespace RuleGame.Persistence
         /// <summary>最近一次存档点的编号；没存过点是 null。</summary>
         private string _respawnId;
 
+        /// <summary>存档点所在的分区场景路径；没存过点是 null。</summary>
+        private string _respawnScene;
+
         // ==================================================================
         //  构造 / 生命周期
         // ==================================================================
@@ -96,6 +99,7 @@ namespace RuleGame.Persistence
                 ClearedLevels = new List<int>(_levelFlow.ClearedLevels),
                 PlayerStatus  = _player != null ? _player.ToData() : null,
                 RespawnId     = _respawnId,
+                RespawnScene  = _respawnScene,
 
                 // 世界状态是「全量照片」：组件在改变时写进 WorldStateStore，
                 // 卸载的分区也留在表里，所以这里整体导出即可，不需要枚举场景对象。
@@ -139,6 +143,7 @@ namespace RuleGame.Persistence
                     _rules.ClearAll();
                     _history.Clear();
                     _respawnId = null;
+                    _respawnScene = null;
 
                     // 新游戏：世界回到设计初态 —— 清掉上一局留下的机关状态，
                     // 否则「门还是碎的 / 开关还是按下的」会跟着进新档。
@@ -148,6 +153,7 @@ namespace RuleGame.Persistence
 
                 // ⓪ 世界状态先灌回仓库：随后加载出来的分区会在 Start 里各自查表恢复。
                 _respawnId = data.RespawnId;
+                _respawnScene = data.RespawnScene;
                 WorldStateStore.Import(data.WorldStates);
 
                 // ① 进度（SetProgress 只写状态不发事件，不会在这一步触发自动存档）。
@@ -246,15 +252,19 @@ namespace RuleGame.Persistence
         /// <para><see cref="WorldStateStore"/> 里已经是全量世界状态（含已卸载分区），
         /// 所以这里不需要再枚举场景对象。</para>
         /// </remarks>
-        public void SaveCheckpoint(string respawnPointId)
+        public void SaveCheckpoint(string respawnPointId, string respawnScenePath = null)
         {
             if (!string.IsNullOrEmpty(respawnPointId)) _respawnId = respawnPointId;
+            if (!string.IsNullOrEmpty(respawnScenePath)) _respawnScene = respawnScenePath;
             RefillPlayer();
             Save();
         }
 
         /// <summary>最近一次存档点编号；没存过点是 null。</summary>
         public string LatestRespawnId => _respawnId;
+
+        /// <summary>最近一次存档点所在的分区场景路径；没存过点是 null。</summary>
+        public string LatestRespawnScene => _respawnScene;
 
         /// <summary>
         /// 把能量 / 生命回满（并清冷却）。

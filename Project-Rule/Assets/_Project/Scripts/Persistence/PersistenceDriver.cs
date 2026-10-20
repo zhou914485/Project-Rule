@@ -95,11 +95,11 @@ namespace RuleGame.Persistence
         }
 
         /// <summary>存档点广播：先回满玩家，再把当前世界（含已卸载分区）整体写盘。</summary>
-        private void HandleCheckpointRequested(string spawnPointId)
+        private void HandleCheckpointRequested(string spawnPointId, string scenePath)
         {
             if (Save == null) return;
-            Save.SaveCheckpoint(spawnPointId);
-            Debug.Log($"[PersistenceDriver] 存档点存档：{spawnPointId}（世界状态 {WorldStateStore.Count} 条）");
+            Save.SaveCheckpoint(spawnPointId, scenePath);
+            Debug.Log($"[PersistenceDriver] 存档点存档：{spawnPointId} @ {scenePath}（世界状态 {WorldStateStore.Count} 条）");
         }
 
         private void OnDestroy()

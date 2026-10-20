@@ -277,8 +277,10 @@ namespace RuleGame.Editor.Persistence
                     $"count={shot.WorldStates.Count}");
 
             // 存档点：编号落档 + 玩家回满。
-            save9.SaveCheckpoint("checkpoint-03");
+            const string respawnScene = "Assets/_Project/Scenes/Start/Level_Center.unity";
+            save9.SaveCheckpoint("checkpoint-03", respawnScene);
             h.Check("存档点编号落档", save9.LatestRespawnId == "checkpoint-03", save9.LatestRespawnId ?? "null");
+            h.Check("存档点分区落档", save9.LatestRespawnScene == respawnScene, save9.LatestRespawnScene ?? "null");
             h.Check("存档点回满能量", Mathf.Approximately(player9.Energy, player9.EnergyMax),
                     $"{player9.Energy}/{player9.EnergyMax}");
             h.Check("存档点回满生命", Mathf.Approximately(player9.Health, player9.HealthMax),
@@ -297,6 +299,7 @@ namespace RuleGame.Editor.Persistence
                     WorldStateStore.GetBool(doorKey) && WorldStateStore.TryGet(switchKey, out string sw9) && sw9 == "0",
                     $"count={WorldStateStore.Count}");
             h.Check("存档点编号随档恢复", save9b.LatestRespawnId == "checkpoint-03", save9b.LatestRespawnId ?? "null");
+            h.Check("存档点分区随档恢复", save9b.LatestRespawnScene == respawnScene, save9b.LatestRespawnScene ?? "null");
             h.Check("玩家数值随档回满（不是旧值）",
                     Mathf.Approximately(player9b.Energy, player9b.EnergyMax)
                     && Mathf.Approximately(player9b.Health, player9b.HealthMax),
@@ -308,9 +311,11 @@ namespace RuleGame.Editor.Persistence
             LoadContext.SetFromSave(loaded9);
             h.Check("续档上下文：ContinueGame = true", LoadContext.ContinueGame, LoadContext.ContinueGame.ToString());
             h.Check("续档上下文：带上存档点编号", LoadContext.RespawnId == "checkpoint-03", LoadContext.RespawnId ?? "null");
+            h.Check("续档上下文：带上分区场景", LoadContext.RespawnScene == respawnScene, LoadContext.RespawnScene ?? "null");
 
             LoadContext.SetFromSave(null);
-            h.Check("新游戏上下文：ContinueGame = false", !LoadContext.ContinueGame && LoadContext.RespawnId == null,
+            h.Check("新游戏上下文：ContinueGame = false",
+                    !LoadContext.ContinueGame && LoadContext.RespawnId == null && LoadContext.RespawnScene == null,
                     $"{LoadContext.ContinueGame}/{LoadContext.RespawnId ?? "null"}");
 
             // ==============================================================

@@ -18,21 +18,30 @@ namespace RuleGame.Infrastructure.Persistence
         /// <summary>存档点编号；没有存档时为 null。</summary>
         public static string RespawnId { get; private set; }
 
+        /// <summary>存档点所在的分区场景路径；续档要先把它加载出来。没有存档时为 null。</summary>
+        public static string RespawnScene { get; private set; }
+
         /// <summary>由存档驱动在 <c>Apply</c> 之后写入。</summary>
         public static void SetFromSave(SaveData data)
         {
             ContinueGame = data != null;
-            RespawnId = data != null ? data.RespawnId : null;
+            RespawnId = data?.RespawnId;
+            RespawnScene = data?.RespawnScene;
         }
 
         /// <summary>落点已经用掉：之后的开局落人不再尝试它。</summary>
-        public static void ConsumeRespawnId() => RespawnId = null;
+        public static void ConsumeRespawnId()
+        {
+            RespawnId = null;
+            RespawnScene = null;
+        }
 
         /// <summary>场景卸载 / 测试之间清理。</summary>
         public static void Reset()
         {
             ContinueGame = false;
             RespawnId = null;
+            RespawnScene = null;
         }
     }
 }

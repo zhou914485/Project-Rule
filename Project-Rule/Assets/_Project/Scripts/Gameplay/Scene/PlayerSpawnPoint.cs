@@ -163,7 +163,7 @@ namespace RuleGame.Gameplay.Scene
 
                 // 落盘：走基础设施层的总线，存档驱动订阅后写盘（Gameplay 不认识 Persistence）。
                 // 存档点同时是补给点 —— 落盘时会把玩家回满（见 SaveSystem.SaveCheckpoint）。
-                RuleGame.Infrastructure.Persistence.CheckpointBus.Request(Id);
+                RuleGame.Infrastructure.Persistence.CheckpointBus.Request(Id, gameObject.scene.path);
             }
             return true;
         }

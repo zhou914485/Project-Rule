@@ -13,14 +13,14 @@ namespace RuleGame.Infrastructure.Persistence
     /// </remarks>
     public static class CheckpointBus
     {
-        /// <summary>存档点被激活（玩家走到 / 开局落人）。参数是存档点编号。</summary>
-        public static event Action<string> Requested;
+        /// <summary>存档点被激活。参数是存档点编号 + 它所在的场景路径（续档要先加载那个分区）。</summary>
+        public static event Action<string, string> Requested;
 
         /// <summary>由 <c>PlayerSpawnPoint</c> 调用。</summary>
-        public static void Request(string spawnPointId)
+        public static void Request(string spawnPointId, string scenePath)
         {
             if (string.IsNullOrEmpty(spawnPointId)) return;
-            Requested?.Invoke(spawnPointId);
+            Requested?.Invoke(spawnPointId, scenePath);
         }
 
         /// <summary>测试 / 重载时清空订阅，避免旧实例残留。</summary>

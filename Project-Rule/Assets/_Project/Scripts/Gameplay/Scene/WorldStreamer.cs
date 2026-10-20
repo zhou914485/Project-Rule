@@ -58,6 +58,9 @@ namespace RuleGame.Gameplay.Scene
         private float _timer;
         private bool _startSpawnApplied;
 
+        /// <summary>续档预加载是否正在进行（避免每帧重复起协程）。</summary>
+        private bool _resumeLoading;
+
         /// <summary>
         /// 启动场景（Boot）的路径：常驻宿主就住在这里，它<b>不是</b>世界分区。
         /// </summary>
@@ -231,6 +234,9 @@ namespace RuleGame.Gameplay.Scene
             LoadWanted(point);
             UnloadDeparted(point);
 
+            // 续档：先把存档点所在的分区拉起来（它可能离玩家当前位置很远，靠范围永远等不到）。
+            if (_applyStartSpawn && !_startSpawnApplied) TryResumePartition();
+
             // 开局落人放在这里、不放 LoadRoutine：分区可能是**已经在场被认领**的那条路，
             // 它根本不经过 LoadRoutine（2026-10-18 修）。没找到落点就下一轮再试，不设标志。
             if (_applyStartSpawn && !_startSpawnApplied && _loaded.Count > 0) ApplyStartSpawn();
@@ -249,6 +255,7 @@ namespace RuleGame.Gameplay.Scene
             for (int i = 0; i < _toUnload.Count; i++) StartUnload(_toUnload[i]);
 
             _startSpawnApplied = false;
+            _resumeLoading = false;
             _timer = 0f;
         }
 
@@ -388,9 +395,37 @@ namespace RuleGame.Gameplay.Scene
 
             if (!chosen.Arrive()) return;        // 玩家还没就位：下一轮再试
 
+            // 落人成功：解除预加载时的钉住，否则那个分区永远不会被卸载。
+            string resumeScene = RuleGame.Infrastructure.Persistence.LoadContext.RespawnScene;
+            if (!string.IsNullOrEmpty(resumeScene)) Unpin(resumeScene);
+
             // 落点用掉了：后续 Refresh 不要再尝试存档点（否则分区间来回加载会反复搬人）。
             RuleGame.Infrastructure.Persistence.LoadContext.ConsumeRespawnId();
             _startSpawnApplied = true;
+        }
+
+        /// <summary>
+        /// 续档预加载：把存档点所在分区拉出来，并**钉住**它直到落人完成。
+        /// </summary>
+        /// <remarks>
+        /// 存档点可能在上一次存档时的分区里，离玩家当前位置很远 —— 按范围算，那个分区永远不会被加载，
+        /// 于是 <c>PlayerSpawnPoint</c> 也就不存在。这里用 <see cref="EnsureLoaded"/> 显式拉一次。
+        /// 加载失败（不在分区表 / 没进 Build Settings）只留错误日志，落人逻辑会退回入口点。
+        /// </remarks>
+        private void TryResumePartition()
+        {
+            string scene = RuleGame.Infrastructure.Persistence.LoadContext.RespawnScene;
+            if (string.IsNullOrEmpty(scene) || IsSceneLoaded(scene)) return;
+            if (_resumeLoading) return;
+
+            _resumeLoading = true;
+            StartCoroutine(ResumeInto(scene));
+        }
+
+        private IEnumerator ResumeInto(string scene)
+        {
+            yield return EnsureLoaded(scene);   // 内部 Pin；落人完成后由 ApplyStartSpawn 解除
+            _resumeLoading = false;
         }
 
         private static PlayerSpawnPoint FindSpawn(PlayerSpawnPoint[] points, string id)

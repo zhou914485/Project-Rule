@@ -53,6 +53,13 @@ namespace RuleGame.Infrastructure.Persistence
         public string RespawnId;
 
         /// <summary>
+        /// 存档点所在的分区场景路径（如 <c>Assets/_Project/Scenes/Start/Level_Center.unity</c>）。
+        /// </summary>
+        /// <remarks>续档时要先把这个分区加载出来，那个 <c>PlayerSpawnPoint</c> 才存在。
+        /// 只存路径，仍然不碰坐标（约束 C5）。</remarks>
+        public string RespawnScene;
+
+        /// <summary>
         /// 世界状态：可交互场景组件 / 敌人的状态（开关按下 / 门碎掉 / 剑拔出 / 敌人已死 …）。
         /// </summary>
         /// <remarks>⚠️ 只是键值对，<b>不含任何 Transform / 物理状态</b>（约束 C5）。键的写法见
