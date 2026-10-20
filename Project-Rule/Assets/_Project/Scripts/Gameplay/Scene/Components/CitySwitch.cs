@@ -17,6 +17,10 @@ namespace RuleGame.Gameplay.Scene.Components
         public bool Toggle = true;
         public bool IsOn;
 
+        [Tooltip("玩家能不能用 E / 攻击盒触发。关掉 = 只认重物（石头 / 铁箱 / 巨石）压住，"
+                 + "玩家按 E、砍一刀都不响 —— 给「必须用石头压」的机关用。")]
+        public bool PlayerInteractable = true;
+
         [Tooltip("接正式美术后勾上：刷新状态时不再改 SpriteRenderer 颜色（改由贴图/帧序列表达）。")]
         public bool KeepArtColor;
 
@@ -57,7 +61,7 @@ namespace RuleGame.Gameplay.Scene.Components
                  "⚠️ 判定走 OverlapCollider 轮询，不是触发回调（玩家的触发回调不可靠）。")]
         public bool PressByPlayerProximity;
         public UnityEvent<bool> OnChanged = new UnityEvent<bool>();
-        public override bool Available => Toggle || !IsOn;
+        public override bool Available => PlayerInteractable && (Toggle || !IsOn);
         public override bool Interact(PlayerController player)
         {
             if (!Available || Paused) return false;

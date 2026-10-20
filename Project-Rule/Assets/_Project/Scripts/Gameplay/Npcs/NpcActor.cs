@@ -107,7 +107,9 @@ namespace RuleGame.Gameplay.Npcs
             {
                 case NpcRole.Mayor: return HasQualification() ? NpcState.Talk2 : NpcState.Talk1;
                 case NpcRole.GearKeeper:
-                    if (!_introduced) return NpcState.Talk1;
+                    // 首次说明只在「什么都还没做」时播；玩家先通了电 / 松开齿轮再回来，
+                    // 应该直接读当前状态，而不是又把任务说明念一遍（看起来像条件没生效）。
+                    if (!_introduced && !Flag(_buttonPowered) && !Flag(_gearReleased)) return NpcState.Talk1;
                     return Flag(_buttonPowered) ? (Flag(_gearReleased) ? NpcState.Talk5 : NpcState.Talk3)
                         : (Flag(_gearReleased) ? NpcState.Talk4 : NpcState.Talk2);
                 case NpcRole.Guard: return Flag(_hasPass) ? NpcState.Talk2 : NpcState.Talk1;
