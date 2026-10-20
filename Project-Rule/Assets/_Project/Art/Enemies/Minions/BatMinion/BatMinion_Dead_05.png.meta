@@ -1,0 +1,769 @@
+fileFormatVersion: 2
+guid: edf9dabf6b949459bbb0c7c8ea7dab5b
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4901906792766400900
+    second: BatMinion_Dead_05_0
+  - first:
+      213: -6843220806006183412
+    second: BatMinion_Dead_05_1
+  - first:
+      213: 5868696323087249700
+    second: BatMinion_Dead_05_2
+  - first:
+      213: 684379131601704844
+    second: BatMinion_Dead_05_3
+  - first:
+      213: -7215587199635713502
+    second: BatMinion_Dead_05_4
+  - first:
+      213: -6317143970486240632
+    second: BatMinion_Dead_05_5
+  - first:
+      213: -6498440144673205701
+    second: BatMinion_Dead_05_6
+  - first:
+      213: 2163303353982442536
+    second: BatMinion_Dead_05_7
+  - first:
+      213: -1326589019698769014
+    second: BatMinion_Dead_05_8
+  - first:
+      213: -1420822401960342860
+    second: BatMinion_Dead_05_9
+  - first:
+      213: 8116029572887374946
+    second: BatMinion_Dead_05_10
+  - first:
+      213: -3352260814969992319
+    second: BatMinion_Dead_05_11
+  - first:
+      213: -8083344075160934918
+    second: BatMinion_Dead_05_12
+  - first:
+      213: -4222444482050634006
+    second: BatMinion_Dead_05_13
+  - first:
+      213: -2341890140639087728
+    second: BatMinion_Dead_05_14
+  - first:
+      213: -6164645530414600222
+    second: BatMinion_Dead_05_15
+  - first:
+      213: 4910026305222871413
+    second: BatMinion_Dead_05_16
+  - first:
+      213: 6414660678283615919
+    second: BatMinion_Dead_05_17
+  - first:
+      213: 1070301452058649012
+    second: BatMinion_Dead_05_18
+  - first:
+      213: -2399011048777619551
+    second: BatMinion_Dead_05_19
+  - first:
+      213: 1436568394341713385
+    second: BatMinion_Dead_05_20
+  - first:
+      213: -8145895534999909238
+    second: BatMinion_Dead_05_21
+  - first:
+      213: 3920300084570381454
+    second: BatMinion_Dead_05_22
+  - first:
+      213: -6741242675783600811
+    second: BatMinion_Dead_05_23
+  - first:
+      213: -2356985372068040299
+    second: BatMinion_Dead_05_24
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 9
+  spritePivot: {x: 0.4453125, y: 0.4722222}
+  spritePixelsToUnits: 230
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 512
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: BatMinion_Dead_05_0
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 401
+        width: 234
+        height: 236
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c76951f4ebde8fbb0800000000000000
+      internalID: -4901906792766400900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BatMinion_Dead_05_1
+      rect:
+        serializedVersion: 2
+        x: 434
+        y: 498
+        width: 256
+        height: 219
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0a60721feef701a0800000000000000
+      internalID: -6843220806006183412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BatMinion_Dead_05_2
+      rect:
+        serializedVersion: 2
+        x: 689
+        y: 613
+        width: 19
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 421b140563cc17150800000000000000
+      internalID: 5868696323087249700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BatMinion_Dead_05_3
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 515
+        width: 135
+        height: 129
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c875fc6b1376f7900800000000000000
+      internalID: 684379131601704844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BatMinion_Dead_05_4
+      rect:
+        serializedVersion: 2
+        x: 867
+        y: 373
+        width: 255
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2229bd7fba51ddb90800000000000000
+      internalID: -7215587199635713502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BatMinion_Dead_05_5
+      rect:
+        serializedVersion: 2
+        x: 386
+        y: 406
+        width: 107
+        height: 101
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88aba2c470ff458a0800000000000000
+      internalID: -6317143970486240632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BatMinion_Dead_05_6
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 400
+        width: 42
+        height: 42
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b329d9e5e17e0d5a0800000000000000
+      internalID: -6498440144673205701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BatMinion_Dead_05_7
+      rect:
+        serializedVersion: 2
+        x: 667
+        y: 432
+        width: 82
+        height: 75
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82cd88350f8950e10800000000000000
+      internalID: 2163303353982442536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BatMinion_Dead_05_8
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 165
+        width: 217
+        height: 227
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a83dbeda052079de0800000000000000
+      internalID: -1326589019698769014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BatMinion_Dead_05_9
+      rect:
+        serializedVersion: 2
+        x: 329
+        y: 306
+        width: 97
+        height: 98
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ba8c32ad89384ce0800000000000000
+      internalID: -1420822401960342860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BatMinion_Dead_05_10
+      rect:
+        serializedVersion: 2
+        x: 483
+        y: 315
+        width: 67
+        height: 63
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26c648e55ede1a070800000000000000
+      internalID: 8116029572887374946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BatMinion_Dead_05_11
+      rect:
+        serializedVersion: 2
+        x: 707
+        y: 330
+        width: 109
+        height: 98
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18b8041cc806a71d0800000000000000
+      internalID: -3352260814969992319
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BatMinion_Dead_05_12
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 298
+        width: 85
+        height: 79
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af526ca146132df80800000000000000
+      internalID: -8083344075160934918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BatMinion_Dead_05_13
+      rect:
+        serializedVersion: 2
+        x: 1004
+        y: 329
+        width: 31
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aee40937d1dd665c0800000000000000
+      internalID: -4222444482050634006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BatMinion_Dead_05_14
+      rect:
+        serializedVersion: 2
+        x: 503
+        y: 195
+        width: 95
+        height: 86
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 093b730335fef7fd0800000000000000
+      internalID: -2341890140639087728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BatMinion_Dead_05_15
+      rect:
+        serializedVersion: 2
+        x: 675
+        y: 264
+        width: 35
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ef20714d87c27aa0800000000000000
+      internalID: -6164645530414600222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BatMinion_Dead_05_16
+      rect:
+        serializedVersion: 2
+        x: 743
+        y: 163
+        width: 158
+        height: 151
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57902a009eae32440800000000000000
+      internalID: 4910026305222871413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BatMinion_Dead_05_17
+      rect:
+        serializedVersion: 2
+        x: 980
+        y: 179
+        width: 134
+        height: 137
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: faed2cb86e3750950800000000000000
+      internalID: 6414660678283615919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BatMinion_Dead_05_18
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 83
+        width: 96
+        height: 85
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b16a8cff797ade00800000000000000
+      internalID: 1070301452058649012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BatMinion_Dead_05_19
+      rect:
+        serializedVersion: 2
+        x: 364
+        y: 167
+        width: 91
+        height: 88
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a76f51692005bed0800000000000000
+      internalID: -2399011048777619551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BatMinion_Dead_05_20
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 66
+        width: 131
+        height: 110
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e58a48e757bfe310800000000000000
+      internalID: 1436568394341713385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BatMinion_Dead_05_21
+      rect:
+        serializedVersion: 2
+        x: 567
+        y: 162
+        width: 23
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8cc3e27b27f3fe80800000000000000
+      internalID: -8145895534999909238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BatMinion_Dead_05_22
+      rect:
+        serializedVersion: 2
+        x: 587
+        y: 42
+        width: 175
+        height: 140
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8c50c10824b76630800000000000000
+      internalID: 3920300084570381454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BatMinion_Dead_05_23
+      rect:
+        serializedVersion: 2
+        x: 894
+        y: 112
+        width: 101
+        height: 91
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 555f635c08b4272a0800000000000000
+      internalID: -6741242675783600811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BatMinion_Dead_05_24
+      rect:
+        serializedVersion: 2
+        x: 788
+        y: 80
+        width: 55
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 591b71dba4e4a4fd0800000000000000
+      internalID: -2356985372068040299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 1537655665
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      BatMinion_Dead_05_0: -4901906792766400900
+      BatMinion_Dead_05_1: -6843220806006183412
+      BatMinion_Dead_05_10: 8116029572887374946
+      BatMinion_Dead_05_11: -3352260814969992319
+      BatMinion_Dead_05_12: -8083344075160934918
+      BatMinion_Dead_05_13: -4222444482050634006
+      BatMinion_Dead_05_14: -2341890140639087728
+      BatMinion_Dead_05_15: -6164645530414600222
+      BatMinion_Dead_05_16: 4910026305222871413
+      BatMinion_Dead_05_17: 6414660678283615919
+      BatMinion_Dead_05_18: 1070301452058649012
+      BatMinion_Dead_05_19: -2399011048777619551
+      BatMinion_Dead_05_2: 5868696323087249700
+      BatMinion_Dead_05_20: 1436568394341713385
+      BatMinion_Dead_05_21: -8145895534999909238
+      BatMinion_Dead_05_22: 3920300084570381454
+      BatMinion_Dead_05_23: -6741242675783600811
+      BatMinion_Dead_05_24: -2356985372068040299
+      BatMinion_Dead_05_3: 684379131601704844
+      BatMinion_Dead_05_4: -7215587199635713502
+      BatMinion_Dead_05_5: -6317143970486240632
+      BatMinion_Dead_05_6: -6498440144673205701
+      BatMinion_Dead_05_7: 2163303353982442536
+      BatMinion_Dead_05_8: -1326589019698769014
+      BatMinion_Dead_05_9: -1420822401960342860
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

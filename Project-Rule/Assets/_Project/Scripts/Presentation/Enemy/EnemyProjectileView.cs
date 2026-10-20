@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using RuleGame.Gameplay.Enemy;
 using RuleGame.Infrastructure.Time;
@@ -13,6 +14,7 @@ namespace RuleGame.Presentation.Enemy
         private TrailRenderer _trail;
         private EnemyVfxProfile _profile;
         private EnemyActor _source;
+        private readonly Dictionary<Sprite, Bounds> _visibleBounds = new Dictionary<Sprite, Bounds>();
         private EnemySpriteSequence ProjectileAnimation => _profile != null && _profile.ProjectileAnimations.Length > 0
             ? _profile.ProjectileAnimations[_shot.VisualIndex % _profile.ProjectileAnimations.Length] : null;
         private void Awake() => _shot = GetComponent<EnemyProjectile>();
@@ -49,6 +51,31 @@ namespace RuleGame.Presentation.Enemy
             _trail.time = .18f; _trail.startWidth = .28f; _trail.endWidth = 0f;
             _trail.startColor = profile.Secondary; _trail.endColor = new Color(profile.Accent.r, profile.Accent.g, profile.Accent.b, 0f);
             _trail.Clear(); _trail.emitting = !profile.PhysicalProjectiles;
+            FitBody();
+        }
+        private void FitBody()
+        {
+            if (_body.sprite == null) return;
+            bool ground = _shot.Gravity == 0f && _shot.Radius >= .3f;
+            Quaternion rotation = Quaternion.Euler(0f, 0f, ground || _profile.PhysicalProjectiles ? 0f :
+                Mathf.Atan2(_shot.Velocity.y, _shot.Velocity.x) * Mathf.Rad2Deg);
+            Bounds bounds = VisibleBounds(_body.sprite);
+            // 保留交付素材按 PPU 配好的尺寸及逐帧伸缩；不能按整张透明画布强制归一化。
+            Vector3 scale = ProjectileAnimation != null ? Vector3.one
+                : ground ? new Vector3(1.7f, .8f, 1f) : Vector3.one * 1.7f;
+            _body.transform.localRotation = rotation;
+            _body.transform.localScale = scale;
+            _body.transform.localPosition = -(rotation * Vector3.Scale(bounds.center, scale));
+        }
+        private Bounds VisibleBounds(Sprite sprite)
+        {
+            if (_visibleBounds.TryGetValue(sprite, out Bounds bounds)) return bounds;
+            // Tight 网格包住真实图形；Sprite.bounds 仍可能包含整张 1280×720 的透明画布。
+            Vector2[] vertices = sprite.vertices;
+            bounds = vertices.Length > 0 ? new Bounds(vertices[0], Vector3.zero) : sprite.bounds;
+            foreach (Vector2 vertex in vertices) bounds.Encapsulate(vertex);
+            _visibleBounds.Add(sprite, bounds);
+            return bounds;
         }
         private void OnRestore() { if (_trail != null) _trail.Clear(); }
         private void OnDisable()
@@ -88,17 +115,12 @@ namespace RuleGame.Presentation.Enemy
                 int frame = Mathf.FloorToInt(_shot.Age * animation.FrameRate) % animation.Frames.Length;
                 _body.sprite = animation.Frames[frame];
             }
+            FitBody();
             // 已发射弹体继续独立飞行，不跟随发射者的单体暂停。
             bool paused = TimeManager.Instance?.IsPaused == true;
             _trail.emitting = !paused && !_profile.PhysicalProjectiles;
             // TrailRenderer 的历史点用引擎时间清退，实体暂停时延长寿命以保留现有轨迹。
             _trail.time = paused ? 1000f : .18f;
-            if (paused) return;
-            bool ground = _shot.Gravity == 0f && _shot.Radius >= .3f;
-            _body.transform.localRotation = Quaternion.Euler(0f, 0f, ground || _profile.PhysicalProjectiles ? 0f :
-                Mathf.Atan2(_shot.Velocity.y, _shot.Velocity.x) * Mathf.Rad2Deg);
-            _body.transform.localScale = animation != null ? Vector3.one
-                : ground ? new Vector3(1.7f, .8f, 1f) : Vector3.one * 1.7f;
         }
     }
 }

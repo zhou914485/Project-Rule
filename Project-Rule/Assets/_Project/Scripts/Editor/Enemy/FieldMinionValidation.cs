@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Reflection;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
@@ -45,11 +46,14 @@ namespace RuleGame.Editor.Enemy
                 {
                     _actor.Target.position = _actor.transform.position + Vector3.right;
                     Step(); Check(State == "Attack", "石头人巡逻时发现近处玩家后停下锤击");
-                    float health = _player.Health; Step(.5f);
+                    float attackDuration = _actor.AnimationDuration;
+                    float health = _player.Health; Step(attackDuration * _actor.Definition.ImpactFraction + .01f);
                     Check(_player.Health == health - 5, "锤击只经统一伤害结算造成表中五点伤害");
-                    Step(.4f); Check(State == "Ignore", "锤击后进入三秒无视");
-                    Step(2.9f); Check(State == "Ignore", "无视期间贴身也不连打");
-                    Step(.11f); Check(State == "Patrol", "无视期结束重新检测");
+                    Step(attackDuration * (1f - _actor.Definition.ImpactFraction));
+                    Check(State == "Ignore", "锤击后进入恢复并保留冷却");
+                    Step(.1f); Check(State == "Ignore", "恢复初段不会立即连打");
+                    WaitFor("Attack", _actor.Definition.AttackCooldown + .5f);
+                    Check(State == "Attack", "攻击冷却完成后主动再次锤击");
                 });
                 Case(EnemyKind.BrickSoldier, () =>
                 {
@@ -81,7 +85,7 @@ namespace RuleGame.Editor.Enemy
                     {
                         _actor.Target.position = _actor.transform.position + Vector3.right * 1.3f;
                         var extra = new GameObject("SecondPlayerCollider"); extra.transform.SetParent(_player.transform, false);
-                        extra.AddComponent<BoxCollider2D>().size = new Vector2(.4f,.7f); Physics2D.SyncTransforms();
+                        extra.AddComponent<BoxCollider2D>().size = new Vector2(.4f,.7f); extra.AddComponent<Hurtbox>(); Physics2D.SyncTransforms();
                         if (kind == EnemyKind.ClockBomb)
                         {
                             _actor.Target.position = _actor.transform.position + Vector3.right * 4; Step();
@@ -111,14 +115,16 @@ namespace RuleGame.Editor.Enemy
                     _actor.Target.position = new Vector3(20,3.5f,0);
                     float altitude = _actor.transform.position.y;
                     for (int i = 0; i < 35; i++) PhysicalStep();
-                    Check(Mathf.Abs(_actor.GetComponent<Rigidbody2D>().position.y - altitude) < .1f && Mathf.Abs(_actor.transform.position.x) > .3f,
-                        "玩具鸟只在出生水平线巡飞");
+                    Check(Mathf.Abs(_actor.GetComponent<Rigidbody2D>().position.y - altitude) < .6f && Mathf.Abs(_actor.transform.position.x) > .3f,
+                        "玩具鸟无目标时在出生高度附近浮动巡飞");
                     _actor.Target.position = _actor.transform.position + Vector3.right * 4;
                     EnemyProjectile shot = null;
                     _actor.Feedback += cue => { if (cue.Kind == EnemyFeedbackKind.ProjectileSpawn) shot = (EnemyProjectile)cue.Subject; };
-                    Step(); _actor.Target.position = _actor.transform.position - Vector3.right * 4; Step(.5f);
-                    Check(shot != null && shot.Velocity.x > 0f, "法术球朝起手锁定位置发射，玩家换边不追踪");
-                    Step(.4f); Check(State == "Fly", "法术球出手后回到水平巡飞");
+                    Step(); Step(_actor.AnimationDuration * .35f);
+                    _actor.Target.position = _actor.transform.position - Vector3.right * 4;
+                    Step(_actor.AnimationDuration * .35f);
+                    Check(shot != null && shot.Velocity.x > 0f, "法术球朝前摇锁定位置发射，锁定后换边不追踪");
+                    Step(_actor.AnimationDuration * .35f); Check(State == "Fly", "法术球出手后回到立体巡飞");
                 });
                 Case(EnemyKind.HugBear, () =>
                 {
@@ -135,18 +141,21 @@ namespace RuleGame.Editor.Enemy
                 });
                 Case(EnemyKind.PlushSeal, () =>
                 {
-                    _actor.Target.position = _actor.transform.position + Vector3.right * 4;
-                    Step(5.1f); Check(State == "Slide", "海豹第一轮按计时滑向玩家");
+                    _actor.Target.position = _actor.transform.position + Vector3.right * 2;
+                    WaitFor("Slide", 1f); Check(State == "Slide", "海豹近处优先选择有效滑行");
                     _actor.Target.position = _actor.transform.position + Vector3.right;
-                    Physics2D.SyncTransforms(); float hp = _player.Health; Step(.3f);
+                    Physics2D.SyncTransforms(); float hp = _player.Health;
+                    Step(_actor.Duration("Slide") * .35f + .01f);
                     Check(State == "Wander" && _player.Health == hp - 20, "滑行碰到玩家结算一次伤害后收招，不叠加接触伤害");
                     _actor.Target.position = _actor.transform.position + Vector3.right * 4;
-                    Step(1.3f); Step(5.1f); Check(State == "Howl", "第二轮轮换为嚎叫");
-                    float energy = _actor.Status.Energy; Step(.5f);
+                    Force("Howl"); float energy = _actor.Status.Energy;
+                    Step(_actor.AnimationDuration * _actor.Definition.ImpactFraction + .01f);
                     Check(_actor.Status.Energy < energy, "嚎叫通过共享规则释放入口并支付能量");
-                    Step(.4f); Step(5.1f); Check(State == "BellySlap", "第三轮轮换为拍肚子");
+                    Force("BellySlap");
                     int shots = 0; _actor.Feedback += cue => { if (cue.Kind == EnemyFeedbackKind.ProjectileSpawn) shots++; };
-                    Step(.5f); Check(shots == 3, "拍肚子在锁定位置上方生成有限三枚下落冰块");
+                    Step(_actor.AnimationDuration * _actor.Definition.ImpactFraction + .01f);
+                    Check(shots == 3, "拍肚子在锁定位置上方生成有限三枚下落冰块");
+                    Step(.02f); Check(shots == 3, "冰块命中时点只触发一次出手");
                 });
                 Case(EnemyKind.StoneGuard, () =>
                 {
@@ -196,12 +205,12 @@ namespace RuleGame.Editor.Enemy
                 {
                     _actor.Target.position = _actor.transform.position + Vector3.right * 5.8f;
                     _actor.Status.TryConsumeEnergy(_actor.Status.Energy);
-                    Step(5.1f); Check(State == "BellySlap", "海豹滑不到目标且无能量施法时选择有效的落冰攻击");
+                    WaitFor("BellySlap", 1f); Check(State == "BellySlap", "海豹滑不到目标且无能量施法时选择有效的落冰攻击");
                 });
                 Case(EnemyKind.PlushSeal, () =>
                 {
                     _actor.Target.position = _actor.transform.position + Vector3.right * 3;
-                    Step(5.1f); Step(.1f);
+                    WaitFor("Slide", 1f); Step(.1f);
                     Check(State == "Slide" && _actor.Motor.Intent == Vector2.zero, "海豹滑行保留可辨认的蓄力前摇");
                     Step(.2f); Check(_actor.Motor.Intent.x > 0f, "蓄力结束后才沿起手方向冲出");
                     _actor.Target.position = _actor.transform.position - Vector3.right * 3;
@@ -230,6 +239,12 @@ namespace RuleGame.Editor.Enemy
         }
         private static void Kill() => _actor.ApplyDamage(new DamageInfo { Amount = 1000 });
         private static void Step(float dt = .02f) { _actor.Brain.Tick(dt); Physics2D.SyncTransforms(); }
+        private static void WaitFor(string state, float timeout)
+        {
+            for (int i = 0; i < Mathf.CeilToInt(timeout / .02f) && State != state; i++) Step();
+        }
+        private static void Force(string state) => typeof(EnemyBrain).GetMethod("Go", BindingFlags.Instance | BindingFlags.NonPublic)
+            .Invoke(_actor.Brain, new object[] { state });
         private static void PhysicalStep() { _actor.SendMessage("FixedUpdate"); Physics2D.Simulate(.02f); }
         private static void Move(float x)
         {
@@ -249,7 +264,10 @@ namespace RuleGame.Editor.Enemy
                 player.AddComponent<BoxCollider2D>().size = new Vector2(.7f,1.1f);
                 var receiver = player.AddComponent<EntityDamageable>();
                 var serialized = new SerializedObject(receiver); serialized.FindProperty("_faction").intValue = (int)Faction.Player;
-                serialized.ApplyModifiedPropertiesWithoutUndo(); player.SetActive(true);
+                serialized.ApplyModifiedPropertiesWithoutUndo();
+                var hurtbox = new GameObject("Hurtbox"); hurtbox.transform.SetParent(player.transform, false);
+                hurtbox.AddComponent<BoxCollider2D>().size = new Vector2(.7f,1.1f); hurtbox.AddComponent<Hurtbox>();
+                player.SetActive(true);
                 var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(FieldMinionSetup.PrefabFolder + "/" + kind + ".prefab");
                 _actor = UnityEngine.Object.Instantiate(prefab, _root.transform).GetComponent<EnemyActor>();
                 _actor.enabled = false; _actor.Definition = UnityEngine.Object.Instantiate(_actor.Definition);
@@ -262,7 +280,8 @@ namespace RuleGame.Editor.Enemy
             catch (Exception error) { _failed++; Debug.LogError(kind + ": " + error); }
             finally
             {
-                foreach (var shot in UnityEngine.Object.FindObjectsByType<EnemyProjectile>()) shot.gameObject.SetActive(false);
+                RuleSystem.Instance.ClearAll();
+                foreach (var shot in UnityEngine.Object.FindObjectsByType<EnemyProjectile>()) UnityEngine.Object.DestroyImmediate(shot.gameObject);
                 if (_actor != null) UnityEngine.Object.DestroyImmediate(_actor.Definition);
                 UnityEngine.Object.DestroyImmediate(_root); Physics2D.SyncTransforms();
             }

@@ -1,0 +1,795 @@
+fileFormatVersion: 2
+guid: 740c175dc191748f9b302468bbf29422
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -8716182790513654192
+    second: HugBear_Dead_08_0
+  - first:
+      213: 236648202758783846
+    second: HugBear_Dead_08_1
+  - first:
+      213: -6605378832598500950
+    second: HugBear_Dead_08_2
+  - first:
+      213: -2607092330087673634
+    second: HugBear_Dead_08_3
+  - first:
+      213: 8547969294567066764
+    second: HugBear_Dead_08_4
+  - first:
+      213: 9040010014491409
+    second: HugBear_Dead_08_5
+  - first:
+      213: -1365903521316150197
+    second: HugBear_Dead_08_6
+  - first:
+      213: 3987244298614373309
+    second: HugBear_Dead_08_7
+  - first:
+      213: -8393334663232440479
+    second: HugBear_Dead_08_8
+  - first:
+      213: 1991563656140342474
+    second: HugBear_Dead_08_9
+  - first:
+      213: -2418401411035863897
+    second: HugBear_Dead_08_10
+  - first:
+      213: 1564973486861075146
+    second: HugBear_Dead_08_11
+  - first:
+      213: -6917021698650836324
+    second: HugBear_Dead_08_12
+  - first:
+      213: -8793516066605492922
+    second: HugBear_Dead_08_13
+  - first:
+      213: -6696819373949302837
+    second: HugBear_Dead_08_14
+  - first:
+      213: 7003717469518699675
+    second: HugBear_Dead_08_15
+  - first:
+      213: 6764386548730718386
+    second: HugBear_Dead_08_16
+  - first:
+      213: 330763282260037412
+    second: HugBear_Dead_08_17
+  - first:
+      213: -7412790499472334057
+    second: HugBear_Dead_08_18
+  - first:
+      213: 4125705338713024784
+    second: HugBear_Dead_08_19
+  - first:
+      213: 6606806365768449336
+    second: HugBear_Dead_08_20
+  - first:
+      213: -8439438642740615658
+    second: HugBear_Dead_08_21
+  - first:
+      213: 7190645236408296477
+    second: HugBear_Dead_08_22
+  - first:
+      213: 3399577294381852637
+    second: HugBear_Dead_08_23
+  - first:
+      213: -1269712270673902334
+    second: HugBear_Dead_08_24
+  - first:
+      213: -2028835451929329977
+    second: HugBear_Dead_08_25
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 9
+  spritePivot: {x: 0.5, y: 0.097222224}
+  spritePixelsToUnits: 272.22223
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 512
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: HugBear_Dead_08_0
+      rect:
+        serializedVersion: 2
+        x: 502
+        y: 633
+        width: 28
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0568f0eaee5e90780800000000000000
+      internalID: -8716182790513654192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HugBear_Dead_08_1
+      rect:
+        serializedVersion: 2
+        x: 556
+        y: 619
+        width: 38
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6630c2e594eb84300800000000000000
+      internalID: 236648202758783846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HugBear_Dead_08_2
+      rect:
+        serializedVersion: 2
+        x: 596
+        y: 643
+        width: 21
+        height: 41
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa9f414d2faf454a0800000000000000
+      internalID: -6605378832598500950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HugBear_Dead_08_3
+      rect:
+        serializedVersion: 2
+        x: 636
+        y: 629
+        width: 21
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed09a78b65fb1dbd0800000000000000
+      internalID: -2607092330087673634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HugBear_Dead_08_4
+      rect:
+        serializedVersion: 2
+        x: 487
+        y: 584
+        width: 25
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8ccd99c8cc70a670800000000000000
+      internalID: 8547969294567066764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HugBear_Dead_08_5
+      rect:
+        serializedVersion: 2
+        x: 518
+        y: 599
+        width: 38
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1130ea957dd102000800000000000000
+      internalID: 9040010014491409
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HugBear_Dead_08_6
+      rect:
+        serializedVersion: 2
+        x: 595
+        y: 604
+        width: 21
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b44ee76fbf55b0de0800000000000000
+      internalID: -1365903521316150197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HugBear_Dead_08_7
+      rect:
+        serializedVersion: 2
+        x: 495
+        y: 534
+        width: 28
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dbb7c937099855730800000000000000
+      internalID: 3987244298614373309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HugBear_Dead_08_8
+      rect:
+        serializedVersion: 2
+        x: 527
+        y: 519
+        width: 60
+        height: 47
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 167be05f792e48b80800000000000000
+      internalID: -8393334663232440479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HugBear_Dead_08_9
+      rect:
+        serializedVersion: 2
+        x: 584
+        y: 541
+        width: 72
+        height: 58
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac4c2dfe79473ab10800000000000000
+      internalID: 1991563656140342474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HugBear_Dead_08_10
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 554
+        width: 27
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a467eadabc107ed0800000000000000
+      internalID: -2418401411035863897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HugBear_Dead_08_11
+      rect:
+        serializedVersion: 2
+        x: 470
+        y: 405
+        width: 109
+        height: 113
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac2424f3817e7b510800000000000000
+      internalID: 1564973486861075146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HugBear_Dead_08_12
+      rect:
+        serializedVersion: 2
+        x: 566
+        y: 364
+        width: 157
+        height: 169
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c927f3cb96dc100a0800000000000000
+      internalID: -6917021698650836324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HugBear_Dead_08_13
+      rect:
+        serializedVersion: 2
+        x: 737
+        y: 447
+        width: 24
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6451a4b3ab727f580800000000000000
+      internalID: -8793516066605492922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HugBear_Dead_08_14
+      rect:
+        serializedVersion: 2
+        x: 436
+        y: 328
+        width: 68
+        height: 73
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc74ccab24e1013a0800000000000000
+      internalID: -6696819373949302837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HugBear_Dead_08_15
+      rect:
+        serializedVersion: 2
+        x: 497
+        y: 252
+        width: 124
+        height: 153
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9c1cd56ee3323160800000000000000
+      internalID: 7003717469518699675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HugBear_Dead_08_16
+      rect:
+        serializedVersion: 2
+        x: 499
+        y: 395
+        width: 22
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b866801abdefdd50800000000000000
+      internalID: 6764386548730718386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HugBear_Dead_08_17
+      rect:
+        serializedVersion: 2
+        x: 616
+        y: 327
+        width: 30
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42f0ad7e37b179400800000000000000
+      internalID: 330763282260037412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HugBear_Dead_08_18
+      rect:
+        serializedVersion: 2
+        x: 642
+        y: 308
+        width: 26
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 713af8cb05a702990800000000000000
+      internalID: -7412790499472334057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HugBear_Dead_08_19
+      rect:
+        serializedVersion: 2
+        x: 677
+        y: 326
+        width: 51
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0192ce98523714930800000000000000
+      internalID: 4125705338713024784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HugBear_Dead_08_20
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 326
+        width: 24
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83dfa63a26710bb50800000000000000
+      internalID: 6606806365768449336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HugBear_Dead_08_21
+      rect:
+        serializedVersion: 2
+        x: 619
+        y: 224
+        width: 57
+        height: 58
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 616adbbb44711ea80800000000000000
+      internalID: -8439438642740615658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HugBear_Dead_08_22
+      rect:
+        serializedVersion: 2
+        x: 673
+        y: 264
+        width: 62
+        height: 49
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d14a8fdaebd4ac360800000000000000
+      internalID: 7190645236408296477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HugBear_Dead_08_23
+      rect:
+        serializedVersion: 2
+        x: 739
+        y: 278
+        width: 43
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd72d1a9989bd2f20800000000000000
+      internalID: 3399577294381852637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HugBear_Dead_08_24
+      rect:
+        serializedVersion: 2
+        x: 591
+        y: 230
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2050783ca63116ee0800000000000000
+      internalID: -1269712270673902334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HugBear_Dead_08_25
+      rect:
+        serializedVersion: 2
+        x: 674
+        y: 227
+        width: 25
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ce780cd7e028d3e0800000000000000
+      internalID: -2028835451929329977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 1537655665
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      HugBear_Dead_08_0: -8716182790513654192
+      HugBear_Dead_08_1: 236648202758783846
+      HugBear_Dead_08_10: -2418401411035863897
+      HugBear_Dead_08_11: 1564973486861075146
+      HugBear_Dead_08_12: -6917021698650836324
+      HugBear_Dead_08_13: -8793516066605492922
+      HugBear_Dead_08_14: -6696819373949302837
+      HugBear_Dead_08_15: 7003717469518699675
+      HugBear_Dead_08_16: 6764386548730718386
+      HugBear_Dead_08_17: 330763282260037412
+      HugBear_Dead_08_18: -7412790499472334057
+      HugBear_Dead_08_19: 4125705338713024784
+      HugBear_Dead_08_2: -6605378832598500950
+      HugBear_Dead_08_20: 6606806365768449336
+      HugBear_Dead_08_21: -8439438642740615658
+      HugBear_Dead_08_22: 7190645236408296477
+      HugBear_Dead_08_23: 3399577294381852637
+      HugBear_Dead_08_24: -1269712270673902334
+      HugBear_Dead_08_25: -2028835451929329977
+      HugBear_Dead_08_3: -2607092330087673634
+      HugBear_Dead_08_4: 8547969294567066764
+      HugBear_Dead_08_5: 9040010014491409
+      HugBear_Dead_08_6: -1365903521316150197
+      HugBear_Dead_08_7: 3987244298614373309
+      HugBear_Dead_08_8: -8393334663232440479
+      HugBear_Dead_08_9: 1991563656140342474
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

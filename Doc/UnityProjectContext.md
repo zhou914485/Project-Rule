@@ -1,6 +1,29 @@
 # Unity 项目上下文
 
+2026-10-20 迪斯科球光效追加：按用户要求将绿光改为流动彩虹、反向旋转双层光束、扩散环纹和镜面亮片，带柔和节拍亮度变化；低亮暖色预警，连续彩色危险底色与清晰的掩体阴影保留。仅修改DiscoRadiation.shader及Editor渲染验证/预览，游戏伤害、遮挡、周期和资源接线不变。效果沿用MechanicsAge以支持暂停/回溯；实际GPU像素核验三类色区、掩体阴影、暂停冻结和恢复流动。新功能102+实际场景11共113组通过，无新增脚本/Shader错误；日志/tmp/rule-disco-top-effects-final.log和effects-scene2.log，动图Doc/特效预览/DemonMinions/DiscoRainbow.gif。未测GPU性能或做完整Player构建。
+
+2026-10-20 晚间策划新增迪斯科球/陀螺需求，交付分支 feat/enemy：EnemyKind 在末尾追加 DiscoBall/SpinningTop（16/17），旧枚举不变。复用 EnemyActor、HFSM、CombatSystem、RuleAffectedBody、快照和原画动画；毛绒蜘蛛暂不做。DiscoBall 固定悬挂，低亮预警0.75秒→连续360°辐射4秒→停火2秒，半径8、每0.5秒伤害，Ground墙/移动平台实时遮挡；连续可见多边形网格+角点采样形成动态阴影，命中按Hurtbox可见部分判定/去重，非弹体。SpinningTop旋转平移，Motor真实Slide接触回调按双方质量分配等大反向冲量，玩家/敌人/动态刚体都能反弹，静态地形只反弹自身，固定路径平台不被抛走；接触伤害不给额外击退以免叠加。固定球通过Brain.Anchored保持原位，其它敌人默认false；旧碰撞默认无反弹，公共接口兼容。
+
+新增两个FieldMinions预制体、中文配置、交付四张原PNG与来源哈希、独立辐射Shader/材质及Test_Minion_DiscoTop集中场（左移动掩体、右反弹箱）。均通过Unity API生成，脚本/资产/meta已同步原项目；既有投掷物和蜘蛛均未动。隔离Unity6000.6.4f1新功能102+实际场景11+全部18类AI69+原规则401+导航16=599项0失败，实际渲染Doc/特效预览/DemonMinions；日志/tmp/rule-disco-top-{final,scene2,ai,rules,navigation}.log。修复首次新View的MaterialPropertyBlock字段初始化时机及新材质的Sprite纹理显示；最终无新增编译/Shader错误，仅既有QuickSearch启动异常。未做Player打包、正式地图平衡或多辐射源性能验收。用法与默认数值见Doc/迪斯科球与陀螺接入.md；保留同期轮盘UI和EnemyLabPlayer未提交修改。
+
+2026-10-20 全部现有敌人 AI 强化（当前 main）：覆盖12非Boss+4Boss，不新增玩法或调整生命/伤害数值，投掷物文件/资源/尺寸不变。共用预判改读玩家 PlayerController.Velocity，截断穿墙预判并排除死亡目标；守卫冷却期压近且不叠加额外等待；蝙蝠召唤小兵可主动接敌；鼠按当前位置选向、遇阻钻地；弹簧按高度选已有跳跃；鸟预判升降；自爆/冲撞怪改进接近。抱熊拥抱冷却中对可见近身攻击延迟反应并短撤，保留站姿、接触优先、挣脱及快照。海豹按近远/高度选择滑撞或冰块，三招独立冷却、短恢复，嚎叫仅在能施法且规则有变化时选用，冷却中调整站位。四Boss改进可见目标选招、早段瞄准后锁向、前压遇阻/被逼边界反应；兔子开场可撤退，蝙蝠第二阶段支援不再被冲刺饿死，完整前摇和休息仍保留。另修接触伤害实际身体已相撞而内缩受击箱未进入Overlap导致不掉血：只桥接到启用的正规Hurtbox，公共规则/冷却/去重和隔墙检查保持。
+
+新增 EnemyAiValidation：真实16类敌人的移动预判、15秒物理对战、失效目标/快照及战术专项，最终63组通过。HEAD的旧Field套件6项失败已对照复现，补齐正规Hurtbox及当前动作时长/巡飞/选招语义；旧Boss测试按破韧阈值与Clock Charge/独立冷却核验。最终AI63+规则401+决策53+关卡战斗64+Boss119+抱熊接近20+破韧53+导航16+场景56=845项0失败，脚本与隔离副本一致；日志/tmp/rule-enemy-ai-{final,rules1,decisions2,field2,boss2,bear,resilience,nav,gallery}.log，副本/tmp/rule-minion-delivery-20261020。QuickSearch既有启动索引异常单独记录，无脚本编译错误；未运行Player构建、正式关卡难度/群怪性能验收或旧战术/兔子开场动画套件。详情见Doc/小怪预制体使用指南.md末节。
+
 <!-- unity-onboarding:generated:start -->
+
+2026-10-20 抱熊交战坐姿/鸟升降补修：Idle 原图坐姿被误用于抱熊战斗冷却，破韧也回 FirstAction=Idle。新增 Ready 序列复用 Stand 末帧，专用受击恢复目标选择追击/回位，交战保持站立，仅回位后 Sit，Sit 可被重新发现目标打断；站立标记随快照保存。小鸟从固定 Home.y 改为跟随目标记忆高度并带巡飞小幅升降，遵守身体边距和 ArenaY；锁向出手保持当前高度。投掷物未改。修改前复现3组失败，修正后行为53+美术82+场景56共191项通过（含真实 Motor/Physics2D 上升下降与高度边界）；日志 /tmp/rule-bear-bird-{before,decisions2,art,gallery}.log，副本 /tmp/rule-minion-delivery-20261020。交付PNG仍146张，序列36个；只新增一条站立复用接线，没有新增美术原图，未执行Player构建。
+
+2026-10-20 积木普通锤击特效纠正：用户确认悬空的是HammerPlayer近身小圈，非HammerGround。撤回上轮程序方块粒子、三条直线边界及EnemyGroundSlamView，恢复大砸地原序列布局。小圈沿用Sword3原材质/ImpactSize，作者发射轴心落在身前地面，持续帧也不回身体中心；以同作者Blow2原序列补五组冲击，保留原风格与范围可读性。未改战斗/投掷物参数。完整副本Unity6000.6.4f1最终17组通过；基线13通过/4失败含左右小圈高于地面约1米。最新真实URP预览Doc/特效预览/BossVfxAlignment/BrickNormalHammer_{Left,Right}_After.png，日志/tmp/rule-brick-normal-author-{before,final}.log，说明Doc/Boss特效接入.md。本轮未跑Player构建、正式关卡人工验收或旧战斗回归。
+
+2026-10-20 状态机与动画同步优化（当前 main）：守卫在攻击冷却期仍跟进目标，允许正常破韧并保留剩余冷却；抱抱熊贴近后的冷却停位；小鸟间距滞回和前摇锁向；海豹滑行分蓄势/位移/结束并同步动作；蝙蝠及时转向、回位悬停拍翼。实体墙贴身也遮挡视线，保留三棍例外，目标更换清旧记忆。主体动画由 EnemyActor.AnimationElapsed 随 Brain.Tick 同步推进，快照保存实际动作/时长/循环/进度，覆盖状态内动画切换。用户随后明确投掷物不用改，本轮未调整投掷物。新增 MinionDecisionValidation，旧版本复现7组失败；最终决策40+美术82+场景56+导航16+范围9+破韧53共256项通过。广泛旧Boss套件另有4项基线失败（BossCombat 115/3、RabbitAnimation 39/1），已用改前共用代码对照复现，未算通过。日志 /tmp/rule-minion-decisions-*.log，详细范围和基线见 Doc/小怪预制体使用指南.md；未执行Player构建或整关手感验收。
+
+
+2026-10-20 同日小怪表现修正：小鸟攻击目录混有两张独立光球，现与鸟身分离，作为现有投射物双帧并裁透明边；BatMinion 没有俯冲状态，Walk/Fly 从冲刺末三张收翼改为9–11张拍翼，不新增行为；抱抱熊普通伤害模式下会被自己的范围伤害击退打断拥抱，新增 AreaAttack 可选击退参数（默认仍4），只有拥抱传0，保留伤害和攻击挣脱；烟花交付图是完整箱体，旧组合外观停用，新图覆盖待机/点火/消耗表现，消除重叠。隔离副本先复现普通模式抱熊失败，再通过美术82+场景56共138项，截图 Doc/特效预览/Minion_{BirdAttack,BatFlight,BearHug,FireworkArmed}.png；日志 /tmp/rule-minion-visual-fixes-{art3,gallery2}.log，抱熊复现 /tmp/rule-minion-hug-before.log。同步保留其它任务在敌人特效、弹体和Boss上的并行修改，未执行Player构建。
+
+2026-10-20 Boss特效范围校准：四Boss共用攻击通知携带实际尺寸；积木近战/砸地与蝙蝠斩击按片段可见联合边界适配，冲刺跟随持续攻击查询；四Boss弹体按可见网格中心对齐并保留原美术尺寸（已撤回把透明画布归一化导致缩小的回归），闹钟三束宽与回退核心沿用伤害宽度，弹幕预警跟随表盘。Editor校准七片段VisibleRect，未改Boss攻击范围/伤害数值或选招。完整副本Unity6000.6.4f1对齐15组、弹体回归11项通过；原战斗回归修改前后均115通过/3既有失败（兔子撤退、小怪受击、闹钟休息），记录Doc/Boss特效接入.md，URP对照Doc/特效预览/BossVfxAlignment。副本/tmp/rule-boss-vfx-alignment-20261020，日志/tmp/rule-boss-vfx-{final,projectile-regression,combat,combat-baseline2}.log。未跑Player构建/正式关卡人工验收，保留同期小怪和抱抱熊改动。
+
+2026-10-20 当前 main 分支接入最新 Src 小怪交付，只更新已有玩法：自爆方块、发条鼠、毛绒鸟、蝙蝠、抱抱熊、海豹及魔王城烟花点火帧；石头人现有美术和数值保持。203 张 PNG 中 146 张进入 Minions 独立清单，57 张保留来源；蜘蛛、陀螺、迪斯科球按用户要求不新增或移植玩法。积木士兵、弹簧怪、发条炸弹仍缺对应交付美术。发条鼠补隐藏/死亡帧，抱抱熊拥抱与消散拆分，海豹冰块使用交付双帧；仅三者死亡收尾时长延长到能播放完整序列。新增 Test_Minion_Gallery 八区域场景（七种已有小怪+烟花机关），F1/F2切换、F3重开、F4暂停、F5无敌默认关闭，沿用现有玩家和规则轮盘。Unity6000.6.4f1完整隔离工程美术82项+场景44项共126项通过；检查幂等、参数、实际动画/暂停/回溯、拥抱、冰块及烟花按钮和伤害。日志 /tmp/rule-minion-delivery-{art5,gallery2}.log，副本 /tmp/rule-minion-delivery-20261020，预览 Doc/特效预览/MinionGallery.png。未执行完整Player构建或正式关卡验收；保留同期 EnemyLabPlayer 配置变化。
 
 2026-10-17 在新分支 feat/minion-pathfinding 接入 EnemyPlatformNavigation：真实 Collider2D 站立点采样、有界 A*、身体扫掠验证的跳跃与安全落差，Motor 仍是位移权威。地面追击与返回出生点使用路线，飞鸟水平巡飞不改。普通默认索敌6米、出生点二维追击半径8米、失去视线后搜索最后位置1.5秒；脱战返回，旧积木/蝙蝠召唤物也遵守范围。中文配置包含开关、1.6米跳高、2.5米落差、0.5米采样和0.65秒重算；暂停/受击/快照接入。每次搜索最多192节点/2400查询，缓存不参与快照，半空运动参加快照。修复继承的 a79c487 合并版本中的敌人端旧战斗接口，攻击统一 Hurtbox，PlayerMask仅保留身体移动用途。Unity6000.6.4f1隔离PlayMode：平台导航16项、索敌脱战9项、受击箱兼容5项通过，合计30项0失败。新增 Test_Minion_Pathfinding 白盒和独立默认范围配置，由EditorAPI生成，日志见 %TEMP%/rule-minion-{navigation,ranges}.log 与 rule-enemy-hurtbox-compat.log。未执行原工程手动白盒、正式地图难度、敌群性能或完整Player构建；移动/单向平台的专用通行和飞行避障未实现。保留同期字体与ProjectSettings修改。
 2026-10-17 受伤反馈调优与 PR 预览：普通闪白总时长改为 0.30 秒，保持白色约 0.165 秒后淡出；破韧/致命延长倍率保留。完整副本定向验证 65 项通过，含实际 0.15 秒仍保持白色的 URP 像素断言。`Doc/特效预览/EnemyHitFeedback.gif` 与 `EnemyHitFeedback_Comparison.png` 为固定姿态的真实渲染媒体；`Tools/EnemyAssets/create_hit_preview.py` 从验证截图重新导出，未修改游戏摄像机。用户确认仅核对 p2-p3-merge 基线即可，已 fetch 并确认最新 `2fe1dc1` 是当前功能分支的祖先；不继续扩大摄像机修改范围。
@@ -136,3 +159,7 @@ manifest 已有 Coplay Unity MCP，仓库 `.mcp.json` 指向 `localhost:8080/mcp
 2026-10-21 规则释放光潮（独立 main PR）：新增 RuleCastVfx + Resources 材质 + URP Screen Shader；主角纯白，四 Boss 沿用原 Vfx Profile（蝙蝠紫/闹钟金黄/兔子粉/砖块橙）。轮盘有效会话 Ready 自动接线，兼容无托球组件的旧白盒；按相机最远角点扩大到完全出屏，取消/覆盖/到期从画外回吸，时间反转无永久残留，暂停/快照/停用清理，12 槽有界。无需场景或 Prefab 改动，不改战斗/AI/管线设置。五组真实 URP GIF 与复现工具见 Doc/规则释放光潮接入.md；此分支不包含未合并的小怪 PR #20 或同期 HUD/轮盘间距修改。验证报告在 Doc/特效预览/RuleSacredWave/。
 
 2026-10-21 规则释放光潮视觉微调：移除中心十字光柱，保留圆形柔光；敌方原配色混入柔白并略降光强，主角仍纯白。展开由1.05秒加快至0.70秒，回吸由0.85秒加快至0.55秒，尾光同步缩短；完全出屏范围不变。独立工程生命周期/URP67项、四Boss真实场景44项通过，重新录制五色无文字且小于1MB的GIF，更新同一规则特效PR。
+2026-10-20 抱抱熊贴脸不攻击：确认首次未抱到的报告，并复现越过出生点追击圈后回巢路径被玩家堵住，Chase 的追击资格分支抢先跳 Return，Return 不做拥抱判定。仅调整 HugBearBrain：无遮挡的身体接触优先于追击/回巢，Idle/Sit 贴身时先站起，受击恢复也承认贴身目标；拥抱冷却保持，薄墙仍阻挡。新增 HugBearApproachValidation 真实预制体物理接近检查，修复前 2 项失败，修复后 20 项通过；同轮 MinionDecision 53、MinionGallery 56 均通过，共129项0失败。未改投掷物、场景、预制体或规则系统，未运行 Player 构建。
+
+2026-10-20 小怪六属性五关系补齐：用户要求所有现有小怪接入，先按要求提交 3d083b9 作为美术/场景/行为修复检查点，再实装规则。新增动作/机制独立时钟，时间失效暂停冷却、持续伤害、引信和控制计时，快照恢复机制时钟；摩擦增强接地降速、失效保留滑行动量，反转不再替换各类专属动作；跳跃使用固定起跳速度，导航与实际质量/摩擦/重力参数对齐；锁自主动作时仍推进世界物理。共享战斗结算补齐因果失效的全体治疗、命中/自然恢复共享，玩家自动补缺失规则实体登记。两种 Boss 召唤小兵可独立拖放，以放置点建活动范围，实际召唤时保留父场地；生成器同步。所有 12 种已有小怪参与规则矩阵和放置验证；蜘蛛/陀螺/迪斯科球不新增，投掷物文件/尺寸未改。详细验证范围见小怪预制体使用指南；未执行完整 Player 构建。
+规则最终验证共650项0失败（401规则/专项+53决策+53破韧+16导航+20接近+20放置+56场景+31共享伤害），日志与结果见小怪指南。

@@ -270,7 +270,7 @@ MonoBehaviour:
   Definition: {fileID: 11400000, guid: 7261aa2462fb3bc4882fe13e88d69a1c, type: 2}
   Target: {fileID: 0}
   Combat: {fileID: 0}
-  UseSpawnRelativeArena: 0
+  UseSpawnRelativeArena: 1
   ArenaSize: {x: 20, y: 20}
   ArenaOffset: {x: 0, y: 0}
   MinionPrefab: {fileID: 0}

@@ -1,0 +1,28 @@
+.gallery-panel {
+    -unity-font-definition: url("project://database/Assets/_Project/UI/Fonts/P4ChineseFont.asset");
+    position: absolute;
+    left: 16px;
+    top: 16px;
+    width: 390px;
+    padding: 14px;
+    background-color: rgba(24, 29, 40, 0.93);
+    border-radius: 8px;
+    color: rgb(237, 241, 248);
+    font-size: 16px;
+}
+.gallery-title {
+    font-size: 23px;
+    -unity-font-style: bold;
+    margin-bottom: 8px;
+}
+.gallery-hint {
+    white-space: normal;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    color: rgb(201, 216, 237);
+}
+.gallery-state { margin-bottom: 5px; }
+.gallery-buttons { flex-direction: row; margin-top: 6px; }
+.gallery-buttons > Button { flex-grow: 1; margin-right: 5px; height: 28px; color: rgb(24, 29, 40); background-color: rgb(222, 228, 236); }
+.gallery-panel .unity-base-popup-field__text { color: rgb(24, 29, 40); }
+.gallery-shortcuts { font-size: 14px; margin-top: 8px; white-space: normal; }

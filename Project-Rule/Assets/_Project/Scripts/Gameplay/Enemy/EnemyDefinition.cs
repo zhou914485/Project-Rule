@@ -7,7 +7,7 @@ namespace RuleGame.Gameplay.Enemy
     // 新类型只追加，保留现有资产的枚举值。
     public enum EnemyKind { BrickMinion, BrickBoss, ClockBoss, RabbitBoss, BatBoss, BatMinion,
         StoneGuard, ExplosiveBlock, BrickSoldier, SpringToy, ClockMouse, ClockBomb, PlushBird, HugBear, PlushSeal,
-        ChargingCube }
+        ChargingCube, DiscoBall, SpinningTop }
 
     [Serializable]
     public struct EnemyActionTiming
@@ -32,6 +32,7 @@ namespace RuleGame.Gameplay.Enemy
         [Tooltip("身体接触伤害向外检测的余量，覆盖移动解算保留的微小间隙。")]
         [Min(0f)] public float ContactPadding = 0.05f;
         public float Energy = 100f;
+        public float EnergyPerHit = 4f;
         public float EnergyRegen = 2f;
         public AttributeId RuleAttribute = AttributeId.Gravity;
         public RelationId RuleRelation = RelationId.Weaken;
@@ -216,6 +217,16 @@ namespace RuleGame.Gameplay.Enemy
         [Min(.2f)] public float MinionSlideDuration = 1.2f;
         [Min(1f)] public float MinionDashMultiplier = 3f;
         [Min(1f)] public float MinionProjectileSpeed = 7f;
+        [Header("迪斯科球：辐射周期")]
+        [Min(.5f)] public float RadiationRadius = 8f;
+        [Min(.1f)] public float RadiationWarning = .75f;
+        [Min(.1f)] public float RadiationDuration = 4f;
+        [Min(.1f)] public float RadiationRest = 2f;
+        [Min(.05f)] public float RadiationHitInterval = .5f;
+        [Header("陀螺：碰撞反弹")]
+        [Range(0f, 1f)] public float TopRestitution = .9f;
+        [Min(.05f)] public float TopImpactCooldown = .12f;
+        [Range(-1f, 1f)] public float TopInitialDirection = 1f;
         public EnemyActionTiming[] Timings = Array.Empty<EnemyActionTiming>();
 
         public float Duration(string action, float fallback = 0.8f)

@@ -1227,7 +1227,7 @@ namespace RuleGame.Gameplay.Player
 
             // 能量恢复来源之一：命中即回，未命中不给（策划案 §四）。
             if (hits > 0 && _status != null)
-                _status.RestoreEnergy(_energyPerHit * hits);
+                _combat.RestoreEnergy(_status, _energyPerHit * hits);
         }
 
         /// <summary>

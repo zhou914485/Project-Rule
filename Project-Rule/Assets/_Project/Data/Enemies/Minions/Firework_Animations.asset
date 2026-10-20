@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff07526ecba378c4c9291476eb1f3b68, type: 3}
+  m_Name: Firework_Animations
+  m_EditorClassIdentifier: RuleGame.Presentation::RuleGame.Presentation.Enemy.EnemyAnimationSet
+  Sequences:
+  - Action: Launch
+    Frames:
+    - {fileID: 21300000, guid: 8b9718c7e47164168b7cff00bbd1fda0, type: 3}
+    - {fileID: 21300000, guid: ddde2658a11f64f82b1f88cbfffb1de4, type: 3}
+    - {fileID: 21300000, guid: 98804e3d60bc44b00969d89da455ce45, type: 3}
+    - {fileID: 21300000, guid: bde16af769fee4273863a8731c6ff0ce, type: 3}
+    - {fileID: 21300000, guid: 65641710b203b46269a0260068c19fa5, type: 3}
+    ClockFaceCenters: []
+    FrameRate: 8
+    FacesRight: 1
+    NativeFrameRate: 0

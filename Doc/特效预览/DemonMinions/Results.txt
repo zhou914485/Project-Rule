@@ -1,0 +1,104 @@
+Passed: 102
+Failed: 0
+PASS 辐射全周 0°
+PASS 辐射全周 15°
+PASS 辐射全周 30°
+PASS 辐射全周 45°
+PASS 辐射全周 60°
+PASS 辐射全周 75°
+PASS 辐射全周 90°
+PASS 辐射全周 105°
+PASS 辐射全周 120°
+PASS 辐射全周 135°
+PASS 辐射全周 150°
+PASS 辐射全周 165°
+PASS 辐射全周 180°
+PASS 辐射全周 195°
+PASS 辐射全周 210°
+PASS 辐射全周 225°
+PASS 辐射全周 240°
+PASS 辐射全周 255°
+PASS 辐射全周 270°
+PASS 辐射全周 285°
+PASS 辐射全周 300°
+PASS 辐射全周 315°
+PASS 辐射全周 330°
+PASS 辐射全周 345°
+PASS 墙、平台阻挡与移开恢复
+PASS 真实移动平台动态遮挡
+PASS 辐射周期、停火与暂停
+PASS 辐射受击箱去重与关闭
+PASS 辐射视觉与阴影网格
+PASS 陀螺真实碰墙反弹
+PASS 陀螺真实铁箱双方弹开
+PASS 陀螺真实玩家反弹
+PASS 两只陀螺互相弹开
+PASS 陀螺碰撞质量与反向等冲量
+PASS 辐射实际伤害规则/Revert
+PASS 辐射实际伤害规则/Nullify
+PASS 辐射实际伤害规则/Constant
+PASS 辐射实际伤害规则/Enhance
+PASS 辐射实际伤害规则/Weaken
+PASS 辐射世界回溯恢复位置与停火周期
+PASS DiscoBall/Gravity/Revert
+PASS DiscoBall/Gravity/Nullify
+PASS DiscoBall/Gravity/Constant
+PASS DiscoBall/Gravity/Enhance
+PASS DiscoBall/Gravity/Weaken
+PASS DiscoBall/Time/Revert
+PASS DiscoBall/Time/Nullify
+PASS DiscoBall/Time/Constant
+PASS DiscoBall/Time/Enhance
+PASS DiscoBall/Time/Weaken
+PASS DiscoBall/Friction/Revert
+PASS DiscoBall/Friction/Nullify
+PASS DiscoBall/Friction/Constant
+PASS DiscoBall/Friction/Enhance
+PASS DiscoBall/Friction/Weaken
+PASS DiscoBall/Mass/Revert
+PASS DiscoBall/Mass/Nullify
+PASS DiscoBall/Mass/Constant
+PASS DiscoBall/Mass/Enhance
+PASS DiscoBall/Mass/Weaken
+PASS DiscoBall/Damage/Revert
+PASS DiscoBall/Damage/Nullify
+PASS DiscoBall/Damage/Constant
+PASS DiscoBall/Damage/Enhance
+PASS DiscoBall/Damage/Weaken
+PASS DiscoBall/Causality/Revert
+PASS DiscoBall/Causality/Nullify
+PASS DiscoBall/Causality/Constant
+PASS DiscoBall/Causality/Enhance
+PASS DiscoBall/Causality/Weaken
+PASS DiscoBall 自动绑定、暂停、快照与死亡
+PASS SpinningTop/Gravity/Revert
+PASS SpinningTop/Gravity/Nullify
+PASS SpinningTop/Gravity/Constant
+PASS SpinningTop/Gravity/Enhance
+PASS SpinningTop/Gravity/Weaken
+PASS SpinningTop/Time/Revert
+PASS SpinningTop/Time/Nullify
+PASS SpinningTop/Time/Constant
+PASS SpinningTop/Time/Enhance
+PASS SpinningTop/Time/Weaken
+PASS SpinningTop/Friction/Revert
+PASS SpinningTop/Friction/Nullify
+PASS SpinningTop/Friction/Constant
+PASS SpinningTop/Friction/Enhance
+PASS SpinningTop/Friction/Weaken
+PASS SpinningTop/Mass/Revert
+PASS SpinningTop/Mass/Nullify
+PASS SpinningTop/Mass/Constant
+PASS SpinningTop/Mass/Enhance
+PASS SpinningTop/Mass/Weaken
+PASS SpinningTop/Damage/Revert
+PASS SpinningTop/Damage/Nullify
+PASS SpinningTop/Damage/Constant
+PASS SpinningTop/Damage/Enhance
+PASS SpinningTop/Damage/Weaken
+PASS SpinningTop/Causality/Revert
+PASS SpinningTop/Causality/Nullify
+PASS SpinningTop/Causality/Constant
+PASS SpinningTop/Causality/Enhance
+PASS SpinningTop/Causality/Weaken
+PASS SpinningTop 自动绑定、暂停、快照与死亡

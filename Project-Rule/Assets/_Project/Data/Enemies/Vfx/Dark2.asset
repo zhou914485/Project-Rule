@@ -17,3 +17,9 @@ MonoBehaviour:
   FrameCount: 49
   FramesPerSecond: 30
   FirstFrame: 1
+  VisibleRect:
+    serializedVersion: 2
+    x: 0.1015625
+    y: 0.1875
+    width: 0.796875
+    height: 0.66796875

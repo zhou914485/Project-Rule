@@ -1,0 +1,12 @@
+Passed: 0
+Failed: 10
+FAIL: BrickBoss melee -1 — 近战中心 actual=(-1.38, 3.76) expected=(-1.30, 3.00)
+FAIL: BrickBoss melee 1 — 近战中心 actual=(5.22, 3.76) expected=(5.30, 3.00)
+FAIL: BatBoss melee -1 — 近战中心 actual=(-0.69, 3.20) expected=(-0.75, 3.00)
+FAIL: BatBoss melee 1 — 近战中心 actual=(4.69, 3.20) expected=(4.75, 3.00)
+FAIL: Brick ground strike — 砸地中心 actual=(1.95, 1.45) expected=(2.00, 2.50)
+FAIL: BrickBoss projectiles — 弹芯中心 actual=(2.03, 2.91) expected=(2.00, 3.00)
+FAIL: RabbitBoss projectiles — 弹芯直径 (0.48, 0.48, 0.09) / 0.44
+FAIL: BatBoss projectiles — 弹芯直径 (0.37, 0.37, 0.15) / 0.44
+FAIL: ClockBoss projectiles — 弹芯直径 (0.37, 0.37, 0.15) / 0.44
+FAIL: Clock authored beam — 光束宽度与伤害盒一致

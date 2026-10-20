@@ -1,5 +1,4 @@
 using UnityEngine;
-using RuleGame.Core.Rules;
 
 namespace RuleGame.Gameplay.Enemy
 {
@@ -10,7 +9,7 @@ namespace RuleGame.Gameplay.Enemy
     /// <para><b>没有攻击盒、没有爆炸</b>：伤害由 <c>EnemyActor.TickContactDamage</c> 在
     /// <c>ContactDamage</c> 打开时结算（同一条 <c>CombatSystem</c> 出口、同一条击退），
     /// 死亡走基类的 <c>Dead</c>，不召唤任何范围伤害。</para>
-    /// <para><b>摩擦规则直接乘在冲刺速度上</b>：×增强（3 倍）→ 只能挪，×削弱 / ×失效 → 打滑冲过头。
+    /// <para><b>摩擦规则由 EnemyMotor 统一作用于冲刺速度与加减速</b>：×增强（3 倍）→ 只能挪，×削弱 / ×失效 → 打滑冲过头。
     /// Kinematic 敌人不吃材质摩擦，所以必须自己读 <c>FrictionScale</c>，与回弹块同一条写法。</para>
     /// <para>「摩擦 × 反转」由基类统一处理（意图与位移反向），这里不用管。</para>
     /// </remarks>
@@ -28,20 +27,7 @@ namespace RuleGame.Gameplay.Enemy
 
         public ChargingCubeBrain(EnemyActor actor) : base(actor) { }
 
-        /// <summary>摩擦越小滑得越远：正常 1，增强 0.33，削弱 / 失效顶到 1.8。</summary>
-        private float FrictionFactor
-        {
-            get
-            {
-                float scale = RuleSystem.Instance?.Attributes.Values.FrictionScale ?? 1f;
-                return Mathf.Clamp(1f / Mathf.Max(.05f, scale), .45f, 1.8f);
-            }
-        }
-
-        private void ApplyChargeSpeed()
-        {
-            Actor.Motor.SpeedMultiplier = Config.MinionDashMultiplier * FrictionFactor;
-        }
+        private void ApplyChargeSpeed() => Actor.Motor.SpeedMultiplier = Config.MinionDashMultiplier;
 
         protected override void EnterBehavior(string name)
         {
@@ -67,9 +53,9 @@ namespace RuleGame.Gameplay.Enemy
             {
                 ApplyChargeSpeed();
                 ChargeTowards();
-                if (TouchesTarget && Age >= _nextBumpAt)
+                if (TouchesTarget && CooldownAge >= _nextBumpAt)
                 {
-                    _nextBumpAt = Age + BumpCooldown;
+                    _nextBumpAt = CooldownAge + BumpCooldown;
                     Go("Bump");
                     return;
                 }
@@ -79,6 +65,9 @@ namespace RuleGame.Gameplay.Enemy
 
             if (name == "Bump" && Finished) Go(SeesTarget ? "Charge" : "Idle");
         }
+
+        protected override object CaptureBehavior() => _nextBumpAt;
+        protected override void RestoreBehavior(object state) { if (state is float value) _nextBumpAt = value; }
 
         /// <summary>
         /// 直接朝目标压过去，**不查横向障碍**。
@@ -91,7 +80,9 @@ namespace RuleGame.Gameplay.Enemy
         private void ChargeTowards()
         {
             if (!CanPursue) { Actor.Motor.Intent = Vector2.zero; return; }
-            float offset = LastSeenPosition.x - Actor.transform.position.x;
+            float offset = (SeesTarget ? PredictTarget(.2f).x : LastSeenPosition.x) - Actor.transform.position.x;
+            if (Config.MinionNavigationEnabled && Actor.Motor.HasTerrainWallAhead(Mathf.Sign(offset)))
+            { Chase(); return; }
             Actor.FaceDirection(Vector2.right * offset);
             Actor.Motor.Intent = Mathf.Abs(offset) > .12f ? Vector2.right * Mathf.Sign(offset) : Vector2.zero;
         }

@@ -36,15 +36,9 @@ namespace RuleGame.Gameplay.Enemy
         private Vector2 Position => _actor.transform.position;
         private float MaxJump => Config.Kind == EnemyKind.SpringToy
             ? Mathf.Max(Config.MinionHopHeight, Config.MinionHighHopHeight) : Config.MinionJumpHeight;
-        private float Speed => Config.MoveSpeed * Motor.SpeedMultiplier;
-        private float Acceleration
-        {
-            get
-            {
-                var attributes = RuleSystem.Instance?.Attributes;
-                return 35f * (attributes == null ? 1f : Mathf.Max(.02f, attributes.Values.FrictionScale));
-            }
-        }
+        private float Speed => Config.MoveSpeed * Motor.SpeedMultiplier * Motor.GroundSpeedScale;
+        private float Acceleration => Motor.Grounded ? Motor.GroundAcceleration : 35f * Motor.MassResponse;
+        private float AirSpeed => Config.MoveSpeed * Motor.SpeedMultiplier;
         public bool JumpStarted { get; private set; }
         public bool HasRoute => _pathIndex < _pathCount || _traversing;
         public void DrawGizmos()
@@ -170,7 +164,7 @@ namespace RuleGame.Gameplay.Enemy
                 {
                     height = Mathf.Max(.1f, hopHeight);
                     float g = Physics2D.gravity.magnitude * Config.GravityScale;
-                    float reach = Speed * 2f * Mathf.Sqrt(2f * height / Mathf.Max(.01f, g)) * .7f;
+                    float reach = AirSpeed * 2f * Motor.JumpSpeed(height) / Mathf.Max(.01f, g) * .7f;
                     landing.x = Position.x + Mathf.Sign(offset) * Mathf.Min(Mathf.Abs(offset), reach);
                 }
                 _queries = 0;
@@ -266,17 +260,18 @@ namespace RuleGame.Gameplay.Enemy
         {
             float gravity = Physics2D.gravity.magnitude * Config.GravityScale;
             if (gravity < .1f || Speed <= .01f) return false;
-            float vertical = height > 0f ? Mathf.Sqrt(2f * gravity * height) : 0f;
+            float vertical = height > 0f ? Motor.JumpSpeed(height) : 0f;
             float horizontal = 0f;
             float heading = Mathf.Sign(to.x - from.x);
             bool leftSupport = height > 0f;
             Vector2 position = from;
-            float acceleration = Mathf.Max(1f, Acceleration);
             for (int i = 0; i < 100 && _queries < QueryBudget; i++)
             {
+                float acceleration = Mathf.Max(.001f, leftSupport ? 35f * Motor.MassResponse : Motor.GroundAcceleration);
+                float speed = leftSupport ? AirSpeed : Speed;
                 float remaining = (to.x - position.x) * heading;
                 float brake = horizontal * horizontal / (2f * acceleration) + .04f;
-                horizontal = Mathf.MoveTowards(horizontal, remaining > brake ? heading * Speed : 0f, acceleration * ArcStep);
+                horizontal = Mathf.MoveTowards(horizontal, remaining > brake ? heading * speed : 0f, acceleration * ArcStep);
                 if (!leftSupport && !Supported(position + Vector2.right * horizontal * ArcStep)) leftSupport = true;
                 if (leftSupport) vertical -= gravity * ArcStep;
                 Vector2 next = position + (Vector2.right * horizontal + _up * vertical) * ArcStep;

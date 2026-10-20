@@ -89,7 +89,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a69f0223fead4dc4db1819d26c428d4a, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: RuleGame.Gameplay::RuleGame.Gameplay.Combat.Hurtbox
   _owner: {fileID: 1458139760424765498}
 --- !u!1 &1162709493963923804
@@ -107,7 +107,6 @@ GameObject:
   - component: {fileID: 5519943267113840425}
   - component: {fileID: 1458139760424765498}
   - component: {fileID: 7981656712166062315}
-  - component: {fileID: 4709792399532635954}
   - component: {fileID: 6752277982292527422}
   m_Layer: 9
   m_Name: HugBear
@@ -143,7 +142,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d5b17e5f0fb818991d232565fec6e1d5, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: RuleGame.Gameplay::RuleGame.Gameplay.Player.EntityStatus
   _energyMax: 100
   _energy: 100
@@ -233,7 +232,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 03f81f7abaebd04478283970d8cfbc34, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: RuleGame.Gameplay::RuleGame.Gameplay.Enemy.EnemyMotor
   SolidMask:
     serializedVersion: 2
@@ -251,7 +250,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e367a6432c3bc2049834a74d9b8f8f63, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: RuleGame.Gameplay::RuleGame.Gameplay.Enemy.EnemyActor
   Definition: {fileID: 11400000, guid: 13966581e4e334dee8279a54c0729ee7, type: 2}
   Target: {fileID: 0}
@@ -283,25 +282,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a7085f702f0e4752bd2383e7a2978b8b, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: RuleGame.Gameplay::RuleGame.Gameplay.Common.RuleAffectedBody
   _applyFriction: 1
   _applyMass: 1
   _frictionSource: {fileID: 0}
---- !u!114 &4709792399532635954
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1162709493963923804}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f75c28e2a1ad450598158297d5a141b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: RuleGame.Presentation::RuleGame.Presentation.Enemy.FieldMinionView
-  Actor: {fileID: 1458139760424765498}
-  Body: {fileID: 1121607024177978347}
 --- !u!114 &6752277982292527422
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -312,7 +297,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5734830a1f2e9419a9db2d4bce1d0f9e, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: RuleGame.Presentation::RuleGame.Presentation.Audio.EnemySfxPresenter
 --- !u!1 &1236195569210993149
 GameObject:
@@ -324,8 +309,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3070327268394016676}
   - component: {fileID: 1121607024177978347}
+  - component: {fileID: 7727058431069428369}
   m_Layer: 0
-  m_Name: WhiteboxBody
+  m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -340,8 +326,8 @@ Transform:
   m_GameObject: {fileID: 1236195569210993149}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.8, z: 1}
+  m_LocalPosition: {x: 0, y: -0.9, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 851643280964201088}
@@ -395,8 +381,8 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 5
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -3209511910272548094, guid: f9113bda5603fba42b3acc164cb94477, type: 3}
-  m_Color: {r: 0.6941667, g: 0.3825, b: 0.85, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 00cc0d54863ea411ab5e9b1bd029d30a, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -406,3 +392,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
+--- !u!114 &7727058431069428369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1236195569210993149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f755534787511b41b4052304be8c5cb, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: RuleGame.Presentation::RuleGame.Presentation.Enemy.EnemySpriteAnimator
+  Actor: {fileID: 1458139760424765498}
+  AnimationSet: {fileID: 11400000, guid: 29a3f5005ec7b4a00bd646cf8658b98f, type: 2}

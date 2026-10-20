@@ -62,6 +62,7 @@ namespace RuleGame.Gameplay.Enemy
                 _nextAdvance = Age + Mathf.Max(.5f, Config.BrickAdvanceCooldown);
                 Actor.Cue("Walk", Actor.Duration("Walk"), true);
             }
+            if (name == "HammerPlayer" || name == "HammerGround" || name == "Throw") Actor.Motor.Stop();
             if (name == "Throw")
             {
                 Vector2 delta = PredictTarget(.25f) - (Vector2)Actor.transform.position;
@@ -81,7 +82,7 @@ namespace RuleGame.Gameplay.Enemy
             {
                 case "Idle":
                 case "Walk":
-                    if (HasTarget && Age >= NextAttack && CombatDistance <= RangedRange)
+                    if (TargetVisible && Age >= NextAttack && CombatDistance <= RangedRange)
                     {
                         _combo = 0;
                         bool level = Mathf.Abs(Actor.Target.position.y - Actor.transform.position.y) <= Config.BodySize.y * .5f;
@@ -97,16 +98,19 @@ namespace RuleGame.Gameplay.Enemy
                     Actor.Motor.Intent = Vector2.right * _advanceFacing;
                     Actor.Motor.SpeedMultiplier = Mathf.Max(1f, Config.BrickAdvanceSpeedMultiplier);
                     bool crossed = (Actor.Target.position.x - Actor.transform.position.x) * _advanceFacing < 0f;
+                    if (Actor.Motor.HasTerrainWallAhead(_advanceFacing)) { Go(TargetInMeleeRange ? "HammerPlayer" : "Throw"); break; }
                     if (TargetInMeleeRange || crossed || AtArenaEdge(_advanceFacing)
                         || Elapsed >= Mathf.Max(.2f, Config.BrickAdvanceDuration))
                         Go(TargetInMeleeRange ? "HammerPlayer" : "HammerGround");
                     break;
                 case "HammerPlayer":
-                    if (Impact()) Actor.Attack(Config.AttackRange, true);
-                    if (Pulses > 0 && Elapsed < Actor.AnimationDuration * .8f) Actor.Attack(Config.AttackRange);
+                    TrackAttackWindup();
+                    if (Impact()) Actor.Attack(Config.AttackRange, true, sustained: true);
+                    if (Pulses > 0 && Elapsed < Actor.AnimationDuration * .8f) Actor.Attack(Config.AttackRange, sustained: true);
                     if (Finished) FinishAttack(name);
                     break;
                 case "HammerGround":
+                    TrackAttackWindup();
                     if (Impact())
                     {
                         GroundWave();
@@ -118,6 +122,13 @@ namespace RuleGame.Gameplay.Enemy
                     if (Finished) FinishAttack(name);
                     break;
                 case "Throw":
+                    if (Elapsed <= Actor.AnimationDuration * Config.MinionAimLockFraction && TargetVisible)
+                    {
+                        Actor.FaceTarget();
+                        Vector2 delta = PredictTarget(.25f) - (Vector2)Actor.transform.position;
+                        float travel = Mathf.Clamp(Mathf.Abs(delta.x) / Mathf.Max(1f, Config.BrickThrowSpeed), .25f, 1.2f);
+                        _throwDirection = (delta - Physics2D.gravity * (.45f * travel * travel * .5f)).normalized;
+                    }
                     if (Impact()) ThrowFan(_throwDirection);
                     if (Phase >= 3 && Pulses == 1 && Elapsed >= Actor.AnimationDuration * .8f)
                     {
@@ -139,14 +150,15 @@ namespace RuleGame.Gameplay.Enemy
             Actor.Shoot(Vector2.right, 11f, 0f, .5f);
             if (Config.BrickSlamRange <= 0f) return;
             Vector2 feet = (Vector2)Actor.transform.position - Actor.Motor.Up * Config.BodySize.y * .5f;
-            Actor.AttackArea(feet + Actor.Motor.Up * 1.1f, new Vector2(Config.BrickSlamRange * 2f, 2.2f));
+            Bounds area = Actor.GroundSlamBounds;
+            Actor.AttackArea(area.center, area.size);
             Actor.ShootFan(Actor.Motor.Up, Config.BrickThrowCount, 150f, 9f, .8f, .25f, origin: feet + Actor.Motor.Up * .5f);
         }
         private void FinishAttack(string name)
         {
             _lastAttack = name; _combo++;
             int limit = Mathf.Clamp(Config.BrickComboLimit - (Phase == 1 ? 1 : 0), 1, 3);
-            if (HasTarget && _combo < limit && CombatDistance <= RangedRange)
+            if (TargetVisible && _combo < limit && CombatDistance <= RangedRange)
             {
                 if (name == "HammerPlayer") { Go("HammerGround"); return; }
                 if (name == "HammerGround") { Go(TargetInMeleeRange ? "HammerPlayer" : "Throw"); return; }

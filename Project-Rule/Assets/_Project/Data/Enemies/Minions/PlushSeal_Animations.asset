@@ -1,0 +1,118 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff07526ecba378c4c9291476eb1f3b68, type: 3}
+  m_Name: PlushSeal_Animations
+  m_EditorClassIdentifier: RuleGame.Presentation::RuleGame.Presentation.Enemy.EnemyAnimationSet
+  Sequences:
+  - Action: Idle
+    Frames:
+    - {fileID: 21300000, guid: 01a11a541dd674f88afcb685480275c5, type: 3}
+    ClockFaceCenters: []
+    FrameRate: 8
+    FacesRight: 0
+    NativeFrameRate: 1
+  - Action: Walk
+    Frames:
+    - {fileID: 21300000, guid: 6fb86579f345341d8aa1e1c6b8809a19, type: 3}
+    - {fileID: 21300000, guid: 45506698dc3a24e3cb7c258016493875, type: 3}
+    - {fileID: 21300000, guid: 35569df2d879f417493d0534b1973a1b, type: 3}
+    - {fileID: 21300000, guid: 0f4bd51010db94a0ab1fc40221685bf5, type: 3}
+    - {fileID: 21300000, guid: 9d4960887cce943c784f35f236cdffd0, type: 3}
+    - {fileID: 21300000, guid: 8cca93990739b46c48d99d5e05e4599f, type: 3}
+    ClockFaceCenters: []
+    FrameRate: 8
+    FacesRight: 0
+    NativeFrameRate: 1
+  - Action: Howl
+    Frames:
+    - {fileID: 21300000, guid: dbc1246b3f85943dc83ca8499a9d061b, type: 3}
+    - {fileID: 21300000, guid: 2945156e37e7749b9b95c810cb7b8dbf, type: 3}
+    - {fileID: 21300000, guid: d2e8a9c43dd2d420aaad2ebb35ab1222, type: 3}
+    - {fileID: 21300000, guid: eb24d2b439bcb43d4b189a481e5bbe0b, type: 3}
+    - {fileID: 21300000, guid: 513e7753087f34482bd978bc324fb907, type: 3}
+    - {fileID: 21300000, guid: 2c512c1833cc9415caa7ad26971253de, type: 3}
+    - {fileID: 21300000, guid: 630855c9adaa64257a14d38a3cb9507c, type: 3}
+    - {fileID: 21300000, guid: 5d6118c973c2f450fa0077c82fed8929, type: 3}
+    - {fileID: 21300000, guid: 668fe50ac102e42e1ac4a4357864656f, type: 3}
+    - {fileID: 21300000, guid: 203cf08d4b7eb4c88b49e0c5eb42c4d9, type: 3}
+    - {fileID: 21300000, guid: 3d27753c99b4a4e9c83ffad85c880538, type: 3}
+    - {fileID: 21300000, guid: e722b96ba668d4e06b7025522413770e, type: 3}
+    - {fileID: 21300000, guid: 67d9261608ac64559a4b744ac32de051, type: 3}
+    - {fileID: 21300000, guid: e957216083ee94daf936d520d08a0f82, type: 3}
+    ClockFaceCenters: []
+    FrameRate: 8
+    FacesRight: 0
+    NativeFrameRate: 0
+  - Action: BellySlap
+    Frames:
+    - {fileID: 21300000, guid: cb0677e923ae34447bd434b27ea81cb6, type: 3}
+    - {fileID: 21300000, guid: bbfd31f642d684f9f875d0a8b6ec14da, type: 3}
+    - {fileID: 21300000, guid: b41922c7bb4a8481cb7b046ef09c20c1, type: 3}
+    - {fileID: 21300000, guid: 969b179e04d3f4eb599aa6e223368d36, type: 3}
+    ClockFaceCenters: []
+    FrameRate: 8
+    FacesRight: 0
+    NativeFrameRate: 0
+  - Action: Dead
+    Frames:
+    - {fileID: 21300000, guid: b8f2d2f15c751468884f5fb369adb261, type: 3}
+    - {fileID: 21300000, guid: 5ebacb40993fc415dbd79fe8f09f6f84, type: 3}
+    - {fileID: 21300000, guid: 29c614f4db4f741ab86735cd2456286a, type: 3}
+    - {fileID: 21300000, guid: 40caf0b0f5ed147c3b29ccd8d7f7ac86, type: 3}
+    - {fileID: 21300000, guid: a13ce8bf39a294e3c9f6248dce0f0aa8, type: 3}
+    - {fileID: 21300000, guid: 1029f9794e989440198678bb06276f94, type: 3}
+    - {fileID: 21300000, guid: 734047d27c63b4f3d9404501d10705bf, type: 3}
+    - {fileID: 21300000, guid: 8da77cb82f0304980a53e6055745ce1b, type: 3}
+    - {fileID: 21300000, guid: af9a8346e5e5d44bb924261ea556486c, type: 3}
+    - {fileID: 21300000, guid: 0101f3025a23b4f62acd991c76696eb9, type: 3}
+    - {fileID: 21300000, guid: 3e65709fc21d24f26958982a83457834, type: 3}
+    - {fileID: 21300000, guid: f67430aab726049578a32a51b44de136, type: 3}
+    - {fileID: 21300000, guid: fcf8434d16b5b4de7985761306a0d572, type: 3}
+    - {fileID: 21300000, guid: f9c06ffdd42bd4d32a8739e00fa37534, type: 3}
+    - {fileID: 21300000, guid: e6469082c76a3474db19873efbb5e783, type: 3}
+    - {fileID: 21300000, guid: 0bacbb210b1c94aa18b4ef658b2089f3, type: 3}
+    - {fileID: 21300000, guid: cac17a55bea404b279a3b924f333bcac, type: 3}
+    - {fileID: 21300000, guid: 8db1bee82f51b49fdbf2b3d412efbb25, type: 3}
+    - {fileID: 21300000, guid: 300f7c6e55c5f487396b8e87e2a091af, type: 3}
+    - {fileID: 21300000, guid: fdaffdc00d35843d48be023c4cb14beb, type: 3}
+    - {fileID: 21300000, guid: 5864cd4bcc280490bbfcaf8f69752ed1, type: 3}
+    ClockFaceCenters: []
+    FrameRate: 8
+    FacesRight: 0
+    NativeFrameRate: 0
+  - Action: ProjectileIce
+    Frames:
+    - {fileID: 21300000, guid: 1ce43414f49f247fe978a95f8af9276f, type: 3}
+    - {fileID: 21300000, guid: b09e0452787ef43d4be80bb33a81b023, type: 3}
+    ClockFaceCenters: []
+    FrameRate: 8
+    FacesRight: 0
+    NativeFrameRate: 1
+  - Action: Slide
+    Frames:
+    - {fileID: 21300000, guid: 6fb86579f345341d8aa1e1c6b8809a19, type: 3}
+    - {fileID: 21300000, guid: 45506698dc3a24e3cb7c258016493875, type: 3}
+    - {fileID: 21300000, guid: 35569df2d879f417493d0534b1973a1b, type: 3}
+    - {fileID: 21300000, guid: 0f4bd51010db94a0ab1fc40221685bf5, type: 3}
+    - {fileID: 21300000, guid: 9d4960887cce943c784f35f236cdffd0, type: 3}
+    - {fileID: 21300000, guid: 8cca93990739b46c48d99d5e05e4599f, type: 3}
+    ClockFaceCenters: []
+    FrameRate: 8
+    FacesRight: 0
+    NativeFrameRate: 0
+  - Action: Hurt
+    Frames:
+    - {fileID: 21300000, guid: 01a11a541dd674f88afcb685480275c5, type: 3}
+    ClockFaceCenters: []
+    FrameRate: 8
+    FacesRight: 0
+    NativeFrameRate: 0

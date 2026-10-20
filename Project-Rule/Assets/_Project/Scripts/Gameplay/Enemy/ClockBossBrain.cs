@@ -97,7 +97,8 @@ namespace RuleGame.Gameplay.Enemy
             {
                 _burstPreparing = true;
                 _burstRelease = Age + Mathf.Max(.2f, Config.ClockBurstWarning);
-                Actor.EmitFeedback(EnemyFeedbackKind.BarrageWarning, Actor.transform.position, Actor.Motor.Up);
+                Actor.EmitFeedback(EnemyFeedbackKind.BarrageWarning,
+                    Actor.BeamOrigin != null ? Actor.BeamOrigin.position : Actor.transform.position, Actor.Motor.Up);
             }
             if (_burstPreparing && Age >= _burstRelease)
             {
@@ -180,7 +181,7 @@ namespace RuleGame.Gameplay.Enemy
             {
                 case "Idle":
                 case "Walk":
-                    if (HasTarget && CombatDistance <= RangedRange && Age >= NextAttack && Age >= _nextCharge
+                    if (TargetVisible && CombatDistance <= RangedRange && Age >= NextAttack && Age >= _nextCharge
                         && Mathf.Abs(Actor.Target.position.y - Actor.transform.position.y) <= Config.BodySize.y * .6f)
                     {
                         Go("JumpShake");
@@ -189,6 +190,12 @@ namespace RuleGame.Gameplay.Enemy
                     KeepDistance("Walk", Mathf.Min(Config.PreferredDistance, RangedRange));
                     break;
                 case "JumpShake":
+                    if (Elapsed <= Actor.AnimationDuration * Config.MinionAimLockFraction && TargetVisible)
+                    {
+                        float offset = PredictTarget(.25f).x - Actor.transform.position.x;
+                        if (Mathf.Abs(offset) > .1f) _chargeFacing = Mathf.Sign(offset);
+                        Actor.FaceDirection(Vector2.right * _chargeFacing);
+                    }
                     // 乱跑是从当前位置起步的移动招式，不在这里隐式释放会回溯自身位置的全局规则。
                     if (Finished) Go("Charge");
                     break;

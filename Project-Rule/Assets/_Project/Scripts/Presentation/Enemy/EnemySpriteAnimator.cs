@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using RuleGame.Gameplay.Enemy;
-using RuleGame.Infrastructure.Time;
 
 namespace RuleGame.Presentation.Enemy
 {
@@ -17,7 +16,6 @@ namespace RuleGame.Presentation.Enemy
         private SpriteRenderer _renderer;
         private readonly Dictionary<string, EnemySpriteSequence> _sequences = new Dictionary<string, EnemySpriteSequence>();
         private EnemySpriteSequence _current;
-        private float _time;
         private Vector3 _anchor;
         private Vector2 _clockFace;
         private bool _burrowed;
@@ -50,23 +48,23 @@ namespace RuleGame.Presentation.Enemy
         }
         private void Select()
         {
-            _time = 0f;
             string action = Actor.AnimationName;
             if (Actor.Definition.Kind == EnemyKind.RabbitBoss && Actor.Brain?.Phase >= 2
                 && action != "Dead" && action != "Flip") action = "Flight";
             _sequences.TryGetValue(action, out _current);
             if (_current == null) _sequences.TryGetValue("Idle", out _current);
         }
-        private void RestoreTime() { Select(); _time = Actor.Brain?.ActionElapsed ?? 0f; }
+        private void RestoreTime() => Select();
         private void LateUpdate()
         {
             if (_renderer == null || Actor == null) return;
-            if (TimeManager.Instance?.IsPaused != true && Actor.Status?.IsPaused != true) _time += Time.deltaTime;
+            if (Actor.Definition.Kind == EnemyKind.ClockMouse)
+                _renderer.enabled = Actor.Brain?.StateName != "Idle";
             if (_current != null && _current.Frames.Length > 0)
             {
                 float duration = Mathf.Max(0.05f, Actor.AnimationDuration);
                 int frame = Mathf.FloorToInt(_current.NativeFrameRate
-                    ? _time * _current.FrameRate : _time / duration * _current.Frames.Length);
+                    ? Actor.AnimationElapsed * _current.FrameRate : Actor.AnimationElapsed / duration * _current.Frames.Length);
                 frame = Actor.AnimationLoop ? frame % _current.Frames.Length : Mathf.Min(frame, _current.Frames.Length - 1);
                 _renderer.sprite = _current.Frames[frame];
                 _renderer.flipX = (Actor.Facing < 0f) == _current.FacesRight;

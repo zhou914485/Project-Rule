@@ -278,7 +278,12 @@ namespace RuleGame.Editor.Enemy
                 a.Brain.OnHit(100); Step(a, 2.6f);
                 Check(a.Brain.Phase == 2 && a.Brain.StateName != "Hurt", "阶段虚弱不被普通受击覆盖");
             });
-            Add(EnemyKind.BrickMinion, a => { a.Brain.OnHit(1); Check(a.Brain.StateName == "Hurt", "小怪保留普通受击"); });
+            Add(EnemyKind.BrickMinion, a =>
+            {
+                a.Brain.OnHit(1); Check(a.Brain.StateName != "Hurt", "小怪轻击未达破韧阈值时保持动作");
+                a.Brain.OnHit(a.Definition.MinionStaggerThreshold);
+                Check(a.Brain.StateName == "Hurt", "小怪达到配置阈值后保留受击");
+            });
             foreach (EnemyKind kind in new[] { EnemyKind.BrickBoss, EnemyKind.ClockBoss, EnemyKind.RabbitBoss, EnemyKind.BatBoss })
                 Add(kind, a =>
                 {
@@ -324,8 +329,10 @@ namespace RuleGame.Editor.Enemy
                     Step(a, .06f);
                     Check(a.Brain.StateName != "Rest", label + " 到时恢复行动");
                     Target(a, 3);
-                    for (int i = 0; i < 200 && attacks == 0; i++) Step(a);
-                    Check(attacks > 0, label + " 休息后能重新发动攻击");
+                    bool clock = kind == EnemyKind.ClockBoss;
+                    int wait = Mathf.CeilToInt((a.Definition.ClockChargeCooldown + a.Duration("JumpShake") + 2f) / .02f);
+                    for (int i = 0; i < wait && attacks == 0 && !(clock && a.Brain.StateName == "Charge"); i++) Step(a);
+                    Check(attacks > 0 || (clock && a.Brain.StateName == "Charge"), label + " 休息及独立技能冷却后能重新发动攻击");
                 });
             Add(EnemyKind.ClockBoss, a =>
             {

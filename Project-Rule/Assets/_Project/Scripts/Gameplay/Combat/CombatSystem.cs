@@ -5,6 +5,8 @@ using RuleGame.Infrastructure;
 using RuleGame.Infrastructure.Common;
 using RuleGame.Infrastructure.Rules;
 using RuleGame.Core.Rules;
+using RuleGame.Gameplay.Player;
+using RuleGame.Gameplay.Enemy;
 
 namespace RuleGame.Gameplay.Combat
 {
@@ -27,6 +29,9 @@ namespace RuleGame.Gameplay.Combat
         private readonly List<IDamageable> _hitTargets = new List<IDamageable>();
 
         private DamageProcessor _processor;
+        private readonly HashSet<EntityStatus> _energyTargets = new HashSet<EntityStatus>();
+        private readonly HashSet<EntityStatus> _sharedEnergySources = new HashSet<EntityStatus>();
+        private float _sharedEnergyPulse;
 
         public event Action<DamageInfo> OnDamageApplied;
         public event Action<object>     OnEntityDied;
@@ -50,7 +55,55 @@ namespace RuleGame.Gameplay.Combat
             }
         }
 
-        private void Update() => _processor?.Tick();
+        /// <summary>因果失效期间，命中回能与敌人自然回能共享给所有存活实体。</summary>
+        /// <remarks>同一帧内的多个来源先累加，由 <see cref="Update"/> 统一发放一次；
+        /// 避免每个敌人每帧自然回能都遍历一次世界注册表。</remarks>
+        public void RestoreEnergy(EntityStatus source, float amount, bool defer = false)
+        {
+            if (source == null || amount <= 0f) return;
+            if (RuleSystem.Instance?.Attributes.Values.CausalityRecoveryShared != true)
+            { source.RestoreEnergy(amount); return; }
+
+            _sharedEnergyPulse += amount;
+            _sharedEnergySources.Add(source);
+            if (!defer) FlushSharedEnergy();
+        }
+
+        private void FlushSharedEnergy()
+        {
+            if (_sharedEnergyPulse <= 0f) return;
+            float amount = _sharedEnergyPulse;
+            _sharedEnergyPulse = 0f;
+
+            _energyTargets.Clear();
+            foreach (var source in _sharedEnergySources)
+                if (source != null) _energyTargets.Add(source);
+            _sharedEnergySources.Clear();
+
+            var all = WorldRegistry.Instance?.All;
+            if (all != null)
+                for (int i = 0; i < all.Count; i++)
+                {
+                    var body = all[i].Body;
+                    if (body == null || !body.gameObject.activeInHierarchy) continue;
+                    var status = body.GetComponentInParent<EntityStatus>();
+                    if (status != null && status.Health > 0f) _energyTargets.Add(status);
+                }
+            foreach (var status in _energyTargets) status.RestoreEnergy(amount);
+        }
+        private int RewardEnemyHits(object attacker, int hits)
+        {
+            if (hits > 0 && attacker is EnemyActor enemy && !enemy.Definition.IsBoss
+                && RuleSystem.Instance?.Attributes.Values.CausalityRecoveryShared == true)
+                RestoreEnergy(enemy.Status, enemy.Definition.EnergyPerHit * hits);
+            return hits;
+        }
+
+        private void Update()
+        {
+            _processor?.Tick();
+            FlushSharedEnergy();
+        }
 
         // ==================================================================
         //  命中判定
@@ -109,7 +162,7 @@ namespace RuleGame.Gameplay.Combat
                 Targets    = _hitTargets,
             };
 
-            return processor.Process(attack);
+            return RewardEnemyHits(attacker, processor.Process(attack));
         }
 
         // ==================================================================
@@ -214,7 +267,7 @@ namespace RuleGame.Gameplay.Combat
                 Targets    = _hitTargets,
             };
 
-            return processor.Process(attack);
+            return RewardEnemyHits(attacker, processor.Process(attack));
         }
 
         /// <summary>

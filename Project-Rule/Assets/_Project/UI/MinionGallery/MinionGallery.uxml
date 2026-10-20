@@ -1,0 +1,16 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+    <ui:Style src="MinionGallery.uss" />
+    <ui:VisualElement name="galleryPanel" class="gallery-panel">
+        <ui:Label text="小怪集中测试" class="gallery-title" />
+        <ui:DropdownField name="stationChooser" label="测试区域" />
+        <ui:Label name="stationHint" class="gallery-hint" />
+        <ui:Label name="enemyState" class="gallery-state" />
+        <ui:Label name="playerState" class="gallery-state" />
+        <ui:VisualElement class="gallery-buttons">
+            <ui:Button name="previousStation" text="上一处 F2" />
+            <ui:Button name="nextStation" text="下一处 F1" />
+            <ui:Button name="restartGallery" text="重开 F3" />
+        </ui:VisualElement>
+        <ui:Label text="F4 暂停 · F5 无敌开关 · Shift 规则轮盘" class="gallery-shortcuts" />
+    </ui:VisualElement>
+</ui:UXML>

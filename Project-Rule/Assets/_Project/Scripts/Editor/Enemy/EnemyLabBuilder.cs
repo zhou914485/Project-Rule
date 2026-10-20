@@ -294,6 +294,7 @@ namespace RuleGame.Editor.Enemy
             SetFloat(status, "_energyMax", definition.Energy); SetFloat(status, "_energy", definition.Energy);
             EnemyActor actor = go.AddComponent<EnemyActor>();
             actor.Definition = definition; actor.ProjectileSprite = _circle;
+            actor.UseSpawnRelativeArena = !definition.IsBoss;
             go.AddComponent<RuleAffectedBody>();
             var visual = new GameObject("Visual"); visual.transform.SetParent(go.transform, false);
             visual.transform.localPosition = Vector3.down * definition.BodySize.y * 0.5f;

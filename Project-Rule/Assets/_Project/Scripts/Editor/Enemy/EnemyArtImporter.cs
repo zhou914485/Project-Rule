@@ -53,7 +53,7 @@ namespace RuleGame.Editor.Enemy
                     foreach (string path in sequence.frames) paths.Add(path);
             ImportFrames(Array.FindAll(manifest.frames, frame => paths.Contains(frame.path)));
         }
-        private static void ImportFrames(EnemyArtFrame[] frames)
+        internal static void ImportFrames(EnemyArtFrame[] frames)
         {
             AssetDatabase.StartAssetEditing();
             try

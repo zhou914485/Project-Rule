@@ -127,8 +127,14 @@ MonoBehaviour:
   MinionLeashRange: 8
   MinionTargetMemory: 1.5
   MinionStaggerThreshold: 20
+  MinionHurtDuration: 0.25
   MinionPreferredRange: 4
   MinionAimLockFraction: 0.25
+  MinionNavigationEnabled: 1
+  MinionJumpHeight: 1.6
+  MinionMaxDrop: 2.5
+  MinionNavigationSpacing: 0.5
+  MinionRepathInterval: 0.65
   MinionReassembles: 0
   MinionRespawnDelay: 7
   MinionFuseDuration: 1
@@ -154,7 +160,7 @@ MonoBehaviour:
   - Action: Hurt
     Duration: 0.25
   - Action: Dead
-    Duration: 0.8
+    Duration: 1.125
   - Action: Stand
     Duration: 0.8
   - Action: Sit

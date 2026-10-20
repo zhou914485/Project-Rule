@@ -10,7 +10,7 @@ namespace RuleGame.Gameplay.Enemy
     }
 
     /// <summary>
-    /// 战斗已发生的表现通知。只携带位置和事件源，不携带特效资源，也不反过来驱动伤害。
+    /// 战斗已发生的表现通知。携带判定位置和尺寸，不携带特效资源，也不反过来驱动伤害。
     /// 监听者可缺省；正式关卡只要使用敌人 Prefab 就会带上同一套表现。
     /// </summary>
     public readonly struct EnemyFeedback
@@ -24,14 +24,18 @@ namespace RuleGame.Gameplay.Enemy
         public readonly bool Lethal;
         public readonly AttributeId? RuleAttribute;
         public readonly RelationId? RuleRelation;
+        public readonly Vector2 Size;
+        public readonly bool Sustained;
 
         public EnemyFeedback(EnemyFeedbackKind kind, Vector3 position, Vector2 direction, Component subject = null,
             float damage = 0f, bool staggered = false, bool lethal = false,
-            AttributeId? ruleAttribute = null, RelationId? ruleRelation = null)
+            AttributeId? ruleAttribute = null, RelationId? ruleRelation = null,
+            Vector2 size = default, bool sustained = false)
         {
             Kind = kind; Position = position; Direction = direction; Subject = subject;
             Damage = damage; Staggered = staggered; Lethal = lethal;
             RuleAttribute = ruleAttribute; RuleRelation = ruleRelation;
+            Size = size; Sustained = sustained;
         }
     }
 }

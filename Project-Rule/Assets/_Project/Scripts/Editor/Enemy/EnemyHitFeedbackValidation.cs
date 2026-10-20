@@ -121,7 +121,8 @@ namespace RuleGame.Editor.Enemy
             return actor;
         }
 
-        private static SpriteRenderer Body => _actor.GetComponent<FieldMinionView>().Body;
+        private static SpriteRenderer Body => _actor.TryGetComponent<FieldMinionView>(out var view)
+            ? view.Body : _actor.GetComponentInChildren<EnemySpriteAnimator>().GetComponent<SpriteRenderer>();
         private static SpriteRenderer[] Visible(string name) => _actor.GetComponentsInChildren<SpriteRenderer>(true)
             .Where(renderer => renderer.name == name && renderer.enabled && renderer.gameObject.activeInHierarchy).ToArray();
         private static SpriteRenderer[] All(string name) => _actor.GetComponentsInChildren<SpriteRenderer>(true)
@@ -153,7 +154,8 @@ namespace RuleGame.Editor.Enemy
                     case 0:
                         Check(Vector3.Distance(Visible("HitImpact")[0].transform.position, _impactPosition) < .001f,
                             "敌人移动后，冲击仍停留在原来的世界命中点");
-                        var field = _actor.GetComponent<FieldMinionView>();
+                        Behaviour field = _actor.GetComponent<FieldMinionView>();
+                        if (field == null) field = _actor.GetComponentInChildren<EnemySpriteAnimator>();
                         field.enabled = false;
                         Body.flipX = true; Body.color = new Color(.2f, .3f, .4f, .3f);
                         PresentView();

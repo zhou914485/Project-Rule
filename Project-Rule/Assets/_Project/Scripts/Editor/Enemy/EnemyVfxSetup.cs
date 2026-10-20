@@ -86,7 +86,46 @@ namespace RuleGame.Editor.Enemy
                 finally { if (openedHere) EditorSceneManager.CloseScene(scene, true); }
             }
             AssetDatabase.SaveAssets();
+            CalibrateClipBounds();
             Debug.Log("[BossVfx] 四个 Boss 与四个白盒已接线；无原生插件运行依赖。");
+        }
+        [MenuItem("RuleGame/Enemies/校准 Boss 特效可见范围（保留战斗参数）")]
+        public static void CalibrateClipBounds()
+        {
+            foreach (string name in Names)
+            {
+                EnemyVfxClip clip = Clip(name);
+                if (clip == null || clip.Atlas == null) continue;
+                // 读原 PNG，不改 TextureImporter 的可读性或压缩设置。
+                var image = new Texture2D(2, 2, TextureFormat.RGBA32, false);
+                try
+                {
+                    if (!image.LoadImage(File.ReadAllBytes(AssetDatabase.GetAssetPath(clip.Atlas))))
+                        throw new InvalidOperationException("无法读取特效图集：" + name);
+                    Color32[] pixels = image.GetPixels32();
+                    int width = image.width / clip.Grid.x, height = image.height / clip.Grid.y;
+                    int minX = width, minY = height, maxX = 0, maxY = 0;
+                    for (int frame = clip.FirstFrame; frame < Mathf.Min(clip.FrameCount, clip.Grid.x * clip.Grid.y); frame++)
+                    {
+                        int left = frame % clip.Grid.x * width;
+                        int bottom = (clip.Grid.y - 1 - frame / clip.Grid.x) * height;
+                        for (int y = 0; y < height; y++)
+                            for (int x = 0; x < width; x++)
+                                if (pixels[(bottom + y) * image.width + left + x].a >= 40)
+                                {
+                                    minX = Mathf.Min(minX, x); minY = Mathf.Min(minY, y);
+                                    maxX = Mathf.Max(maxX, x + 1); maxY = Mathf.Max(maxY, y + 1);
+                                }
+                    }
+                    if (maxX <= minX || maxY <= minY) throw new InvalidOperationException("特效没有有效像素：" + name);
+                    Rect visible = Rect.MinMaxRect(minX / (float)width, minY / (float)height,
+                        maxX / (float)width, maxY / (float)height);
+                    if (clip.VisibleRect == visible) continue;
+                    clip.VisibleRect = visible;
+                    EditorUtility.SetDirty(clip); AssetDatabase.SaveAssetIfDirty(clip);
+                }
+                finally { UnityEngine.Object.DestroyImmediate(image); }
+            }
         }
         private static void Wire(EnemyActor actor, EnemyVfxProfile profile)
         {

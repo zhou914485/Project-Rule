@@ -1,0 +1,24 @@
+{
+  "frames": [
+    {
+      "source": "Src/小怪（结束/魔王城/迪斯科球怪/迪斯科球-1.png",
+      "path": "Assets/_Project/Art/Enemies/Minions/DiscoBall/DiscoBall_01.png",
+      "sha256": "1aa8f7a9a30071992ac424de2bb40a8f564d68d6a506d37f098a34718ce2a96f"
+    },
+    {
+      "source": "Src/小怪（结束/魔王城/迪斯科球怪/迪斯科球-2.png",
+      "path": "Assets/_Project/Art/Enemies/Minions/DiscoBall/DiscoBall_02.png",
+      "sha256": "a8ab27cc025e2211e4ec854e1be7956d35294b015df8e89310da11d952a97dbd"
+    },
+    {
+      "source": "Src/小怪（结束/魔王城/陀螺怪/陀螺怪-1.png",
+      "path": "Assets/_Project/Art/Enemies/Minions/SpinningTop/SpinningTop_01.png",
+      "sha256": "c2388817e89b72c62ec480ccdde251829b493b16f838c5424fd2cb7116bedd89"
+    },
+    {
+      "source": "Src/小怪（结束/魔王城/陀螺怪/陀螺怪-2.png",
+      "path": "Assets/_Project/Art/Enemies/Minions/SpinningTop/SpinningTop_02.png",
+      "sha256": "20075b8d0bdad0867b290ee118cb255ebb16ada16dfa1b5254ad0e761a966ac9"
+    }
+  ]
+}

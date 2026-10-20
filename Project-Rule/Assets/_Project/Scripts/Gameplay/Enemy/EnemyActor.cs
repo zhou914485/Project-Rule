@@ -79,11 +79,23 @@ namespace RuleGame.Gameplay.Enemy
         public EnemyPlatformNavigation Navigation { get; private set; }
         public ClockBeamEmitter ClockBeams { get; private set; }
         public bool IsFlying => Brain?.IsFlying ?? (Definition != null && Definition.Flying);
-        public bool HasTarget => Target != null && Target.gameObject.activeInHierarchy;
+        private Transform _vitalsTarget;
+        private EntityStatus _targetVitals;
+        public bool HasTarget
+        {
+            get
+            {
+                if (Target == null || !Target.gameObject.activeInHierarchy) return false;
+                if (_vitalsTarget != Target) { _vitalsTarget = Target; _targetVitals = Target.GetComponentInParent<EntityStatus>(); }
+                return _targetVitals == null || _targetVitals.Health > 0f;
+            }
+        }
         public Vector2 ArenaAnchor => _arenaInitialized ? _arenaOrigin : (Vector2)transform.position;
         public Faction Faction => Faction.Enemy;
         public string AnimationName { get; private set; } = "Idle";
         public float AnimationDuration { get; private set; } = 1f;
+        public float AnimationElapsed { get; private set; }
+        internal void AdvanceAnimation(float dt) => AnimationElapsed += dt;
         public bool AnimationLoop { get; private set; }
         public event Action AnimationChanged;
         public event Action Restored;
@@ -91,9 +103,17 @@ namespace RuleGame.Gameplay.Enemy
         public event Action<EnemyActor> OnDefeated;
         public event Action<EnemyFeedback> Feedback;
         private bool _strikeAnnounced;
+        public bool MeleeActive { get; private set; }
+        public Vector2 MeleeCenter { get; private set; }
+        public Vector2 MeleeSize { get; private set; }
+        public Bounds GroundSlamBounds => new Bounds(transform.position
+            - (Vector3)Motor.Up * (Definition.BodySize.y * .5f - 1.1f), new Vector3(Definition.BrickSlamRange * 2f, 2.2f));
         private float _invulnerability;
         private float _contactCooldown;
         private BoxCollider2D _bodyCollider;
+        private Transform _contactTarget;
+        private Collider2D _targetContactBody;
+        private Hurtbox _targetContactHurtbox;
         private readonly Collider2D[] _contacts = new Collider2D[8];
         private readonly HashSet<IDamageable> _contactTargets = new HashSet<IDamageable>();
         private readonly HashSet<IDamageable> _swingTargets = new HashSet<IDamageable>();
@@ -126,7 +146,7 @@ namespace RuleGame.Gameplay.Enemy
             if (Definition == null) { Debug.LogError("EnemyActor 缺少 EnemyDefinition。", this); enabled = false; return; }
             _arenaOrigin = transform.position;
             _arenaInitialized = true;
-            if (UseSpawnRelativeArena)
+            if (UseSpawnRelativeArena && Summoner == null)
             {
                 Vector2 half = new Vector2(Mathf.Max(Definition.BodySize.x + .1f, ArenaSize.x),
                     Mathf.Max(Definition.BodySize.y + .1f, ArenaSize.y)) * .5f;
@@ -152,22 +172,34 @@ namespace RuleGame.Gameplay.Enemy
             if (TimeManager.Instance?.IsPaused == true) return;
             PollContactSwitches();
             if (Brain == null || Status.IsPaused) return;
+            MeleeActive = false;
             float dt = Time.fixedDeltaTime;
             _invulnerability = Mathf.Max(0f, _invulnerability - dt);
-            if (!Defeated) Status.RestoreEnergy(Definition.EnergyRegen * dt);
+            if (!Defeated)
+            {
+                if (Combat != null) Combat.RestoreEnergy(Status, Definition.EnergyRegen * dt, true);
+                else Status.RestoreEnergy(Definition.EnergyRegen * dt);
+            }
             Motor.AllowLedgeTraversal = false;
             Brain.Tick(dt);
             ClockBeams?.Tick(dt);
             if (_bodyCollider != null) _bodyCollider.enabled = Brain.BodyEnabled;
-            if (Brain.MovementEnabled) Motor.Tick(dt);
-            else Motor.Stop();
+            if (Brain.Anchored) Motor.Stop();
+            else if (Brain.MovementEnabled) Motor.Tick(dt);
+            else
+            {
+                // 锁住自主动作，不锁世界物理：引信与拥抱期间仍响应重力、质量和外部冲量。
+                Motor.Intent = Vector2.zero; Motor.SpeedMultiplier = 1f; Motor.AllowLedgeTraversal = false;
+                if (Brain.BodyEnabled) Motor.Tick(dt);
+                else Motor.Stop();
+            }
             TickContactDamage(dt);
         }
         private void TickContactDamage(float dt)
         {
             _contactCooldown = Mathf.Max(0f, _contactCooldown - dt);
             if (Defeated || Brain?.ContactDamageEnabled == false || !Definition.ContactDamage || Combat == null || _contactCooldown > 0f
-                || _bodyCollider == null || !_bodyCollider.enabled) return;
+                || _bodyCollider == null || !_bodyCollider.enabled || (Target != null && !HasTarget)) return;
             // 用身体盒检查接触，不依赖 Kinematic 刚体是否触发碰撞回调。
             // 身体接触与招式攻击共用战斗结算，持续重叠也不会每帧掉血。
             // 判定的是**对方的受击箱**（挡自伤 / 挡同阵营的规则在 CombatSystem.TryResolveTarget 里）。
@@ -182,8 +214,29 @@ namespace RuleGame.Gameplay.Enemy
             for (int i = 0; i < count; i++)
             {
                 if (!CombatSystem.TryResolveTarget(_contacts[i], this, out IDamageable receiver)) continue;
+                if (Physics2D.Linecast(center, _contacts[i].bounds.center, Motor.SolidMask)) continue;
                 if (!_contactTargets.Add(receiver)) continue;
-                Combat.ApplyDamage(this, receiver, Definition.Damage, 5f);
+                Combat.ApplyDamage(this, receiver, Definition.Damage, Brain?.ContactKnockback ?? 5f);
+            }
+            // 玩家身体可能比受击箱大：Slide 已挡住双方，不能再要求身体盒穿进内缩的受击箱。
+            // 只桥接实际身体接触到仍开启的正规受击箱，结算与阵营过滤继续走公共入口。
+            if (HasTarget)
+            {
+                if (_contactTarget != Target)
+                {
+                    _contactTarget = Target;
+                    Transform contactRoot = _targetVitals != null ? _targetVitals.transform : Target;
+                    _targetContactBody = contactRoot.GetComponent<Collider2D>();
+                    _targetContactHurtbox = contactRoot.GetComponentInChildren<Hurtbox>(true);
+                }
+                if (_targetContactBody != null && _targetContactBody.enabled && _targetContactHurtbox != null
+                    && _targetContactHurtbox.isActiveAndEnabled && _targetContactHurtbox.Area != null
+                    && _targetContactHurtbox.Area.enabled && _targetContactHurtbox.Area.gameObject.activeInHierarchy
+                    && _bodyCollider.Distance(_targetContactBody).distance <= Mathf.Max(.035f, Definition.ContactPadding)
+                    && !Physics2D.Linecast(_bodyCollider.bounds.center, _targetContactBody.bounds.center, Motor.SolidMask)
+                    && CombatSystem.TryResolveTarget(_targetContactHurtbox.Area, this, out IDamageable receiver)
+                    && _contactTargets.Add(receiver))
+                    Combat.ApplyDamage(this, receiver, Definition.Damage, Brain?.ContactKnockback ?? 5f);
             }
             if (_contactTargets.Count > 0) _contactCooldown = Mathf.Max(0.05f, Definition.ContactInterval);
         }
@@ -306,10 +359,12 @@ namespace RuleGame.Gameplay.Enemy
         {
             Navigation?.Cancel();
             AnimationName = action;
+            AnimationElapsed = 0f;
             AnimationDuration = Mathf.Max(0.05f, duration);
             AnimationLoop = loop;
             _swingTargets.Clear();
             _strikeAnnounced = false;
+            MeleeActive = false;
             Motor.Intent = Vector2.zero;
             Motor.SpeedMultiplier = 1f;
             AnimationChanged?.Invoke();
@@ -375,25 +430,28 @@ namespace RuleGame.Gameplay.Enemy
             Feedback?.Invoke(new EnemyFeedback(EnemyFeedbackKind.Hit, position, direction, subject,
                 amount, staggered, lethal));
         }
-        public void Attack(float reach, bool newPulse = false)
+        public void Attack(float reach, bool newPulse = false, bool sustained = false)
         {
             if (Combat == null || !HasTarget) return;
             if (newPulse) _swingTargets.Clear();
             Vector2 center = (Vector2)transform.position + Vector2.right * Facing * reach * 0.55f;
+            Vector2 size = new Vector2(reach, Definition.BodySize.y * 0.8f);
+            MeleeActive = sustained; MeleeCenter = center; MeleeSize = size;
             // 持续判定窗不逐帧发特效；连斩的 newPulse 则每刀单独通知。
             if (newPulse || !_strikeAnnounced)
             {
                 _strikeAnnounced = true;
-                EmitFeedback(EnemyFeedbackKind.Strike, center, Vector2.right * Facing);
+                Feedback?.Invoke(new EnemyFeedback(EnemyFeedbackKind.Strike, center, Vector2.right * Facing,
+                    size: size, sustained: sustained));
             }
-            Combat.PerformAttack(this, center, new Vector2(reach, Definition.BodySize.y * 0.8f),
+            Combat.PerformAttack(this, center, size,
                 Definition.Damage, 5f, _swingTargets);
         }
         public void Shoot(Vector2 direction, float speed = 8f, float gravity = 0f, float radius = 0.22f, int visualIndex = -1, Vector2? origin = null)
         {
             if (HasTarget) EnemyProjectile.Spawn(this, direction, speed, gravity, radius, visualIndex, origin);
         }
-        public void AreaAttack(float radius)
+        public void AreaAttack(float radius, float knockback = 4f)
         {
             if (Combat == null) return;
             var filter = new ContactFilter2D { useTriggers = true };
@@ -403,9 +461,10 @@ namespace RuleGame.Gameplay.Enemy
             for (int i = 0; i < count; i++)
             {
                 if (CombatSystem.TryResolveTarget(_contacts[i], this, out IDamageable target) && _contactTargets.Add(target))
-                    Combat.ApplyDamage(this, target, Definition.Damage, 4f);
+                    Combat.ApplyDamage(this, target, Definition.Damage, knockback);
             }
-            EmitFeedback(EnemyFeedbackKind.Strike, transform.position, Motor.Up);
+            Feedback?.Invoke(new EnemyFeedback(EnemyFeedbackKind.Strike, transform.position, Motor.Up,
+                size: Vector2.one * radius * 2f));
         }
         /// <summary>围绕锁定方向展开等角扇形；每发仍使用共用弹池与战斗结算。</summary>
         public void ShootFan(Vector2 direction, int count, float spread, float speed, float gravity = 0f,
@@ -433,7 +492,7 @@ namespace RuleGame.Gameplay.Enemy
             if (Combat == null || !HasTarget) return;
             _swingTargets.Clear();
             Combat.PerformAttack(this, center, size, Definition.Damage, 7f, _swingTargets);
-            EmitFeedback(EnemyFeedbackKind.AreaStrike, center, Motor.Up);
+            Feedback?.Invoke(new EnemyFeedback(EnemyFeedbackKind.AreaStrike, center, Motor.Up, size: size));
         }
         public void Beam(float angle, float width, float warning = 0.65f)
         {
@@ -520,6 +579,9 @@ namespace RuleGame.Gameplay.Enemy
             public float Facing, Invulnerability, ContactCooldown;
             public bool Defeated;
             public bool StrikeAnnounced;
+            public string Animation;
+            public float AnimationDuration, AnimationElapsed;
+            public bool AnimationLoop;
             public EnemyActor[] Summons;
             public Vector2 GravityDrift;
             public IDamageable[] SwingTargets;
@@ -533,6 +595,7 @@ namespace RuleGame.Gameplay.Enemy
             Facing = Facing, Invulnerability = _invulnerability, Defeated = Defeated, Summons = _summons.ToArray(),
             ContactCooldown = _contactCooldown,
             StrikeAnnounced = _strikeAnnounced,
+            Animation = AnimationName, AnimationDuration = AnimationDuration, AnimationElapsed = AnimationElapsed, AnimationLoop = AnimationLoop,
             SwingTargets = new List<IDamageable>(_swingTargets).ToArray()
         };
         public void RestoreSnapshotState(object state)
@@ -545,6 +608,8 @@ namespace RuleGame.Gameplay.Enemy
                 _contactCooldown = data.ContactCooldown;
                 _summons.Clear(); _summons.AddRange(data.Summons);
                 Brain?.Restore(data.Brain);
+                AnimationName = data.Animation; AnimationDuration = data.AnimationDuration;
+                AnimationElapsed = data.AnimationElapsed; AnimationLoop = data.AnimationLoop;
                 if (_bodyCollider != null) _bodyCollider.enabled = Brain?.BodyEnabled ?? true;
                 ClockBeams?.Restore(data.ClockBeams);
                 _swingTargets.Clear();

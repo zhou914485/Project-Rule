@@ -1,0 +1,2386 @@
+{
+  "frameRate": 8,
+  "frames": [
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/ExplosiveBlock/ExplosiveBlock_Idle_01.png",
+      "source": "Src/小怪（结束/积木王国_20261018_225547/滑动爆炸小方/滑动爆炸小方_20261018_225655.png",
+      "sourceSha256": "e7f732da2c02b65d293d820070c851b5f6384708c9172e80a05ad678b732c829",
+      "width": 260,
+      "height": 260,
+      "pivotX": 0.5,
+      "pivotY": 0.09230769230769231,
+      "ppu": 210,
+      "crop": [
+        220,
+        180,
+        480,
+        440
+      ]
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/ExplosiveBlock/ExplosiveBlock_Armed_01.png",
+      "source": "Src/小怪（结束/积木王国_20261018_225547/滑动爆炸小方/滑动爆炸小方_20261018_225641.png",
+      "sourceSha256": "4621f472b446f07745f03a96ed4abcb2f88ef10be6e94439daed469ca20e2bc3",
+      "width": 260,
+      "height": 260,
+      "pivotX": 0.5,
+      "pivotY": 0.09230769230769231,
+      "ppu": 210,
+      "crop": [
+        220,
+        180,
+        480,
+        440
+      ]
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/ExplosiveBlock/ExplosiveBlock_Warning_01.png",
+      "source": "Src/小怪（结束/积木王国_20261018_225547/滑动爆炸小方/滑动爆炸小方.png",
+      "sourceSha256": "97dca038ce557717b02c2d225b2e97df8bdcba4c02439c7e9438f58c4fc82646",
+      "width": 260,
+      "height": 260,
+      "pivotX": 0.5,
+      "pivotY": 0.09230769230769231,
+      "ppu": 210,
+      "crop": [
+        220,
+        180,
+        480,
+        440
+      ]
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/ExplosiveBlock/ExplosiveBlock_Explode_01.png",
+      "source": "Src/小怪（结束/积木王国_20261018_225547/滑动爆炸小方/爆炸/爆炸-1.png",
+      "sourceSha256": "a8690b53c618e3ae5beebf6524808f857ca9d407f493e6bc98ffdb6d03cc7821",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.5,
+      "pivotY": 0.35416666666666663,
+      "ppu": 210,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/ExplosiveBlock/ExplosiveBlock_Explode_02.png",
+      "source": "Src/小怪（结束/积木王国_20261018_225547/滑动爆炸小方/爆炸/爆炸-2.png",
+      "sourceSha256": "baceaad220fbc6cf9d7ecd6ed0bbae845d7f225c920f6665dbc10583b518eb19",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.5,
+      "pivotY": 0.35416666666666663,
+      "ppu": 210,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/ExplosiveBlock/ExplosiveBlock_Explode_03.png",
+      "source": "Src/小怪（结束/积木王国_20261018_225547/滑动爆炸小方/爆炸/爆炸-3.png",
+      "sourceSha256": "9eb4891e6bf2fa3edf1df9843864e07199365934c92d2cd09a67ecdd458c8955",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.5,
+      "pivotY": 0.35416666666666663,
+      "ppu": 210,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/ExplosiveBlock/ExplosiveBlock_Explode_04.png",
+      "source": "Src/小怪（结束/积木王国_20261018_225547/滑动爆炸小方/爆炸/爆炸-4.png",
+      "sourceSha256": "62168a16f62d60cbaaf933146d356b3f7f5989b4e4641a5063f0b90886c800c9",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.5,
+      "pivotY": 0.35416666666666663,
+      "ppu": 210,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/ClockMouse/ClockMouse_Idle_01.png",
+      "source": "Src/小怪（结束/发条王国/老鼠.png",
+      "sourceSha256": "536f3112fdad2a69f29e85c6c707467cc990b56986dd626f1cc95951cc120567",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.56953125,
+      "pivotY": 0.4111111111111111,
+      "ppu": 474.5454545454545,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/ClockMouse/ClockMouse_Walk_01.png",
+      "source": "Src/小怪（结束/发条王国/跑动平移/爬行-1.png",
+      "sourceSha256": "9a4c97646ecd6888befc960c358d8088755d55d35bf102e3b344cd9c2cd7232b",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.56953125,
+      "pivotY": 0.4111111111111111,
+      "ppu": 474.5454545454545,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/ClockMouse/ClockMouse_Walk_02.png",
+      "source": "Src/小怪（结束/发条王国/跑动平移/爬行-2.png",
+      "sourceSha256": "bcd4fa3e4ff7d46f16cf9f037947335650fb21fedb52ca2222140402e1641350",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.56953125,
+      "pivotY": 0.4111111111111111,
+      "ppu": 474.5454545454545,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/ClockMouse/ClockMouse_Walk_03.png",
+      "source": "Src/小怪（结束/发条王国/跑动平移/爬行-3.png",
+      "sourceSha256": "382aff0d418b8d6dffa54e05e0cccf0aa225f38f4c934f2014aa83eac1ad6fb7",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.56953125,
+      "pivotY": 0.4111111111111111,
+      "ppu": 474.5454545454545,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/ClockMouse/ClockMouse_Pop_01.png",
+      "source": "Src/小怪（结束/发条王国/正如我轻轻的来/出现-1.png",
+      "sourceSha256": "bcef7b17673556d90cb389be3c8e99894f3ccbf187a1d9138e5585d2a7f14100",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.56953125,
+      "pivotY": 0.21666666666666667,
+      "ppu": 474.5454545454545,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/ClockMouse/ClockMouse_Pop_02.png",
+      "source": "Src/小怪（结束/发条王国/正如我轻轻的来/出现-2.png",
+      "sourceSha256": "a8ad6632cb55c8374c5b953b068f675f5d1c44c3257b7c4473b570d1ed2ff800",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.56953125,
+      "pivotY": 0.21666666666666667,
+      "ppu": 474.5454545454545,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/ClockMouse/ClockMouse_Pop_03.png",
+      "source": "Src/小怪（结束/发条王国/正如我轻轻的来/出现-3.png",
+      "sourceSha256": "a2554c3db6476fe7774be78946d297f292416c06cca068873cdbc432eaa5921e",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.56953125,
+      "pivotY": 0.21666666666666667,
+      "ppu": 474.5454545454545,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/ClockMouse/ClockMouse_Pop_04.png",
+      "source": "Src/小怪（结束/发条王国/正如我轻轻的来/出现-4.png",
+      "sourceSha256": "f84d806e99210c192997a1d6c967054601ea2f3e56b718f1f0d683599fe044bd",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.56953125,
+      "pivotY": 0.21666666666666667,
+      "ppu": 474.5454545454545,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/ClockMouse/ClockMouse_Pop_05.png",
+      "source": "Src/小怪（结束/发条王国/正如我轻轻的来/出现-5.png",
+      "sourceSha256": "9a89e724e7b13f97dba616339dc36d5a318831301689e0a56d092a7df2eabf45",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.56953125,
+      "pivotY": 0.21666666666666667,
+      "ppu": 474.5454545454545,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/ClockMouse/ClockMouse_Pop_06.png",
+      "source": "Src/小怪（结束/发条王国/正如我轻轻的来/出现-6.png",
+      "sourceSha256": "5c302489ca5da75fcb6a12bd747a07fddca0daabed95b52e3133deb8a31788c3",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.56953125,
+      "pivotY": 0.21666666666666667,
+      "ppu": 474.5454545454545,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/ClockMouse/ClockMouse_Pop_07.png",
+      "source": "Src/小怪（结束/发条王国/正如我轻轻的来/出现-7.png",
+      "sourceSha256": "a682e7a022eb1ceb2ae3c002dd3ea8074e810f95afdb157c2813e1df1abaaac3",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.56953125,
+      "pivotY": 0.21666666666666667,
+      "ppu": 474.5454545454545,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/ClockMouse/ClockMouse_Hide_01.png",
+      "source": "Src/小怪（结束/发条王国/轻轻的我走了/钻入-1.png",
+      "sourceSha256": "88835ebb440faa868a08d76ea1da38a5698a0037e58aec439120e32829f05181",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.56953125,
+      "pivotY": 0.21666666666666667,
+      "ppu": 474.5454545454545,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/ClockMouse/ClockMouse_Hide_02.png",
+      "source": "Src/小怪（结束/发条王国/轻轻的我走了/钻入-2.png",
+      "sourceSha256": "67e26e0e2242f6bcd935887e4e276a7c2b2ac79b25d3c0e000805d8af991886b",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.56953125,
+      "pivotY": 0.21666666666666667,
+      "ppu": 474.5454545454545,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/ClockMouse/ClockMouse_Hide_03.png",
+      "source": "Src/小怪（结束/发条王国/轻轻的我走了/钻入-3.png",
+      "sourceSha256": "0150898e8939efadba93378c4d133368a09bc3af14459b1ec1ff3573c7fbf9cd",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.56953125,
+      "pivotY": 0.21666666666666667,
+      "ppu": 474.5454545454545,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/ClockMouse/ClockMouse_Hide_04.png",
+      "source": "Src/小怪（结束/发条王国/轻轻的我走了/钻入-4.png",
+      "sourceSha256": "68948fe61e553feb561f13eb645115e9509a95f133b0cb8ec9f4f29bdd3bf5b5",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.56953125,
+      "pivotY": 0.21666666666666667,
+      "ppu": 474.5454545454545,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/ClockMouse/ClockMouse_Hide_05.png",
+      "source": "Src/小怪（结束/发条王国/轻轻的我走了/钻入-5.png",
+      "sourceSha256": "fed947006f7b571e7863e33dbf1c57058d1f7c394178844cbefede5fb8a2b1cc",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.56953125,
+      "pivotY": 0.21666666666666667,
+      "ppu": 474.5454545454545,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/ClockMouse/ClockMouse_Dead_01.png",
+      "source": "Src/小怪（结束/发条王国/嘎/死亡-1.png",
+      "sourceSha256": "10c0baf22b3db55a18c5a15995b7ce68881e5aa4d8a252a1a07c9fdf66027303",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.56953125,
+      "pivotY": 0.4111111111111111,
+      "ppu": 474.5454545454545,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/ClockMouse/ClockMouse_Dead_02.png",
+      "source": "Src/小怪（结束/发条王国/嘎/死亡-2.png",
+      "sourceSha256": "02e87d656541dbcaab8fae96c7b53f75f267e479dac87594b698515ab21b7ab3",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.56953125,
+      "pivotY": 0.4111111111111111,
+      "ppu": 474.5454545454545,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/ClockMouse/ClockMouse_Dead_03.png",
+      "source": "Src/小怪（结束/发条王国/嘎/死亡-3.png",
+      "sourceSha256": "0692475fdd2c80489113f3c3c51bc84ffc297fa7ea2609115c49dee118546614",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.56953125,
+      "pivotY": 0.4111111111111111,
+      "ppu": 474.5454545454545,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/ClockMouse/ClockMouse_Dead_04.png",
+      "source": "Src/小怪（结束/发条王国/嘎/死亡-4.png",
+      "sourceSha256": "4d154c6c71ed0c3e8a41c085d5f032bbdf9a59cff006a0667598320a552e2bd2",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.56953125,
+      "pivotY": 0.4111111111111111,
+      "ppu": 474.5454545454545,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/ClockMouse/ClockMouse_Dead_05.png",
+      "source": "Src/小怪（结束/发条王国/嘎/死亡-5.png",
+      "sourceSha256": "ea735d97b6a30747a18d1df7f2716fd79363db4e48b9938c5c267c8e18cd433a",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.56953125,
+      "pivotY": 0.4111111111111111,
+      "ppu": 474.5454545454545,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/ClockMouse/ClockMouse_Dead_06.png",
+      "source": "Src/小怪（结束/发条王国/嘎/死亡-6.png",
+      "sourceSha256": "aa32788407a13857f8ef480b1486f785bda0e96f565cbf1d91f1f3b7c05b557b",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.56953125,
+      "pivotY": 0.4111111111111111,
+      "ppu": 474.5454545454545,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/ClockMouse/ClockMouse_Dead_07.png",
+      "source": "Src/小怪（结束/发条王国/嘎/死亡-7.png",
+      "sourceSha256": "07a7f450e73de7ed1778b84c727782682d50cb23a2008bbd526c8c6a557ad943",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.56953125,
+      "pivotY": 0.4111111111111111,
+      "ppu": 474.5454545454545,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/ClockMouse/ClockMouse_Dead_08.png",
+      "source": "Src/小怪（结束/发条王国/嘎/死亡-8.png",
+      "sourceSha256": "118caf59fe9d67dc675fee2a9673d6e9f8ba2a1a290f2983160292896ca9eec2",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.56953125,
+      "pivotY": 0.4111111111111111,
+      "ppu": 474.5454545454545,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/ClockMouse/ClockMouse_Dead_09.png",
+      "source": "Src/小怪（结束/发条王国/嘎/死亡-9.png",
+      "sourceSha256": "a58513658ba4cd24c3de9075b84f112d0a81d2131b48e72c5a62241ef3107c5b",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.56953125,
+      "pivotY": 0.4111111111111111,
+      "ppu": 474.5454545454545,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/PlushBird/PlushBird_Idle_01.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒鸟/毛绒鸟.png",
+      "sourceSha256": "0ad9d75a7c1040d3a8e230a3207678793eee64ddcb82f38fd7db7e7609aa9711",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.5421875,
+      "pivotY": 0.46805555555555556,
+      "ppu": 274.1666666666667,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/PlushBird/PlushBird_Fly_01.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒鸟/飞行/飞行-1.png",
+      "sourceSha256": "5f673305787a61b68715429e37a9015e5affb8b7cff857b38f027525da3ad8f0",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.5421875,
+      "pivotY": 0.46805555555555556,
+      "ppu": 274.1666666666667,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/PlushBird/PlushBird_Fly_02.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒鸟/飞行/飞行-2.png",
+      "sourceSha256": "634ed1e9fae17a6c9303d651ebe0b89b6eb79997a224f47f114c71279b6350a7",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.5421875,
+      "pivotY": 0.46805555555555556,
+      "ppu": 274.1666666666667,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/PlushBird/PlushBird_Fly_03.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒鸟/飞行/飞行-3.png",
+      "sourceSha256": "c688891072e13059fe5e2fcd6b755635a55a6231100f4f140f552cd3047eba90",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.5421875,
+      "pivotY": 0.46805555555555556,
+      "ppu": 274.1666666666667,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/PlushBird/PlushBird_Fly_04.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒鸟/飞行/飞行-4.png",
+      "sourceSha256": "5491001cdba932c3948eada154c02e8759c8021853f6698f770d53e7f35d2245",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.5421875,
+      "pivotY": 0.46805555555555556,
+      "ppu": 274.1666666666667,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/PlushBird/PlushBird_Fly_05.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒鸟/飞行/飞行-5.png",
+      "sourceSha256": "f51e43fa15f45b9df8ba75e59d5bb977d994a735892c8de5d4e12f3ea966a443",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.5421875,
+      "pivotY": 0.46805555555555556,
+      "ppu": 274.1666666666667,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/PlushBird/PlushBird_Attack_01.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒鸟/张嘴吐光球/张嘴吐光球-1.png",
+      "sourceSha256": "2e3b9748f3ebdf5dd3855ce6c182d5d05481ea76977e388f6e53840b37b24525",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.5421875,
+      "pivotY": 0.46805555555555556,
+      "ppu": 274.1666666666667,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/PlushBird/PlushBird_Attack_02.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒鸟/张嘴吐光球/张嘴吐光球-2.png",
+      "sourceSha256": "334fd89e110e1c7353b20f9042a94e1b2828709719794d3c9026431877ac762a",
+      "width": 98,
+      "height": 98,
+      "pivotX": 0.5,
+      "pivotY": 0.5,
+      "ppu": 98,
+      "crop": [
+        448,
+        298,
+        546,
+        396
+      ]
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/PlushBird/PlushBird_Attack_03.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒鸟/张嘴吐光球/张嘴吐光球-3.png",
+      "sourceSha256": "bc860ef7838e2b8e3d414d4dd628c3e56faf2d02f45b6883b770d31544176233",
+      "width": 154,
+      "height": 114,
+      "pivotX": 0.5,
+      "pivotY": 0.49122807017543857,
+      "ppu": 98,
+      "crop": [
+        420,
+        289,
+        574,
+        403
+      ]
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/PlushBird/PlushBird_Dead_01.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒鸟/死亡爆炸/死亡-1.png",
+      "sourceSha256": "e7ba59dfee768a7aec8bfe262b562a5bef7891be8da58fce79fec2a8145e0c39",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.5421875,
+      "pivotY": 0.46805555555555556,
+      "ppu": 274.1666666666667,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/PlushBird/PlushBird_Dead_02.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒鸟/死亡爆炸/死亡-2.png",
+      "sourceSha256": "2a14d68291693abb61179ce7d6b5b460dc2d1a756025a9e3b18d07e82772d306",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.5421875,
+      "pivotY": 0.46805555555555556,
+      "ppu": 274.1666666666667,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/PlushBird/PlushBird_Dead_03.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒鸟/死亡爆炸/死亡-3.png",
+      "sourceSha256": "22ec398c1cdcff13850b08036493aea0f661a13786d102afecd32dc06f92a17b",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.5421875,
+      "pivotY": 0.46805555555555556,
+      "ppu": 274.1666666666667,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/PlushBird/PlushBird_Dead_04.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒鸟/死亡爆炸/死亡-4.png",
+      "sourceSha256": "4b4ee592fb67a3226a278b02c40c94fde6c6435ff71c1a730def4db50dfca763",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.5421875,
+      "pivotY": 0.46805555555555556,
+      "ppu": 274.1666666666667,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/BatMinion/BatMinion_Idle_01.png",
+      "source": "Src/小怪（结束/魔王城/蝙蝠小怪/蝙蝠小怪.png",
+      "sourceSha256": "a96b62ce2177006b38c433714e2f7f370d7a2a84a58a8c17d49ca71f4b9e6f84",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.5203125,
+      "pivotY": 0.6041666666666667,
+      "ppu": 230,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/BatMinion/BatMinion_Dash_01.png",
+      "source": "Src/小怪（结束/魔王城/蝙蝠小怪/冲刺/冲刺-1.png",
+      "sourceSha256": "abef8e7e15d6514998f22af6c3763d9d900ce1eed6dcb7fb4cf3dd6bcea51c83",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.45859375,
+      "pivotY": 0.6652777777777779,
+      "ppu": 230,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/BatMinion/BatMinion_Dash_02.png",
+      "source": "Src/小怪（结束/魔王城/蝙蝠小怪/冲刺/冲刺-2.png",
+      "sourceSha256": "46746e13743ac24f0f81b2b196dae585fdb92d77372a6a7d98302c1513be293f",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.45859375,
+      "pivotY": 0.6652777777777779,
+      "ppu": 230,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/BatMinion/BatMinion_Dash_03.png",
+      "source": "Src/小怪（结束/魔王城/蝙蝠小怪/冲刺/冲刺-3.png",
+      "sourceSha256": "6ecbedb262d51100dd827ebededf7182d632007c71d3640585b37612d4892b8b",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.45859375,
+      "pivotY": 0.6652777777777779,
+      "ppu": 230,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/BatMinion/BatMinion_Dash_04.png",
+      "source": "Src/小怪（结束/魔王城/蝙蝠小怪/冲刺/冲刺-4.png",
+      "sourceSha256": "52212d9fed7e0b5a7d011cc94e30947de88e301931162cc9be06986927f058eb",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.45859375,
+      "pivotY": 0.6652777777777779,
+      "ppu": 230,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/BatMinion/BatMinion_Dash_05.png",
+      "source": "Src/小怪（结束/魔王城/蝙蝠小怪/冲刺/冲刺-5.png",
+      "sourceSha256": "7a2092f8922930fd7f965b6eac7c947daefaca4676df0f184731c969d93d7b80",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.45859375,
+      "pivotY": 0.6652777777777779,
+      "ppu": 230,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/BatMinion/BatMinion_Dash_06.png",
+      "source": "Src/小怪（结束/魔王城/蝙蝠小怪/冲刺/冲刺-6.png",
+      "sourceSha256": "3e696745cb0b8b543c74342ad405ee975810a3c20a3d2e315aa274bb9ef32575",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.45859375,
+      "pivotY": 0.6652777777777779,
+      "ppu": 230,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/BatMinion/BatMinion_Dash_07.png",
+      "source": "Src/小怪（结束/魔王城/蝙蝠小怪/冲刺/冲刺-7.png",
+      "sourceSha256": "294ae0c36c20740f1060449cef36825a24f2d683c61bfe0ce4cee07893983b3b",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.45859375,
+      "pivotY": 0.6652777777777779,
+      "ppu": 230,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/BatMinion/BatMinion_Dash_08.png",
+      "source": "Src/小怪（结束/魔王城/蝙蝠小怪/冲刺/冲刺-8.png",
+      "sourceSha256": "27b104e51a02eb86c51b775e3e0dd464150df749e893c53e225958cca4cc570f",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.45859375,
+      "pivotY": 0.6652777777777779,
+      "ppu": 230,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/BatMinion/BatMinion_Dash_09.png",
+      "source": "Src/小怪（结束/魔王城/蝙蝠小怪/冲刺/冲刺-9.png",
+      "sourceSha256": "cd91eff5df1df36aa4d67bfb150dd597d0fc9838f095b573741a541de9bcebee",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.45859375,
+      "pivotY": 0.6652777777777779,
+      "ppu": 230,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/BatMinion/BatMinion_Dash_10.png",
+      "source": "Src/小怪（结束/魔王城/蝙蝠小怪/冲刺/冲刺-10.png",
+      "sourceSha256": "87eef05cc8f59d0387d359fccf89aa1b39cc9796d44ee34b6eceab5c6cd321c6",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.45859375,
+      "pivotY": 0.6652777777777779,
+      "ppu": 230,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/BatMinion/BatMinion_Dash_11.png",
+      "source": "Src/小怪（结束/魔王城/蝙蝠小怪/冲刺/冲刺-11.png",
+      "sourceSha256": "9d1595ee606e66a90a3fd3b521fe2d2c41ed31f48bd6062828dec6df1982624d",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.45859375,
+      "pivotY": 0.6652777777777779,
+      "ppu": 230,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/BatMinion/BatMinion_Dash_12.png",
+      "source": "Src/小怪（结束/魔王城/蝙蝠小怪/冲刺/冲刺-12.png",
+      "sourceSha256": "313fce4be83dfba14c35af453e699b4b14d259a7d8a0bcbb2494229b9de84dd1",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.45859375,
+      "pivotY": 0.6652777777777779,
+      "ppu": 230,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/BatMinion/BatMinion_Dash_13.png",
+      "source": "Src/小怪（结束/魔王城/蝙蝠小怪/冲刺/冲刺-13.png",
+      "sourceSha256": "9de5fa6dc2da59286d35cbeb3f8a569ac83eeef1fc145a6be655fad537bd8d0a",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.45859375,
+      "pivotY": 0.6652777777777779,
+      "ppu": 230,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/BatMinion/BatMinion_Dash_14.png",
+      "source": "Src/小怪（结束/魔王城/蝙蝠小怪/冲刺/冲刺-14.png",
+      "sourceSha256": "c651a8bd8d7499bfcf7e32660b3b1b62993fb8df5d58aacbe136bfa9c6382988",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.45859375,
+      "pivotY": 0.6652777777777779,
+      "ppu": 230,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/BatMinion/BatMinion_Dash_15.png",
+      "source": "Src/小怪（结束/魔王城/蝙蝠小怪/冲刺/冲刺-15.png",
+      "sourceSha256": "d648bacd38e50478f6c18546854dfed2f548da4246f1620ec43823d6c13677ca",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.45859375,
+      "pivotY": 0.6652777777777779,
+      "ppu": 230,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/BatMinion/BatMinion_Dead_01.png",
+      "source": "Src/小怪（结束/魔王城/蝙蝠小怪/死亡爆炸/死亡-1.png",
+      "sourceSha256": "c6226d1e7ce381060bd24efab96c4eac3652fb55d5dd686e82c4896e20e47444",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.4453125,
+      "pivotY": 0.4722222222222222,
+      "ppu": 230,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/BatMinion/BatMinion_Dead_02.png",
+      "source": "Src/小怪（结束/魔王城/蝙蝠小怪/死亡爆炸/死亡-2.png",
+      "sourceSha256": "eab27017004c49bfb106860c1149af023c637da45c64638233fdd0868b3c0ec2",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.4453125,
+      "pivotY": 0.4722222222222222,
+      "ppu": 230,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/BatMinion/BatMinion_Dead_03.png",
+      "source": "Src/小怪（结束/魔王城/蝙蝠小怪/死亡爆炸/死亡-3.png",
+      "sourceSha256": "47966633d6f7bb781b4f30084c303eb2443e99ef0100414145613a766c7d536b",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.4453125,
+      "pivotY": 0.4722222222222222,
+      "ppu": 230,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/BatMinion/BatMinion_Dead_04.png",
+      "source": "Src/小怪（结束/魔王城/蝙蝠小怪/死亡爆炸/死亡-4.png",
+      "sourceSha256": "4fb1b086218ae863848bbb7f3bbf987e0d6d6106ef02f79b98be3f0ca34af5fb",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.4453125,
+      "pivotY": 0.4722222222222222,
+      "ppu": 230,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/BatMinion/BatMinion_Dead_05.png",
+      "source": "Src/小怪（结束/魔王城/蝙蝠小怪/死亡爆炸/死亡-5.png",
+      "sourceSha256": "1c377b4acae2e048ebfb7d728331d6d8940864065c9b0f0d188eec7cf64569f1",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.4453125,
+      "pivotY": 0.4722222222222222,
+      "ppu": 230,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/BatMinion/BatMinion_Dead_06.png",
+      "source": "Src/小怪（结束/魔王城/蝙蝠小怪/死亡爆炸/死亡-6.png",
+      "sourceSha256": "170aa87260e31d0987c7e8969b4341c2f8ead2baffcff9f1a12089b13f906d90",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.4453125,
+      "pivotY": 0.4722222222222222,
+      "ppu": 230,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/HugBear/HugBear_Idle_01.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒熊/抱抱熊.png",
+      "sourceSha256": "a172c2f029e89d45d2df01f0c3f4a68ca06d731f29597f23711480643631baeb",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.5,
+      "pivotY": 0.09722222222222221,
+      "ppu": 272.22222222222223,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/HugBear/HugBear_Stand_01.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒熊/站起/站起-1.png",
+      "sourceSha256": "5b2baac781ee0eb3c26927b2ebc19473661cf9af7f8bd5d86d0742dc5ba006ca",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.5,
+      "pivotY": 0.09722222222222221,
+      "ppu": 272.22222222222223,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/HugBear/HugBear_Stand_02.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒熊/站起/站起-2.png",
+      "sourceSha256": "5fbe2563f05e4eb67dc9db6b9b3525142dbc50f9e47a5a1af63c45ce6229fda6",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.5,
+      "pivotY": 0.09722222222222221,
+      "ppu": 272.22222222222223,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/HugBear/HugBear_Stand_03.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒熊/站起/站起-3.png",
+      "sourceSha256": "e84c9f3642f083078eb9ec84592e73fd6e627af8568919630770102c006df8c2",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.5,
+      "pivotY": 0.09722222222222221,
+      "ppu": 272.22222222222223,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/HugBear/HugBear_Stand_04.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒熊/站起/站起-4.png",
+      "sourceSha256": "21813a95f05e163a381760073d17bbaaa1420b1a06dd199de5815974bb28ffd0",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.5,
+      "pivotY": 0.09722222222222221,
+      "ppu": 272.22222222222223,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/HugBear/HugBear_Stand_05.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒熊/站起/站起-5.png",
+      "sourceSha256": "c70cad8d06162ef078788f4188e49f82dd5f260a42fc9cb0c38bfe9dbfe59737",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.5,
+      "pivotY": 0.09722222222222221,
+      "ppu": 272.22222222222223,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/HugBear/HugBear_Stand_06.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒熊/站起/站起-6.png",
+      "sourceSha256": "83686cb60bc6c89b8d2304a5f2d0bf61bd66bae6dfad94c817c06185031b1111",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.5,
+      "pivotY": 0.09722222222222221,
+      "ppu": 272.22222222222223,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/HugBear/HugBear_Stand_07.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒熊/站起/站起-7.png",
+      "sourceSha256": "f71fa3b46577fc3af6e902408336c972917386116ac2a3bc9cd96120ff94de91",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.5,
+      "pivotY": 0.09722222222222221,
+      "ppu": 272.22222222222223,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/HugBear/HugBear_Walk_01.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒熊/走路/走路-1.png",
+      "sourceSha256": "7f4d1f3fcb73b3ffc692e39027772cc9b77738bc784e6ef84bbfbbebd8f6b297",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.5,
+      "pivotY": 0.09722222222222221,
+      "ppu": 272.22222222222223,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/HugBear/HugBear_Walk_02.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒熊/走路/走路-2.png",
+      "sourceSha256": "9853ae1ee919f0abb929a9210a34d71b6b3cdbb028f0cbd4ed67dcd389a4740a",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.5,
+      "pivotY": 0.09722222222222221,
+      "ppu": 272.22222222222223,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/HugBear/HugBear_Walk_03.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒熊/走路/走路-3.png",
+      "sourceSha256": "762e954786d08744d5aef34e713bd69561f5bea498ad2689f209a43bec7734bf",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.5,
+      "pivotY": 0.09722222222222221,
+      "ppu": 272.22222222222223,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/HugBear/HugBear_Walk_04.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒熊/走路/走路-4.png",
+      "sourceSha256": "7280247e9ef5db77fb6ceb4c54b1368e27a5d7a3bee4324dd042ec84f8439fea",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.5,
+      "pivotY": 0.09722222222222221,
+      "ppu": 272.22222222222223,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/HugBear/HugBear_Walk_05.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒熊/走路/走路-5.png",
+      "sourceSha256": "adf75cc772f2761466c189ffcf8ef736af6a584841ceef0d58ae3077fe602436",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.5,
+      "pivotY": 0.09722222222222221,
+      "ppu": 272.22222222222223,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/HugBear/HugBear_Walk_06.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒熊/走路/走路-6.png",
+      "sourceSha256": "57074e5d4bd3e5d03df9243610c7c7c6c8f0c2bf4048832e302012202f89b3ed",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.5,
+      "pivotY": 0.09722222222222221,
+      "ppu": 272.22222222222223,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/HugBear/HugBear_Walk_07.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒熊/走路/走路-7.png",
+      "sourceSha256": "3d64b8e5f4a7414a1317686e244935c1ca5d64d7bbf1b20becbcf22ded4c1041",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.5,
+      "pivotY": 0.09722222222222221,
+      "ppu": 272.22222222222223,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/HugBear/HugBear_Walk_08.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒熊/走路/走路-8.png",
+      "sourceSha256": "55ffcc6a97c39f38d98b04bd440122ad064c95d73e3ac4876ae7c5064ef3f4b4",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.5,
+      "pivotY": 0.09722222222222221,
+      "ppu": 272.22222222222223,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/HugBear/HugBear_Walk_09.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒熊/走路/走路-9.png",
+      "sourceSha256": "a7b2bcc6c3fad879b5020152d0e6b79f8eaadad88c7d1690b26fb962df2e171b",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.5,
+      "pivotY": 0.09722222222222221,
+      "ppu": 272.22222222222223,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/HugBear/HugBear_Dead_01.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒熊/拥抱＋死亡消散/死亡-1.png",
+      "sourceSha256": "3f9e4e569aedd01c476085406cb3444e4382fae8a70c9388863c4d1deebad735",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.5,
+      "pivotY": 0.09722222222222221,
+      "ppu": 272.22222222222223,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/HugBear/HugBear_Dead_02.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒熊/拥抱＋死亡消散/死亡-2.png",
+      "sourceSha256": "8c85be128796c2c6c1adca1ee37edb6cb08b871ee778404a4df9d732ec26e531",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.5,
+      "pivotY": 0.09722222222222221,
+      "ppu": 272.22222222222223,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/HugBear/HugBear_Dead_03.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒熊/拥抱＋死亡消散/死亡-3.png",
+      "sourceSha256": "5b9bcaee0cfa6894c6c5c6d7e65293eff734b1606e86495796199a2ab5018678",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.5,
+      "pivotY": 0.09722222222222221,
+      "ppu": 272.22222222222223,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/HugBear/HugBear_Dead_04.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒熊/拥抱＋死亡消散/死亡-4.png",
+      "sourceSha256": "f262b6cb6fe687e229bb3903642c9a53decc643bff0ba3f290f01993ef66e9ad",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.5,
+      "pivotY": 0.09722222222222221,
+      "ppu": 272.22222222222223,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/HugBear/HugBear_Dead_05.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒熊/拥抱＋死亡消散/死亡-5.png",
+      "sourceSha256": "1f48fbb946998fc30fd8081e8b8c5f6411b0b86374fec27e49a458a0ea808a26",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.5,
+      "pivotY": 0.09722222222222221,
+      "ppu": 272.22222222222223,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/HugBear/HugBear_Dead_06.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒熊/拥抱＋死亡消散/死亡-6.png",
+      "sourceSha256": "783d997aa537a37dcec78cf8aee83e0d53bf52bf0e3af74cc8aa0f04c5a0f331",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.5,
+      "pivotY": 0.09722222222222221,
+      "ppu": 272.22222222222223,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/HugBear/HugBear_Dead_07.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒熊/拥抱＋死亡消散/死亡-7.png",
+      "sourceSha256": "44c0684024a7782eabc5fd1796f41cce5281f547a9242207003130bbd234ec12",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.5,
+      "pivotY": 0.09722222222222221,
+      "ppu": 272.22222222222223,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/HugBear/HugBear_Dead_08.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒熊/拥抱＋死亡消散/死亡-8.png",
+      "sourceSha256": "2c169bbcdd08b29721ecf6ca61bbf62a9bd9c008d0eb69333ab99572a898d7d9",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.5,
+      "pivotY": 0.09722222222222221,
+      "ppu": 272.22222222222223,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/HugBear/HugBear_Dead_09.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒熊/拥抱＋死亡消散/死亡-9.png",
+      "sourceSha256": "7c25c33dc11f74ce60f42fbaf4a7ba8b392b0c3764152eb5576d77b9bc462e8f",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.5,
+      "pivotY": 0.09722222222222221,
+      "ppu": 272.22222222222223,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Idle_01.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒海豹/毛绒海豹.png",
+      "sourceSha256": "735212aeda44790b0baee3ca23c1eb9a4bb55a72c1d55fffdbcf381ad73ce0fa",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.5859375,
+      "pivotY": 0.24444444444444446,
+      "ppu": 403.3333333333333,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Walk_01.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒海豹/蛄蛹前进/前进-1.png",
+      "sourceSha256": "e680d07f11898111c42e8b49b279df15de3facc69de27961cbbcbb789a309720",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.53203125,
+      "pivotY": 0.13055555555555554,
+      "ppu": 403.3333333333333,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Walk_02.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒海豹/蛄蛹前进/前进-2.png",
+      "sourceSha256": "5310fa587322720914668d34dc40b0895f6dd7766976a897812b9b95837fc287",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.53203125,
+      "pivotY": 0.13055555555555554,
+      "ppu": 403.3333333333333,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Walk_03.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒海豹/蛄蛹前进/前进-3.png",
+      "sourceSha256": "1d78bbf07393ff34121ce33ae8a15adf77bf6085cc74aa1af9f7a1c9749a472f",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.53203125,
+      "pivotY": 0.13055555555555554,
+      "ppu": 403.3333333333333,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Walk_04.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒海豹/蛄蛹前进/前进-4.png",
+      "sourceSha256": "1b28ea887c4ebf0688c839f04f77599f07cb786f5f9c7a51dac8fd953d8f630c",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.53203125,
+      "pivotY": 0.13055555555555554,
+      "ppu": 403.3333333333333,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Walk_05.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒海豹/蛄蛹前进/前进-5.png",
+      "sourceSha256": "d4cb30452908dd79685da0cc68677f411313f7ae64cb410db952cc154f13783a",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.53203125,
+      "pivotY": 0.13055555555555554,
+      "ppu": 403.3333333333333,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Walk_06.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒海豹/蛄蛹前进/前进-6.png",
+      "sourceSha256": "9313d86006b6e5d732d984235fc06d76ef1e0153c088f024f6e9f00ac668ac74",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.53203125,
+      "pivotY": 0.13055555555555554,
+      "ppu": 403.3333333333333,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Howl_01.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒海豹/嚎叫/嚎叫-1.png",
+      "sourceSha256": "6e3bd1a25067ecc90a7d4624dbfe1f5a4bb2082a40ee23d421dcc7bf3b0cd56b",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.53203125,
+      "pivotY": 0.13055555555555554,
+      "ppu": 403.3333333333333,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Howl_02.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒海豹/嚎叫/嚎叫-2.png",
+      "sourceSha256": "99542f8bdeadae7cf9109631ce349887ba01178a63d6382a431a615ddc1212fb",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.53203125,
+      "pivotY": 0.13055555555555554,
+      "ppu": 403.3333333333333,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Howl_03.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒海豹/嚎叫/嚎叫-3.png",
+      "sourceSha256": "fac8f49140a54ab1e4a7ec1d4e66462cbefe6950439cb612fa0990aaca210a1c",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.53203125,
+      "pivotY": 0.13055555555555554,
+      "ppu": 403.3333333333333,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Howl_04.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒海豹/嚎叫/嚎叫-4.png",
+      "sourceSha256": "ad0dbd0f17bd7f51a76e3f041e3b032f17ff16ce25d0652367a2e585c9b2d9e4",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.53203125,
+      "pivotY": 0.13055555555555554,
+      "ppu": 403.3333333333333,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Howl_05.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒海豹/嚎叫/嚎叫-5.png",
+      "sourceSha256": "6c44708ccb29b19c10dce9d907129c46701bd1e6cbf7d7d8d021c814889bf2f5",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.53203125,
+      "pivotY": 0.13055555555555554,
+      "ppu": 403.3333333333333,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Howl_06.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒海豹/嚎叫/嚎叫-6.png",
+      "sourceSha256": "bf65cea15357afa05f68f6797d1183b6f1b3f84ad4b5385625d4e3428a69f366",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.53203125,
+      "pivotY": 0.13055555555555554,
+      "ppu": 403.3333333333333,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Howl_07.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒海豹/嚎叫/嚎叫-7.png",
+      "sourceSha256": "c894707b9b21fdf96f83e01258f1cf765fe569d93a88fc6d6e61430fbb344eb7",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.53203125,
+      "pivotY": 0.13055555555555554,
+      "ppu": 403.3333333333333,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Howl_08.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒海豹/嚎叫/嚎叫-8.png",
+      "sourceSha256": "c55ebf537247d71e75e287fbe6a85f0c4d7264b6bec3aa5fc668325591a95498",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.53203125,
+      "pivotY": 0.13055555555555554,
+      "ppu": 403.3333333333333,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Howl_09.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒海豹/嚎叫/嚎叫-9.png",
+      "sourceSha256": "eabb6f558c5655c780e004b217ce13eae66a28a5d46686aeec0db3c8a5aff174",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.53203125,
+      "pivotY": 0.13055555555555554,
+      "ppu": 403.3333333333333,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Howl_10.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒海豹/嚎叫/嚎叫-10.png",
+      "sourceSha256": "ad0dbd0f17bd7f51a76e3f041e3b032f17ff16ce25d0652367a2e585c9b2d9e4",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.53203125,
+      "pivotY": 0.13055555555555554,
+      "ppu": 403.3333333333333,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Howl_11.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒海豹/嚎叫/嚎叫-11.png",
+      "sourceSha256": "96ff93afa854e04d442828bb74d054e8284bcd5cae7288d804969006a31b9824",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.53203125,
+      "pivotY": 0.13055555555555554,
+      "ppu": 403.3333333333333,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Howl_12.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒海豹/嚎叫/嚎叫-12.png",
+      "sourceSha256": "0e58de94fa14add36c5649d298af6e7c64df44655ea2e65f76f47b496d73cd35",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.53203125,
+      "pivotY": 0.13055555555555554,
+      "ppu": 403.3333333333333,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Howl_13.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒海豹/嚎叫/嚎叫-13.png",
+      "sourceSha256": "a7bbf64c83c4f3532cafba0a1ad16468f5efe2229a1847a657e7370bd385d87d",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.53203125,
+      "pivotY": 0.13055555555555554,
+      "ppu": 403.3333333333333,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Howl_14.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒海豹/嚎叫/嚎叫-14.png",
+      "sourceSha256": "a87f679f7205f7f2a0c0609969bbdab3381766091be341ed9a6948fae7acbd19",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.53203125,
+      "pivotY": 0.13055555555555554,
+      "ppu": 403.3333333333333,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_BellySlap_01.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒海豹/拍肚子/拍肚子-1.png",
+      "sourceSha256": "f3f71bca931770c3fce8aa1832fbb9e4949e9af8f760f9e6d2143dab6aadf453",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.53203125,
+      "pivotY": 0.13055555555555554,
+      "ppu": 403.3333333333333,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_BellySlap_02.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒海豹/拍肚子/拍肚子-2.png",
+      "sourceSha256": "9ceb0b34dbc5acd690af1ab3b05e59c9ccbb5739ca1e85d2f3a777ebe08f2ff1",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.53203125,
+      "pivotY": 0.13055555555555554,
+      "ppu": 403.3333333333333,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_BellySlap_03.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒海豹/拍肚子/拍肚子-3.png",
+      "sourceSha256": "a7c0aa3d7a860c6e6d6590280cf87ae924a70c65ea6bed335e7eccc12de0e8c5",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.53203125,
+      "pivotY": 0.13055555555555554,
+      "ppu": 403.3333333333333,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_BellySlap_04.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒海豹/拍肚子/拍肚子-4.png",
+      "sourceSha256": "c0f6f1f32f026ffad4b62464d71cc5cff0831b0993f06309610a1b95df2748b7",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.53203125,
+      "pivotY": 0.13055555555555554,
+      "ppu": 403.3333333333333,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Dead_01.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒海豹/消失跳冰洞/消失-1.png",
+      "sourceSha256": "6e3bd1a25067ecc90a7d4624dbfe1f5a4bb2082a40ee23d421dcc7bf3b0cd56b",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.53203125,
+      "pivotY": 0.13055555555555554,
+      "ppu": 403.3333333333333,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Dead_02.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒海豹/消失跳冰洞/消失-2.png",
+      "sourceSha256": "e0928aa2cb49067f61df2670d9d772706f52001c718d6ada1a3a28a9a479790c",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.53203125,
+      "pivotY": 0.13055555555555554,
+      "ppu": 403.3333333333333,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Dead_03.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒海豹/消失跳冰洞/消失-3.png",
+      "sourceSha256": "baa22a04e5a51b0b1aa08a45fb0cd3b53a7044e1268f9889ba3611c5c4f9256b",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.53203125,
+      "pivotY": 0.13055555555555554,
+      "ppu": 403.3333333333333,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Dead_04.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒海豹/消失跳冰洞/消失-4.png",
+      "sourceSha256": "accb820c23143cd7af1d36a0ee609340e4bb99b3e133dacf21df7afe4abbfe77",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.53203125,
+      "pivotY": 0.13055555555555554,
+      "ppu": 403.3333333333333,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Dead_05.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒海豹/消失跳冰洞/消失-5.png",
+      "sourceSha256": "3c9a0c34e2e5a516d8b7f70b8219950a30cf8c4f8bbc8676f340a4ea03837492",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.53203125,
+      "pivotY": 0.13055555555555554,
+      "ppu": 403.3333333333333,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Dead_06.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒海豹/消失跳冰洞/消失-6.png",
+      "sourceSha256": "71002fc2377881438b0e86c988177c91b8b6b32df808c811840c761858b3fce5",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.53203125,
+      "pivotY": 0.13055555555555554,
+      "ppu": 403.3333333333333,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Dead_07.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒海豹/消失跳冰洞/消失-7.png",
+      "sourceSha256": "92148d40964d992a16232417435415df583deaa9e72ac5012b93ce40acd7fc3b",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.53203125,
+      "pivotY": 0.13055555555555554,
+      "ppu": 403.3333333333333,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Dead_08.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒海豹/消失跳冰洞/消失-8.png",
+      "sourceSha256": "cd9ab7777615844e67db9b64c944ee0698d0f5458e8b3e01b2fdefe7e171273c",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.53203125,
+      "pivotY": 0.13055555555555554,
+      "ppu": 403.3333333333333,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Dead_09.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒海豹/消失跳冰洞/消失-9.png",
+      "sourceSha256": "72bd81810dd47f706f87a6ac7807c0482c262373c13789d198f0fb54b8788c8b",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.53203125,
+      "pivotY": 0.13055555555555554,
+      "ppu": 403.3333333333333,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Dead_10.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒海豹/消失跳冰洞/消失-10.png",
+      "sourceSha256": "89cec2a2bd7cce72cc55ac3b919ba58290783c750e018df858911340cdfffed9",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.53203125,
+      "pivotY": 0.13055555555555554,
+      "ppu": 403.3333333333333,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Dead_11.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒海豹/消失跳冰洞/消失-11.png",
+      "sourceSha256": "2e978bfd8152cdd10a8b934910ec979fc21c870c1367ea97cd359fc652fc9d78",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.53203125,
+      "pivotY": 0.13055555555555554,
+      "ppu": 403.3333333333333,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Dead_12.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒海豹/消失跳冰洞/消失-12.png",
+      "sourceSha256": "880f8a1e239cb7449d2e69d771a0f82a94a9bdd4b19d347e6fd77748123c3852",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.53203125,
+      "pivotY": 0.13055555555555554,
+      "ppu": 403.3333333333333,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Dead_13.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒海豹/消失跳冰洞/消失-13.png",
+      "sourceSha256": "0e621c6b947cea1ccd16e09e742f288a8e105d237b06a9e84fc54fbc83dccd56",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.53203125,
+      "pivotY": 0.13055555555555554,
+      "ppu": 403.3333333333333,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Dead_14.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒海豹/消失跳冰洞/消失-14.png",
+      "sourceSha256": "7acdda7168bf7e08242b34fba9448925fb7910860782ac1b7374f987827be408",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.53203125,
+      "pivotY": 0.13055555555555554,
+      "ppu": 403.3333333333333,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Dead_15.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒海豹/消失跳冰洞/消失-15.png",
+      "sourceSha256": "8f247c64be257b1cc0c83650c4478aa3c8e2f5c84b1783688bbf29f23f20242b",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.53203125,
+      "pivotY": 0.13055555555555554,
+      "ppu": 403.3333333333333,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Dead_16.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒海豹/消失跳冰洞/消失-16.png",
+      "sourceSha256": "61d41c27d3611f4e525229332222afd1a99c14881857c8899187a60e72497b08",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.53203125,
+      "pivotY": 0.13055555555555554,
+      "ppu": 403.3333333333333,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Dead_17.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒海豹/消失跳冰洞/消失-17.png",
+      "sourceSha256": "b52be66b8c4bdf95e50b3d1807caf36855a037d62925b9586aac7d39658dd3d7",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.53203125,
+      "pivotY": 0.13055555555555554,
+      "ppu": 403.3333333333333,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Dead_18.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒海豹/消失跳冰洞/消失-18.png",
+      "sourceSha256": "7dc84379dc01a8efb9b21ce9100cccbc50da41e1ab9546c4ad123188040d4839",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.53203125,
+      "pivotY": 0.13055555555555554,
+      "ppu": 403.3333333333333,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Dead_19.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒海豹/消失跳冰洞/消失-19.png",
+      "sourceSha256": "4601ca6bfe8602f35d8161d68c1be76435a7c5185c97858db66ff321652877bd",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.53203125,
+      "pivotY": 0.13055555555555554,
+      "ppu": 403.3333333333333,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Dead_20.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒海豹/消失跳冰洞/消失-20.png",
+      "sourceSha256": "b405decc3a7642589cdf9990f2f2f317c7430117bc3d3e2b4a52f99162ed3548",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.53203125,
+      "pivotY": 0.13055555555555554,
+      "ppu": 403.3333333333333,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Dead_21.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒海豹/消失跳冰洞/消失-21.png",
+      "sourceSha256": "060f62533ff4969208d47363ccb335b26b8821cebbca7e4d1913c0f36d49abe6",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.53203125,
+      "pivotY": 0.13055555555555554,
+      "ppu": 403.3333333333333,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_ProjectileIce_01.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒海豹/冰块/冰块-1.png",
+      "sourceSha256": "47504e6d536c471a03a7ee93704a8932c705001fa70a9e851a49844e61422d7f",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.503125,
+      "pivotY": 0.5569444444444445,
+      "ppu": 233,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_ProjectileIce_02.png",
+      "source": "Src/小怪（结束/毛绒王国/毛绒海豹/冰块/冰块-2.png",
+      "sourceSha256": "59ce7506df96842ba93bc3e615bd410bda1e6b0690e7c9ed15d238caa345d7d7",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.503125,
+      "pivotY": 0.5569444444444445,
+      "ppu": 233,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/Firework/Firework_Launch_01.png",
+      "source": "Src/小怪（结束/魔王城/烟花/烟花-1.png",
+      "sourceSha256": "1e17d05102f1b7a75b96d78ad1e14f0e81be65e1c7f8eefd16f874ed9985c9ea",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.47734375,
+      "pivotY": 0.06944444444444442,
+      "ppu": 175,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/Firework/Firework_Launch_02.png",
+      "source": "Src/小怪（结束/魔王城/烟花/烟花-2.png",
+      "sourceSha256": "f81de7431d05f9b499de90770e890194451ce2b75ddb08684d98e8826f6f31f8",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.47734375,
+      "pivotY": 0.06944444444444442,
+      "ppu": 175,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/Firework/Firework_Launch_03.png",
+      "source": "Src/小怪（结束/魔王城/烟花/烟花-3.png",
+      "sourceSha256": "7cee23de487b4d00307529614a526cf38bd19e314c336a943410777d7f259ac5",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.47734375,
+      "pivotY": 0.06944444444444442,
+      "ppu": 175,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/Firework/Firework_Launch_04.png",
+      "source": "Src/小怪（结束/魔王城/烟花/烟花-4.png",
+      "sourceSha256": "d237520d9ec04af53bae180a0f746c47ea563d2eab35d163c804581d6f22e243",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.47734375,
+      "pivotY": 0.06944444444444442,
+      "ppu": 175,
+      "crop": null
+    },
+    {
+      "path": "Assets/_Project/Art/Enemies/Minions/Firework/Firework_Launch_05.png",
+      "source": "Src/小怪（结束/魔王城/烟花/烟花-5.png",
+      "sourceSha256": "06da00fba02cf62a0cecd5f8497a75f2e987f83c523608e9afd99d54aa57d6cd",
+      "width": 1280,
+      "height": 720,
+      "pivotX": 0.47734375,
+      "pivotY": 0.06944444444444442,
+      "ppu": 175,
+      "crop": null
+    }
+  ],
+  "sequences": [
+    {
+      "actor": "ExplosiveBlock",
+      "action": "Idle",
+      "facesRight": true,
+      "nativeFrameRate": true,
+      "frames": [
+        "Assets/_Project/Art/Enemies/Minions/ExplosiveBlock/ExplosiveBlock_Idle_01.png"
+      ]
+    },
+    {
+      "actor": "ExplosiveBlock",
+      "action": "Armed",
+      "facesRight": true,
+      "nativeFrameRate": true,
+      "frames": [
+        "Assets/_Project/Art/Enemies/Minions/ExplosiveBlock/ExplosiveBlock_Armed_01.png",
+        "Assets/_Project/Art/Enemies/Minions/ExplosiveBlock/ExplosiveBlock_Warning_01.png"
+      ]
+    },
+    {
+      "actor": "ExplosiveBlock",
+      "action": "Warning",
+      "facesRight": true,
+      "nativeFrameRate": false,
+      "frames": [
+        "Assets/_Project/Art/Enemies/Minions/ExplosiveBlock/ExplosiveBlock_Warning_01.png"
+      ]
+    },
+    {
+      "actor": "ExplosiveBlock",
+      "action": "Explode",
+      "facesRight": true,
+      "nativeFrameRate": false,
+      "frames": [
+        "Assets/_Project/Art/Enemies/Minions/ExplosiveBlock/ExplosiveBlock_Explode_01.png",
+        "Assets/_Project/Art/Enemies/Minions/ExplosiveBlock/ExplosiveBlock_Explode_02.png",
+        "Assets/_Project/Art/Enemies/Minions/ExplosiveBlock/ExplosiveBlock_Explode_03.png",
+        "Assets/_Project/Art/Enemies/Minions/ExplosiveBlock/ExplosiveBlock_Explode_04.png"
+      ]
+    },
+    {
+      "actor": "ClockMouse",
+      "action": "Idle",
+      "facesRight": false,
+      "nativeFrameRate": true,
+      "frames": [
+        "Assets/_Project/Art/Enemies/Minions/ClockMouse/ClockMouse_Idle_01.png"
+      ]
+    },
+    {
+      "actor": "ClockMouse",
+      "action": "Walk",
+      "facesRight": false,
+      "nativeFrameRate": true,
+      "frames": [
+        "Assets/_Project/Art/Enemies/Minions/ClockMouse/ClockMouse_Walk_01.png",
+        "Assets/_Project/Art/Enemies/Minions/ClockMouse/ClockMouse_Walk_02.png",
+        "Assets/_Project/Art/Enemies/Minions/ClockMouse/ClockMouse_Walk_03.png"
+      ]
+    },
+    {
+      "actor": "ClockMouse",
+      "action": "Pop",
+      "facesRight": false,
+      "nativeFrameRate": false,
+      "frames": [
+        "Assets/_Project/Art/Enemies/Minions/ClockMouse/ClockMouse_Pop_01.png",
+        "Assets/_Project/Art/Enemies/Minions/ClockMouse/ClockMouse_Pop_02.png",
+        "Assets/_Project/Art/Enemies/Minions/ClockMouse/ClockMouse_Pop_03.png",
+        "Assets/_Project/Art/Enemies/Minions/ClockMouse/ClockMouse_Pop_04.png",
+        "Assets/_Project/Art/Enemies/Minions/ClockMouse/ClockMouse_Pop_05.png",
+        "Assets/_Project/Art/Enemies/Minions/ClockMouse/ClockMouse_Pop_06.png",
+        "Assets/_Project/Art/Enemies/Minions/ClockMouse/ClockMouse_Pop_07.png"
+      ]
+    },
+    {
+      "actor": "ClockMouse",
+      "action": "Hide",
+      "facesRight": false,
+      "nativeFrameRate": false,
+      "frames": [
+        "Assets/_Project/Art/Enemies/Minions/ClockMouse/ClockMouse_Hide_01.png",
+        "Assets/_Project/Art/Enemies/Minions/ClockMouse/ClockMouse_Hide_02.png",
+        "Assets/_Project/Art/Enemies/Minions/ClockMouse/ClockMouse_Hide_03.png",
+        "Assets/_Project/Art/Enemies/Minions/ClockMouse/ClockMouse_Hide_04.png",
+        "Assets/_Project/Art/Enemies/Minions/ClockMouse/ClockMouse_Hide_05.png"
+      ]
+    },
+    {
+      "actor": "ClockMouse",
+      "action": "Dead",
+      "facesRight": false,
+      "nativeFrameRate": false,
+      "frames": [
+        "Assets/_Project/Art/Enemies/Minions/ClockMouse/ClockMouse_Dead_01.png",
+        "Assets/_Project/Art/Enemies/Minions/ClockMouse/ClockMouse_Dead_02.png",
+        "Assets/_Project/Art/Enemies/Minions/ClockMouse/ClockMouse_Dead_03.png",
+        "Assets/_Project/Art/Enemies/Minions/ClockMouse/ClockMouse_Dead_04.png",
+        "Assets/_Project/Art/Enemies/Minions/ClockMouse/ClockMouse_Dead_05.png",
+        "Assets/_Project/Art/Enemies/Minions/ClockMouse/ClockMouse_Dead_06.png",
+        "Assets/_Project/Art/Enemies/Minions/ClockMouse/ClockMouse_Dead_07.png",
+        "Assets/_Project/Art/Enemies/Minions/ClockMouse/ClockMouse_Dead_08.png",
+        "Assets/_Project/Art/Enemies/Minions/ClockMouse/ClockMouse_Dead_09.png"
+      ]
+    },
+    {
+      "actor": "PlushBird",
+      "action": "Idle",
+      "facesRight": false,
+      "nativeFrameRate": true,
+      "frames": [
+        "Assets/_Project/Art/Enemies/Minions/PlushBird/PlushBird_Idle_01.png"
+      ]
+    },
+    {
+      "actor": "PlushBird",
+      "action": "Fly",
+      "facesRight": false,
+      "nativeFrameRate": true,
+      "frames": [
+        "Assets/_Project/Art/Enemies/Minions/PlushBird/PlushBird_Fly_01.png",
+        "Assets/_Project/Art/Enemies/Minions/PlushBird/PlushBird_Fly_02.png",
+        "Assets/_Project/Art/Enemies/Minions/PlushBird/PlushBird_Fly_03.png",
+        "Assets/_Project/Art/Enemies/Minions/PlushBird/PlushBird_Fly_04.png",
+        "Assets/_Project/Art/Enemies/Minions/PlushBird/PlushBird_Fly_05.png"
+      ]
+    },
+    {
+      "actor": "PlushBird",
+      "action": "Attack",
+      "facesRight": false,
+      "nativeFrameRate": false,
+      "frames": [
+        "Assets/_Project/Art/Enemies/Minions/PlushBird/PlushBird_Attack_01.png"
+      ]
+    },
+    {
+      "actor": "PlushBird",
+      "action": "Dead",
+      "facesRight": false,
+      "nativeFrameRate": false,
+      "frames": [
+        "Assets/_Project/Art/Enemies/Minions/PlushBird/PlushBird_Dead_01.png",
+        "Assets/_Project/Art/Enemies/Minions/PlushBird/PlushBird_Dead_02.png",
+        "Assets/_Project/Art/Enemies/Minions/PlushBird/PlushBird_Dead_03.png",
+        "Assets/_Project/Art/Enemies/Minions/PlushBird/PlushBird_Dead_04.png"
+      ]
+    },
+    {
+      "actor": "PlushBird",
+      "action": "ProjectileLight",
+      "facesRight": false,
+      "nativeFrameRate": true,
+      "frames": [
+        "Assets/_Project/Art/Enemies/Minions/PlushBird/PlushBird_Attack_02.png",
+        "Assets/_Project/Art/Enemies/Minions/PlushBird/PlushBird_Attack_03.png"
+      ]
+    },
+    {
+      "actor": "BatMinion",
+      "action": "Idle",
+      "facesRight": true,
+      "nativeFrameRate": true,
+      "frames": [
+        "Assets/_Project/Art/Enemies/Minions/BatMinion/BatMinion_Idle_01.png"
+      ]
+    },
+    {
+      "actor": "BatMinion",
+      "action": "Dash",
+      "facesRight": true,
+      "nativeFrameRate": false,
+      "frames": [
+        "Assets/_Project/Art/Enemies/Minions/BatMinion/BatMinion_Dash_01.png",
+        "Assets/_Project/Art/Enemies/Minions/BatMinion/BatMinion_Dash_02.png",
+        "Assets/_Project/Art/Enemies/Minions/BatMinion/BatMinion_Dash_03.png",
+        "Assets/_Project/Art/Enemies/Minions/BatMinion/BatMinion_Dash_04.png",
+        "Assets/_Project/Art/Enemies/Minions/BatMinion/BatMinion_Dash_05.png",
+        "Assets/_Project/Art/Enemies/Minions/BatMinion/BatMinion_Dash_06.png",
+        "Assets/_Project/Art/Enemies/Minions/BatMinion/BatMinion_Dash_07.png",
+        "Assets/_Project/Art/Enemies/Minions/BatMinion/BatMinion_Dash_08.png",
+        "Assets/_Project/Art/Enemies/Minions/BatMinion/BatMinion_Dash_09.png",
+        "Assets/_Project/Art/Enemies/Minions/BatMinion/BatMinion_Dash_10.png",
+        "Assets/_Project/Art/Enemies/Minions/BatMinion/BatMinion_Dash_11.png",
+        "Assets/_Project/Art/Enemies/Minions/BatMinion/BatMinion_Dash_12.png",
+        "Assets/_Project/Art/Enemies/Minions/BatMinion/BatMinion_Dash_13.png",
+        "Assets/_Project/Art/Enemies/Minions/BatMinion/BatMinion_Dash_14.png",
+        "Assets/_Project/Art/Enemies/Minions/BatMinion/BatMinion_Dash_15.png"
+      ]
+    },
+    {
+      "actor": "BatMinion",
+      "action": "Dead",
+      "facesRight": true,
+      "nativeFrameRate": false,
+      "frames": [
+        "Assets/_Project/Art/Enemies/Minions/BatMinion/BatMinion_Dead_01.png",
+        "Assets/_Project/Art/Enemies/Minions/BatMinion/BatMinion_Dead_02.png",
+        "Assets/_Project/Art/Enemies/Minions/BatMinion/BatMinion_Dead_03.png",
+        "Assets/_Project/Art/Enemies/Minions/BatMinion/BatMinion_Dead_04.png",
+        "Assets/_Project/Art/Enemies/Minions/BatMinion/BatMinion_Dead_05.png",
+        "Assets/_Project/Art/Enemies/Minions/BatMinion/BatMinion_Dead_06.png"
+      ]
+    },
+    {
+      "actor": "BatMinion",
+      "action": "Walk",
+      "facesRight": true,
+      "nativeFrameRate": true,
+      "frames": [
+        "Assets/_Project/Art/Enemies/Minions/BatMinion/BatMinion_Dash_09.png",
+        "Assets/_Project/Art/Enemies/Minions/BatMinion/BatMinion_Dash_10.png",
+        "Assets/_Project/Art/Enemies/Minions/BatMinion/BatMinion_Dash_11.png"
+      ]
+    },
+    {
+      "actor": "BatMinion",
+      "action": "Fly",
+      "facesRight": true,
+      "nativeFrameRate": true,
+      "frames": [
+        "Assets/_Project/Art/Enemies/Minions/BatMinion/BatMinion_Dash_09.png",
+        "Assets/_Project/Art/Enemies/Minions/BatMinion/BatMinion_Dash_10.png",
+        "Assets/_Project/Art/Enemies/Minions/BatMinion/BatMinion_Dash_11.png"
+      ]
+    },
+    {
+      "actor": "HugBear",
+      "action": "Idle",
+      "facesRight": false,
+      "nativeFrameRate": true,
+      "frames": [
+        "Assets/_Project/Art/Enemies/Minions/HugBear/HugBear_Idle_01.png"
+      ]
+    },
+    {
+      "actor": "HugBear",
+      "action": "Stand",
+      "facesRight": false,
+      "nativeFrameRate": false,
+      "frames": [
+        "Assets/_Project/Art/Enemies/Minions/HugBear/HugBear_Stand_01.png",
+        "Assets/_Project/Art/Enemies/Minions/HugBear/HugBear_Stand_02.png",
+        "Assets/_Project/Art/Enemies/Minions/HugBear/HugBear_Stand_03.png",
+        "Assets/_Project/Art/Enemies/Minions/HugBear/HugBear_Stand_04.png",
+        "Assets/_Project/Art/Enemies/Minions/HugBear/HugBear_Stand_05.png",
+        "Assets/_Project/Art/Enemies/Minions/HugBear/HugBear_Stand_06.png",
+        "Assets/_Project/Art/Enemies/Minions/HugBear/HugBear_Stand_07.png"
+      ]
+    },
+    {
+      "actor": "HugBear",
+      "action": "Walk",
+      "facesRight": false,
+      "nativeFrameRate": true,
+      "frames": [
+        "Assets/_Project/Art/Enemies/Minions/HugBear/HugBear_Walk_01.png",
+        "Assets/_Project/Art/Enemies/Minions/HugBear/HugBear_Walk_02.png",
+        "Assets/_Project/Art/Enemies/Minions/HugBear/HugBear_Walk_03.png",
+        "Assets/_Project/Art/Enemies/Minions/HugBear/HugBear_Walk_04.png",
+        "Assets/_Project/Art/Enemies/Minions/HugBear/HugBear_Walk_05.png",
+        "Assets/_Project/Art/Enemies/Minions/HugBear/HugBear_Walk_06.png",
+        "Assets/_Project/Art/Enemies/Minions/HugBear/HugBear_Walk_07.png",
+        "Assets/_Project/Art/Enemies/Minions/HugBear/HugBear_Walk_08.png",
+        "Assets/_Project/Art/Enemies/Minions/HugBear/HugBear_Walk_09.png"
+      ]
+    },
+    {
+      "actor": "HugBear",
+      "action": "Dead",
+      "facesRight": false,
+      "nativeFrameRate": false,
+      "frames": [
+        "Assets/_Project/Art/Enemies/Minions/HugBear/HugBear_Dead_01.png",
+        "Assets/_Project/Art/Enemies/Minions/HugBear/HugBear_Dead_02.png",
+        "Assets/_Project/Art/Enemies/Minions/HugBear/HugBear_Dead_03.png",
+        "Assets/_Project/Art/Enemies/Minions/HugBear/HugBear_Dead_04.png",
+        "Assets/_Project/Art/Enemies/Minions/HugBear/HugBear_Dead_05.png",
+        "Assets/_Project/Art/Enemies/Minions/HugBear/HugBear_Dead_06.png",
+        "Assets/_Project/Art/Enemies/Minions/HugBear/HugBear_Dead_07.png",
+        "Assets/_Project/Art/Enemies/Minions/HugBear/HugBear_Dead_08.png",
+        "Assets/_Project/Art/Enemies/Minions/HugBear/HugBear_Dead_09.png"
+      ]
+    },
+    {
+      "actor": "HugBear",
+      "action": "Sit",
+      "facesRight": false,
+      "nativeFrameRate": false,
+      "frames": [
+        "Assets/_Project/Art/Enemies/Minions/HugBear/HugBear_Stand_07.png",
+        "Assets/_Project/Art/Enemies/Minions/HugBear/HugBear_Stand_06.png",
+        "Assets/_Project/Art/Enemies/Minions/HugBear/HugBear_Stand_05.png",
+        "Assets/_Project/Art/Enemies/Minions/HugBear/HugBear_Stand_04.png",
+        "Assets/_Project/Art/Enemies/Minions/HugBear/HugBear_Stand_03.png",
+        "Assets/_Project/Art/Enemies/Minions/HugBear/HugBear_Stand_02.png",
+        "Assets/_Project/Art/Enemies/Minions/HugBear/HugBear_Stand_01.png"
+      ]
+    },
+    {
+      "actor": "HugBear",
+      "action": "Ready",
+      "facesRight": false,
+      "nativeFrameRate": false,
+      "frames": [
+        "Assets/_Project/Art/Enemies/Minions/HugBear/HugBear_Stand_07.png"
+      ]
+    },
+    {
+      "actor": "HugBear",
+      "action": "Hug",
+      "facesRight": false,
+      "nativeFrameRate": false,
+      "frames": [
+        "Assets/_Project/Art/Enemies/Minions/HugBear/HugBear_Dead_01.png",
+        "Assets/_Project/Art/Enemies/Minions/HugBear/HugBear_Dead_02.png",
+        "Assets/_Project/Art/Enemies/Minions/HugBear/HugBear_Dead_03.png",
+        "Assets/_Project/Art/Enemies/Minions/HugBear/HugBear_Dead_04.png"
+      ]
+    },
+    {
+      "actor": "HugBear",
+      "action": "Hurt",
+      "facesRight": false,
+      "nativeFrameRate": false,
+      "frames": [
+        "Assets/_Project/Art/Enemies/Minions/HugBear/HugBear_Walk_01.png"
+      ]
+    },
+    {
+      "actor": "PlushSeal",
+      "action": "Idle",
+      "facesRight": false,
+      "nativeFrameRate": true,
+      "frames": [
+        "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Idle_01.png"
+      ]
+    },
+    {
+      "actor": "PlushSeal",
+      "action": "Walk",
+      "facesRight": false,
+      "nativeFrameRate": true,
+      "frames": [
+        "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Walk_01.png",
+        "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Walk_02.png",
+        "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Walk_03.png",
+        "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Walk_04.png",
+        "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Walk_05.png",
+        "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Walk_06.png"
+      ]
+    },
+    {
+      "actor": "PlushSeal",
+      "action": "Howl",
+      "facesRight": false,
+      "nativeFrameRate": false,
+      "frames": [
+        "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Howl_01.png",
+        "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Howl_02.png",
+        "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Howl_03.png",
+        "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Howl_04.png",
+        "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Howl_05.png",
+        "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Howl_06.png",
+        "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Howl_07.png",
+        "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Howl_08.png",
+        "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Howl_09.png",
+        "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Howl_10.png",
+        "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Howl_11.png",
+        "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Howl_12.png",
+        "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Howl_13.png",
+        "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Howl_14.png"
+      ]
+    },
+    {
+      "actor": "PlushSeal",
+      "action": "BellySlap",
+      "facesRight": false,
+      "nativeFrameRate": false,
+      "frames": [
+        "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_BellySlap_01.png",
+        "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_BellySlap_02.png",
+        "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_BellySlap_03.png",
+        "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_BellySlap_04.png"
+      ]
+    },
+    {
+      "actor": "PlushSeal",
+      "action": "Dead",
+      "facesRight": false,
+      "nativeFrameRate": false,
+      "frames": [
+        "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Dead_01.png",
+        "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Dead_02.png",
+        "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Dead_03.png",
+        "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Dead_04.png",
+        "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Dead_05.png",
+        "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Dead_06.png",
+        "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Dead_07.png",
+        "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Dead_08.png",
+        "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Dead_09.png",
+        "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Dead_10.png",
+        "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Dead_11.png",
+        "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Dead_12.png",
+        "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Dead_13.png",
+        "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Dead_14.png",
+        "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Dead_15.png",
+        "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Dead_16.png",
+        "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Dead_17.png",
+        "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Dead_18.png",
+        "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Dead_19.png",
+        "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Dead_20.png",
+        "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Dead_21.png"
+      ]
+    },
+    {
+      "actor": "PlushSeal",
+      "action": "ProjectileIce",
+      "facesRight": false,
+      "nativeFrameRate": true,
+      "frames": [
+        "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_ProjectileIce_01.png",
+        "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_ProjectileIce_02.png"
+      ]
+    },
+    {
+      "actor": "PlushSeal",
+      "action": "Slide",
+      "facesRight": false,
+      "nativeFrameRate": false,
+      "frames": [
+        "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Walk_01.png",
+        "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Walk_02.png",
+        "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Walk_03.png",
+        "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Walk_04.png",
+        "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Walk_05.png",
+        "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Walk_06.png"
+      ]
+    },
+    {
+      "actor": "PlushSeal",
+      "action": "Hurt",
+      "facesRight": false,
+      "nativeFrameRate": false,
+      "frames": [
+        "Assets/_Project/Art/Enemies/Minions/PlushSeal/PlushSeal_Idle_01.png"
+      ]
+    },
+    {
+      "actor": "Firework",
+      "action": "Launch",
+      "facesRight": true,
+      "nativeFrameRate": false,
+      "frames": [
+        "Assets/_Project/Art/Enemies/Minions/Firework/Firework_Launch_01.png",
+        "Assets/_Project/Art/Enemies/Minions/Firework/Firework_Launch_02.png",
+        "Assets/_Project/Art/Enemies/Minions/Firework/Firework_Launch_03.png",
+        "Assets/_Project/Art/Enemies/Minions/Firework/Firework_Launch_04.png",
+        "Assets/_Project/Art/Enemies/Minions/Firework/Firework_Launch_05.png"
+      ]
+    }
+  ],
+  "retainedSources": [
+    {
+      "source": "Src/小怪（结束/积木王国_20261018_225547/石头人/死亡/死亡-1.png",
+      "sourceSha256": "6337946a057876e678c3c934957ceb8b8fd581dacb7ac0f82e1cbc18d411f04c",
+      "reason": "Existing StoneGuard art retained"
+    },
+    {
+      "source": "Src/小怪（结束/积木王国_20261018_225547/石头人/死亡/死亡-2.png",
+      "sourceSha256": "5b0cdd56ae85c28b1dda7b271f5610b1918003d4f6927330c44cdfff32fb6e31",
+      "reason": "Existing StoneGuard art retained"
+    },
+    {
+      "source": "Src/小怪（结束/积木王国_20261018_225547/石头人/死亡/死亡-3.png",
+      "sourceSha256": "76c12fe6918bd78c8ab175628087d52c7d131396d93c197e2fd787632e6e8fcc",
+      "reason": "Existing StoneGuard art retained"
+    },
+    {
+      "source": "Src/小怪（结束/积木王国_20261018_225547/石头人/死亡/死亡-4.png",
+      "sourceSha256": "07400a51f3028c216a809031e50ce5a039925bf37bd1d48e3a4cf0792632efe3",
+      "reason": "Existing StoneGuard art retained"
+    },
+    {
+      "source": "Src/小怪（结束/积木王国_20261018_225547/石头人/死亡/死亡-5.png",
+      "sourceSha256": "1d8cf9e1597a54aa8da68bcb31410eadcc3d9ae132cc15b04827b18f5eec6bb8",
+      "reason": "Existing StoneGuard art retained"
+    },
+    {
+      "source": "Src/小怪（结束/积木王国_20261018_225547/石头人/死亡/死亡-6.png",
+      "sourceSha256": "9eb4891e6bf2fa3edf1df9843864e07199365934c92d2cd09a67ecdd458c8955",
+      "reason": "Existing StoneGuard art retained"
+    },
+    {
+      "source": "Src/小怪（结束/积木王国_20261018_225547/石头人/死亡/死亡-7.png",
+      "sourceSha256": "62168a16f62d60cbaaf933146d356b3f7f5989b4e4641a5063f0b90886c800c9",
+      "reason": "Existing StoneGuard art retained"
+    },
+    {
+      "source": "Src/小怪（结束/积木王国_20261018_225547/石头人/石头人.png",
+      "sourceSha256": "59082b948487bc560c3eb0bb7e8cd1b627fa3c28906df904a432016ff271e0d0",
+      "reason": "Existing StoneGuard art retained"
+    },
+    {
+      "source": "Src/小怪（结束/积木王国_20261018_225547/石头人/行走/行走-1.png",
+      "sourceSha256": "dcfde22c398fdfa3ca714053efff8d70b20f104842a84a882dafa93d9bc50b67",
+      "reason": "Existing StoneGuard art retained"
+    },
+    {
+      "source": "Src/小怪（结束/积木王国_20261018_225547/石头人/行走/行走-10.png",
+      "sourceSha256": "ef4a64de6472eaa52405629f2b08cf34a1589a704dcfcdabc48a19af6055f2ce",
+      "reason": "Existing StoneGuard art retained"
+    },
+    {
+      "source": "Src/小怪（结束/积木王国_20261018_225547/石头人/行走/行走-11.png",
+      "sourceSha256": "1149030126c680fe91c6fdaa474456569f71e45aadd8be8328eb7dab37dcba29",
+      "reason": "Existing StoneGuard art retained"
+    },
+    {
+      "source": "Src/小怪（结束/积木王国_20261018_225547/石头人/行走/行走-12.png",
+      "sourceSha256": "1149030126c680fe91c6fdaa474456569f71e45aadd8be8328eb7dab37dcba29",
+      "reason": "Existing StoneGuard art retained"
+    },
+    {
+      "source": "Src/小怪（结束/积木王国_20261018_225547/石头人/行走/行走-13.png",
+      "sourceSha256": "408015afe400743a928d4d0e2dc1978336615e7c9c0c7850da1943447fbbd238",
+      "reason": "Existing StoneGuard art retained"
+    },
+    {
+      "source": "Src/小怪（结束/积木王国_20261018_225547/石头人/行走/行走-14.png",
+      "sourceSha256": "408015afe400743a928d4d0e2dc1978336615e7c9c0c7850da1943447fbbd238",
+      "reason": "Existing StoneGuard art retained"
+    },
+    {
+      "source": "Src/小怪（结束/积木王国_20261018_225547/石头人/行走/行走-15.png",
+      "sourceSha256": "99488cac7e198394029f72abf34cffa1f196c24f198da32c6bbf3b01f84158ca",
+      "reason": "Existing StoneGuard art retained"
+    },
+    {
+      "source": "Src/小怪（结束/积木王国_20261018_225547/石头人/行走/行走-16.png",
+      "sourceSha256": "99488cac7e198394029f72abf34cffa1f196c24f198da32c6bbf3b01f84158ca",
+      "reason": "Existing StoneGuard art retained"
+    },
+    {
+      "source": "Src/小怪（结束/积木王国_20261018_225547/石头人/行走/行走-17.png",
+      "sourceSha256": "e8fed63b5d4360096e4591d215bf3e1c2944142f76a53895eb165a314291fe8c",
+      "reason": "Existing StoneGuard art retained"
+    },
+    {
+      "source": "Src/小怪（结束/积木王国_20261018_225547/石头人/行走/行走-18.png",
+      "sourceSha256": "e8fed63b5d4360096e4591d215bf3e1c2944142f76a53895eb165a314291fe8c",
+      "reason": "Existing StoneGuard art retained"
+    },
+    {
+      "source": "Src/小怪（结束/积木王国_20261018_225547/石头人/行走/行走-19.png",
+      "sourceSha256": "097976250b09af4d86fd23e2aec0ec9db70523416682fd20958c33043fcee884",
+      "reason": "Existing StoneGuard art retained"
+    },
+    {
+      "source": "Src/小怪（结束/积木王国_20261018_225547/石头人/行走/行走-2.png",
+      "sourceSha256": "dcfde22c398fdfa3ca714053efff8d70b20f104842a84a882dafa93d9bc50b67",
+      "reason": "Existing StoneGuard art retained"
+    },
+    {
+      "source": "Src/小怪（结束/积木王国_20261018_225547/石头人/行走/行走-20.png",
+      "sourceSha256": "097976250b09af4d86fd23e2aec0ec9db70523416682fd20958c33043fcee884",
+      "reason": "Existing StoneGuard art retained"
+    },
+    {
+      "source": "Src/小怪（结束/积木王国_20261018_225547/石头人/行走/行走-21.png",
+      "sourceSha256": "7fffa83512d722ac077ce24f4ac815c6ca67b6172ea527ac7a6cfbde4ef0bdf0",
+      "reason": "Existing StoneGuard art retained"
+    },
+    {
+      "source": "Src/小怪（结束/积木王国_20261018_225547/石头人/行走/行走-22.png",
+      "sourceSha256": "7fffa83512d722ac077ce24f4ac815c6ca67b6172ea527ac7a6cfbde4ef0bdf0",
+      "reason": "Existing StoneGuard art retained"
+    },
+    {
+      "source": "Src/小怪（结束/积木王国_20261018_225547/石头人/行走/行走-23.png",
+      "sourceSha256": "1afd27a8ed2e6a97994a711936812c3ffc7548782b87ef9dc587b9c3ec51b9b9",
+      "reason": "Existing StoneGuard art retained"
+    },
+    {
+      "source": "Src/小怪（结束/积木王国_20261018_225547/石头人/行走/行走-24.png",
+      "sourceSha256": "1afd27a8ed2e6a97994a711936812c3ffc7548782b87ef9dc587b9c3ec51b9b9",
+      "reason": "Existing StoneGuard art retained"
+    },
+    {
+      "source": "Src/小怪（结束/积木王国_20261018_225547/石头人/行走/行走-3.png",
+      "sourceSha256": "ca8fc277fd6375969d2e36da1d7fc4cd24a0f8fb0bbdda6e1bfe9647e6a4641b",
+      "reason": "Existing StoneGuard art retained"
+    },
+    {
+      "source": "Src/小怪（结束/积木王国_20261018_225547/石头人/行走/行走-4.png",
+      "sourceSha256": "ca8fc277fd6375969d2e36da1d7fc4cd24a0f8fb0bbdda6e1bfe9647e6a4641b",
+      "reason": "Existing StoneGuard art retained"
+    },
+    {
+      "source": "Src/小怪（结束/积木王国_20261018_225547/石头人/行走/行走-5.png",
+      "sourceSha256": "83099952dd30da536dd5cdda54227b6cb3596991a9ec1ae303316d9b1e16699d",
+      "reason": "Existing StoneGuard art retained"
+    },
+    {
+      "source": "Src/小怪（结束/积木王国_20261018_225547/石头人/行走/行走-6.png",
+      "sourceSha256": "83099952dd30da536dd5cdda54227b6cb3596991a9ec1ae303316d9b1e16699d",
+      "reason": "Existing StoneGuard art retained"
+    },
+    {
+      "source": "Src/小怪（结束/积木王国_20261018_225547/石头人/行走/行走-7.png",
+      "sourceSha256": "e2048b9d6cc3ff86a32c3527ed635df00a3b5ab8dd7c1b2a7cd5669690dc4d88",
+      "reason": "Existing StoneGuard art retained"
+    },
+    {
+      "source": "Src/小怪（结束/积木王国_20261018_225547/石头人/行走/行走-8.png",
+      "sourceSha256": "e2048b9d6cc3ff86a32c3527ed635df00a3b5ab8dd7c1b2a7cd5669690dc4d88",
+      "reason": "Existing StoneGuard art retained"
+    },
+    {
+      "source": "Src/小怪（结束/积木王国_20261018_225547/石头人/行走/行走-9.png",
+      "sourceSha256": "ef4a64de6472eaa52405629f2b08cf34a1589a704dcfcdabc48a19af6055f2ce",
+      "reason": "Existing StoneGuard art retained"
+    },
+    {
+      "source": "Src/小怪（结束/积木王国_20261018_225547/石头人/锤击/锤击-1.png",
+      "sourceSha256": "c8dd7bbc139b28758e9a819db2131d74c2bd59b6154a3f0a887eb412a3b6d467",
+      "reason": "Existing StoneGuard art retained"
+    },
+    {
+      "source": "Src/小怪（结束/积木王国_20261018_225547/石头人/锤击/锤击-2.png",
+      "sourceSha256": "2315c074738d1cede8a12e3b47774a5fe416d9aaa1af2297f7e46d716802abc6",
+      "reason": "Existing StoneGuard art retained"
+    },
+    {
+      "source": "Src/小怪（结束/积木王国_20261018_225547/石头人/锤击/锤击-3.png",
+      "sourceSha256": "11c99a6ecd0b1568381c5caceee7badbd107c51486991a20d07e5b3a5815588f",
+      "reason": "Existing StoneGuard art retained"
+    },
+    {
+      "source": "Src/小怪（结束/积木王国_20261018_225547/石头人/锤击/锤击-4.png",
+      "sourceSha256": "465b3e63000f23abdbc54fc2f86456c0e0e92fdaf2b33b703ae061916f6b9909",
+      "reason": "Existing StoneGuard art retained"
+    },
+    {
+      "source": "Src/小怪（结束/魔王城/毛绒蜘蛛/从地里爬上来/冒出-1.png",
+      "sourceSha256": "75f43360766231f68c086170937c8a3f9dcf3decac35333ab858055a6a13655f",
+      "reason": "No existing gameplay; source retained only"
+    },
+    {
+      "source": "Src/小怪（结束/魔王城/毛绒蜘蛛/从地里爬上来/冒出-2.png",
+      "sourceSha256": "9c4058bba03a02abb0e7a592fe094ea0ea694f10ceec485687eb86bd9945f2cb",
+      "reason": "No existing gameplay; source retained only"
+    },
+    {
+      "source": "Src/小怪（结束/魔王城/毛绒蜘蛛/从地里爬上来/冒出-3.png",
+      "sourceSha256": "5ff72f99d4ec7566dab342990f92e466894ccf3778552c4db66fd0a4c2bdb39e",
+      "reason": "No existing gameplay; source retained only"
+    },
+    {
+      "source": "Src/小怪（结束/魔王城/毛绒蜘蛛/从地里爬上来/冒出-4.png",
+      "sourceSha256": "945ac2103789dc6013b52ba14d3896bb350b54ca72712bbd3b42720da99fc01b",
+      "reason": "No existing gameplay; source retained only"
+    },
+    {
+      "source": "Src/小怪（结束/魔王城/毛绒蜘蛛/从地里爬上来/冒出-5.png",
+      "sourceSha256": "7574c7423d500f68d7d9dd838a3092f574e44d233c6bc9223d422006235d91f5",
+      "reason": "No existing gameplay; source retained only"
+    },
+    {
+      "source": "Src/小怪（结束/魔王城/毛绒蜘蛛/从地里爬上来/冒出-6.png",
+      "sourceSha256": "3d41a82a7d6c86fef6faf84ea6cda8c0700aec5b1dcc46b3336a1015a35fd955",
+      "reason": "No existing gameplay; source retained only"
+    },
+    {
+      "source": "Src/小怪（结束/魔王城/毛绒蜘蛛/从地里爬上来/冒出-7.png",
+      "sourceSha256": "6c5a16c951086e57d6daf175535b18f6cb5a83293ecef15415936a95f68550c2",
+      "reason": "No existing gameplay; source retained only"
+    },
+    {
+      "source": "Src/小怪（结束/魔王城/毛绒蜘蛛/死亡/死亡-1.png",
+      "sourceSha256": "dcd86d07f4133b8d5f8df6b89d6673a28773100457f2c3b2673686b6455a13e2",
+      "reason": "No existing gameplay; source retained only"
+    },
+    {
+      "source": "Src/小怪（结束/魔王城/毛绒蜘蛛/死亡/死亡-2.png",
+      "sourceSha256": "6aa0b9b6d2b52b2e5cfac920bf82332272eb07c261cd43144588d66a7282d4fa",
+      "reason": "No existing gameplay; source retained only"
+    },
+    {
+      "source": "Src/小怪（结束/魔王城/毛绒蜘蛛/死亡/死亡-3.png",
+      "sourceSha256": "f1b058474cf89a20d3a611db0b836a327052f531996a43b1668c3198dd067813",
+      "reason": "No existing gameplay; source retained only"
+    },
+    {
+      "source": "Src/小怪（结束/魔王城/毛绒蜘蛛/死亡/死亡-4.png",
+      "sourceSha256": "639df71b6a846049fdd047ae19b7e52227ebed1224f3aa14b97d884c8902a2eb",
+      "reason": "No existing gameplay; source retained only"
+    },
+    {
+      "source": "Src/小怪（结束/魔王城/毛绒蜘蛛/死亡/死亡-5.png",
+      "sourceSha256": "73aab11b0b1cbf0a000e27bb4d6dd6b6fac9e1795c6bd7dd4bb3b2c6a391f6ad",
+      "reason": "No existing gameplay; source retained only"
+    },
+    {
+      "source": "Src/小怪（结束/魔王城/毛绒蜘蛛/死亡/死亡-6.png",
+      "sourceSha256": "b8c472121921b5f17a65a5bdb9ebf6417821b4df011021a628dbcf23df94cae8",
+      "reason": "No existing gameplay; source retained only"
+    },
+    {
+      "source": "Src/小怪（结束/魔王城/毛绒蜘蛛/爬行/快速爬行-1.png",
+      "sourceSha256": "eb953326cfacd5bbe99fa1eaef704e0e8524d6198b3cfd77777d6e7008cb5a20",
+      "reason": "No existing gameplay; source retained only"
+    },
+    {
+      "source": "Src/小怪（结束/魔王城/毛绒蜘蛛/爬行/快速爬行-2.png",
+      "sourceSha256": "c51c1c62852e94a07c02183a0031614cf31752d7f9f389ce51237a99062a5c02",
+      "reason": "No existing gameplay; source retained only"
+    },
+    {
+      "source": "Src/小怪（结束/魔王城/毛绒蜘蛛/爬行/快速爬行-3.png",
+      "sourceSha256": "19355961b463070ea7f1780b503eee3ba156d1b62cec4772b8510ee59e395eb6",
+      "reason": "No existing gameplay; source retained only"
+    },
+    {
+      "source": "Src/小怪（结束/魔王城/毛绒蜘蛛/蜘蛛.png",
+      "sourceSha256": "a3c82cfa512183157ed05e4ce6933374f5f2cf8f8976fcab8849b725c515cd99",
+      "reason": "No existing gameplay; source retained only"
+    },
+    {
+      "source": "Src/小怪（结束/魔王城/迪斯科球怪/迪斯科球-1.png",
+      "sourceSha256": "1aa8f7a9a30071992ac424de2bb40a8f564d68d6a506d37f098a34718ce2a96f",
+      "reason": "No existing gameplay; source retained only"
+    },
+    {
+      "source": "Src/小怪（结束/魔王城/迪斯科球怪/迪斯科球-2.png",
+      "sourceSha256": "a8ab27cc025e2211e4ec854e1be7956d35294b015df8e89310da11d952a97dbd",
+      "reason": "No existing gameplay; source retained only"
+    },
+    {
+      "source": "Src/小怪（结束/魔王城/陀螺怪/陀螺怪-1.png",
+      "sourceSha256": "c2388817e89b72c62ec480ccdde251829b493b16f838c5424fd2cb7116bedd89",
+      "reason": "No existing gameplay; source retained only"
+    },
+    {
+      "source": "Src/小怪（结束/魔王城/陀螺怪/陀螺怪-2.png",
+      "sourceSha256": "20075b8d0bdad0867b290ee118cb255ebb16ada16dfa1b5254ad0e761a966ac9",
+      "reason": "No existing gameplay; source retained only"
+    }
+  ]
+}

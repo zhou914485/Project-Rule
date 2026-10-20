@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff07526ecba378c4c9291476eb1f3b68, type: 3}
+  m_Name: BatMinion_Animations
+  m_EditorClassIdentifier: RuleGame.Presentation::RuleGame.Presentation.Enemy.EnemyAnimationSet
+  Sequences:
+  - Action: Idle
+    Frames:
+    - {fileID: 21300000, guid: 17e12fd58eff44713a90a7cc2b39e9a0, type: 3}
+    ClockFaceCenters: []
+    FrameRate: 8
+    FacesRight: 1
+    NativeFrameRate: 1
+  - Action: Dash
+    Frames:
+    - {fileID: 21300000, guid: 3b39ef9cb3b6d4a468df38bfb00ea3e6, type: 3}
+    - {fileID: 21300000, guid: c3887aec4a0684899bd5b369c8f67a81, type: 3}
+    - {fileID: 21300000, guid: 2a509aacd64f24c12b40f14c9124af5a, type: 3}
+    - {fileID: 21300000, guid: 8b09ae6a9b53647ae858a62285f605dc, type: 3}
+    - {fileID: 21300000, guid: 93aec2b30ed194fbe885b6a9f3e27f28, type: 3}
+    - {fileID: 21300000, guid: aa68ee99831744fdfabb17f95915f236, type: 3}
+    - {fileID: 21300000, guid: 1e8af62ecc44d4cedbefe9ab53267dde, type: 3}
+    - {fileID: 21300000, guid: bc945d540b6914dc39443f2c5c41b2c1, type: 3}
+    - {fileID: 21300000, guid: 1efc8f5b01d0a4baba0dfccd0568aa26, type: 3}
+    - {fileID: 21300000, guid: 492cec0f7f5d1486aa2973f9485b221b, type: 3}
+    - {fileID: 21300000, guid: a4eb515ab65074349bc108d71d7e9d83, type: 3}
+    - {fileID: 21300000, guid: 79b8aa5024e504def88e133b95459483, type: 3}
+    - {fileID: 21300000, guid: 45add4103eb324c13ace79ce861642d5, type: 3}
+    - {fileID: 21300000, guid: f4f9fb525f85942a2872969efe0fc4b0, type: 3}
+    - {fileID: 21300000, guid: bba594db259134b2da28fbc15f95604c, type: 3}
+    ClockFaceCenters: []
+    FrameRate: 8
+    FacesRight: 1
+    NativeFrameRate: 0
+  - Action: Dead
+    Frames:
+    - {fileID: 21300000, guid: 3f0d0f949e8ad4ecfb0d5c274fb65b42, type: 3}
+    - {fileID: 21300000, guid: df55cdb6a134e4763b715d741f2ce868, type: 3}
+    - {fileID: 21300000, guid: b74c15b98ab8b4d25940d81b0a846782, type: 3}
+    - {fileID: 21300000, guid: 03a6650deb0fc4f26a9dc27a8ac36829, type: 3}
+    - {fileID: 21300000, guid: edf9dabf6b949459bbb0c7c8ea7dab5b, type: 3}
+    - {fileID: 21300000, guid: bc3854f3e9d44454ab58904a9b862f42, type: 3}
+    ClockFaceCenters: []
+    FrameRate: 8
+    FacesRight: 1
+    NativeFrameRate: 0
+  - Action: Walk
+    Frames:
+    - {fileID: 21300000, guid: 1efc8f5b01d0a4baba0dfccd0568aa26, type: 3}
+    - {fileID: 21300000, guid: 492cec0f7f5d1486aa2973f9485b221b, type: 3}
+    - {fileID: 21300000, guid: a4eb515ab65074349bc108d71d7e9d83, type: 3}
+    ClockFaceCenters: []
+    FrameRate: 8
+    FacesRight: 1
+    NativeFrameRate: 1
+  - Action: Fly
+    Frames:
+    - {fileID: 21300000, guid: 1efc8f5b01d0a4baba0dfccd0568aa26, type: 3}
+    - {fileID: 21300000, guid: 492cec0f7f5d1486aa2973f9485b221b, type: 3}
+    - {fileID: 21300000, guid: a4eb515ab65074349bc108d71d7e9d83, type: 3}
+    ClockFaceCenters: []
+    FrameRate: 8
+    FacesRight: 1
+    NativeFrameRate: 1

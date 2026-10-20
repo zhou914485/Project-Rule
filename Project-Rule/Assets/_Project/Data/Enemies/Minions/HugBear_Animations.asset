@@ -1,0 +1,102 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff07526ecba378c4c9291476eb1f3b68, type: 3}
+  m_Name: HugBear_Animations
+  m_EditorClassIdentifier: RuleGame.Presentation::RuleGame.Presentation.Enemy.EnemyAnimationSet
+  Sequences:
+  - Action: Idle
+    Frames:
+    - {fileID: 21300000, guid: 00cc0d54863ea411ab5e9b1bd029d30a, type: 3}
+    ClockFaceCenters: []
+    FrameRate: 8
+    FacesRight: 0
+    NativeFrameRate: 1
+  - Action: Stand
+    Frames:
+    - {fileID: 21300000, guid: 9534a3bbac363417b9b46c2785929537, type: 3}
+    - {fileID: 21300000, guid: 8fd699ca6566f4e73bd34c5ef0b8493f, type: 3}
+    - {fileID: 21300000, guid: 4f9d32cb832004c648bd55a6cda7c9ff, type: 3}
+    - {fileID: 21300000, guid: a5fd0f6647265488ca41d95f476e5194, type: 3}
+    - {fileID: 21300000, guid: bc3914f3ae28a4ee4a2ac4b05308fdb8, type: 3}
+    - {fileID: 21300000, guid: bd6e68d423b734201b7addb2a8cee1f2, type: 3}
+    - {fileID: 21300000, guid: fdffc6d3fada64cb7afba6fe589595fe, type: 3}
+    ClockFaceCenters: []
+    FrameRate: 8
+    FacesRight: 0
+    NativeFrameRate: 0
+  - Action: Walk
+    Frames:
+    - {fileID: 21300000, guid: 6e785957f0f73492eb52d1412ea6be11, type: 3}
+    - {fileID: 21300000, guid: f92d70b32a8c84f9199953fa411c67ac, type: 3}
+    - {fileID: 21300000, guid: 375608689bfbc4e039144f6c3db8a269, type: 3}
+    - {fileID: 21300000, guid: fe4efe86b046c46c5aac4ab2a63db396, type: 3}
+    - {fileID: 21300000, guid: aee276e004a494a769901a1231ea68de, type: 3}
+    - {fileID: 21300000, guid: 14d4db22b0269488ab738b3685ccc7e6, type: 3}
+    - {fileID: 21300000, guid: ee6422e9d3dd74227a80175b5492c9e3, type: 3}
+    - {fileID: 21300000, guid: 70d639595cb7348828434e55dbc84dda, type: 3}
+    - {fileID: 21300000, guid: 3603b79b6ffd74963ba195299c323c8a, type: 3}
+    ClockFaceCenters: []
+    FrameRate: 8
+    FacesRight: 0
+    NativeFrameRate: 1
+  - Action: Dead
+    Frames:
+    - {fileID: 21300000, guid: d0c8fb639c75f4f48a6f1ca8f4b76929, type: 3}
+    - {fileID: 21300000, guid: 6395f6ee2576649c7b8da1a1ba653210, type: 3}
+    - {fileID: 21300000, guid: 22eee8b2024884d9e861562224e73344, type: 3}
+    - {fileID: 21300000, guid: 4b7c4a8eae2354aa586c7b1882df1fbf, type: 3}
+    - {fileID: 21300000, guid: 589ab0b8e7dfe4eab9dc951f8a4ba154, type: 3}
+    - {fileID: 21300000, guid: ecf38d09edffd48f6a10999f07d832bc, type: 3}
+    - {fileID: 21300000, guid: ed863bdb87cff4d04bc1495a019b967e, type: 3}
+    - {fileID: 21300000, guid: 740c175dc191748f9b302468bbf29422, type: 3}
+    - {fileID: 21300000, guid: 7d976384029564c9db6be72ace29c59d, type: 3}
+    ClockFaceCenters: []
+    FrameRate: 8
+    FacesRight: 0
+    NativeFrameRate: 0
+  - Action: Sit
+    Frames:
+    - {fileID: 21300000, guid: fdffc6d3fada64cb7afba6fe589595fe, type: 3}
+    - {fileID: 21300000, guid: bd6e68d423b734201b7addb2a8cee1f2, type: 3}
+    - {fileID: 21300000, guid: bc3914f3ae28a4ee4a2ac4b05308fdb8, type: 3}
+    - {fileID: 21300000, guid: a5fd0f6647265488ca41d95f476e5194, type: 3}
+    - {fileID: 21300000, guid: 4f9d32cb832004c648bd55a6cda7c9ff, type: 3}
+    - {fileID: 21300000, guid: 8fd699ca6566f4e73bd34c5ef0b8493f, type: 3}
+    - {fileID: 21300000, guid: 9534a3bbac363417b9b46c2785929537, type: 3}
+    ClockFaceCenters: []
+    FrameRate: 8
+    FacesRight: 0
+    NativeFrameRate: 0
+  - Action: Ready
+    Frames:
+    - {fileID: 21300000, guid: fdffc6d3fada64cb7afba6fe589595fe, type: 3}
+    ClockFaceCenters: []
+    FrameRate: 8
+    FacesRight: 0
+    NativeFrameRate: 0
+  - Action: Hug
+    Frames:
+    - {fileID: 21300000, guid: d0c8fb639c75f4f48a6f1ca8f4b76929, type: 3}
+    - {fileID: 21300000, guid: 6395f6ee2576649c7b8da1a1ba653210, type: 3}
+    - {fileID: 21300000, guid: 22eee8b2024884d9e861562224e73344, type: 3}
+    - {fileID: 21300000, guid: 4b7c4a8eae2354aa586c7b1882df1fbf, type: 3}
+    ClockFaceCenters: []
+    FrameRate: 8
+    FacesRight: 0
+    NativeFrameRate: 0
+  - Action: Hurt
+    Frames:
+    - {fileID: 21300000, guid: 6e785957f0f73492eb52d1412ea6be11, type: 3}
+    ClockFaceCenters: []
+    FrameRate: 8
+    FacesRight: 0
+    NativeFrameRate: 0

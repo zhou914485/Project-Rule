@@ -89,7 +89,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a69f0223fead4dc4db1819d26c428d4a, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: RuleGame.Gameplay::RuleGame.Gameplay.Combat.Hurtbox
   _owner: {fileID: 636942463267746067}
 --- !u!1 &2894573010322494287
@@ -107,8 +107,8 @@ GameObject:
   - component: {fileID: 4791118066022777844}
   - component: {fileID: 636942463267746067}
   - component: {fileID: 1763328311788804121}
-  - component: {fileID: 8077538554293710525}
   - component: {fileID: 8206857364877131685}
+  - component: {fileID: 7031520523192148834}
   m_Layer: 9
   m_Name: PlushSeal
   m_TagString: Untagged
@@ -143,7 +143,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d5b17e5f0fb818991d232565fec6e1d5, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: RuleGame.Gameplay::RuleGame.Gameplay.Player.EntityStatus
   _energyMax: 100
   _energy: 100
@@ -233,7 +233,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 03f81f7abaebd04478283970d8cfbc34, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: RuleGame.Gameplay::RuleGame.Gameplay.Enemy.EnemyMotor
   SolidMask:
     serializedVersion: 2
@@ -251,7 +251,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e367a6432c3bc2049834a74d9b8f8f63, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: RuleGame.Gameplay::RuleGame.Gameplay.Enemy.EnemyActor
   Definition: {fileID: 11400000, guid: 8429a08c76e924d95907804b5bf42c0b, type: 2}
   Target: {fileID: 0}
@@ -266,7 +266,7 @@ MonoBehaviour:
   PlayerMask:
     serializedVersion: 2
     m_Bits: 1
-  ProjectileSprite: {fileID: -3209511910272548094, guid: f9113bda5603fba42b3acc164cb94477, type: 3}
+  ProjectileSprite: {fileID: 21300000, guid: 1ce43414f49f247fe978a95f8af9276f, type: 3}
   BeamOrigin: {fileID: 0}
   RuntimeSpawned: 0
   ArenaX: {x: -12, y: 12}
@@ -283,25 +283,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a7085f702f0e4752bd2383e7a2978b8b, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: RuleGame.Gameplay::RuleGame.Gameplay.Common.RuleAffectedBody
   _applyFriction: 1
   _applyMass: 1
   _frictionSource: {fileID: 0}
---- !u!114 &8077538554293710525
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2894573010322494287}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f75c28e2a1ad450598158297d5a141b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: RuleGame.Presentation::RuleGame.Presentation.Enemy.FieldMinionView
-  Actor: {fileID: 636942463267746067}
-  Body: {fileID: 7354622060177426594}
 --- !u!114 &8206857364877131685
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -312,8 +298,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5734830a1f2e9419a9db2d4bce1d0f9e, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: RuleGame.Presentation::RuleGame.Presentation.Audio.EnemySfxPresenter
+--- !u!114 &7031520523192148834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2894573010322494287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b578e3c45961324dbd678da0c8515e1, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: RuleGame.Presentation::RuleGame.Presentation.Enemy.EnemyVfxPresenter
+  Profile: {fileID: 11400000, guid: 0c963d5a95233419db803ae7d00d1c21, type: 2}
 --- !u!1 &6942543380268567849
 GameObject:
   m_ObjectHideFlags: 0
@@ -324,8 +323,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7742168208452220962}
   - component: {fileID: 7354622060177426594}
+  - component: {fileID: 3049773327760489307}
   m_Layer: 0
-  m_Name: WhiteboxBody
+  m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -340,8 +340,8 @@ Transform:
   m_GameObject: {fileID: 6942543380268567849}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 0.9, z: 1}
+  m_LocalPosition: {x: 0, y: -0.45, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1356544924846604953}
@@ -395,8 +395,8 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 5
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -3209511910272548094, guid: f9113bda5603fba42b3acc164cb94477, type: 3}
-  m_Color: {r: 0.85, g: 0.3825, b: 0.69416666, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 01a11a541dd674f88afcb685480275c5, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -406,3 +406,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
+--- !u!114 &3049773327760489307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6942543380268567849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f755534787511b41b4052304be8c5cb, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: RuleGame.Presentation::RuleGame.Presentation.Enemy.EnemySpriteAnimator
+  Actor: {fileID: 636942463267746067}
+  AnimationSet: {fileID: 11400000, guid: 51f12cd745d1e47b1a8e355db10d0e94, type: 2}

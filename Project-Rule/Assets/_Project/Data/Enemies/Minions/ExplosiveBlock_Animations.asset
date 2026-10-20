@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff07526ecba378c4c9291476eb1f3b68, type: 3}
+  m_Name: ExplosiveBlock_Animations
+  m_EditorClassIdentifier: RuleGame.Presentation::RuleGame.Presentation.Enemy.EnemyAnimationSet
+  Sequences:
+  - Action: Idle
+    Frames:
+    - {fileID: 21300000, guid: 92a32c18cf4f840199163e363985b32a, type: 3}
+    ClockFaceCenters: []
+    FrameRate: 8
+    FacesRight: 1
+    NativeFrameRate: 1
+  - Action: Armed
+    Frames:
+    - {fileID: 21300000, guid: c71dd106926304a59bafe5bb7a12843b, type: 3}
+    - {fileID: 21300000, guid: 17a1c0e9ea2814737b83d06b82b87ae6, type: 3}
+    ClockFaceCenters: []
+    FrameRate: 8
+    FacesRight: 1
+    NativeFrameRate: 1
+  - Action: Warning
+    Frames:
+    - {fileID: 21300000, guid: 17a1c0e9ea2814737b83d06b82b87ae6, type: 3}
+    ClockFaceCenters: []
+    FrameRate: 8
+    FacesRight: 1
+    NativeFrameRate: 0
+  - Action: Explode
+    Frames:
+    - {fileID: 21300000, guid: 6459ab8e58922485bb4932dae857c25d, type: 3}
+    - {fileID: 21300000, guid: 0532af20cd63c4de8808b17986811786, type: 3}
+    - {fileID: 21300000, guid: 974f90b4252524d76a52d5c23c40e162, type: 3}
+    - {fileID: 21300000, guid: fe76221a8c2c9402aa76d830477c4e4a, type: 3}
+    ClockFaceCenters: []
+    FrameRate: 8
+    FacesRight: 1
+    NativeFrameRate: 0

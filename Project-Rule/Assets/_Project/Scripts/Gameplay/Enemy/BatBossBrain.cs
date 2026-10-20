@@ -76,7 +76,7 @@ namespace RuleGame.Gameplay.Enemy
                     break;
                 case "Windup":
                     _nextDash = Age + Mathf.Max(1f, Config.BatDashCooldown / Tempo);
-                    Vector2 aim = HasTarget ? (Vector2)Actor.Target.position + _targetVelocity * 0.18f : Position;
+                    Vector2 aim = HasTarget ? PredictTarget(.18f) : Position;
                     _dashDirection = (aim - Position).normalized;
                     if (_dashDirection.sqrMagnitude < 0.01f) _dashDirection = Vector2.right * Actor.Facing;
                     Actor.FaceDirection(_dashDirection);
@@ -121,19 +121,19 @@ namespace RuleGame.Gameplay.Enemy
             {
                 case "Idle":
                 case "Fly":
-                    if (Age >= NextAttack && TargetInMeleeRange) { Go("Slash"); return; }
+                    if (Age >= NextAttack && TargetVisible && TargetInMeleeRange) { Go("Slash"); return; }
                     if (Actor.Distance < Config.AttackRange * 0.8f && Age >= _nextEvade)
                     { Go("Evade"); return; }
-                    if (Age >= NextAttack && Actor.Distance <= RangedRange)
+                    if (Age >= NextAttack && TargetVisible && Actor.Distance <= RangedRange)
                     {
-                        if (TargetInMeleeRange) { Go("Slash"); return; }
-                        if (Age >= _nextDash) { Go("Windup"); return; }
-                        if (Phase >= 2 && Actor.Status.Energy >= Config.Energy - 0.01f && Age >= _nextRule)
+                        if (TargetVisible && TargetInMeleeRange) { Go("Slash"); return; }
+                        if (Phase >= 2 && Actor.CanCastRule && Age >= _nextRule)
                         { _nextRule = Age + 8f; Go("WingSpread"); return; }
                         if (Phase >= 2 && Actor.SummonCount > 0 && Age >= _nextPoint)
                         { _nextPoint = Age + 8f; Go("Point"); return; }
                         if (Phase >= 2 && Age >= _nextSummon && Actor.SummonCount < 3)
                         { _nextSummon = Age + 12f; _nextPoint = Age + 3f; Go("Roar"); return; }
+                        if (Age >= _nextDash) { Go("Windup"); return; }
                         // 刚出生先完成一段换位，再开始弹幕。
                         if (Elapsed >= 0.45f) { Go("Shake"); return; }
                     }
@@ -148,8 +148,8 @@ namespace RuleGame.Gameplay.Enemy
                     // 高空休息后主动降至玩家侧面。近身阶段不因玩家靠近就立即撤离。
                     if (Age >= NextAttack)
                     {
-                        if (TargetInMeleeRange) { Go("Slash"); return; }
-                        if (Actor.Distance <= RangedRange && ((!_preferMelee && Elapsed >= .35f)
+                        if (TargetVisible && TargetInMeleeRange) { Go("Slash"); return; }
+                        if (TargetVisible && Actor.Distance <= RangedRange && ((!_preferMelee && Elapsed >= .35f)
                             || Elapsed >= Mathf.Max(.5f, Config.BatApproachDuration)))
                         { ChooseRangedAttack(); return; }
                     }
@@ -166,7 +166,7 @@ namespace RuleGame.Gameplay.Enemy
                 case "Dash":
                     Actor.Motor.Intent = BoundIntent(_dashDirection);
                     Actor.Motor.SpeedMultiplier = 3f * Tempo;
-                    Actor.Attack(Config.AttackRange);
+                    Actor.Attack(Config.AttackRange, sustained: true);
                     bool blocked = Elapsed > 0.16f && Actor.Motor.Velocity.sqrMagnitude < 0.25f;
                     if (Finished || blocked || Actor.Motor.Intent.sqrMagnitude < 0.01f) Go("Recover");
                     break;
@@ -186,7 +186,7 @@ namespace RuleGame.Gameplay.Enemy
                         && Pulses < Mathf.Clamp(Config.BatVolleyWaves, 1, 8))
                     {
                         float sweep = (Pulses & 1) == 0 ? -6f : 6f;
-                        Vector2 middle = Quaternion.Euler(0f, 0f, sweep) * Actor.TowardTarget;
+                        Vector2 middle = Quaternion.Euler(0f, 0f, sweep) * (PredictTarget(.18f) - Position).normalized;
                         Actor.ShootFan(middle, Config.BatFanCount, Config.BatFanSpread, 11f, radius: .24f);
                         if (Pulses == 0 && Config.BatRingCount > 0)
                             Actor.ShootRing(Config.BatRingCount, 6.5f, Age * 17f, .18f);
@@ -220,7 +220,7 @@ namespace RuleGame.Gameplay.Enemy
         private void ApproachTarget()
         {
             if (!HasTarget) { Actor.Motor.Stop(); return; }
-            Vector2 target = Actor.Target.position;
+            Vector2 target = PredictTarget(.15f);
             float side = Mathf.Abs(Position.x - target.x) > .1f ? Mathf.Sign(Position.x - target.x) : _orbitSide;
             _destination = ClampPoint(target + Vector2.right * (side * Mathf.Max(.5f, Config.BatApproachDistance))
                 + Actor.Motor.Up * Mathf.Max(0f, Config.BatApproachHeight));
@@ -228,7 +228,7 @@ namespace RuleGame.Gameplay.Enemy
         }
         private void ChooseRangedAttack()
         {
-            if (Phase >= 2 && Actor.Status.Energy >= Config.Energy - .01f && Age >= _nextRule)
+            if (Phase >= 2 && Actor.CanCastRule && Age >= _nextRule)
             { _nextRule = Age + 8f; Go("WingSpread"); return; }
             if (Phase >= 2 && Actor.SummonCount > 0 && Age >= _nextPoint)
             { _nextPoint = Age + 8f; Go("Point"); return; }

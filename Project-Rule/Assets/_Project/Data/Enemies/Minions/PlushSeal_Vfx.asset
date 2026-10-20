@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea76469abb76d87448d82994ce067538, type: 3}
+  m_Name: PlushSeal_Vfx
+  m_EditorClassIdentifier: RuleGame.Presentation::RuleGame.Presentation.Enemy.EnemyVfxProfile
+  Impact: {fileID: 0}
+  Slash: {fileID: 0}
+  Cast: {fileID: 0}
+  Charge: {fileID: 0}
+  Death: {fileID: 0}
+  Shot: {fileID: 0}
+  Material: {fileID: 2100000, guid: c90dee527ba7a1e4daeeacb1969be2d3, type: 2}
+  BeamMaterial: {fileID: 2100000, guid: c90dee527ba7a1e4daeeacb1969be2d3, type: 2}
+  BeamCoreMaterial: {fileID: 0}
+  ProjectileSprite: {fileID: 21300000, guid: 1ce43414f49f247fe978a95f8af9276f, type: 3}
+  ProjectileAnimations:
+  - Action: ProjectileIce
+    Frames:
+    - {fileID: 21300000, guid: 1ce43414f49f247fe978a95f8af9276f, type: 3}
+    - {fileID: 21300000, guid: b09e0452787ef43d4be80bb33a81b023, type: 3}
+    ClockFaceCenters: []
+    FrameRate: 8
+    FacesRight: 0
+    NativeFrameRate: 1
+  ProjectileMaterial: {fileID: 2100000, guid: c90dee527ba7a1e4daeeacb1969be2d3, type: 2}
+  PhysicalProjectiles: 1
+  BeamAnimations: []
+  BeamSpriteMaterial: {fileID: 0}
+  Accent: {r: 1, g: 1, b: 1, a: 1}
+  Secondary: {r: 0.85, g: 0.35, b: 0.1, a: 1}
+  ImpactSize: 6
+  SlashSize: 5
+  CastSize: 7
+  CameraImpulse: 0

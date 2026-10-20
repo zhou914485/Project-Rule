@@ -1,0 +1,665 @@
+fileFormatVersion: 2
+guid: fe76221a8c2c9402aa76d830477c4e4a
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7317893777997664379
+    second: ExplosiveBlock_Explode_04_0
+  - first:
+      213: -2479691383639141217
+    second: ExplosiveBlock_Explode_04_1
+  - first:
+      213: -4915761364589850674
+    second: ExplosiveBlock_Explode_04_2
+  - first:
+      213: 5159967154679817294
+    second: ExplosiveBlock_Explode_04_3
+  - first:
+      213: 7007158596387022785
+    second: ExplosiveBlock_Explode_04_4
+  - first:
+      213: 6741307796115567973
+    second: ExplosiveBlock_Explode_04_5
+  - first:
+      213: -2391813519554475841
+    second: ExplosiveBlock_Explode_04_6
+  - first:
+      213: -7257785021254532950
+    second: ExplosiveBlock_Explode_04_7
+  - first:
+      213: 8318249570925061280
+    second: ExplosiveBlock_Explode_04_8
+  - first:
+      213: -790774446608922694
+    second: ExplosiveBlock_Explode_04_9
+  - first:
+      213: 1518640433880704367
+    second: ExplosiveBlock_Explode_04_10
+  - first:
+      213: -3456057627579107571
+    second: ExplosiveBlock_Explode_04_11
+  - first:
+      213: -5209205465484263211
+    second: ExplosiveBlock_Explode_04_12
+  - first:
+      213: -4621749522198400634
+    second: ExplosiveBlock_Explode_04_13
+  - first:
+      213: 5364919969371833488
+    second: ExplosiveBlock_Explode_04_14
+  - first:
+      213: -7884046712783650242
+    second: ExplosiveBlock_Explode_04_15
+  - first:
+      213: -8103308603914212136
+    second: ExplosiveBlock_Explode_04_16
+  - first:
+      213: 6714064086123426977
+    second: ExplosiveBlock_Explode_04_17
+  - first:
+      213: 7941451598329533622
+    second: ExplosiveBlock_Explode_04_18
+  - first:
+      213: 7330007700407203622
+    second: ExplosiveBlock_Explode_04_19
+  - first:
+      213: -4635986767273154979
+    second: ExplosiveBlock_Explode_04_20
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 9
+  spritePivot: {x: 0.5, y: 0.35416666}
+  spritePixelsToUnits: 210
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 512
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ExplosiveBlock_Explode_04_0
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 550
+        width: 188
+        height: 163
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58f686a716e917a90800000000000000
+      internalID: -7317893777997664379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplosiveBlock_Explode_04_1
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 534
+        width: 149
+        height: 136
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f94979513dd569dd0800000000000000
+      internalID: -2479691383639141217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplosiveBlock_Explode_04_2
+      rect:
+        serializedVersion: 2
+        x: 915
+        y: 651
+        width: 13
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ecf480f6515b7cbb0800000000000000
+      internalID: -4915761364589850674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplosiveBlock_Explode_04_3
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 478
+        width: 143
+        height: 137
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e44af5bd9c2eb9740800000000000000
+      internalID: 5159967154679817294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplosiveBlock_Explode_04_4
+      rect:
+        serializedVersion: 2
+        x: 478
+        y: 464
+        width: 21
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c7297e2e9d6e3160800000000000000
+      internalID: 7007158596387022785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplosiveBlock_Explode_04_5
+      rect:
+        serializedVersion: 2
+        x: 882
+        y: 384
+        width: 214
+        height: 217
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5653a0d39bfed8d50800000000000000
+      internalID: 6741307796115567973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplosiveBlock_Explode_04_6
+      rect:
+        serializedVersion: 2
+        x: 388
+        y: 444
+        width: 17
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb88afdb6429eced0800000000000000
+      internalID: -2391813519554475841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplosiveBlock_Explode_04_7
+      rect:
+        serializedVersion: 2
+        x: 762
+        y: 451
+        width: 24
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa009fff9fa274b90800000000000000
+      internalID: -7257785021254532950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplosiveBlock_Explode_04_8
+      rect:
+        serializedVersion: 2
+        x: 188
+        y: 386
+        width: 62
+        height: 62
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a4a80ca9eb507370800000000000000
+      internalID: 8318249570925061280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplosiveBlock_Explode_04_9
+      rect:
+        serializedVersion: 2
+        x: 278
+        y: 394
+        width: 37
+        height: 37
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab74b6c94da9605f0800000000000000
+      internalID: -790774446608922694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplosiveBlock_Explode_04_10
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 152
+        width: 247
+        height: 233
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f652103bd6b431510800000000000000
+      internalID: 1518640433880704367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplosiveBlock_Explode_04_11
+      rect:
+        serializedVersion: 2
+        x: 837
+        y: 368
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d073ed016ed9900d0800000000000000
+      internalID: -3456057627579107571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplosiveBlock_Explode_04_12
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 134
+        width: 250
+        height: 234
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d089cb8a3f25b7b0800000000000000
+      internalID: -5209205465484263211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplosiveBlock_Explode_04_13
+      rect:
+        serializedVersion: 2
+        x: 799
+        y: 280
+        width: 21
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6817880fb4f3cdfb0800000000000000
+      internalID: -4621749522198400634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplosiveBlock_Explode_04_14
+      rect:
+        serializedVersion: 2
+        x: 495
+        y: 258
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 094cece9946047a40800000000000000
+      internalID: 5364919969371833488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplosiveBlock_Explode_04_15
+      rect:
+        serializedVersion: 2
+        x: 394
+        y: 207
+        width: 30
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e32c1f3494d369290800000000000000
+      internalID: -7884046712783650242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplosiveBlock_Explode_04_16
+      rect:
+        serializedVersion: 2
+        x: 715
+        y: 239
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8dca35602c34b8f80800000000000000
+      internalID: -8103308603914212136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplosiveBlock_Explode_04_17
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 37
+        width: 187
+        height: 145
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a43894b6b52d2d50800000000000000
+      internalID: 6714064086123426977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplosiveBlock_Explode_04_18
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 87
+        width: 51
+        height: 48
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b4d36f2724b53e60800000000000000
+      internalID: 7941451598329533622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplosiveBlock_Explode_04_19
+      rect:
+        serializedVersion: 2
+        x: 690
+        y: 35
+        width: 184
+        height: 169
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62736afda2b69b560800000000000000
+      internalID: 7330007700407203622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplosiveBlock_Explode_04_20
+      rect:
+        serializedVersion: 2
+        x: 555
+        y: 43
+        width: 12
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d56a541099aa9afb0800000000000000
+      internalID: -4635986767273154979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 1537655665
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      ExplosiveBlock_Explode_04_0: -7317893777997664379
+      ExplosiveBlock_Explode_04_1: -2479691383639141217
+      ExplosiveBlock_Explode_04_10: 1518640433880704367
+      ExplosiveBlock_Explode_04_11: -3456057627579107571
+      ExplosiveBlock_Explode_04_12: -5209205465484263211
+      ExplosiveBlock_Explode_04_13: -4621749522198400634
+      ExplosiveBlock_Explode_04_14: 5364919969371833488
+      ExplosiveBlock_Explode_04_15: -7884046712783650242
+      ExplosiveBlock_Explode_04_16: -8103308603914212136
+      ExplosiveBlock_Explode_04_17: 6714064086123426977
+      ExplosiveBlock_Explode_04_18: 7941451598329533622
+      ExplosiveBlock_Explode_04_19: 7330007700407203622
+      ExplosiveBlock_Explode_04_2: -4915761364589850674
+      ExplosiveBlock_Explode_04_20: -4635986767273154979
+      ExplosiveBlock_Explode_04_3: 5159967154679817294
+      ExplosiveBlock_Explode_04_4: 7007158596387022785
+      ExplosiveBlock_Explode_04_5: 6741307796115567973
+      ExplosiveBlock_Explode_04_6: -2391813519554475841
+      ExplosiveBlock_Explode_04_7: -7257785021254532950
+      ExplosiveBlock_Explode_04_8: 8318249570925061280
+      ExplosiveBlock_Explode_04_9: -790774446608922694
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

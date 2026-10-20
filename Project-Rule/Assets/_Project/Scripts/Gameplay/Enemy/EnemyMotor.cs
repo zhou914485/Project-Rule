@@ -20,6 +20,7 @@ namespace RuleGame.Gameplay.Enemy
         public Vector2 Up { get; private set; } = Vector2.up;
         public Vector2 Velocity { get; private set; }
         public Vector2 GravityDrift { get; private set; }
+        public Vector2 ContactVelocity => Velocity + _impulse;
 
         /// <summary>
         /// 本物理帧的动量（kg·单位/秒），给「按动量判定」的机关读（见 <see cref="IMomentumSource"/>）。
@@ -39,6 +40,13 @@ namespace RuleGame.Gameplay.Enemy
         private EnemyActor _actor;
         private RuleAffectedBody _rulesBody;
         private readonly RaycastHit2D[] _hits = new RaycastHit2D[8];
+
+        // Kinematic 自主运动不吃引擎材质阻力，需在真实速度上消费规则。
+        public float GroundSpeedScale => 1f / Mathf.Max(1f, RuleSystem.Instance?.Attributes.Values.FrictionScale ?? 1f);
+        public float MassResponse => Mathf.Clamp((_rulesBody != null ? _rulesBody.BaseMass : _body.mass)
+            / Mathf.Max(.01f, _body.mass), .1f, 4f);
+        public float GroundAcceleration => 35f * MassResponse * Mathf.Max(0.02f, RuleSystem.Instance?.Attributes.Values.FrictionScale ?? 1f);
+        public float JumpSpeed(float height) => Mathf.Sqrt(2f * Mathf.Max(.01f, Physics2D.gravity.magnitude * _actor.Definition.GravityScale) * Mathf.Max(0f, height));
 
         private void Awake()
         {
@@ -67,14 +75,13 @@ namespace RuleGame.Gameplay.Enemy
 
             // 飞行的操纵速度与规则造成的漂移分开，AI 转向不会每帧抹掉反重力效果。
             Vector2 velocity = Velocity - GravityDrift;
-            float massResponse = Mathf.Clamp((_rulesBody != null ? _rulesBody.BaseMass : _body.mass)
-                / Mathf.Max(.01f, _body.mass), .1f, 4f);
+            float massResponse = MassResponse;
             var attributes = RuleSystem.Instance?.Attributes;
             float direction = WorldDirection(Intent.x);
             float acceleration = (flying ? Mathf.Max(35f, config.FlightAcceleration) : 35f) * massResponse;
             if (Grounded && attributes != null)
-                acceleration *= Mathf.Max(0.02f, attributes.Values.FrictionScale);
-            velocity.x = Mathf.MoveTowards(velocity.x, direction * config.MoveSpeed * SpeedMultiplier, acceleration * dt);
+                acceleration *= Mathf.Max(0f, attributes.Values.FrictionScale);
+            velocity.x = Mathf.MoveTowards(velocity.x, direction * config.MoveSpeed * SpeedMultiplier * (Grounded ? GroundSpeedScale : 1f), acceleration * dt);
             if (flying && !_actor.Defeated)
             {
                 velocity.y = Mathf.MoveTowards(velocity.y, Intent.y * config.MoveSpeed * SpeedMultiplier,
@@ -103,7 +110,7 @@ namespace RuleGame.Gameplay.Enemy
                     if (!Physics2D.Raycast(probe, -Up, 0.45f, SolidMask)) velocity.x = 0f;
                 }
             }
-            _impulse = Vector2.MoveTowards(_impulse, Vector2.zero, 24f * dt);
+            _impulse = Vector2.MoveTowards(_impulse, Vector2.zero, 24f * (Grounded ? Mathf.Max(0f, attributes?.Values.FrictionScale ?? 1f) : 1f) * dt);
             var movement = new Rigidbody2D.SlideMovement
             {
                 surfaceUp = Up, surfaceSlideAngle = 60f, gravitySlipAngle = 0f,
@@ -118,13 +125,14 @@ namespace RuleGame.Gameplay.Enemy
             if (slide.slideHit.collider != null)
             {
                 Vector2 normal = slide.slideHit.normal;
+                bool bounced = _actor.Brain?.OnMotorCollision(slide.slideHit.collider, normal, velocity + _impulse) == true;
                 if (Vector2.Dot(GravityDrift, normal) < 0f)
                 {
                     GravityDrift -= normal * Vector2.Dot(GravityDrift, normal);
                     if (Vector2.Dot(velocity, normal) < 0f) velocity -= normal * Vector2.Dot(velocity, normal);
                 }
-                if (Mathf.Abs(normal.x) > 0.9f && velocity.x * normal.x < 0f) velocity.x = 0f;
-                if (Vector2.Dot(normal, Up) < -0.5f && Vector2.Dot(velocity, Up) > 0f)
+                if (!bounced && Mathf.Abs(normal.x) > 0.9f && velocity.x * normal.x < 0f) velocity.x = 0f;
+                if (!bounced && Vector2.Dot(normal, Up) < -0.5f && Vector2.Dot(velocity, Up) > 0f)
                     velocity -= Up * Vector2.Dot(velocity, Up);
             }
             Velocity = velocity;
@@ -175,11 +183,13 @@ namespace RuleGame.Gameplay.Enemy
         /// 「摩擦 × 反转」把敌人逼着后退时，它必须能**被逼下坑** —— 用带悬崖检测的那个版本，
         /// 它会在坑边刹住，玩家永远推不进去。
         /// </remarks>
-        public bool HasWallAhead(float direction)
+        public bool HasTerrainWallAhead(float direction) => CastWallAhead(direction, SolidMask | BodyBlockMask);
+        public bool HasWallAhead(float direction) => CastWallAhead(direction, SolidMask | BodyBlockMask | _actor.PlayerMask);
+        private bool CastWallAhead(float direction, LayerMask mask)
         {
             float side = Mathf.Sign(WorldDirection(direction));
             var filter = new ContactFilter2D { useTriggers = false };
-            filter.SetLayerMask(SolidMask | BodyBlockMask | _actor.PlayerMask);
+            filter.SetLayerMask(mask);
             int count = _body.Cast(Vector2.right * side, filter, _hits, .035f);
             for (int i = 0; i < count; i++)
                 if (_hits[i].normal.x * side < -.5f) return true;
@@ -189,10 +199,18 @@ namespace RuleGame.Gameplay.Enemy
         public void Jump(float height)
         {
             if (!Grounded) return;
-            float speed = Mathf.Sqrt(2f * Mathf.Max(.01f, Physics2D.gravity.magnitude * _actor.Definition.GravityScale) * height);
+            float speed = JumpSpeed(height);
             Velocity += Up * (speed - Vector2.Dot(Velocity, Up));
         }
-        public void Stop() { Intent = Vector2.zero; Velocity = _impulse = GravityDrift = Vector2.zero; SpeedMultiplier = 1f; AllowLedgeTraversal = false; }
+        public void Stop()
+        {
+            // 普通收步不能凭空吃掉冰面动量；拥抱、引信、死亡等明确锁位仍立即停住。
+            bool sliding = Grounded && !_actor.Defeated && _actor.Brain?.MovementEnabled == true
+                && (RuleSystem.Instance?.Attributes.Values.FrictionScale ?? 1f) < 1f;
+            Intent = Vector2.zero;
+            if (!sliding) Velocity = _impulse = GravityDrift = Vector2.zero;
+            SpeedMultiplier = 1f; AllowLedgeTraversal = false;
+        }
         public Vector2 CaptureImpulse() => _impulse;
         public void Restore(Vector2 velocity, Vector2 impulse, Vector2 gravityDrift = default)
         {

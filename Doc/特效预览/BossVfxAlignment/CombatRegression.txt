@@ -1,0 +1,8 @@
+Unity 6000.6.4f1, full project copy
+Before and after: Passed 115, Failed 3
+Pre-existing failures in both runs:
+Case 17: 兔子近身藏身撤退
+Case 32: 小怪保留普通受击
+Case 34: ClockBoss 休息后能重新发动攻击
+Before: /tmp/rule-boss-vfx-combat-baseline2.log
+After: /tmp/rule-boss-vfx-combat.log

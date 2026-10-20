@@ -11,6 +11,8 @@ namespace RuleGame.Presentation.Enemy
         [Min(1)] public int FrameCount = 64;
         [Min(1f)] public float FramesPerSecond = 30f;
         [Min(0)] public int FirstFrame;
+        [Tooltip("片段全部有效帧的可见像素边界（归一化，忽略透明边距）。由特效校准菜单计算。")]
+        public Rect VisibleRect = new Rect(0f, 0f, 1f, 1f);
         public float Duration => Mathf.Max(1, FrameCount - FirstFrame) / Mathf.Max(1f, FramesPerSecond);
         // Editor 热重载会恢复 private 字段；运行时生成的 Sprite 缓存不能参与序列化。
         [System.NonSerialized] private Sprite[] _frames;

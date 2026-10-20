@@ -10,7 +10,7 @@ namespace RuleGame.Gameplay.Enemy
         public SpringMinionBrain(EnemyActor actor) : base(actor) { }
         protected override void EnterBehavior(string name)
         {
-            if (name == "Attack") { ReadyAt = Age + Config.AttackCooldown; Actor.Motor.Stop(); }
+            if (name == "Attack") { ReadyAt = CooldownAge + Config.AttackCooldown; Actor.Motor.Stop(); }
             else Actor.Cue("Hop", Actor.Duration("Hop", .5f), true);
         }
         protected override void TickBehavior(string name)
@@ -21,7 +21,7 @@ namespace RuleGame.Gameplay.Enemy
                 if (Finished) Go("Ignore");
                 return;
             }
-            if (name == "Ignore" && Elapsed >= Config.MinionIgnoreDuration) { Go("Patrol"); return; }
+            if (name == "Ignore" && CooldownElapsed >= Config.MinionIgnoreDuration) { Go("Patrol"); return; }
             if (Config.MinionNavigationEnabled && Actor.Navigation.ContinueTraversal(Age))
             {
                 _wasAirborne = true;
@@ -37,29 +37,34 @@ namespace RuleGame.Gameplay.Enemy
             if (_wasAirborne)
             {
                 _wasAirborne = false;
-                _hopAt = Age + Config.MinionHopInterval;
+                _hopAt = CooldownAge + Config.MinionHopInterval;
             }
             if (!CanPursue)
             {
-                if (Age < _hopAt || !ReturnHome()) Actor.Motor.Intent = Vector2.zero;
+                if (CooldownAge < _hopAt || !ReturnHome()) Actor.Motor.Intent = Vector2.zero;
                 return;
             }
-            if (name == "Patrol" && SeesTarget && TargetInMeleeRange && Age >= ReadyAt) { Go("Attack"); return; }
+            if (name == "Patrol" && SeesTarget && TargetInMeleeRange && CooldownAge >= ReadyAt) { Go("Attack"); return; }
             Actor.Motor.Intent = Vector2.zero;
-            if (Age >= _hopAt)
+            if (CooldownAge >= _hopAt)
             {
-                if (Config.MinionNavigationEnabled)
+                if (Config.MinionNavigationEnabled && Physics2D.gravity.sqrMagnitude > .001f)
                 {
                     Actor.Navigation.MoveTo(LastSeenPosition, Home, Age, true,
-                        (Pattern & 1) == 0 ? Config.MinionHopHeight : Config.MinionHighHopHeight);
+                        DesiredHopHeight());
                     if (Actor.Navigation.JumpStarted) { Pattern++; Heading = Actor.Facing; }
                     return;
                 }
                 Actor.FaceTarget(); Heading = Actor.Facing;
                 if (Actor.Motor.HasHorizontalObstacle(Heading) && !TouchesTarget) return;
-                Actor.Motor.Jump((Pattern++ & 1) == 0 ? Config.MinionHopHeight : Config.MinionHighHopHeight);
+                Actor.Motor.Jump(DesiredHopHeight()); Pattern++;
                 Actor.Motor.Intent = Vector2.right * Heading;
             }
+        }
+        private float DesiredHopHeight()
+        {
+            bool high = CanPursue && Vector2.Dot(LastSeenPosition - (Vector2)Actor.transform.position, Actor.Motor.Up) > Config.MinionHopHeight * .5f;
+            return high || (Pattern & 1) != 0 ? Config.MinionHighHopHeight : Config.MinionHopHeight;
         }
         protected override object CaptureBehavior() => new object[] { _hopAt, _wasAirborne };
         protected override void RestoreBehavior(object state)

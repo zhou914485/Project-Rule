@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff07526ecba378c4c9291476eb1f3b68, type: 3}
+  m_Name: ClockMouse_Animations
+  m_EditorClassIdentifier: RuleGame.Presentation::RuleGame.Presentation.Enemy.EnemyAnimationSet
+  Sequences:
+  - Action: Idle
+    Frames:
+    - {fileID: 21300000, guid: 3b8a1e07d463f40edb01c64ef2c19b7a, type: 3}
+    ClockFaceCenters: []
+    FrameRate: 8
+    FacesRight: 0
+    NativeFrameRate: 1
+  - Action: Walk
+    Frames:
+    - {fileID: 21300000, guid: 129705805024d4abd9313ce31d43a16b, type: 3}
+    - {fileID: 21300000, guid: 2235a47e087e34c2184afe51d49e99dd, type: 3}
+    - {fileID: 21300000, guid: d81bb722052fd49459beb1ef702d9291, type: 3}
+    ClockFaceCenters: []
+    FrameRate: 8
+    FacesRight: 0
+    NativeFrameRate: 1
+  - Action: Pop
+    Frames:
+    - {fileID: 21300000, guid: e2f4e42da7b72493e95519fe86922a1e, type: 3}
+    - {fileID: 21300000, guid: 6407a5e6270314f719a8a57f2b55acc5, type: 3}
+    - {fileID: 21300000, guid: b051e795a5f764052b842fabd1714697, type: 3}
+    - {fileID: 21300000, guid: 975923030e7644b11b77247de0101b42, type: 3}
+    - {fileID: 21300000, guid: 5154798bebb924a508f65191fc7276e4, type: 3}
+    - {fileID: 21300000, guid: 65a3fa17ebb86427788646fee02e596f, type: 3}
+    - {fileID: 21300000, guid: e91a8ebd802c642cebc3f90813ae1497, type: 3}
+    ClockFaceCenters: []
+    FrameRate: 8
+    FacesRight: 0
+    NativeFrameRate: 0
+  - Action: Hide
+    Frames:
+    - {fileID: 21300000, guid: f1004273063e144ed9fe515d48e14728, type: 3}
+    - {fileID: 21300000, guid: dc46c405dbcc84357a19ced726a3b1fa, type: 3}
+    - {fileID: 21300000, guid: cd70a5cb1ae7646448761b93d42d7fc9, type: 3}
+    - {fileID: 21300000, guid: 3846c8b178ff34498ab4b55e69a6f194, type: 3}
+    - {fileID: 21300000, guid: 2a097911a9cbc4d9482e28c55ddde1f5, type: 3}
+    ClockFaceCenters: []
+    FrameRate: 8
+    FacesRight: 0
+    NativeFrameRate: 0
+  - Action: Dead
+    Frames:
+    - {fileID: 21300000, guid: 8354ab43df1054c44896b10217ea2162, type: 3}
+    - {fileID: 21300000, guid: 3f70dd17f279049199889c35c2a22773, type: 3}
+    - {fileID: 21300000, guid: d501e39f7af9f4028b23588b3301d344, type: 3}
+    - {fileID: 21300000, guid: c6c66521436d24e8bbc66bd95176b9ce, type: 3}
+    - {fileID: 21300000, guid: 27b24fb875f0d49a1b05e8f20e0c11e4, type: 3}
+    - {fileID: 21300000, guid: 0cfb98f55fdba4efd98a337490005222, type: 3}
+    - {fileID: 21300000, guid: 909a131171ee049ff99c2cdfa8a67800, type: 3}
+    - {fileID: 21300000, guid: f1d2dc17b7c7b4aab8ac07a1fb98a447, type: 3}
+    - {fileID: 21300000, guid: dcd542f1d52ce495098f5702a7449958, type: 3}
+    ClockFaceCenters: []
+    FrameRate: 8
+    FacesRight: 0
+    NativeFrameRate: 0

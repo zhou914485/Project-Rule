@@ -1,0 +1,19 @@
+Passed: 17
+Failed: 0
+PASS: BrickBoss melee -1
+PASS: BrickBoss melee 1
+PASS: BatBoss melee -1
+PASS: BatBoss melee 1
+PASS: Bat sustained dash follows the active query
+PASS: Brick large ground windup retains authored layout
+PASS: Brick large ground strike retains authored clips
+PASS: Brick normal hammer grounded -1
+PASS: Brick normal hammer grounded 1
+PASS: BrickBoss projectiles
+PASS: RabbitBoss projectiles
+PASS: BatBoss projectiles
+PASS: ClockBoss projectiles
+PASS: Clock authored beam 0
+PASS: Clock authored beam 1
+PASS: Clock authored beam 2
+PASS: Clock fallback beam

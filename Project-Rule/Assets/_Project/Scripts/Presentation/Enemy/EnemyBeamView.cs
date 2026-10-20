@@ -59,11 +59,11 @@ namespace RuleGame.Presentation.Enemy
             DrawSweepWarning(start, progress, firing);
             float fade = firing ? Mathf.Clamp01(1f - (_beam.Age - _beam.WarningDuration) / _beam.FireDuration) : 1f;
             _outer.enabled = true;
-            _outer.startWidth = _outer.endWidth = firing ? _beam.Width * (10f + fade * 6f) : .1f + progress * .06f;
+            _outer.startWidth = _outer.endWidth = firing ? _beam.Width * 1.25f : .1f + progress * .06f;
             Color outer = _profile.Secondary; outer.a = firing ? fade * .85f : .25f + progress * .4f;
             _outer.startColor = _outer.endColor = outer;
             _core.enabled = firing;
-            _core.startWidth = _core.endWidth = _beam.Width * 1.2f * fade;
+            _core.startWidth = _core.endWidth = _beam.Width;
             _core.startColor = _core.endColor = new Color(1f, .92f, .65f, fade);
             bool authored = DrawAuthoredBeam(start, end, firing, progress, fade);
             if (firing && !_fired)
@@ -115,12 +115,13 @@ namespace RuleGame.Presentation.Enemy
             Sprite sprite = sequence.Frames[index];
             if (sprite == null) return false;
             float length = firing ? Vector3.Distance(start, end) : Mathf.Max(.3f, _beam.Width * 2f);
-            float width = firing ? _beam.Width * 1.3f : Mathf.Max(.3f, _beam.Width * 2f);
+            float width = firing ? _beam.Width : Mathf.Max(.3f, _beam.Width * 2f);
             _art.sprite = sprite; _art.color = Color.white; _art.enabled = true;
-            _art.transform.SetPositionAndRotation(start, Quaternion.Euler(0f, 0f,
-                Mathf.Atan2(end.y - start.y, end.x - start.x) * Mathf.Rad2Deg));
+            Quaternion rotation = Quaternion.Euler(0f, 0f, Mathf.Atan2(end.y - start.y, end.x - start.x) * Mathf.Rad2Deg);
             _art.transform.localScale = new Vector3(length / Mathf.Max(.001f, sprite.bounds.size.x),
                 width / Mathf.Max(.001f, sprite.bounds.size.y), 1f);
+            Vector3 offset = Vector3.Scale(new Vector3(sprite.bounds.min.x, sprite.bounds.center.y), _art.transform.localScale);
+            _art.transform.SetPositionAndRotation(start - rotation * offset, rotation);
             // 原画束宽与伤害宽度一致量级，避免用十几倍粗的外焰掩盖躲避空间。
             if (firing) { _outer.enabled = false; _core.enabled = false; }
             return true;

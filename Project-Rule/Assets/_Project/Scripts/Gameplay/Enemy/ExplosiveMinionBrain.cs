@@ -16,7 +16,7 @@ namespace RuleGame.Gameplay.Enemy
         }
         protected override void TickBehavior(string name)
         {
-            if (name == "Armed") { if (Elapsed >= Config.MinionFuseDuration) Go("Explode"); return; }
+            if (name == "Armed") { if (CooldownElapsed >= Config.MinionFuseDuration) Go("Explode"); return; }
             if (name == "Explode")
             {
                 if (Pulses == 0) { Pulses = 1; Actor.AreaAttack(Config.MinionExplosionRadius); }
@@ -26,13 +26,14 @@ namespace RuleGame.Gameplay.Enemy
             if (TouchesTarget) { Arm(); return; }
             if (name == "Idle")
             {
+                if (SeesTarget) Heading = Mathf.Sign(Actor.Target.position.x - Actor.transform.position.x);
                 Patrol();
                 if (Config.Kind == EnemyKind.ClockBomb && SeesTarget) Go("Chase");
             }
             else
             {
                 Actor.Motor.SpeedMultiplier = Config.MinionDashMultiplier; Chase();
-                if (!HasTarget || Elapsed >= 3f || (!Config.MinionNavigationEnabled && Actor.Motor.HasHorizontalObstacle(Actor.Facing))) Arm();
+                if (!HasTarget || CooldownElapsed >= 3f || (!Config.MinionNavigationEnabled && Actor.Motor.HasHorizontalObstacle(Actor.Facing))) Arm();
             }
         }
     }

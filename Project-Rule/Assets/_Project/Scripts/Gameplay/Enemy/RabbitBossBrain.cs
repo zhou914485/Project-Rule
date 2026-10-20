@@ -25,7 +25,7 @@ namespace RuleGame.Gameplay.Enemy
         protected override string FirstAction => "Reposition";
         public RabbitBossBrain(EnemyActor actor) : base(actor)
         {
-            _nextBurrow = Mathf.Max(1f, Config.RabbitBurrowCooldown);
+            _nextBurrow = 0f;
             _magicCheck = Mathf.Max(5f, Config.RabbitGroundMagicInterval);
         }
         private sealed class Data
@@ -74,7 +74,7 @@ namespace RuleGame.Gameplay.Enemy
                 Transition("Flip", 2, Actor.Duration("Flip", .8f));
                 return;
             }
-            if (IsResting || StateName == "Rest" || !HasTarget) return;
+            if (IsResting || StateName == "Rest" || !TargetVisible) return;
             bool preparing = StateName == "Reposition" || StateName == "Throw" || StateName == "FlipThrow"
                 || (StateName == "Pop" && Elapsed >= .5f);
             if (!preparing) return;
@@ -182,8 +182,9 @@ namespace RuleGame.Gameplay.Enemy
                 case "Reposition":
                     PositionForThrow();
                     if (!HasTarget) break;
-                    if (Elapsed >= Mathf.Max(.6f, Config.RabbitRepositionDuration)
-                        || Mathf.Abs(CombatDistance - Config.PreferredDistance) <= Config.SpacingTolerance)
+                    bool pinned = Mathf.Abs(Actor.Motor.Intent.x) < .001f && Elapsed >= .35f && CombatDistance >= MinimumThrowDistance;
+                    if (TargetVisible && (pinned || Elapsed >= Mathf.Max(.6f, Config.RabbitRepositionDuration)
+                        || Mathf.Abs(CombatDistance - Config.PreferredDistance) <= Config.SpacingTolerance))
                         Go(CombatDistance <= RangedRange ? "Throw" : "Reposition");
                     break;
                 case "Throw":

@@ -134,6 +134,10 @@ namespace RuleGame.Gameplay.Combat
             if (_receivers.Count == 0) return 0;
 
             // ⑨ 挂账 or 立即施加
+            // 随机倍率若把攻击变成治疗，恢复共享仍需覆盖所有存活实体，而非仅随机到的一个。
+            if (healing && v.CausalityRecoveryShared)
+                CollectCandidates(attack.Origin, 0f, attackerFaction, true, _receivers, true);
+
             bool deferring = v.DamageDeferred;
             for (int i = 0; i < _receivers.Count; i++)
             {
@@ -241,7 +245,7 @@ namespace RuleGame.Gameplay.Combat
         /// <param name="radius">0 或负数表示<b>不限距离</b>。</param>
         /// <param name="sameFaction">true = 只取发起方**同阵营**；false = 只取**敌对阵营**。</param>
         private void CollectCandidates(Vector2 origin, float radius, Faction attackerFaction,
-                                       bool sameFaction, List<IDamageable> results)
+                                       bool sameFaction, List<IDamageable> results, bool anyFaction = false)
         {
             results.Clear();
             if (_registry == null) return;
@@ -253,7 +257,7 @@ namespace RuleGame.Gameplay.Combat
             for (int i = 0; i < all.Count; i++)
             {
                 Rigidbody2D body = all[i].Body;
-                if (body == null) continue;
+                if (body == null || !body.gameObject.activeInHierarchy) continue;
 
                 if (limited && (body.position - origin).sqrMagnitude > r2) continue;
 
@@ -264,9 +268,11 @@ namespace RuleGame.Gameplay.Combat
                 if (member == null) continue;                    // 没阵营信息：不进候选集
 
                 // 不打自己人：攻击只找敌对阵营，治疗只找同阵营
-                if ((member.Faction == attackerFaction) != sameFaction) continue;
+                if (!anyFaction && (member.Faction == attackerFaction) != sameFaction) continue;
 
-                results.Add(target);
+                var status = body.GetComponentInParent<RuleGame.Gameplay.Player.EntityStatus>();
+                if (status != null && status.Health <= 0f) continue;
+                if (!results.Contains(target)) results.Add(target);
             }
         }
 

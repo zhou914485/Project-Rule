@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff07526ecba378c4c9291476eb1f3b68, type: 3}
+  m_Name: PlushBird_Animations
+  m_EditorClassIdentifier: RuleGame.Presentation::RuleGame.Presentation.Enemy.EnemyAnimationSet
+  Sequences:
+  - Action: Idle
+    Frames:
+    - {fileID: 21300000, guid: ae514359c4aa84cb387103cfd89561a8, type: 3}
+    ClockFaceCenters: []
+    FrameRate: 8
+    FacesRight: 0
+    NativeFrameRate: 1
+  - Action: Fly
+    Frames:
+    - {fileID: 21300000, guid: a403a0d748f44474693d83a60124d346, type: 3}
+    - {fileID: 21300000, guid: 79b1404b267a041f39e0db3092f5e0e7, type: 3}
+    - {fileID: 21300000, guid: 1f5a853571a0e4dc5947f2b6f984f169, type: 3}
+    - {fileID: 21300000, guid: 3fa7cc72c475e4d1c90fa945f1fa5f60, type: 3}
+    - {fileID: 21300000, guid: eb3f76e9067db4da4910ad54fad52fee, type: 3}
+    ClockFaceCenters: []
+    FrameRate: 8
+    FacesRight: 0
+    NativeFrameRate: 1
+  - Action: Attack
+    Frames:
+    - {fileID: 21300000, guid: 440ea22eb3ca64d2c8f35a00e020cf3d, type: 3}
+    ClockFaceCenters: []
+    FrameRate: 8
+    FacesRight: 0
+    NativeFrameRate: 0
+  - Action: Dead
+    Frames:
+    - {fileID: 21300000, guid: b3729c1e2f3174a6682250a951da696d, type: 3}
+    - {fileID: 21300000, guid: efb1ed2a9b2994a9d85ea40b3697fcd8, type: 3}
+    - {fileID: 21300000, guid: e6028e5d4d81044f5b6c7730b828ce63, type: 3}
+    - {fileID: 21300000, guid: ff11b9533bb534b4998d4b439a094c50, type: 3}
+    ClockFaceCenters: []
+    FrameRate: 8
+    FacesRight: 0
+    NativeFrameRate: 0
+  - Action: ProjectileLight
+    Frames:
+    - {fileID: 21300000, guid: 9f6caa01e81d84bf2b50e802c0b6caba, type: 3}
+    - {fileID: 21300000, guid: 01c7e5b6fb8db4429b2339f1f0da3108, type: 3}
+    ClockFaceCenters: []
+    FrameRate: 8
+    FacesRight: 0
+    NativeFrameRate: 1

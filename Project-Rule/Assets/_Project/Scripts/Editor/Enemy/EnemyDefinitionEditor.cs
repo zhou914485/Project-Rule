@@ -149,6 +149,14 @@ namespace RuleGame.Editor.Enemy
             { nameof(EnemyDefinition.MinionSlideDuration), "滑行最长持续（秒）" },
             { nameof(EnemyDefinition.MinionDashMultiplier), "冲向玩家速度倍率" },
             { nameof(EnemyDefinition.MinionProjectileSpeed), "小怪投射物速度" },
+            { nameof(EnemyDefinition.RadiationRadius), "辐射半径" },
+            { nameof(EnemyDefinition.RadiationWarning), "辐射预警（秒）" },
+            { nameof(EnemyDefinition.RadiationDuration), "持续辐射（秒）" },
+            { nameof(EnemyDefinition.RadiationRest), "停止辐射（秒）" },
+            { nameof(EnemyDefinition.RadiationHitInterval), "辐射伤害间隔（秒）" },
+            { nameof(EnemyDefinition.TopRestitution), "碰撞弹性（0–1）" },
+            { nameof(EnemyDefinition.TopImpactCooldown), "同一物体碰撞保护（秒）" },
+            { nameof(EnemyDefinition.TopInitialDirection), "初始平移方向（-1 左 / 1 右）" },
             { nameof(EnemyDefinition.Timings), "动作时长配置" },
         };
         private static readonly Dictionary<string, string> EnumLabels = new Dictionary<string, string>
@@ -164,6 +172,7 @@ namespace RuleGame.Editor.Enemy
             { "PlushBird", "毛绒玩具鸟" },
             { "HugBear", "抱抱熊" },
             { "PlushSeal", "毛绒海豹" },
+            { "DiscoBall", "迪斯科球" }, { "SpinningTop", "陀螺怪" },
             { "Gravity", "重力" }, { "Time", "时间" }, { "Friction", "摩擦" },
             { "Mass", "质量" }, { "Damage", "伤害" }, { "Causality", "因果" },
             { "Revert", "反转" }, { "Nullify", "失效" }, { "Constant", "恒定" },
