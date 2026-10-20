@@ -21,6 +21,12 @@ namespace RuleGame.Gameplay.Dialogue
         private bool _starting;
         private bool _announcedPlaying;
         private bool _cancelled;
+        /// <summary>当前启用的共享 Host；正式场景常驻一个，分区里的 NPC 用它兜底绑定。</summary>
+        public static DialogueHost Active { get; private set; }
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        private static void ResetActive() => Active = null;
+
         public DialogueContent Content => _content;
         public DialogueRunner Runner => _runner;
         public bool IsPlaying => _starting || (_runner != null && _runner.IsDialogueRunning);
@@ -50,6 +56,7 @@ namespace RuleGame.Gameplay.Dialogue
             _runner.onDialogueComplete ??= new UnityEvent();
             _runner.onDialogueStart.AddListener(HandleStarted);
             _runner.onDialogueComplete.AddListener(HandleFinished);
+            if (Active == null) Active = this;
             _ready = false;
         }
 
@@ -112,6 +119,7 @@ namespace RuleGame.Gameplay.Dialogue
 
         private void OnDisable()
         {
+            if (Active == this) Active = null;
             StopDialogue();
             _runner.onDialogueStart.RemoveListener(HandleStarted);
             _runner.onDialogueComplete.RemoveListener(HandleFinished);

@@ -554,7 +554,7 @@ MonoBehaviour:
   _id: start
   _facing: 1
   _applyWhenStandalone: 1
-  _activateRadius: 1.2
+  _activateByAttack: 1
   _reactivate: 0
   _onActivated:
     m_PersistentCalls:
@@ -571,7 +571,7 @@ Transform:
   m_GameObject: {fileID: 1767275737}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.77, y: -2.52, z: 0}
+  m_LocalPosition: {x: 1.14, y: -2.35, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

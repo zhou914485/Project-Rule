@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <ui:Style src="PauseMenu.uss" />
+    <ui:VisualElement name="pauseViewport" class="pause-viewport pause-hidden">
+        <ui:VisualElement name="pauseShade" class="pause-shade" />
+        <ui:VisualElement name="pauseArtboard" class="pause-artboard">
+
+            <ui:VisualElement name="pausePanel" class="pause-panel">
+                <ui:VisualElement class="pause-eyebrow">
+                    <ui:Label text="PAUSED" class="pause-eyebrow-text" />
+                    <ui:Label text="规则时钟已停" class="pause-eyebrow-text pause-eyebrow-right" />
+                </ui:VisualElement>
+                <ui:Label text="暂停" class="pause-title" />
+                <ui:Label text="世界已经静止。想清楚了再继续。" class="pause-subtitle" />
+                <ui:VisualElement class="pause-rule" />
+
+                <ui:Button name="continueButton" class="pause-button">
+                    <ui:VisualElement class="pause-button-body">
+                        <ui:Label text="继续" class="pause-button-label" />
+                    </ui:VisualElement>
+                    <ui:Label text="Esc" class="pause-key" />
+                    <ui:VisualElement class="pause-focus-bar" />
+                </ui:Button>
+
+                <ui:Button name="checkpointButton" class="pause-button">
+                    <ui:VisualElement class="pause-button-body">
+                        <ui:Label text="回到上一个存档点" class="pause-button-label" />
+                        <ui:Label name="checkpointDesc" text="存档点" class="pause-button-desc" />
+                    </ui:VisualElement>
+                    <ui:VisualElement class="pause-focus-bar" />
+                </ui:Button>
+
+                <ui:Button name="mainMenuButton" class="pause-button">
+                    <ui:VisualElement class="pause-button-body">
+                        <ui:Label text="回到主菜单" class="pause-button-label pause-button-label-danger" />
+                    </ui:VisualElement>
+                    <ui:VisualElement class="pause-focus-bar" />
+                </ui:Button>
+
+                <ui:Label text="&lt;b&gt;↑ ↓&lt;/b&gt; 选择    &lt;b&gt;Enter&lt;/b&gt; 确认    &lt;b&gt;Esc&lt;/b&gt; 继续游戏" class="pause-hints" />
+            </ui:VisualElement>
+
+            <ui:VisualElement name="confirmPanel" class="pause-panel pause-panel-confirm pause-hidden">
+                <ui:VisualElement class="pause-eyebrow">
+                    <ui:Label name="confirmEyebrow" text="CHECKPOINT" class="pause-eyebrow-text" />
+                    <ui:Label text="不可撤销" class="pause-eyebrow-text pause-eyebrow-warning" />
+                </ui:VisualElement>
+                <ui:Label name="confirmTitle" text="回到上一个存档点？" class="pause-confirm-title" />
+                <ui:Label name="confirmCopy" text="" class="pause-confirm-copy" />
+
+                <ui:VisualElement name="saveCard" class="pause-save-card">
+                    <ui:Label text="存档点" class="pause-save-key" />
+                    <ui:Label name="saveTitle" text="—" class="pause-save-value" />
+                    <ui:Label name="saveMeta" text="" class="pause-save-meta" />
+                </ui:VisualElement>
+
+                <ui:VisualElement class="pause-actions">
+                    <ui:Button name="cancelButton" text="取消" class="pause-button pause-button-half pause-button-ghost" />
+                    <ui:Button name="confirmButton" text="回到存档点" class="pause-button pause-button-half pause-button-primary" />
+                </ui:VisualElement>
+
+                <ui:Label text="&lt;b&gt;Esc&lt;/b&gt; 取消    &lt;b&gt;← →&lt;/b&gt; 切换" class="pause-hints" />
+            </ui:VisualElement>
+
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

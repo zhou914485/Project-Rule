@@ -19,7 +19,7 @@ namespace RuleGame.Editor.Level
     /// 场景里没有就留空，运行时会自己找。</para>
     ///
     /// <para>默认：速度 16（5.2 的 2 档）、间隔 1 秒、最多同时 24 架。
-    /// 用法：菜单 Tools/规则游戏/地图组件/⑰ 纸飞机炮筒（持续发射纸飞机）。</para>
+    /// 用法：菜单 Tools/规则游戏/地图组件/⑱ 纸飞机炮筒（持续发射纸飞机）。</para>
     /// </remarks>
     public static class PaperPlaneCannonBuilder
     {
@@ -52,7 +52,7 @@ namespace RuleGame.Editor.Level
         private static readonly Color MuzzleColor = new Color(0.95f, 0.25f, 0.2f, 1f);
         private static readonly Color LabelColor = new Color(0.12f, 0.11f, 0.20f, 1f);
 
-        [MenuItem("Tools/规则游戏/地图组件/⑰ 纸飞机炮筒（持续发射纸飞机）", false, 69)]
+        [MenuItem("Tools/规则游戏/地图组件/⑱ 纸飞机炮筒（持续发射纸飞机）", false, 69)]
         public static void Create()
         {
             Sprite sprite = AssetDatabase.LoadAssetAtPath<Sprite>(SpritePath);

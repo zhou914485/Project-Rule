@@ -44,7 +44,7 @@ namespace RuleGame.Gameplay.Scene
         [Tooltip("离开区域后把遮罩补回去。关掉 = 揭开一次后永久可见。")]
         [SerializeField] private bool _restoreMaskOnExit = true;
 
-        [Tooltip("遮罩淡出时长（秒）：0.5~1 之间比较像「门被打开」。<= 0 = 立刻消失。")]
+        [Tooltip("遮罩淡出/补回的时长（秒）：0.5~1 之间比较像「门被打开」。<= 0 = 立刻消失。")]
         [SerializeField] private float _fadeDuration = 0.75f;
 
         private readonly List<BoxCollider2D> _boxes = new List<BoxCollider2D>();
@@ -60,6 +60,7 @@ namespace RuleGame.Gameplay.Scene
         private Color _fadeBase = Color.white;
         private float _fadeElapsed;
         private bool _fading;
+        private bool _restoring;
 
         /// <summary>玩家当前是否在区域内（遮罩此刻是清掉的）。</summary>
         public bool IsInside => _inside;
@@ -187,6 +188,7 @@ namespace RuleGame.Gameplay.Scene
         public void Enter()
         {
             if (_inside) return;
+            if (_restoring) FinishRestore();       // 上一段还在往回淡就进人：先把遮罩归位，再重新淡出
             _inside = true;
 
             for (int i = 0; i < _boxes.Count; i++)
@@ -202,17 +204,27 @@ namespace RuleGame.Gameplay.Scene
             _secretRevealed = true;
         }
 
-        /// <summary>离开：把遮罩补回原样。</summary>
+        /// <summary>离开：把遮罩淡回来（时长同样用 <c>_fadeDuration</c>，不会硬切）。</summary>
         public void Exit()
         {
             if (!_inside) return;
             _inside = false;
 
-            CancelFade();       // 淡到一半就走人：把临时层清掉，遮罩立刻整块补回原样
+            // 淡到一半就走人：把临时层清掉，遮罩立刻整块补回原样
+            if (_fading && !_restoring) CancelFade();
 
             if (_mask == null || _clearedMask.Count == 0) return;
-            foreach (var kv in _clearedMask) _mask.SetTile(kv.Key, kv.Value);
-            _clearedMask.Clear();
+
+            if (_fading && _restoring) return;      // 已经在往回淡了，别重复启动
+
+            if (_fadeDuration <= 0f || EnsureFadeTilemap() == null)
+            {
+                foreach (var kv in _clearedMask) _mask.SetTile(kv.Key, kv.Value);
+                _clearedMask.Clear();
+                return;
+            }
+
+            BeginMaskRestore();
         }
 
         private void CollectBoxes()
@@ -254,12 +266,31 @@ namespace RuleGame.Gameplay.Scene
                 return;
             }
 
+            _restoring = false;
             _fading = true;
             _fadeElapsed = 0f;
             SetFadeAlpha(_fadeBase.a);
         }
 
-        /// <summary>推进淡出。暂停时不动 —— 和伤害、物理一致，暂停就是整个世界停住。</summary>
+        /// <summary>往回补遮罩：先把记下来的瓦片以 alpha 0 铺到淡出层，再淡进来，结束后搬回 Mask。</summary>
+        private void BeginMaskRestore()
+        {
+            Tilemap fade = EnsureFadeTilemap();
+            if (fade == null) return;
+
+            foreach (var kv in _clearedMask)
+            {
+                fade.SetTile(kv.Key, kv.Value);
+                _mask.SetTile(kv.Key, null);
+            }
+
+            _restoring = true;
+            _fading = true;
+            _fadeElapsed = 0f;
+            SetFadeAlpha(0f);
+        }
+
+        /// <summary>推进淡出/淡入。暂停时不动 —— 和伤害、物理一致，暂停就是整个世界停住。</summary>
         private void TickFade()
         {
             if (!_fading || _fadeTilemap == null) return;
@@ -267,8 +298,22 @@ namespace RuleGame.Gameplay.Scene
 
             _fadeElapsed += UnityEngine.Time.deltaTime;
             float t = _fadeDuration <= 0f ? 1f : Mathf.Clamp01(_fadeElapsed / _fadeDuration);
-            SetFadeAlpha(Mathf.Lerp(_fadeBase.a, 0f, t));
+            float eased = t * t * (3f - 2f * t);        // smoothstep：两头缓，不像线性那样机械
 
+            if (_restoring)
+            {
+                SetFadeAlpha(_fadeBase.a * eased);
+                if (t < 1f) return;
+
+                _fading = false;
+                _restoring = false;
+                foreach (var kv in _clearedMask) _mask.SetTile(kv.Key, kv.Value);
+                _clearedMask.Clear();
+                _fadeTilemap.ClearAllTiles();
+                return;
+            }
+
+            SetFadeAlpha(Mathf.Lerp(_fadeBase.a, 0f, eased));
             if (t >= 1f)
             {
                 _fading = false;
@@ -277,9 +322,21 @@ namespace RuleGame.Gameplay.Scene
         }
 
         /// <summary>中断淡出（离开区域时用）。</summary>
+        /// <summary>把正在回填的瓦片立刻归位（重进区域时用，避免遮罩补到一半又被打断）。</summary>
+        private void FinishRestore()
+        {
+            _fading = false;
+            _restoring = false;
+            if (_fadeTilemap != null) _fadeTilemap.ClearAllTiles();
+            if (_mask == null) return;
+            foreach (var kv in _clearedMask) _mask.SetTile(kv.Key, kv.Value);
+            _clearedMask.Clear();
+        }
+
         private void CancelFade()
         {
             _fading = false;
+            _restoring = false;
             if (_fadeTilemap != null) _fadeTilemap.ClearAllTiles();
         }
 
@@ -322,15 +379,23 @@ namespace RuleGame.Gameplay.Scene
             var go = new GameObject("Mask_Fade");
             go.transform.SetParent(parent, false);
 
-            // Tilemap 自带 RequireComponent(TilemapRenderer)，AddComponent 会一并加上。
+            // ⚠️ Tilemap 组件**不带**渲染器（它的 RequireComponent 只有 Transform）。
+            // 只 AddComponent<Tilemap>() 的话这一层永远不显示 —— 遮罩就「啪」地消失，淡出等于没做。
             _fadeTilemap = go.AddComponent<Tilemap>();
+            go.transform.localPosition = _mask.transform.localPosition;
+            go.transform.localRotation = _mask.transform.localRotation;
+            go.transform.localScale = _mask.transform.localScale;
 
             var fadeRenderer = go.GetComponent<TilemapRenderer>();
+            if (fadeRenderer == null) fadeRenderer = go.AddComponent<TilemapRenderer>();
+
             var maskRenderer = _mask.GetComponent<TilemapRenderer>();
             if (fadeRenderer != null && maskRenderer != null)
             {
                 fadeRenderer.sortingLayerID = maskRenderer.sortingLayerID;
                 fadeRenderer.sortingOrder = maskRenderer.sortingOrder;
+                fadeRenderer.mode = maskRenderer.mode;
+                fadeRenderer.sharedMaterial = maskRenderer.sharedMaterial;
             }
 
             _fadeBase = _mask.color;            // 和 Mask 同色同透明度，淡出起点才对得上

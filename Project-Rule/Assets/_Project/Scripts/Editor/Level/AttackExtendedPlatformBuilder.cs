@@ -25,7 +25,7 @@ namespace RuleGame.Editor.Level
     /// <para><b>落在 Ground 层</b>（层 8）：玩家的 <c>Slide</c> / 接地探测只认这个层，
     /// 放错层平台就是一块穿得过去的空气。</para>
     ///
-    /// <para>用法：菜单 Tools/规则游戏/地图组件/⑯ 攻击延长平台。</para>
+    /// <para>用法：菜单 Tools/规则游戏/地图组件/⑰ 攻击延长平台。</para>
     /// </remarks>
     public static class AttackExtendedPlatformBuilder
     {
@@ -50,7 +50,7 @@ namespace RuleGame.Editor.Level
         private static readonly Color ArtColor = new Color(0.62f, 0.42f, 0.92f, 1f);
         private static readonly Color LabelColor = new Color(0.12f, 0.11f, 0.20f, 1f);
 
-        [MenuItem("Tools/规则游戏/地图组件/⑯ 攻击延长平台（玩家攻击后变长）", false, 68)]
+        [MenuItem("Tools/规则游戏/地图组件/⑰ 攻击延长平台（玩家攻击后变长）", false, 68)]
         public static void Create()
         {
             Sprite sprite = AssetDatabase.LoadAssetAtPath<Sprite>(SpritePath);
@@ -114,7 +114,7 @@ namespace RuleGame.Editor.Level
         /// 老版本的字段默认值是 0（一直保持），已经摆进场景的实例会把这个 0 序列化下来；
         /// 只改代码默认值不会影响它们。这个菜单在原地改内存里的场景，可撤销，不碰磁盘文件。
         /// </remarks>
-        [MenuItem("Tools/规则游戏/地图组件/⑯a 场景内攻击延长平台：自动缩回 2 秒", false, 69)]
+        [MenuItem("Tools/规则游戏/地图组件/⑰a 场景内攻击延长平台：自动缩回 2 秒", false, 69)]
         public static void ApplyAutoRetractToScene()
         {
             AttackExtendedPlatform[] platforms = Object.FindObjectsByType<AttackExtendedPlatform>(

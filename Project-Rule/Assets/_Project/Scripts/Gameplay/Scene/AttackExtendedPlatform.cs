@@ -3,6 +3,8 @@ using UnityEngine;
 using RuleGame.Gameplay.Common;
 using RuleGame.Gameplay.Player;
 using RuleGame.Infrastructure.Time;
+using RuleGame.Infrastructure.Snapshot;
+using RuleGame.Infrastructure.Persistence;
 
 namespace RuleGame.Gameplay.Scene
 {
@@ -51,14 +53,14 @@ namespace RuleGame.Gameplay.Scene
     ///
     /// <para><b>暂停</b>：<c>TimeManager.IsPaused</c> 时早退，平台停在当前长度，缩回计时也冻结。</para>
     ///
-    /// <para>用法：菜单 <c>Tools/规则游戏/地图组件/⑯ 攻击延长平台</c> 生成白盒，
+    /// <para>用法：菜单 <c>Tools/规则游戏/地图组件/⑰ 攻击延长平台</c> 生成白盒，
     /// 或用它自带的 Inspector 按钮预览两种形态。</para>
     /// </remarks>
     [ExecuteAlways]
     [DefaultExecutionOrder(-45)]
     [DisallowMultipleComponent]
     [RequireComponent(typeof(Rigidbody2D), typeof(BoxCollider2D))]
-    public sealed class AttackExtendedPlatform : MonoBehaviour, IContactSwitch
+    public sealed class AttackExtendedPlatform : MonoBehaviour, IContactSwitch, ISnapshotParticipant
     {
         /// <summary>平台朝哪一头长出去。</summary>
         public enum ExtendDirection
@@ -346,8 +348,41 @@ namespace RuleGame.Gameplay.Scene
         //  生命周期
         // ==================================================================
 
+        private struct PlatformSnapshot
+        {
+            public float Current;
+            public State Phase;
+            public float RetractTimer;
+        }
+
+        /// <inheritdoc />
+        public bool DiscardWhenMissing => false;
+
+        /// <inheritdoc />
+        public object CaptureSnapshotState() => new PlatformSnapshot
+        {
+            Current = _current,
+            Phase = _state,
+            RetractTimer = _retractTimer,
+        };
+
+        /// <inheritdoc />
+        public void RestoreSnapshotState(object snapshot)
+        {
+            if (!(snapshot is PlatformSnapshot state)) return;
+
+            _state = state.Phase;
+            _retractTimer = state.RetractTimer;
+            IsBlocked = false;
+            BlockedBy = null;
+            _loggedBlock = false;
+            ApplyShape(state.Current);
+        }
+
         private void Awake()
         {
+            if (Application.isPlaying) SnapshotParticipantRegistry.Register(this);
+
             _box = GetComponent<BoxCollider2D>();
             _body = GetComponent<Rigidbody2D>();
 
@@ -403,6 +438,14 @@ namespace RuleGame.Gameplay.Scene
         {
             if (!Application.isPlaying) return;
 
+            if (WorldStateStore.TryGet(SaveStateKey, out string saved))
+            {
+                bool extended = saved == "1";
+                _state = extended ? State.Extended : State.Retracted;
+                _retractTimer = extended && _retractAfter > 0f ? _retractAfter : -1f;
+                ApplyShape(extended ? _lengthAfter : _lengthBefore);
+            }
+
             // 根缩放不是 1 时，box.size 是局部单位、_lengthBefore 是世界单位，两边对不上。
             Vector3 scale = transform.lossyScale;
             if (!_warnedScale && (Mathf.Abs(scale.x - 1f) > 0.001f || Mathf.Abs(scale.y - 1f) > 0.001f))
@@ -418,6 +461,11 @@ namespace RuleGame.Gameplay.Scene
             UnsubscribePlayer();
             IsBlocked = false;
             BlockedBy = null;
+        }
+
+        private void OnDestroy()
+        {
+            SnapshotParticipantRegistry.Unregister(this);
         }
 
         private void FixedUpdate()
@@ -606,6 +654,7 @@ namespace RuleGame.Gameplay.Scene
             ApplyShape(_lengthBefore);
             _state = State.Retracted;
             _retractTimer = -1f;
+            WorldStateStore.SetBool(SaveStateKey, false);
             IsBlocked = false;
             BlockedBy = null;
             _loggedBlock = false;
@@ -637,6 +686,7 @@ namespace RuleGame.Gameplay.Scene
             ApplyShape(_lengthAfter);
             _state = State.Extended;
             _retractTimer = _retractAfter > 0f ? _retractAfter : -1f;
+            WorldStateStore.SetBool(SaveStateKey, true);
             IsBlocked = false;
             BlockedBy = null;
             _loggedBlock = false;
@@ -1105,5 +1155,7 @@ namespace RuleGame.Gameplay.Scene
             Gizmos.color = new Color(1f, 0.3f, 0.25f, 1f);
             Gizmos.DrawWireSphere(LeadingEdge(_current), 0.16f);
         }
+
+        private string SaveStateKey => WorldStateStore.KeyOf(this, "extended");
     }
 }

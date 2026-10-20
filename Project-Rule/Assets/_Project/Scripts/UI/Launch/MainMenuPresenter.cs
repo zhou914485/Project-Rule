@@ -106,6 +106,24 @@ namespace RuleGame.UI.Launch
             _gameRoot.StartStreaming();
         }
 
+        /// <summary>
+        /// 从游戏里回到主菜单：把标题界面叫回来，并重新接管暂停与输入。
+        /// </summary>
+        /// <remarks>
+        /// 世界侧（停流式加载 / 卸分区）由 <c>GameRoot.StopForMenu()</c> 负责 —— 那一层看不见本类，
+        /// 由 UI 层依次调用，依赖方向仍然是 UI → Gameplay。
+        /// </remarks>
+        public void ShowMenu()
+        {
+            if (!_initialized) return;
+
+            _started = false;
+            _modal?.AddToClassList("hidden");
+            _artboard?.SetEnabled(true);
+            _viewport?.RemoveFromClassList("hidden");
+            EnterMenu();
+        }
+
         private void Bind(VisualElement root, string name, Action action)
         {
             Button button = root.Q<Button>(name);

@@ -137,8 +137,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: RuleGame.Gameplay::RuleGame.Gameplay.Scene.Components.CityRefill
   Prompt: "\u8865\u5145\u80FD\u91CF"
-  Amount: 30
-  Cooldown: 4
+  _amount: 30
+  _shards: 42
   OnRefilled:
     m_PersistentCalls:
       m_Calls: []

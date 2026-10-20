@@ -33,7 +33,7 @@ MonoBehaviour:
     AlwaysLoaded: 0
   - PartitionId: 4
     ScenePath: Assets/_Project/Scenes/BuildingBlocks/Level_Building_01.unity
-    Center: {x: 62.25, y: -28.5}
+    Center: {x: 62.25, y: -43.5}
     Size: {x: 156.5, y: 53}
     LoadRadius: 0
     AlwaysLoaded: 0

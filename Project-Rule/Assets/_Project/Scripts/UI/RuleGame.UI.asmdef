@@ -6,6 +6,7 @@
         "RuleGame.Infrastructure",
         "RuleGame.Gameplay",
         "RuleGame.Persistence",
+        "RuleGame.Dialogue",
         "Unity.InputSystem"
     ],
     "includePlatforms": [],

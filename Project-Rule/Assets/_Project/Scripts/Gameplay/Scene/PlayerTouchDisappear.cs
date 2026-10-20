@@ -2,6 +2,8 @@ using System;
 using UnityEngine;
 using RuleGame.Gameplay.Common;
 using RuleGame.Infrastructure.Time;
+using RuleGame.Infrastructure.Snapshot;
+using RuleGame.Infrastructure.Persistence;
 
 namespace RuleGame.Gameplay.Scene
 {
@@ -26,11 +28,11 @@ namespace RuleGame.Gameplay.Scene
     /// <para><b>检测区</b>：优先用「检测区」Collider 的包围盒；留空自动取同物体上的 Collider2D；
     /// 再没有就用 Inspector 里的 Fallback Size / Offset。生成工具默认放一个 1×1 的 Trigger。</para>
     ///
-    /// <para>用法：菜单 <c>Tools/规则游戏/地图组件/⑳ 玩家触碰消失（同时让目标消失）</c>；
+    /// <para>用法：菜单 <c>Tools/规则游戏/地图组件/㉑ 玩家触碰消失（同时让目标消失）</c>；
     /// 生成后把要让其消失的物件拖进「目标」。</para>
     /// </remarks>
     [DisallowMultipleComponent]
-    public sealed class PlayerTouchDisappear : MonoBehaviour
+    public sealed class PlayerTouchDisappear : MonoBehaviour, ISnapshotParticipant
     {
         /// <summary>消失方式。</summary>
         public enum DisappearMode
@@ -124,9 +126,55 @@ namespace RuleGame.Gameplay.Scene
         //  生命周期
         // ==================================================================
 
+        private struct DisappearSnapshot
+        {
+            public bool Triggered;
+            public bool SelfActive;
+            public bool TargetActive;
+        }
+
+        /// <inheritdoc />
+        public bool DiscardWhenMissing => false;
+
+        /// <inheritdoc />
+        public object CaptureSnapshotState() => new DisappearSnapshot
+        {
+            Triggered = HasTriggered,
+            SelfActive = gameObject.activeSelf,
+            TargetActive = _objectToDisappear != null && _objectToDisappear.activeSelf,
+        };
+
+        /// <inheritdoc />
+        public void RestoreSnapshotState(object snapshot)
+        {
+            if (!(snapshot is DisappearSnapshot state)) return;
+
+            HasTriggered = state.Triggered;
+            if (_objectToDisappear != null) _objectToDisappear.SetActive(state.TargetActive);
+            gameObject.SetActive(state.SelfActive);
+        }
+
         private void Awake()
         {
+            if (Application.isPlaying) SnapshotParticipantRegistry.Register(this);
             if (_area == null) _area = GetComponent<Collider2D>();
+        }
+
+        private void OnDestroy()
+        {
+            SnapshotParticipantRegistry.Unregister(this);
+        }
+
+        private void Start()
+        {
+            if (!Application.isPlaying) return;
+
+            if (WorldStateStore.GetBool(SaveStateKey))
+            {
+                HasTriggered = true;
+                if (_objectToDisappear != null && _objectToDisappear != gameObject) Disappear(_objectToDisappear);
+                Disappear(gameObject);
+            }
         }
 
         private void FixedUpdate()
@@ -193,6 +241,7 @@ namespace RuleGame.Gameplay.Scene
             if (!isActiveAndEnabled) return;
 
             HasTriggered = true;
+            WorldStateStore.SetBool(SaveStateKey, true);
 
             if (_logState)
             {
@@ -245,5 +294,7 @@ namespace RuleGame.Gameplay.Scene
             Gizmos.DrawLine(transform.position, _objectToDisappear.transform.position);
             Gizmos.DrawWireSphere(_objectToDisappear.transform.position, 0.15f);
         }
+
+        private string SaveStateKey => WorldStateStore.KeyOf(this, "triggered");
     }
 }

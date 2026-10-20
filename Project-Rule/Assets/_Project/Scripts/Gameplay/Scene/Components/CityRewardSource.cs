@@ -23,10 +23,10 @@ namespace RuleGame.Gameplay.Scene.Components
         [Tooltip("每个场景实例必须有唯一 ID，不能直接沿用 prefab 的空 ID。")]
         public string SourceId;
 
-        [Tooltip("奖励类型。Ability / RuleAttribute / RuleRelation 走玩家账本；Power / Health / Energy 走 Receiver。")]
+        [Tooltip("奖励类型。全部走玩家账本（PlayerProgress）：Health / Energy 提升上限，其余解锁词条 / 能力。")]
         public CityRewardKind Kind;
 
-        [Tooltip("Power / Health / Energy 的数量。")]
+        [Tooltip("Kind = Health / Energy 时生效：上限提升多少（当前值同步抬高同一段）。")]
         public int Amount = 1;
 
         [Header("能力 / 规则奖励")]

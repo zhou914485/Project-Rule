@@ -58,6 +58,12 @@ namespace RuleGame.Infrastructure.Snapshot
         private int _pinnedHandle;
         private int _nextPinHandle;
 
+        /// <summary>
+        /// 存档点快照（暂停菜单回档用）。**与时间恒定的定点槽分开** ——
+        /// 共用一张会让「时间恒定生效时按 ESC 回档」把时间线的定点踩掉。
+        /// </summary>
+        private Snapshot _checkpoint;
+
         public event Action OnRestored;
 
         public SnapshotSystem(IRuleSystem rules, ISnapshotRoster roster)
@@ -116,6 +122,25 @@ namespace RuleGame.Infrastructure.Snapshot
                 }
 
                 snap.Entities.Add(es);
+            }
+
+            // 静态机关：没有 Rigidbody2D / IRuleAffected，走独立的显式注册表。
+            SnapshotParticipantRegistry.PruneDestroyed();
+            IReadOnlyList<ISnapshotParticipant> participants = SnapshotParticipantRegistry.All;
+            for (int i = 0; i < participants.Count; i++)
+            {
+                ISnapshotParticipant participant = participants[i];
+                if (participant == null) continue;
+
+                // 同一对象已经有实体级模块状态时不重复采集。
+                if (participant is Component component && component.GetComponent<IRuleAffected>() != null)
+                    continue;
+
+                snap.Participants.Add(new ParticipantState
+                {
+                    Participant = participant,
+                    State = participant.CaptureSnapshotState(),
+                });
             }
 
             snap.RuleSlots  = _rules.Table.SnapshotSlots();
@@ -213,6 +238,17 @@ namespace RuleGame.Infrastructure.Snapshot
                     body.TryGetComponent<ISnapshotParticipant>(out ISnapshotParticipant module))
                 {
                     module.RestoreSnapshotState(es.ModuleState);
+                }
+            }
+
+            // ③′ 静态机关模块状态。它们不在实体名册里，单独恢复。
+            if (snap.Participants != null)
+            {
+                for (int i = 0; i < snap.Participants.Count; i++)
+                {
+                    ParticipantState state = snap.Participants[i];
+                    if (state.Participant is UnityEngine.Object obj && obj == null) continue;
+                    state.Participant.RestoreSnapshotState(state.State);
                 }
             }
 
@@ -320,5 +356,27 @@ namespace RuleGame.Infrastructure.Snapshot
             _pinned = null;
             _pinnedHandle = 0;
         }
+
+        // ==================================================================
+        //  存档点快照
+        // ==================================================================
+
+        public bool HasCheckpointSnapshot => _checkpoint != null;
+
+        public bool CaptureCheckpointSnapshot()
+        {
+            _checkpoint = Capture();
+            return true;
+        }
+
+        public bool TryRestoreCheckpointSnapshot(RestoreMode mode = RestoreMode.Full)
+        {
+            if (_checkpoint == null) return false;
+
+            Restore(_checkpoint, mode);
+            return true;
+        }
+
+        public void ClearCheckpointSnapshot() => _checkpoint = null;
     }
 }

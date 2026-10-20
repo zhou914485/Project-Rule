@@ -7,9 +7,13 @@ namespace RuleGame.Gameplay.Common
     /// <summary>
     /// 宝箱 / 龙珠能发的东西。**只在末尾追加** —— prefab 里存的是整数。
     /// </summary>
+    /// <remarks>
+    /// <para>编号是序列化契约：<b>不重排、不复用退役编号</b>（重排会让所有已摆好的宝箱发错东西）。</para>
+    /// <para><b>0 号已退役</b>：原「战斗力」没有真正的结算，2026-10-20 删除。
+    /// 空位留着不给新成员用 —— 当前所有宝箱 / 龙珠的 Kind 都不用迁移。</para>
+    /// </remarks>
     public enum CityRewardKind
     {
-        [InspectorName("战斗力")] Power = 0,
         [InspectorName("生命")] Health = 1,
         [InspectorName("能量")] Energy = 2,
         [InspectorName("能力")] Ability = 3,

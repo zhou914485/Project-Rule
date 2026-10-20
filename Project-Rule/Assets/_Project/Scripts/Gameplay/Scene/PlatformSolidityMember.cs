@@ -1,5 +1,7 @@
 using UnityEngine;
 using RuleGame.Gameplay.Common;
+using RuleGame.Infrastructure.Snapshot;
+using RuleGame.Infrastructure.Persistence;
 
 namespace RuleGame.Gameplay.Scene
 {
@@ -30,7 +32,7 @@ namespace RuleGame.Gameplay.Scene
     /// 「按全局状态刷新」/<see cref="RefreshState"/> 可以预览。</para>
     /// </remarks>
     [DisallowMultipleComponent]
-    public sealed class PlatformSolidityMember : MonoBehaviour
+    public sealed class PlatformSolidityMember : MonoBehaviour, ISnapshotParticipant
     {
         /// <summary>平台属于 A 还是 B。</summary>
         public enum Role
@@ -106,8 +108,31 @@ namespace RuleGame.Gameplay.Scene
         //  生命周期
         // ==================================================================
 
+        private const string SaveStateKey = "PlatformSolidity#aSolid";
+
+
+        private struct SoliditySnapshot
+        {
+            public bool AIsSolid;
+        }
+
+        /// <inheritdoc />
+        public bool DiscardWhenMissing => false;
+
+        /// <inheritdoc />
+        public object CaptureSnapshotState() => new SoliditySnapshot { AIsSolid = PlatformSolidityState.AIsSolid };
+
+        /// <inheritdoc />
+        public void RestoreSnapshotState(object snapshot)
+        {
+            if (!(snapshot is SoliditySnapshot state)) return;
+            PlatformSolidityState.Set(state.AIsSolid);
+            RefreshState();
+        }
+
         private void Awake()
         {
+            if (Application.isPlaying) SnapshotParticipantRegistry.Register(this);
             CollectIfNeeded();
 
             if (SolidColliderCount == 0)
@@ -138,6 +163,17 @@ namespace RuleGame.Gameplay.Scene
 
             Debug.LogWarning("[PlatformSolidityMember] 实心碰撞体不在 Ground 层 —— " +
                              "玩家的 Slide / 接地探测可能看不到它。", this);
+        }
+
+        private void Start()
+        {
+            if (!Application.isPlaying) return;
+            if (WorldStateStore.TryGet(SaveStateKey, out string saved)) PlatformSolidityState.Set(saved == "1");
+        }
+
+        private void OnDestroy()
+        {
+            SnapshotParticipantRegistry.Unregister(this);
         }
 
         private void OnEnable()

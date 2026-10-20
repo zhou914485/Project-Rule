@@ -80,6 +80,29 @@ namespace RuleGame.Infrastructure.Snapshot
         void Unpin(int handle);
 
         // ------------------------------------------------------------------
+        //  存档点快照（暂停菜单「回到上一个存档点」）
+        // ------------------------------------------------------------------
+
+        /// <summary>是否持有一张存档点快照。</summary>
+        bool HasCheckpointSnapshot { get; }
+
+        /// <summary>
+        /// 采集并固定一张「存档点」快照（覆盖上一张）。由存档驱动在落盘之后调用。
+        /// </summary>
+        /// <remarks>
+        /// <para>与时间恒定的 <see cref="Pin"/> <b>各占一个槽位</b> —— 时间规则 Pin 的时候不能把存档点快照挤掉。</para>
+        /// <para>采集范围仍是快照名册（当前已加载的分区）。跨分区的世界不在里面，所以回滚前
+        /// 要确认存档点所在分区还在场，不在场就退回读档（调用方负责判断）。</para>
+        /// </remarks>
+        bool CaptureCheckpointSnapshot();
+
+        /// <summary>回到存档点快照。没有快照时返回 false（调用方退回读盘）。</summary>
+        bool TryRestoreCheckpointSnapshot(RestoreMode mode = RestoreMode.Full);
+
+        /// <summary>丢弃存档点快照（新开一局 / 回到主菜单时）。</summary>
+        void ClearCheckpointSnapshot();
+
+        // ------------------------------------------------------------------
         //  事件
         // ------------------------------------------------------------------
 

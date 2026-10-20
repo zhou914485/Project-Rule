@@ -73,7 +73,7 @@ namespace RuleGame.Editor.Level
             ride.transform.SetParent(root.transform, false);
             ride.transform.localPosition = new Vector3(0f, 0.55f, 0f);
 
-            // 复活点放在落点上：传送到达即存档，也顺手兜住「走近自动激活」。
+            // 复活点放在落点上：传送到达即存档（不依赖攻击激活那条路径）。
             var spawn = ride.AddComponent<PlayerSpawnPoint>();
             spawn.SetId("station-00");
 

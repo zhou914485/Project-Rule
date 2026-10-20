@@ -50,6 +50,9 @@ namespace RuleGame.UI.Train
 
         private bool Visible => _screen != null && !_screen.ClassListContains(HiddenClass);
 
+        /// <summary>面板是否开着。给 ESC 仲裁用（暂停菜单要先看这一帧的 Esc 归谁）。</summary>
+        public bool IsVisible => Visible;
+
         private void Awake()
         {
             if (_document == null) _document = GetComponent<UIDocument>();

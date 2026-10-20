@@ -28,12 +28,12 @@ namespace RuleGame.Development.BrickCity
             "拳套变黄时预警，变红时会造成伤害。跳过地面的荆棘。",
             "攻击可击退弹珠。用规则改变它的重力、质量或摩擦；按 F1 离开。",
             "踩住后起跳，泡泡才会破裂。先按 F6 留影，再按 F7 还原。",
-            "靠近石像按 E 补能；走过绿色落脚点即记录复活点，F8 回到那里。",
+            "靠近石像按 E 补能；攻击绿色落脚点才会记录复活点，F8 回到那里。",
             "宝箱与三色龙珠仅记录演示奖励，回溯不会重复领取。",
             "站上小火车，在两站之间往返。到站事件预留正式转场接入。"
         };
         public Vector2[] Stations;
-        public int PowerTokens, HealthTokens, EnergyTokens;
+        public int HealthTokens, EnergyTokens;
         private readonly HashSet<string> _claimed = new HashSet<string>();
         private Snapshot _initial, _mark;
         private float _nextLabel;
@@ -70,7 +70,7 @@ namespace RuleGame.Development.BrickCity
                     Interactor.TryInteract();
                 if (keys.f5Key.wasPressedThisFrame && _initial != null)
                 {
-                    _claimed.Clear(); PowerTokens = HealthTokens = EnergyTokens = 0;
+                    _claimed.Clear(); HealthTokens = EnergyTokens = 0;
                     SnapshotSystem.Instance.Restore(_initial);
                 }
                 if (keys.f6Key.wasPressedThisFrame) _mark = SnapshotSystem.Instance?.Capture();
@@ -97,7 +97,7 @@ namespace RuleGame.Development.BrickCity
                 _prompt.text = nearest != null ? "E · " + nearest.Prompt : "向右探索 · F1 下一处 / F2 上一处";
                 _area.text = "积木城  /  " + (area + 1).ToString("00") + "  " + AreaNames[area];
                 _instruction.text = Instructions[area];
-                _rewards.text = "演示龙珠  力量 " + PowerTokens + "  生命 " + HealthTokens + "  能量 " + EnergyTokens;
+                _rewards.text = "演示龙珠  生命 " + HealthTokens + "  能量 " + EnergyTokens;
             }
         }
         private void BrowseStation(int direction)
@@ -123,7 +123,6 @@ namespace RuleGame.Development.BrickCity
 
             switch (reward.Kind)
             {
-                case CityRewardKind.Power: PowerTokens += reward.Amount; break;
                 case CityRewardKind.Health: HealthTokens += reward.Amount; break;
                 case CityRewardKind.Energy: EnergyTokens += reward.Amount; break;
                 default: return false;

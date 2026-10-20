@@ -21,10 +21,32 @@
 .vital-division { border-right-width: 2px; border-right-color: rgba(30, 20, 28, 0.8); }
 .energy-track .vital-divisions { left: 3.3%; right: 3.3%; top: 26%; bottom: 24%; }
 .energy-track .vital-division { border-right-width: 1.5px; }
-.unlock-toast {
-    position: absolute; left: 0; right: 0; top: 150px;
+/* ---------- 解锁黑幕：暂停 + 本次获得的词条 ---------- */
+.ability-screen {
+    position: absolute; left: 0; top: 0; right: 0; bottom: 0;
+    background-color: #05070c;
+    align-items: center; justify-content: center;
     -unity-font-definition: url("project://database/Assets/_Project/UI/Fonts/P4ChineseFont.asset");
-    font-size: 30px; color: #fff8eb; -unity-text-align: middle-center;
+    display: none;
+}
+.ability-card { align-items: center; }
+.ability-kicker {
+    font-size: 22px; letter-spacing: 8px; color: #8a97ad;
+    -unity-text-align: middle-center;
+}
+.ability-name {
+    margin-top: 14px;
+    font-size: 96px; letter-spacing: 4px; color: #fff8eb;
+    -unity-text-align: middle-center;
     -unity-text-outline-width: 2px; -unity-text-outline-color: #172135;
-    opacity: 0;
+}
+.ability-desc {
+    margin-top: 18px;
+    font-size: 26px; color: #c3ccda;
+    -unity-text-align: middle-center;
+}
+.ability-hint {
+    position: absolute; left: 0; right: 0; bottom: 96px;
+    font-size: 19px; letter-spacing: 2px; color: #6f7c92;
+    -unity-text-align: middle-center;
 }

@@ -21,7 +21,7 @@ namespace RuleGame.Editor.Level
     /// <para>按钮数量 = 门的 <c>Buttons</c> 数组长度。演示只放 2 个；要 3 个就再复制一个
     /// <c>Button_B</c>，拖进门的数组即可。</para>
     ///
-    /// <para>用法：菜单 Tools/规则游戏/地图组件/⑲ 多按钮门（所有按钮按下才开）。</para>
+    /// <para>用法：菜单 Tools/规则游戏/地图组件/⑳ 多按钮门（所有按钮按下才开）。</para>
     /// </remarks>
     public static class MultiButtonDoorDemoBuilder
     {
@@ -69,7 +69,7 @@ namespace RuleGame.Editor.Level
         private static readonly Color CrateColor = new Color(0.70f, 0.72f, 0.78f, 1f);
         private static readonly Color LabelColor = new Color(0.12f, 0.11f, 0.20f, 1f);
 
-        [MenuItem("Tools/规则游戏/地图组件/⑲ 多按钮门（所有按钮按下才开）", false, 71)]
+        [MenuItem("Tools/规则游戏/地图组件/⑳ 多按钮门（所有按钮按下才开）", false, 71)]
         public static void Create()
         {
             Sprite sprite = AssetDatabase.LoadAssetAtPath<Sprite>(SpritePath);

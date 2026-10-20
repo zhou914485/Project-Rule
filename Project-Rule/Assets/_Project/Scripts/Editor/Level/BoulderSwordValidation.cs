@@ -158,14 +158,14 @@ namespace RuleGame.Editor.Level
             // ==============================================================
             h.Section("4 白盒标签");
 
-            h.Check("完整 → 「巨石」",
-                    GravityBoulder.LabelText(GravityBoulder.State.Intact) == "巨石",
+            h.Check("完整 → 「击碎巨石」",
+                    GravityBoulder.LabelText(GravityBoulder.State.Intact) == "击碎巨石",
                     GravityBoulder.LabelText(GravityBoulder.State.Intact));
-            h.Check("开裂 → 「巨石 · 开裂」",
-                    GravityBoulder.LabelText(GravityBoulder.State.Armed) == "巨石 · 开裂",
+            h.Check("开裂 → 「击碎巨石 · 开裂」",
+                    GravityBoulder.LabelText(GravityBoulder.State.Armed) == "击碎巨石 · 开裂",
                     GravityBoulder.LabelText(GravityBoulder.State.Armed));
-            h.Check("已碎 → 「巨石 · 已碎」",
-                    GravityBoulder.LabelText(GravityBoulder.State.Shattered) == "巨石 · 已碎",
+            h.Check("已碎 → 「击碎巨石 · 已碎」",
+                    GravityBoulder.LabelText(GravityBoulder.State.Shattered) == "击碎巨石 · 已碎",
                     GravityBoulder.LabelText(GravityBoulder.State.Shattered));
             h.Check("剑锁死 → 「剑 · 锁死」",
                     SwordInStone.LabelText(false) == "剑 · 锁死",
@@ -175,11 +175,11 @@ namespace RuleGame.Editor.Level
                     SwordInStone.LabelText(true));
 
             // 锁定状态优先于形态：锁着的时候不管裂没裂，都写「锁死」。
-            h.Check("锁死 → 「巨石 · 锁死」",
-                    GravityBoulder.LabelText(GravityBoulder.State.Intact, anchored: true) == "巨石 · 锁死",
+            h.Check("锁死 → 「击碎巨石 · 锁死」",
+                    GravityBoulder.LabelText(GravityBoulder.State.Intact, anchored: true) == "击碎巨石 · 锁死",
                     GravityBoulder.LabelText(GravityBoulder.State.Intact, anchored: true));
-            h.Check("锁死 + 已开裂 → 还是「巨石 · 锁死」",
-                    GravityBoulder.LabelText(GravityBoulder.State.Armed, anchored: true) == "巨石 · 锁死",
+            h.Check("锁死 + 已开裂 → 还是「击碎巨石 · 锁死」",
+                    GravityBoulder.LabelText(GravityBoulder.State.Armed, anchored: true) == "击碎巨石 · 锁死",
                     GravityBoulder.LabelText(GravityBoulder.State.Armed, anchored: true));
 
             // ==============================================================

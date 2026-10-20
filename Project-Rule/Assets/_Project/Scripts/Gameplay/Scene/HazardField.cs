@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using RuleGame.Gameplay.Combat;
+using RuleGame.Gameplay.Common;
 using RuleGame.Infrastructure;
 using RuleGame.Infrastructure.Time;
 
@@ -75,6 +76,9 @@ namespace RuleGame.Gameplay.Scene
         //  运行时
         // ==================================================================
 
+        /// <summary>场上所有危险格场（静态注册）。安全落点校验靠它问「这个位置有没有刺」。</summary>
+        private static readonly List<HazardField> s_all = new List<HazardField>();
+
         private readonly Collider2D[] _hits = new Collider2D[MaxHits];
         private readonly HashSet<IDamageable> _hitThisScan = new HashSet<IDamageable>();
         private readonly Dictionary<IDamageable, float> _nextHit = new Dictionary<IDamageable, float>();
@@ -95,7 +99,16 @@ namespace RuleGame.Gameplay.Scene
             _impulse = marker.transform;
         }
 
-        private void OnDisable() => _nextHit.Clear();
+        private void OnEnable()
+        {
+            if (!s_all.Contains(this)) s_all.Add(this);
+        }
+
+        private void OnDisable()
+        {
+            s_all.Remove(this);
+            _nextHit.Clear();
+        }
 
         private void FixedUpdate()
         {
@@ -137,8 +150,49 @@ namespace RuleGame.Gameplay.Scene
                 // 一次扫描里，一个目标只结算一次（多碰撞体不重复打）。
                 if (!_hitThisScan.Add(target)) continue;
 
-                Apply(combat, target, hazard, cell);
+                Apply(combat, target, hazard, cell, hit);
             }
+        }
+
+        /// <summary>
+        /// 这块世界包围盒里有没有本场的危险格。安全落点校验用它判断「这个位置有没有刺」。
+        /// </summary>
+        /// <remarks>只看本场自己的 Tilemap，不查其它场；跨场查询走 <see cref="AnyOverlaps"/>。</remarks>
+        public bool Overlaps(Bounds worldBounds)
+        {
+            if (_tilemap == null) _tilemap = GetComponent<Tilemap>();
+            if (_tilemap == null || _hazards == null || _hazards.Length == 0) return false;
+
+            Vector3Int min = _tilemap.WorldToCell(worldBounds.min);
+            Vector3Int max = _tilemap.WorldToCell(worldBounds.max);
+
+            BoundsInt cells = _tilemap.cellBounds;
+            min = new Vector3Int(Mathf.Max(min.x, cells.xMin), Mathf.Max(min.y, cells.yMin), 0);
+            max = new Vector3Int(Mathf.Min(max.x, cells.xMax), Mathf.Min(max.y, cells.yMax), 0);
+            if (min.x > max.x || min.y > max.y) return false;
+
+            for (int x = min.x; x <= max.x; x++)
+            {
+                for (int y = min.y; y <= max.y; y++)
+                {
+                    if (TryMatch(_tilemap.GetTile(new Vector3Int(x, y, 0)), out _)) return true;
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// 场上任意一张危险格表里，这块范围有没有刺。
+        /// </summary>
+        /// <remarks>安全落点记忆用它做「无刺」校验 —— 它不认识具体是哪张 Tilemap 挂了刺。</remarks>
+        public static bool AnyOverlaps(Bounds worldBounds)
+        {
+            for (int i = 0; i < s_all.Count; i++)
+            {
+                HazardField field = s_all[i];
+                if (field != null && field.Overlaps(worldBounds)) return true;
+            }
+            return false;
         }
 
         /// <summary>
@@ -166,15 +220,23 @@ namespace RuleGame.Gameplay.Scene
         //  内部
         // ==================================================================
 
-        private void Apply(CombatSystem combat, IDamageable target, Hazard hazard, Vector3Int cell)
+        private void Apply(CombatSystem combat, IDamageable target, Hazard hazard, Vector3Int cell,
+                           Collider2D hit)
         {
             if (_nextHit.TryGetValue(target, out float readyAt) && UnityEngine.Time.time < readyAt) return;
 
-            _impulse.position = _tilemap.GetCellCenterWorld(cell);
+            Vector3 world = _tilemap.GetCellCenterWorld(cell);
+            _impulse.position = world;
             int applied = combat.ApplyDamage(_impulse, target, hazard.Damage, hazard.Knockback);
 
             if (applied > 0 && _repeatInterval > 0f)
                 _nextHit[target] = UnityEngine.Time.time + _repeatInterval;
+
+            // 伤害照常结算；「碰到刺了」这件事交给承受方自己决定怎么处理。
+            // 现在只有玩家实现（回到安全落点），敌人不受影响。
+            // ⚠️ 与 applied 无关：伤害被规则关掉 / 被无敌帧挡掉 / 挂账时，人一样是碰到刺了。
+            var responder = hit != null ? hit.GetComponentInParent<IHazardResponder>() : null;
+            if (responder != null) responder.OnHazardContact(world);
         }
 
         private bool TryFindHazard(Bounds bounds, out Hazard hazard, out Vector3Int cell)

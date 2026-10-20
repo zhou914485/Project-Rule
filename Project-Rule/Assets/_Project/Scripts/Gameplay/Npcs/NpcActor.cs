@@ -1,4 +1,7 @@
+using System.Collections.Generic;
 using RuleGame.Gameplay.Dialogue;
+using RuleGame.Gameplay.Common;
+using RuleGame.Gameplay.Player;
 using RuleGame.Core.Rules;
 using RuleGame.Infrastructure.Snapshot;
 using RuleGame.Infrastructure.Time;
@@ -9,13 +12,14 @@ namespace RuleGame.Gameplay.Npcs
 {
     /// <summary>需求表的交互状态编排；交易、资格与战斗通过事件交给各自权威系统。</summary>
     [RequireComponent(typeof(DialogueNpc), typeof(Rigidbody2D))]
-    public sealed class NpcActor : MonoBehaviour, ISnapshotParticipant
+    public sealed class NpcActor : MonoBehaviour, ISnapshotParticipant, IContactSwitch
     {
         [SerializeField] private NpcDefinition _definition;
         [SerializeField] private DialogueHost _host;
         [SerializeField] private SpriteRenderer _view;
         [Header("由关卡真实事件更新条件；留空视为未满足")]
-        [SerializeField] private DialogueSceneFlag _abilityReady;
+        [SerializeField, Tooltip("仅白盒/测试手动覆盖；正式场景留空。镇长资格默认直接读 PlayerProgress。")]
+        private DialogueSceneFlag _abilityReady;
         [SerializeField] private DialogueSceneFlag _buttonPowered;
         [SerializeField] private DialogueSceneFlag _gearReleased;
         [SerializeField] private DialogueSceneFlag _hasPass;
@@ -41,6 +45,7 @@ namespace RuleGame.Gameplay.Npcs
         private float _homeX;
         private float _direction = -1f;
         private bool _wasInRange;
+        private bool _warnedNoHost;
         private readonly RaycastHit2D[] _groundHits = new RaycastHit2D[4];
         public NpcDefinition Definition => _definition;
         public NpcState State { get; private set; }
@@ -55,7 +60,20 @@ namespace RuleGame.Gameplay.Npcs
             _timer = _definition != null ? _definition.IdleDuration : 2f;
         }
 
-        private void OnEnable() => Subscribe();
+        /// <summary>当前启用的全部 NPC。分区加载 / 卸载时自动增删，供运行时交互入口查找。</summary>
+        public static IReadOnlyCollection<NpcActor> All => AllActors;
+
+        private static readonly HashSet<NpcActor> AllActors = new HashSet<NpcActor>();
+
+        // 工程开着「不重载域」的播放选项时，静态表会跨 Play 会话残留；进 Play 前先清空。
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        private static void ResetRegistry() => AllActors.Clear();
+
+        private void OnEnable()
+        {
+            AllActors.Add(this);
+            Subscribe();
+        }
 
         public void BindHost(DialogueHost host)
         {
@@ -65,11 +83,14 @@ namespace RuleGame.Gameplay.Npcs
             if (isActiveAndEnabled) Subscribe();
         }
 
+        private DialogueHost ResolvedHost => _host != null ? _host : DialogueHost.Active;
+
         private void Subscribe()
         {
-            if (_host == null || _subscribedHost == _host) return;
+            DialogueHost host = ResolvedHost;
+            if (host == null || _subscribedHost == host) return;
             Unsubscribe();
-            _subscribedHost = _host;
+            _subscribedHost = host;
             _subscribedHost.ConversationFinished += FinishConversation;
         }
 
@@ -84,7 +105,7 @@ namespace RuleGame.Gameplay.Npcs
             if (_definition == null) return NpcState.Idle;
             switch (_definition.Role)
             {
-                case NpcRole.Mayor: return Flag(_abilityReady) ? NpcState.Talk2 : NpcState.Talk1;
+                case NpcRole.Mayor: return HasQualification() ? NpcState.Talk2 : NpcState.Talk1;
                 case NpcRole.GearKeeper:
                     if (!_introduced) return NpcState.Talk1;
                     return Flag(_buttonPowered) ? (Flag(_gearReleased) ? NpcState.Talk5 : NpcState.Talk3)
@@ -97,8 +118,9 @@ namespace RuleGame.Gameplay.Npcs
 
         public bool TryInteract(Transform player)
         {
-            if (!isActiveAndEnabled || _definition == null || player == null || _host == null
-                || TimeManager.Instance?.IsPaused == true || _speaking
+            if (!isActiveAndEnabled || _definition == null || player == null) return false;
+            if (ResolvedHost == null) { WarnNoHost(); return false; }
+            if (TimeManager.Instance?.IsPaused == true || _speaking
                 || State == NpcState.Sell || State == NpcState.PassKey || State == NpcState.Attack
                 || Time.unscaledTime < _nextSpeakAt
                 || ((Vector2)(player.position - transform.position)).sqrMagnitude > _definition.InteractionRadius * _definition.InteractionRadius)
@@ -106,10 +128,36 @@ namespace RuleGame.Gameplay.Npcs
             return BeginConversation(ResolveGreeting(), player);
         }
 
+        // ------------------------------------------------------------------
+        //  IContactSwitch：攻击盒 / 投射物
+        // ------------------------------------------------------------------
+
+        /// <summary>NPC 不吃「压住」语义：石头 / 铁箱压过来不该开始对话。</summary>
+        public void PressByContact() { }
+
+        /// <summary>压着的东西离开。NPC 没有按住状态，忽略。</summary>
+        public void ReleaseByContact() { }
+
+        /// <summary>
+        /// 被攻击盒 / 飞刀打中：与按钮、宝箱同一条 <see cref="IContactSwitch"/> 路径。
+        /// 命中本身就是触发条件，不再用交互半径二次拒绝；冷却与状态闸门仍复用交谈规则。
+        /// </summary>
+        public void ImpactByContact(Vector2 sourcePoint)
+        {
+            if (!isActiveAndEnabled || _definition == null || _dialogue == null) return;
+            if (ResolvedHost == null) { WarnNoHost(); return; }
+            if (_speaking || TimeManager.Instance?.IsPaused == true
+                || State == NpcState.Sell || State == NpcState.PassKey || State == NpcState.Attack
+                || Time.unscaledTime < _nextSpeakAt) return;
+
+            // player 传 null 走 DialogueNpc.TrySpeak：近战盒 / 飞刀扫掠已经完成了命中判定。
+            BeginConversation(ResolveGreeting(), null);
+        }
+
         private bool BeginConversation(NpcState state, Transform player = null)
         {
             Subscribe();
-            _dialogue.Configure(_host, _definition.SpeakerId(state), _definition.InteractionRadius, _definition.RepeatDelay);
+            _dialogue.Configure(ResolvedHost, _definition.SpeakerId(state), _definition.InteractionRadius, _definition.RepeatDelay);
             _speaking = true;
             bool accepted = state == NpcState.Bye ? _dialogue.TryContinueConversation()
                 : player == null ? _dialogue.TrySpeak() : _dialogue.TryInteract(player);
@@ -133,7 +181,7 @@ namespace RuleGame.Gameplay.Npcs
                     if (previous == NpcState.Talk) OpenTrade();
                     break;
                 case NpcRole.Mayor:
-                    if (previous == NpcState.Talk2 && Flag(_abilityReady) && !_delivered) BeginAction(NpcState.PassKey);
+                    if (previous == NpcState.Talk2 && HasQualification() && !_delivered) BeginAction(NpcState.PassKey);
                     break;
                 case NpcRole.GearKeeper:
                     _introduced = true;
@@ -223,7 +271,7 @@ namespace RuleGame.Gameplay.Npcs
         private void CompleteAction()
         {
             NpcRole role = _definition.Role;
-            bool ready = role == NpcRole.Mayor ? Flag(_abilityReady)
+            bool ready = role == NpcRole.Mayor ? HasQualification()
                 : role == NpcRole.GearKeeper ? Flag(_buttonPowered) && Flag(_gearReleased) : Flag(_hasPass);
             EnterIdle();
             if (!ready || _delivered) return;
@@ -251,10 +299,30 @@ namespace RuleGame.Gameplay.Npcs
                 ? _definition.TalkSprite : _definition.IdleSprite;
         }
 
+        /// <summary>
+        /// 镇长资格：直接读玩家当前的规则与能力解锁。
+        /// <see cref="_abilityReady"/> 是白盒/测试的手动覆盖；正式场景留空即可。
+        /// </summary>
+        private bool HasQualification()
+        {
+            if (Flag(_abilityReady)) return true;
+            PlayerProgress progress = PlayerProgress.Find();
+            return progress != null && progress.HasAllUnlocks;
+        }
+
+        private void WarnNoHost()
+        {
+            if (_warnedNoHost) return;
+            _warnedNoHost = true;
+            Debug.LogWarning("[NpcActor] 场景里没有可用的 DialogueHost。" +
+                             "正式流程请确认 LevelRuntime / GameRoot 里有 NpcDialogueSystem。", this);
+        }
+
         private static bool Flag(DialogueSceneFlag flag) => flag != null && flag.Value;
 
         private void OnDisable()
         {
+            AllActors.Remove(this);
             if (_speaking) _subscribedHost?.StopDialogue();
             _speaking = false;
             Unsubscribe();

@@ -1,5 +1,7 @@
 using UnityEngine;
 using RuleGame.Gameplay.Common;
+using RuleGame.Infrastructure.Snapshot;
+using RuleGame.Infrastructure.Persistence;
 
 namespace RuleGame.Gameplay.Scene
 {
@@ -22,7 +24,7 @@ namespace RuleGame.Gameplay.Scene
     /// 接正式美术时清空它们即可，玩法判定不读。</para>
     /// </remarks>
     [DisallowMultipleComponent]
-    public sealed class PlatformSoliditySwitch : MonoBehaviour, IContactSwitch
+    public sealed class PlatformSoliditySwitch : MonoBehaviour, IContactSwitch, ISnapshotParticipant
     {
         private static readonly Color AColor = new Color(0.3f, 0.8f, 0.95f, 1f);
         private static readonly Color BColor = new Color(0.95f, 0.55f, 0.2f, 1f);
@@ -61,10 +63,45 @@ namespace RuleGame.Gameplay.Scene
         //  生命周期
         // ==================================================================
 
+        private const string SaveStateKey = "PlatformSolidity#aSolid";
+
+        private struct SolidityStateSnapshot
+        {
+            public bool AIsSolid;
+        }
+
+        /// <inheritdoc />
+        public bool DiscardWhenMissing => false;
+
+        /// <inheritdoc />
+        public object CaptureSnapshotState() => new SolidityStateSnapshot { AIsSolid = PlatformSolidityState.AIsSolid };
+
+        /// <inheritdoc />
+        public void RestoreSnapshotState(object snapshot)
+        {
+            if (!(snapshot is SolidityStateSnapshot state)) return;
+            PlatformSolidityState.Set(state.AIsSolid);
+            Refresh();
+        }
+
+        private void SaveState() => WorldStateStore.SetBool(SaveStateKey, PlatformSolidityState.AIsSolid);
+
         private void Awake()
         {
+            if (Application.isPlaying) SnapshotParticipantRegistry.Register(this);
             // 只写一次：之后由攻击 / 调试按钮切换，不要在 OnEnable 里重置。
             PlatformSolidityState.Set(_startAIsSolid);
+        }
+
+        private void OnDestroy()
+        {
+            SnapshotParticipantRegistry.Unregister(this);
+        }
+
+        private void Start()
+        {
+            if (!Application.isPlaying) return;
+            if (WorldStateStore.TryGet(SaveStateKey, out string saved)) PlatformSolidityState.Set(saved == "1");
         }
 
         private void OnEnable()
@@ -88,12 +125,14 @@ namespace RuleGame.Gameplay.Scene
         public void Toggle()
         {
             PlatformSolidityState.Toggle();
+            SaveState();
         }
 
         /// <summary>把全局参数设成指定值。重复设同一个值是幂等的。</summary>
         public void Set(bool aIsSolid)
         {
             PlatformSolidityState.Set(aIsSolid);
+            SaveState();
         }
 
         /// <summary>刷新白盒标签 / 指示灯。</summary>

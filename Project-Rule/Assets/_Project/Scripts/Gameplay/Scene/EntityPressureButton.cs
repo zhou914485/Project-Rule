@@ -2,6 +2,8 @@ using System;
 using UnityEngine;
 using RuleGame.Gameplay.Common;
 using RuleGame.Infrastructure.Time;
+using RuleGame.Infrastructure.Snapshot;
+using RuleGame.Infrastructure.Persistence;
 
 namespace RuleGame.Gameplay.Scene
 {
@@ -30,12 +32,12 @@ namespace RuleGame.Gameplay.Scene
     ///
     /// <para><b>暂停</b>：<c>TimeManager.IsPaused</c> 时早退；定时锁的剩余时间也冻结。</para>
     ///
-    /// <para>用法：菜单 <c>Tools/规则游戏/地图组件/⑲ 多按钮门（所有按钮按下才开）</c>
+    /// <para>用法：菜单 <c>Tools/规则游戏/地图组件/⑳ 多按钮门（所有按钮按下才开）</c>
     /// 生成两个按钮 + 一扇门；也可以把本组件挂到自己的按钮物体上，
     /// 指定检测区（Trigger）与按钮板。</para>
     /// </remarks>
     [DisallowMultipleComponent]
-    public sealed class EntityPressureButton : MonoBehaviour, IContactSwitch
+    public sealed class EntityPressureButton : MonoBehaviour, IContactSwitch, ISnapshotParticipant
     {
         // ==================================================================
         //  配置
@@ -156,8 +158,43 @@ namespace RuleGame.Gameplay.Scene
         //  生命周期
         // ==================================================================
 
+        private struct ButtonSnapshot
+        {
+            public bool Pressed;
+            public bool BodyPressed;
+            public bool LatchedPermanent;
+            public float LatchRemaining;
+        }
+
+        /// <inheritdoc />
+        public bool DiscardWhenMissing => false;
+
+        /// <inheritdoc />
+        public object CaptureSnapshotState() => new ButtonSnapshot
+        {
+            Pressed = _pressed,
+            BodyPressed = _bodyPressed,
+            LatchedPermanent = _latchedPermanent,
+            LatchRemaining = _latchRemaining,
+        };
+
+        /// <inheritdoc />
+        public void RestoreSnapshotState(object snapshot)
+        {
+            if (!(snapshot is ButtonSnapshot state)) return;
+
+            _pressed = state.Pressed;
+            _bodyPressed = state.BodyPressed;
+            _latchedPermanent = state.LatchedPermanent;
+            _latchRemaining = state.LatchRemaining;
+            LastPresser = null;
+            ApplyPlatePose();
+            RefreshLabel();
+        }
+
         private void Awake()
         {
+            if (Application.isPlaying) SnapshotParticipantRegistry.Register(this);
             if (_area == null) _area = GetComponent<Collider2D>();
 
             if (_area == null)
@@ -176,6 +213,17 @@ namespace RuleGame.Gameplay.Scene
         {
             // 重新启用时清空锁与实体状态；第一物理帧再探测。
             ResetAll();
+
+            if (WorldStateStore.GetBool(SaveStateKey))
+            {
+                _latchedPermanent = true;
+                RefreshLogicalState();
+            }
+        }
+
+        private void OnDestroy()
+        {
+            SnapshotParticipantRegistry.Unregister(this);
         }
 
         private void OnDisable()
@@ -218,6 +266,7 @@ namespace RuleGame.Gameplay.Scene
             _latchedPermanent = false;
             _latchRemaining = 0f;
             RefreshLogicalState();
+            WorldStateStore.SetBool(SaveStateKey, false);
         }
 
         private void Evaluate()
@@ -355,6 +404,7 @@ namespace RuleGame.Gameplay.Scene
             {
                 _latchedPermanent = true;
                 _latchRemaining = 0f;
+                WorldStateStore.SetBool(SaveStateKey, true);
             }
 
             _hasImpact = true;
@@ -411,5 +461,7 @@ namespace RuleGame.Gameplay.Scene
                 : new Color(1f, 0.8f, 0.25f, 0.9f);
             Gizmos.DrawWireCube(bounds.center, bounds.size);
         }
+
+        private string SaveStateKey => WorldStateStore.KeyOf(this, "latched");
     }
 }

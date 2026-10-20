@@ -4,52 +4,123 @@
     right: 0;
     top: 0;
     bottom: 0;
-    color: #21211f;
+    justify-content: flex-end;
+    align-items: center;
+    padding-bottom: 6%;
+    color: #3a2a14;
     -unity-font-definition: url("DialogueChineseFont.asset");
 }
+
+/* 标准通用 UI 组件：Panel_Cream 是 9-slice 面板，四边各保留 22px。 */
 .dialogue-paper {
-    position: absolute;
-    left: 4%;
-    bottom: 6%;
     width: 84%;
     max-width: 920px;
-    background-color: #f2f1eb;
-    border-left-width: 7px;
-    border-left-color: #21211f;
-    border-bottom-width: 3px;
-    border-bottom-color: #21211f;
-    padding: 22px 28px 18px 25px;
+    padding: 30px 38px 26px 38px;
+    background-color: transparent;
+    background-image: url("project://database/Assets/_Project/UI/Art/Common/Panel_Cream.png");
+    -unity-slice-left: 22;
+    -unity-slice-right: 22;
+    -unity-slice-top: 22;
+    -unity-slice-bottom: 22;
+    border-width: 0;
+    color: #3a2a14;
 }
+
 .dialogue-paper Label { margin: 0; padding: 0; }
-.dialogue-heading { flex-direction: row; align-items: center; margin-bottom: 15px; }
-.dialogue-speaker { font-size: 24px; -unity-font-style: bold; flex-grow: 1; }
-.dialogue-note { font-size: 13px; color: #777771; }
-.dialogue-line { font-size: 24px; white-space: normal; min-height: 74px; }
-.dialogue-footer { flex-direction: row; align-items: center; margin-top: 12px; }
-.dialogue-hint { flex-grow: 1; color: #777771; font-size: 12px; white-space: normal; }
+
+.dialogue-heading {
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom-width: 1px;
+    border-bottom-color: #d9c8a4;
+}
+
+.dialogue-speaker {
+    font-size: 26px;
+    -unity-font-style: bold;
+    color: #43301a;
+    flex-grow: 1;
+}
+
+.dialogue-note { font-size: 13px; color: #8d7a58; }
+
+.dialogue-line {
+    font-size: 24px;
+    white-space: normal;
+    min-height: 72px;
+    color: #3a2a14;
+}
+
+.dialogue-footer { flex-direction: row; align-items: center; justify-content: flex-end; margin-top: 12px; }
+
+.dialogue-hint {
+    display: none;
+}
+
+/* 按钮也用同一套 9-slice；颜色只做 tint，不覆盖掉描边。 */
 .dialogue-paper Button {
-    background-image: none;
-    min-height: 44px;
-    min-width: 84px;
+    background-image: url("project://database/Assets/_Project/UI/Art/Common/Button_Cream.png");
+    -unity-slice-left: 16;
+    -unity-slice-right: 16;
+    -unity-slice-top: 12;
+    -unity-slice-bottom: 12;
+    background-color: transparent;
+    min-height: 46px;
+    min-width: 130px;
     margin: 0 0 0 12px;
-    padding: 8px 14px;
+    padding: 8px 22px;
+    border-width: 0;
     border-radius: 0;
-    border-width: 2px;
-    border-color: #21211f;
-    color: #21211f;
-    background-color: #f2f1eb;
-    font-size: 16px;
+    color: #43301a;
+    font-size: 18px;
     -unity-font-style: bold;
 }
-.dialogue-paper .dialogue-next { background-color: #21211f; color: #f2f1eb; }
-.dialogue-paper Button:hover { background-color: #dadad2; color: #21211f; }
-.dialogue-paper Button:focus {
-    border-top-color: #21211f;
-    border-right-color: #21211f;
-    border-bottom-color: #21211f;
-    border-left-color: #21211f;
-    background-image: none;
+
+.dialogue-paper .dialogue-next {
+    -unity-background-image-tint-color: #8b8b42;
+    color: #f8f0da;
 }
-.dialogue-paper .dialogue-next:focus { background-color: #21211f; color: #f2f1eb; }
-.dialogue-paper Button:active { translate: 0 2px; }
+
+.dialogue-paper .dialogue-close {
+    -unity-background-image-tint-color: #a8432c;
+    color: #f8f0da;
+}
+
+.dialogue-paper Button:hover {
+    -unity-background-image-tint-color: #fff1c8;
+    color: #43301a;
+}
+
+.dialogue-paper .dialogue-next:hover {
+    -unity-background-image-tint-color: #9c9c4c;
+    color: #f8f0da;
+}
+
+.dialogue-paper .dialogue-close:hover {
+    -unity-background-image-tint-color: #c2543a;
+    color: #f8f0da;
+}
+
+.dialogue-paper Button:active {
+    -unity-background-image-tint-color: #c6ab79;
+    color: #43301a;
+}
+
+.dialogue-paper .dialogue-next:active {
+    -unity-background-image-tint-color: #6f6f3a;
+    color: #f8f0da;
+}
+
+.dialogue-paper .dialogue-close:active {
+    -unity-background-image-tint-color: #8c3524;
+    color: #f8f0da;
+}
+
+.dialogue-paper Button:focus {
+    border-width: 2px;
+    border-color: #614823;
+}
+
 .hidden { display: none; }

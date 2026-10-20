@@ -100,7 +100,7 @@ namespace RuleGame.Editor.Level
             bubble.AddComponent<CityBubble>(); Save(bubble);
             var refill = Shape("CityRefill", new Vector2(1f, 1.6f), new Color(.35f, .55f, .85f), trigger: true, layer: 0);
             refill.AddComponent<CityRefill>().Prompt = "补充能量"; Save(refill);
-            // 落点 = 存档点（2026-10-18 合并）：走近即记录，不需要交互键。
+            // 落点 = 存档点（2026-10-18 合并）：走近不再自动记录，要攻击一下才会存档。
             var spawn = Shape("PlayerSpawnPoint", new Vector2(1.4f, 1.8f), new Color(.4f, .7f, .45f), trigger: true, layer: 0);
             spawn.AddComponent<PlayerSpawnPoint>(); Save(spawn);
             var chest = Shape("CityChest", new Vector2(1.3f, .85f), new Color(.8f, .6f, .25f), trigger: true, layer: 0);
@@ -230,12 +230,17 @@ namespace RuleGame.Editor.Level
                 Place<CityRefill>("CityRefill", new Vector2(67f, .8f));
                 var point = Place<PlayerSpawnPoint>("PlayerSpawnPoint", new Vector2(71f, .9f)); point.SetId("brick-city-lab-rest");
                 var chest = Place<CityRewardSource>("CityChest", new Vector2(77f, .45f));
+                chest.Kind = CityRewardKind.Health;      // 战斗力那条奖励已删，演示箱改用生命
                 chest.Receiver = controls; chest.SourceId = "brick-city-lab-chest"; chest.Amount = 3;
-                for (int i = 0; i < 3; i++)
+
+                // 三色龙珠只剩两色：战斗力退役（枚举 0 号空着，不再有成员）。
+                CityRewardKind[] tokenKinds = { CityRewardKind.Health, CityRewardKind.Energy };
+                Color[] tokenColors = { Color.green, Color.blue };
+                for (int i = 0; i < tokenKinds.Length; i++)
                 {
                     var token = Place<CityRewardSource>("CityReward", new Vector2(80f + i * 2f, .8f));
-                    token.Receiver = controls; token.SourceId = "brick-city-lab-token-" + i; token.Kind = (CityRewardKind)i;
-                    token.GetComponentInChildren<SpriteRenderer>().color = i == 0 ? Color.red : i == 1 ? Color.green : Color.blue;
+                    token.Receiver = controls; token.SourceId = "brick-city-lab-token-" + i; token.Kind = tokenKinds[i];
+                    token.GetComponentInChildren<SpriteRenderer>().color = tokenColors[i];
                 }
                 Place<CityPathMotor>("CityTrain", new Vector2(90f, .4f));
                 Physics2D.SyncTransforms();

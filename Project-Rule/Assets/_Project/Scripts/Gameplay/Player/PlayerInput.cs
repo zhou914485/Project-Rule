@@ -85,6 +85,42 @@ namespace RuleGame.Gameplay.Player
         }
 
         /// <summary>
+        /// 本帧是否有<b>新的</b>玩法输入（按下边沿，不含暂停键）。
+        /// </summary>
+        /// <remarks>
+        /// <para>给过场 / 演出做「按任意键继续」用：它<b>不受 <see cref="IsSuppressed"/></b> 影响 ——
+        /// 过场正拿着门禁，但仍然要能感知玩家想结束它。只读 <c>WasPressedThisFrame</c>，
+        /// 所以触发过场的那一次攻击不会被当成「再次输入」。</para>
+        /// <para>不含 ESC / 手柄 Start：那两个归暂停菜单；暂停期间由调用方自己决定要不要看输入。</para>
+        /// </remarks>
+        public bool AnyGameplayInputThisFrame()
+        {
+            if (_moveAction != null && _moveAction.WasPressedThisFrame()) return true;
+            if (_jumpAction != null && _jumpAction.WasPressedThisFrame()) return true;
+            if (_attackAction != null && _attackAction.WasPressedThisFrame()) return true;
+            if (_dashAction != null && _dashAction.WasPressedThisFrame()) return true;
+
+            // 冲刺主键位 / 投掷 / 回溯 / 交互是直接读设备的（与 Tick 同一套键位）。
+            if (Mouse.current != null && Mouse.current.rightButton.wasPressedThisFrame) return true;
+
+            if (Keyboard.current != null)
+            {
+                if (Keyboard.current.qKey.wasPressedThisFrame
+                    || Keyboard.current.fKey.wasPressedThisFrame
+                    || Keyboard.current.eKey.wasPressedThisFrame) return true;
+            }
+
+            if (Gamepad.current != null)
+            {
+                if (Gamepad.current.leftShoulder.wasPressedThisFrame
+                    || Gamepad.current.rightShoulder.wasPressedThisFrame
+                    || Gamepad.current.buttonNorth.wasPressedThisFrame) return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
         /// 视觉帧：读键。
         /// </summary>
         /// <param name="suppressed">暂停 / 已阵亡 / 被 UI 接管 / 恢复帧 —— 都不读键，并清空粘滞标记。</param>

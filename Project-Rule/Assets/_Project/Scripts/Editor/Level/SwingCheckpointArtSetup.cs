@@ -67,7 +67,7 @@ namespace RuleGame.Editor.Level
                 serialized.FindProperty("_id").stringValue = "checkpoint";
                 serialized.FindProperty("_facing").intValue = 1;
                 serialized.FindProperty("_applyWhenStandalone").boolValue = true;
-                serialized.FindProperty("_activateRadius").floatValue = 1.4f;
+                serialized.FindProperty("_activateByAttack").boolValue = true;
                 serialized.FindProperty("_reactivate").boolValue = false;
                 serialized.ApplyModifiedPropertiesWithoutUndo();
 
@@ -103,6 +103,7 @@ namespace RuleGame.Editor.Level
                 cutscene.FadeSeconds = .15f;
                 cutscene.CameraSettleSeconds = .2f;
                 cutscene.RequireGrounded = true;
+                cutscene.LoopUntilInput = true;
 
                 if (exists) PrefabUtility.SaveAsPrefabAsset(root, PrefabPath);
                 else PrefabUtility.SaveAsPrefabAsset(root, PrefabPath);

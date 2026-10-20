@@ -129,7 +129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: RuleGame.Gameplay::RuleGame.Gameplay.Scene.Components.CityRewardSource
   Prompt: "\u6536\u96C6\u9F99\u73E0"
   SourceId: 
-  Kind: 0
+  Kind: 1
   Amount: 1
   Receiver: {fileID: 0}
   PickupVisual: 1

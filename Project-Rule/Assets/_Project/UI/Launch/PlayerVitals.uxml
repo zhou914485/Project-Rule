@@ -40,6 +40,13 @@
             </ui:VisualElement>
             <ui:Label name="vitalsValue" picking-mode="Ignore" class="vital-label" />
         </ui:VisualElement>
-        <ui:Label name="unlockToast" picking-mode="Ignore" class="unlock-toast" />
+        <ui:VisualElement name="abilityScreen" picking-mode="Ignore" class="ability-screen">
+            <ui:VisualElement picking-mode="Ignore" class="ability-card">
+                <ui:Label name="abilityKicker" picking-mode="Ignore" class="ability-kicker" />
+                <ui:Label name="abilityName" picking-mode="Ignore" class="ability-name" />
+                <ui:Label name="abilityDesc" picking-mode="Ignore" class="ability-desc" />
+            </ui:VisualElement>
+            <ui:Label name="abilityHint" picking-mode="Ignore" class="ability-hint" />
+        </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

@@ -31,6 +31,7 @@ namespace RuleGame.Gameplay.Player
         private bool    _climbRight;
         private bool    _wasGrounded;
         private float   _groundFriction = 1f;
+        private Collider2D _groundCollider;
         private Vector2 _up = Vector2.up;
         private Vector2 _carrierVelocity;
         private Vector2 _launchVelocity;
@@ -43,6 +44,10 @@ namespace RuleGame.Gameplay.Player
 
         /// <summary>是否站在支撑面上。</summary>
         public bool Grounded => _grounded;
+
+        /// <summary>脚下支撑面的碰撞体（静态瓦片 / 移动平台 / 弹簧……）。没探到时为 <c>null</c>。</summary>
+        /// <remarks>安全落点记忆用它判断「踩的是不是静态瓦片地面」；它只是本帧的读数，不缓存跨帧。</remarks>
+        public Collider2D GroundCollider => _groundCollider;
 
         /// <summary>
         /// 左侧是否贴着竖墙。<b>全高探测</b>（整个碰撞体的形状往外扫）—— 只用于顶墙分量预夹。
@@ -102,6 +107,7 @@ namespace RuleGame.Gameplay.Player
                 WallRight      = _wallRight,
                 Ceiling        = _ceiling,
                 GroundFriction = _groundFriction,
+                GroundCollider = _groundCollider,
                 CarrierVelocity = _carrierVelocity,
                 LaunchVelocity  = _launchVelocity,
                 Up             = _up,
@@ -207,6 +213,7 @@ namespace RuleGame.Gameplay.Player
         private bool ProbeGround(MotionTuning tuning)
         {
             _groundFriction  = 1f;                  // 没探到面、或那块地没挂材质 → 按普通地面算
+            _groundCollider  = null;                 // 没探到面 → 没有支撑体
             _carrierVelocity = Vector2.zero;        // 没探到会动的面 → 没人带
             _launchVelocity  = Vector2.zero;        // 没探到会弹的面 → 没人弹
 
@@ -237,6 +244,7 @@ namespace RuleGame.Gameplay.Player
                 var spring = _groundHits[i].collider.GetComponentInParent<ISpringSurface>();
                 if (spring != null) _launchVelocity = spring.LaunchVelocity;
 
+                _groundCollider = _groundHits[i].collider;
                 return true;
             }
             return false;
@@ -294,6 +302,9 @@ namespace RuleGame.Gameplay.Player
         {
             /// <summary>脚下有支撑面。</summary>
             public bool Grounded;
+
+            /// <summary>脚下支撑面的碰撞体（没有支撑面时为 <c>null</c>）。</summary>
+            public Collider2D GroundCollider;
 
             /// <summary>左侧贴着竖墙（**全高**探测，只用于顶墙分量预夹）。</summary>
             public bool WallLeft;

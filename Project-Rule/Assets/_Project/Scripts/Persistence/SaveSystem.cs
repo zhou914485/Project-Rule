@@ -32,6 +32,7 @@ namespace RuleGame.Persistence
         private readonly ISaveStorage     _storage;
         private readonly IEntityStatus    _player;       // 可空：P1 早期可能没接玩家
         private readonly IRuleUnlockStore _unlocks;      // 可空：玩家解锁系统排期更晚
+        private readonly IPlayerProgressStore _progress; // 可空：宝箱记录 + 生命 / 能量上限增量
 
         // ==================================================================
         //  状态
@@ -64,14 +65,17 @@ namespace RuleGame.Persistence
         /// <param name="storage">存档存放处（生产用 <see cref="FileSaveStorage"/>）。</param>
         /// <param name="player">玩家状态；没有玩家实体的场景（主菜单 / 测试）传 null。</param>
         /// <param name="unlocks">玩家解锁词条存储；解锁系统落地前传 null（解锁列表存空）。</param>
+        /// <param name="progress">玩家永久成长存储（宝箱记录 + 上限增量）；没有玩家实体时传 null。</param>
         public SaveSystem(IRuleSystem rules, ILevelFlow levelFlow, ISaveStorage storage,
-                          IEntityStatus player = null, IRuleUnlockStore unlocks = null)
+                          IEntityStatus player = null, IRuleUnlockStore unlocks = null,
+                          IPlayerProgressStore progress = null)
         {
             _rules     = rules     ?? throw new ArgumentNullException(nameof(rules));
             _levelFlow = levelFlow ?? throw new ArgumentNullException(nameof(levelFlow));
             _storage   = storage   ?? throw new ArgumentNullException(nameof(storage));
             _player    = player;
             _unlocks   = unlocks;
+            _progress  = progress;
 
             _rules.OnRuleActivated    += HandleRuleActivated;
             _levelFlow.OnLevelStart   += HandleLevelBoundary;
@@ -125,6 +129,13 @@ namespace RuleGame.Persistence
                 data.UnlockedRelations  = new List<string>(_unlocks.UnlockedRelations);
             }
 
+            if (_progress != null)
+            {
+                data.ClaimedSourceIds = new List<string>(_progress.ClaimedSourceIds);
+                data.MaxHealthBonus   = _progress.MaxHealthBonus;
+                data.MaxEnergyBonus   = _progress.MaxEnergyBonus;
+            }
+
             return data;
         }
 
@@ -148,6 +159,9 @@ namespace RuleGame.Persistence
                     // 新游戏：世界回到设计初态 —— 清掉上一局留下的机关状态，
                     // 否则「门还是碎的 / 开关还是按下的」会跟着进新档。
                     WorldStateStore.Clear();
+
+                    // 宝箱记录与上限增量同样归零，否则上一局的永久成长会漏进这一局。
+                    _progress?.RestoreProgress(null, 0f, 0f);
                     return;
                 }
 
@@ -161,6 +175,11 @@ namespace RuleGame.Persistence
 
                 // ② 解锁词条。
                 _unlocks?.RestoreUnlocks(data.UnlockedAttributes, data.UnlockedRelations);
+
+                // ②′ 永久成长：宝箱记录 + 生命 / 能量上限增量。
+                //    必须在 ③ 之前 —— ApplyData 会按「当前上限」clamp 生命 / 能量，
+                //    上限还没抬起来的话，档里超出的那截会被削掉。
+                _progress?.RestoreProgress(data.ClaimedSourceIds, data.MaxHealthBonus, data.MaxEnergyBonus);
 
                 // ③ 玩家数值。
                 if (_player != null && data.PlayerStatus != null)

@@ -35,14 +35,25 @@ namespace RuleGame.Gameplay.Player
 
         private object _heldItem;
 
+        // 奖励（宝箱）带来的上限增量。**不序列化**：它是玩家账本里的一份数，
+        // 读档时由 PlayerProgress 回灌（见 IPlayerProgressStore），场景 / 预制体上永远是 0。
+        private float _healthMaxBonus;
+        private float _energyMaxBonus;
+
         // ==================================================================
         //  状态
         // ==================================================================
 
         public float Energy    => _energy;
-        public float EnergyMax => _energyMax;
+        public float EnergyMax => _energyMax + _energyMaxBonus;
         public float Health    => _health;
-        public float HealthMax => _healthMax;
+        public float HealthMax => _healthMax + _healthMaxBonus;
+
+        /// <summary>生命上限的奖励增量（宝箱累计值）。</summary>
+        public float HealthMaxBonus => _healthMaxBonus;
+
+        /// <summary>能量上限的奖励增量（宝箱累计值）。</summary>
+        public float EnergyMaxBonus => _energyMaxBonus;
 
         public object HeldItem       => _heldItem;
         public int    ThrowableCount => _throwableCount;
@@ -76,12 +87,16 @@ namespace RuleGame.Gameplay.Player
         /// <summary>新生成实体的初始生命/能量配置；只在首次初始化调用，回溯仍使用 ApplyData。</summary>
         public void InitializeVitals(float healthMax, float energyMax)
         {
+            // 新实体从设计初值开始：清掉上一世（或上一局）攒下的宝箱增量。
+            _healthMaxBonus = 0f;
+            _energyMaxBonus = 0f;
+
             _healthMax = Mathf.Max(1f, healthMax);
             _energyMax = Mathf.Max(0f, energyMax);
-            _health = _healthMax;
-            _energy = _energyMax;
-            OnHealthChanged?.Invoke(_health, _healthMax);
-            OnEnergyChanged?.Invoke(_energy, _energyMax);
+            _health = HealthMax;
+            _energy = EnergyMax;
+            OnHealthChanged?.Invoke(_health, HealthMax);
+            OnEnergyChanged?.Invoke(_energy, EnergyMax);
         }
 
         // ==================================================================
@@ -94,7 +109,7 @@ namespace RuleGame.Gameplay.Player
             if (_energy < amount) return false;      // 不足：不扣除
 
             _energy -= amount;
-            OnEnergyChanged?.Invoke(_energy, _energyMax);
+            OnEnergyChanged?.Invoke(_energy, EnergyMax);
             return true;
         }
 
@@ -102,8 +117,8 @@ namespace RuleGame.Gameplay.Player
         {
             if (amount <= 0f) return;
 
-            _energy = Mathf.Min(_energy + amount, _energyMax);
-            OnEnergyChanged?.Invoke(_energy, _energyMax);
+            _energy = Mathf.Min(_energy + amount, EnergyMax);
+            OnEnergyChanged?.Invoke(_energy, EnergyMax);
         }
 
         // ==================================================================
@@ -117,8 +132,49 @@ namespace RuleGame.Gameplay.Player
         {
             if (Mathf.Approximately(delta, 0f)) return;
 
-            _health = Mathf.Clamp(_health + delta, 0f, _healthMax);
-            OnHealthChanged?.Invoke(_health, _healthMax);
+            _health = Mathf.Clamp(_health + delta, 0f, HealthMax);
+            OnHealthChanged?.Invoke(_health, HealthMax);
+        }
+
+        // ==================================================================
+        //  上限成长（宝箱）
+        // ==================================================================
+
+        /// <summary>提升生命上限。当前生命同步抬高同一段 —— 玩家读到的是「多出来那截血」，不是掉血。</summary>
+        /// <remarks>调用方是 <c>PlayerProgress</c>（宝箱发奖）：上限增量属于玩家账本，
+        /// 本组件只是被动接受，并在 <c>OnHealthChanged</c> 里把新上限播给 HUD。</remarks>
+        public void RaiseMaxHealth(float amount)
+        {
+            if (amount <= 0f) return;
+
+            _healthMaxBonus += amount;
+            _health = Mathf.Min(_health + amount, HealthMax);
+            OnHealthChanged?.Invoke(_health, HealthMax);
+        }
+
+        /// <summary>提升能量上限。当前能量同步抬高同一段（能量是施法资源，不补会立刻「缺一格」）。</summary>
+        public void RaiseMaxEnergy(float amount)
+        {
+            if (amount <= 0f) return;
+
+            _energyMaxBonus += amount;
+            _energy = Mathf.Min(_energy + amount, EnergyMax);
+            OnEnergyChanged?.Invoke(_energy, EnergyMax);
+        }
+
+        /// <summary>
+        /// 把上限增量设成绝对值（读档 / 新游戏用）。**不补当前值** —— 档里有那一刻的真实血量。
+        /// </summary>
+        public void SetMaxVitalBonuses(float healthBonus, float energyBonus)
+        {
+            _healthMaxBonus = Mathf.Max(0f, healthBonus);
+            _energyMaxBonus = Mathf.Max(0f, energyBonus);
+
+            _health = Mathf.Clamp(_health, 0f, HealthMax);
+            _energy = Mathf.Clamp(_energy, 0f, EnergyMax);
+
+            OnHealthChanged?.Invoke(_health, HealthMax);
+            OnEnergyChanged?.Invoke(_energy, EnergyMax);
         }
 
         // ==================================================================
@@ -175,15 +231,16 @@ namespace RuleGame.Gameplay.Player
         {
             if (data == null) return;
 
-            _energy         = Mathf.Clamp(data.Energy, 0f, _energyMax);
-            _health         = Mathf.Clamp(data.Health, 0f, _healthMax);
+            // 上限含宝箱增量：先回灌增量再 ApplyData 的读档顺序才不会把超出的血量削掉。
+            _energy         = Mathf.Clamp(data.Energy, 0f, EnergyMax);
+            _health         = Mathf.Clamp(data.Health, 0f, HealthMax);
             _heldItem       = data.HeldItem;
             _throwableCount = data.ThrowableCount;
 
             _cooldowns.Clear();     // 冷却不进存档 / 快照，回滚后不该带着「未来的冷却」
 
-            OnEnergyChanged?.Invoke(_energy, _energyMax);
-            OnHealthChanged?.Invoke(_health, _healthMax);
+            OnEnergyChanged?.Invoke(_energy, EnergyMax);
+            OnHealthChanged?.Invoke(_health, HealthMax);
         }
     }
 }

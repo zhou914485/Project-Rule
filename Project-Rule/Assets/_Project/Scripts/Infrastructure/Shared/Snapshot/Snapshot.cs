@@ -19,6 +19,9 @@ namespace RuleGame.Infrastructure.Snapshot
         /// <summary>动态实体的状态（位置 / 速度 / 旋转 / 激活状态 / 动画 / 实体状态 / 模块状态）。</summary>
         public List<EntityState> Entities = new List<EntityState>();
 
+        /// <summary>不在实体名册里的静态机关状态（按钮 / 门 / 平台 / 触发器等）。</summary>
+        public List<ParticipantState> Participants = new List<ParticipantState>();
+
         /// <summary>规则维护表的 6 个属性槽位（含剩余时间 —— 恢复时连它一起回退）。</summary>
         public ActiveRule?[] RuleSlots;
 

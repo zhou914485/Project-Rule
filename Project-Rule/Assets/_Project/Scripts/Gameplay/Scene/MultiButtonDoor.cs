@@ -1,6 +1,8 @@
 using UnityEngine;
 using RuleGame.Gameplay.Common;
 using RuleGame.Infrastructure.Time;
+using RuleGame.Infrastructure.Snapshot;
+using RuleGame.Infrastructure.Persistence;
 
 namespace RuleGame.Gameplay.Scene
 {
@@ -23,13 +25,13 @@ namespace RuleGame.Gameplay.Scene
     /// <para><b>暂停 / 时间规则</b>：暂停时 <c>TimeManager.IsPaused</c> 早退，门不动；
     /// 积分用 <c>Time.fixedDeltaTime</c>，时间变慢时门也跟着慢。</para>
     ///
-    /// <para>用法：菜单 <c>Tools/规则游戏/地图组件/⑲ 多按钮门（所有按钮按下才开）</c>
+    /// <para>用法：菜单 <c>Tools/规则游戏/地图组件/⑳ 多按钮门（所有按钮按下才开）</c>
     /// 生成「2 按钮 + 1 门 + 1 个压按钮的铁箱」演示；也可以给已有门挂本组件，
     /// 把自己的 <see cref="EntityPressureButton"/> 拖进数组。</para>
     /// </remarks>
     [DisallowMultipleComponent]
     [RequireComponent(typeof(Rigidbody2D), typeof(BoxCollider2D))]
-    public sealed class MultiButtonDoor : MonoBehaviour
+    public sealed class MultiButtonDoor : MonoBehaviour, ISnapshotParticipant
     {
         /// <summary>到达判定：进度离 0 / 1 这么近就算关 / 开。</summary>
         private const float ArriveEpsilon = 0.0005f;
@@ -148,8 +150,28 @@ namespace RuleGame.Gameplay.Scene
         //  生命周期
         // ==================================================================
 
+        private struct DoorSnapshot
+        {
+            public float Progress;
+        }
+
+        /// <inheritdoc />
+        public bool DiscardWhenMissing => false;
+
+        /// <inheritdoc />
+        public object CaptureSnapshotState() => new DoorSnapshot { Progress = _progress };
+
+        /// <inheritdoc />
+        public void RestoreSnapshotState(object snapshot)
+        {
+            if (!(snapshot is DoorSnapshot state)) return;
+            _progress = state.Progress;
+            ApplyDoorPosition();
+        }
+
         private void Awake()
         {
+            if (Application.isPlaying) SnapshotParticipantRegistry.Register(this);
             _body = GetComponent<Rigidbody2D>();
             _box = GetComponent<BoxCollider2D>();
 
@@ -173,6 +195,22 @@ namespace RuleGame.Gameplay.Scene
             }
 
             RefreshLabel();
+        }
+
+        private void Start()
+        {
+            if (!Application.isPlaying) return;
+
+            if (WorldStateStore.TryGet(SaveStateKey, out string saved))
+            {
+                _progress = saved == "1" ? 1f : 0f;
+                ApplyDoorPosition();
+            }
+        }
+
+        private void OnDestroy()
+        {
+            SnapshotParticipantRegistry.Unregister(this);
         }
 
         private void OnEnable()
@@ -225,11 +263,14 @@ namespace RuleGame.Gameplay.Scene
             {
                 _progress = target;
                 ApplyDoorPosition();
+                WorldStateStore.SetBool(SaveStateKey, target > 0.5f);
                 return;
             }
 
             _progress = Mathf.MoveTowards(_progress, target, _speed * dt / length);
             ApplyDoorPosition();
+            if (_progress >= 1f - ArriveEpsilon) WorldStateStore.SetBool(SaveStateKey, true);
+            else if (_progress <= ArriveEpsilon) WorldStateStore.SetBool(SaveStateKey, false);
         }
 
         private void ApplyDoorPosition()
@@ -404,5 +445,7 @@ namespace RuleGame.Gameplay.Scene
 
             Gizmos.DrawWireCube(closedCenter, size);
         }
+
+        private string SaveStateKey => WorldStateStore.KeyOf(this, "open");
     }
 }

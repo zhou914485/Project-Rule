@@ -11,7 +11,7 @@ namespace RuleGame.Editor.Level
     /// <para>生成一个 1×1 的 Trigger + 半透明白盒标记；「目标」留空 —— 生成后把场景里
     /// 要让其消失的物件（门 / 平台 / 道具）拖进 Inspector 的「目标」即可。</para>
     ///
-    /// <para>用法：菜单 Tools/规则游戏/地图组件/⑳ 玩家触碰消失（同时让目标消失）。</para>
+    /// <para>用法：菜单 Tools/规则游戏/地图组件/㉑ 玩家触碰消失（同时让目标消失）。</para>
     /// </remarks>
     public static class PlayerTouchDisappearBuilder
     {
@@ -26,7 +26,7 @@ namespace RuleGame.Editor.Level
         private static readonly Color ArtColor = new Color(0.3f, 0.9f, 0.9f, 0.55f);
         private static readonly Color LabelColor = new Color(0.12f, 0.11f, 0.20f, 1f);
 
-        [MenuItem("Tools/规则游戏/地图组件/⑳ 玩家触碰消失（同时让目标消失）", false, 72)]
+        [MenuItem("Tools/规则游戏/地图组件/㉑ 玩家触碰消失（同时让目标消失）", false, 72)]
         public static void Create()
         {
             Sprite sprite = AssetDatabase.LoadAssetAtPath<Sprite>(SpritePath);

@@ -1,6 +1,7 @@
 using UnityEngine;
 using RuleGame.Gameplay.Player;
 using RuleGame.Infrastructure.LevelFlow;
+using RuleGame.Infrastructure.Snapshot;
 using RuleGame.Infrastructure.Time;
 
 namespace RuleGame.Gameplay.Scene
@@ -87,6 +88,9 @@ namespace RuleGame.Gameplay.Scene
             if (_started) return;
             _started = true;
 
+            // 新的一局：上一局留下的存档点快照必须作废，否则暂停菜单会回滚到已经被卸载的世界。
+            SnapshotSystem.Instance?.ClearCheckpointSnapshot();
+
             if (_streamer != null) _streamer.enabled = true;
             _streamer?.Refresh();
 
@@ -101,6 +105,29 @@ namespace RuleGame.Gameplay.Scene
             // 开局即「一关开始」：进度状态机立起来，UI / 存档可以订阅。
             // 分区切换本身不发这个事件 —— 玩家走过边界不该被当成「又开了一关」。
             LevelFlow.StartLevel(LevelFlow.CurrentLevel);
+        }
+
+        /// <summary>
+        /// 回到主菜单之前停世界：卸掉在场分区并停掉流式加载，把 <see cref="HasStarted"/> 复位。
+        /// </summary>
+        /// <remarks>
+        /// <para>为什么不在这一层直接显示主菜单：<c>RuleGame.Gameplay</c> 不认识 UI（依赖方向 UI → Gameplay），
+        /// 叫回标题界面由 <c>PauseMenuPresenter</c> 负责。</para>
+        /// <para>卸分区必须走 <see cref="WorldStreamer.ReloadAll"/>：它会把 <c>_startSpawnApplied</c> 复位，
+        /// 下次「开始游戏」才会重新按出生点落人。停 <c>enabled</c> 不会中断已经起头的卸载协程。</para>
+        /// </remarks>
+        public void StopForMenu()
+        {
+            if (!_started) return;
+
+            _started = false;
+
+            // 世界要卸了：快照里的实体马上失效，留着只会让「回到上一个存档点」回滚到空世界。
+            SnapshotSystem.Instance?.ClearCheckpointSnapshot();
+
+            if (_streamer == null) return;
+            _streamer.ReloadAll();
+            _streamer.enabled = false;
         }
 
         /// <summary>重开：把在场分区全部卸掉重载。世界回到设计初态靠这个，不靠切场景。</summary>

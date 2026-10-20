@@ -319,6 +319,52 @@ namespace RuleGame.Editor.Persistence
                     $"{LoadContext.ContinueGame}/{LoadContext.RespawnId ?? "null"}");
 
             // ==============================================================
+            //  ⑩ 永久成长：宝箱记录 + 生命 / 能量上限增量（2026-10-20）
+            // ==============================================================
+            h.Section("10 永久成长");
+
+            var storage10 = new SaveTestDoubles.MemoryStorage();
+            var progress10 = new SaveTestDoubles.MemoryProgressStore(
+                new[] { "Chest_Health_01", "Chest_Energy_02" }, 15f, 25f);
+            var rules10 = new RuleSystem(catalog);
+            var flow10 = new LevelFlow();
+            var save10 = new SaveSystem(rules10, flow10, storage10, null, null, progress10);
+
+            SaveData captured10 = save10.Capture();
+            h.Check("宝箱记录进入采集",
+                    captured10.ClaimedSourceIds.Contains("Chest_Health_01")
+                    && captured10.ClaimedSourceIds.Contains("Chest_Energy_02"),
+                    $"[{string.Join(",", captured10.ClaimedSourceIds)}]");
+            h.Check("上限增量进入采集",
+                    Mathf.Approximately(captured10.MaxHealthBonus, 15f)
+                    && Mathf.Approximately(captured10.MaxEnergyBonus, 25f),
+                    $"{captured10.MaxHealthBonus}/{captured10.MaxEnergyBonus}");
+
+            save10.Save();
+
+            var progress10b = new SaveTestDoubles.MemoryProgressStore();
+            var save10b = new SaveSystem(new RuleSystem(catalog), new LevelFlow(), storage10, null, null, progress10b);
+            save10b.Apply(save10b.Load());
+
+            h.Check("宝箱记录随档恢复",
+                    progress10b.ClaimedSourceIds.Contains("Chest_Health_01")
+                    && progress10b.ClaimedSourceIds.Count == 2,
+                    $"[{string.Join(",", progress10b.ClaimedSourceIds)}]");
+            h.Check("上限增量随档恢复",
+                    Mathf.Approximately(progress10b.MaxHealthBonus, 15f)
+                    && Mathf.Approximately(progress10b.MaxEnergyBonus, 25f),
+                    $"{progress10b.MaxHealthBonus}/{progress10b.MaxEnergyBonus}");
+
+            // 新游戏必须把上一局的永久成长清掉（否则半血重开）。
+            save10b.Apply(null);
+            h.Check("新游戏清空宝箱记录", progress10b.ClaimedSourceIds.Count == 0,
+                    $"{progress10b.ClaimedSourceIds.Count}");
+            h.Check("新游戏清空上限增量",
+                    Mathf.Approximately(progress10b.MaxHealthBonus, 0f)
+                    && Mathf.Approximately(progress10b.MaxEnergyBonus, 0f),
+                    $"{progress10b.MaxHealthBonus}/{progress10b.MaxEnergyBonus}");
+
+            // ==============================================================
             //  清理
             // ==============================================================
             foreach (RuleDef d in defs) Object.DestroyImmediate(d);

@@ -11,6 +11,8 @@ parser.add_argument("source", type=Path)
 args = parser.parse_args()
 out = ROOT / "Project-Rule/Assets/_Project/UI/Art/Launch"
 out.mkdir(parents=True, exist_ok=True)
+common = ROOT / "Project-Rule/Assets/_Project/UI/Art/Common"
+common.mkdir(parents=True, exist_ok=True)
 sources = {}
 
 def load(relative):
@@ -52,13 +54,13 @@ for y, row in enumerate(tiles):
         tile = tile.crop((2 if x > 0 else 0, 2 if y > 0 else 0,
                           62 if x < 2 else 64, 62 if y < 2 else 64))
         panel.paste(tile, ((0, 62, 122)[x], (0, 62, 122)[y]))
-panel.save(out / "CommonPanel.png")
+panel.save(common / "Panel_Cream.png")
 button = Image.new("RGBA", (184, 46))
 for x, left in enumerate((215, 361, 507)):
     tile = sheet.crop((left + (2 if x > 0 else 0), 5, left + (62 if x < 2 else 64), 51))
     button.paste(tile, ((0, 62, 122)[x], 0))
-button.save(out / "CommonButton.png")
-sheet.crop((398, 153, 417, 172)).save(out / "CommonClose.png")
+button.save(common / "Button_Cream.png")
+sheet.crop((398, 153, 417, 172)).save(common / "Button_Close.png")
 
 manifest = {"source_folder": args.source.name, "sha256": sources,
             "title_canvas": [4800, 2700], "hotspots": regions,
@@ -66,4 +68,4 @@ manifest = {"source_folder": args.source.name, "sha256": sources,
 reference = ROOT / "Doc/References/UI"
 reference.mkdir(parents=True, exist_ok=True)
 (reference / "LaunchUI_20261018.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n")
-print(f"Prepared {len(list(out.glob('*.png')))} textures in {out}")
+print(f"Prepared {len(list(out.glob('*.png')))} launch + {len(list(common.glob('*.png')))} common textures")

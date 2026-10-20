@@ -31,6 +31,10 @@ namespace RuleGame.Gameplay.Scene
         [Tooltip("刺（Hazard 格）的美术：一格一张。留空 = 刺不铺美术，保持逻辑瓦片原样")]
         [SerializeField] private Sprite _spike;
 
+        [Tooltip("九宫格切分（16 张，顺序：左上/上/右上 · 柱顶/左/心/右/柱中 · 左下/下/右下/柱底 · 平台左/中/右/单块）。" +
+                 "填了它，铺装器就按「露哪条边」选块，而不是把 16 张当随机变体")]
+        [SerializeField] private Sprite[] _nineSlice = Array.Empty<Sprite>();
+
         public string DisplayName => string.IsNullOrEmpty(_displayName) ? name : _displayName;
 
         public Sprite[] Blocks => _blocks;
@@ -39,6 +43,12 @@ namespace RuleGame.Gameplay.Scene
 
         /// <summary>变体是否是一条「首尾相接的链」（相邻格拼起来颜色连续）。</summary>
         public bool ChainVariants => _chainVariants;
+
+        /// <summary>九宫格 16 块（角色顺序见 <c>_nineSlice</c> 的 Tooltip）；空 = 这套素材不支持九宫格。</summary>
+        public Sprite[] NineSlice => _nineSlice;
+
+        /// <summary>这套素材有没有按角色切好的九宫格。</summary>
+        public bool HasNineSlice => _nineSlice != null && _nineSlice.Length == 16;
 
         /// <summary>刺（Hazard 格）用的图；空 = 不铺。</summary>
         public Sprite Spike => _spike;

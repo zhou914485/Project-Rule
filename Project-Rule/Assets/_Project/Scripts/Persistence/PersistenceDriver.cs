@@ -4,6 +4,7 @@ using RuleGame.Infrastructure;
 using RuleGame.Infrastructure.LevelFlow;
 using RuleGame.Infrastructure.Persistence;
 using RuleGame.Infrastructure.Rules;
+using RuleGame.Infrastructure.Snapshot;
 
 namespace RuleGame.Persistence
 {
@@ -34,6 +35,9 @@ namespace RuleGame.Persistence
         [Tooltip("玩家解锁词条存储（实现 IRuleUnlockStore 的组件）。解锁系统落地前留空。")]
         [SerializeField] private MonoBehaviour _unlockStoreBehaviour;
 
+        [Tooltip("玩家永久成长存储（实现 IPlayerProgressStore 的组件，通常是 PlayerProgress）。留空自动找。")]
+        [SerializeField] private MonoBehaviour _progressStoreBehaviour;
+
         /// <summary>关卡流程状态机。当前由本驱动持有，见类注释。</summary>
         public ILevelFlow Flow { get; private set; }
 
@@ -60,10 +64,15 @@ namespace RuleGame.Persistence
             if (_unlockStoreBehaviour != null && unlocks == null)
                 Debug.LogWarning("[PersistenceDriver] 配置的解锁存储对象未实现 IRuleUnlockStore，按未接线处理。", this);
 
+            var progress = _progressStoreBehaviour as IPlayerProgressStore;
+            if (progress == null) progress = FindFirst<IPlayerProgressStore>();
+            if (_progressStoreBehaviour != null && progress == null)
+                Debug.LogWarning("[PersistenceDriver] 配置的成长存储对象未实现 IPlayerProgressStore，按未接线处理。", this);
+
             // 优先复用常驻宿主那条真流程（GameRoot 在 -1000 执行序里先建好并写进 Hub）；
             // 只有直接打开关卡场景、没有 GameRoot 时，才退回一个自己的（那种情况下没有关卡进度可言）。
             Flow = LevelFlowHub.Current ?? new LevelFlow();
-            Save = new SaveSystem(rules, Flow, new FileSaveStorage(), player, unlocks);
+            Save = new SaveSystem(rules, Flow, new FileSaveStorage(), player, unlocks, progress);
             Instance = this;
 
             CheckpointBus.Requested += HandleCheckpointRequested;
@@ -99,6 +108,10 @@ namespace RuleGame.Persistence
         {
             if (Save == null) return;
             Save.SaveCheckpoint(spawnPointId, scenePath);
+
+            // 存档点同时拍一张内存快照：暂停菜单的「回到上一个存档点」走快照回滚
+            // （不读盘、不重载分区）。落盘那份只负责跨启动 —— 两边的世界必须是同一刻。
+            SnapshotSystem.Instance?.CaptureCheckpointSnapshot();
             Debug.Log($"[PersistenceDriver] 存档点存档：{spawnPointId} @ {scenePath}（世界状态 {WorldStateStore.Count} 条）");
         }
 

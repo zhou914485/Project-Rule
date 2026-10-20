@@ -4,6 +4,8 @@ using RuleGame.Gameplay.Combat;
 using RuleGame.Gameplay.Player;
 using RuleGame.Infrastructure;
 using RuleGame.Infrastructure.Time;
+using RuleGame.Infrastructure.Snapshot;
+using RuleGame.Infrastructure.Persistence;
 
 namespace RuleGame.Gameplay.Scene
 {
@@ -41,7 +43,7 @@ namespace RuleGame.Gameplay.Scene
     /// 由 <c>ThrownKnife</c> 的寿命（预制体上 6 秒）自己消失。</para>
     /// </remarks>
     [DisallowMultipleComponent]
-    public sealed class PaperPlaneCannon : MonoBehaviour, IFactionMember
+    public sealed class PaperPlaneCannon : MonoBehaviour, IFactionMember, ISnapshotParticipant
     {
         /// <summary>发射间隔下限，避免一帧连发几十架。</summary>
         private const float MinInterval = 0.05f;
@@ -191,12 +193,42 @@ namespace RuleGame.Gameplay.Scene
         //  生命周期
         // ==================================================================
 
+        private struct CannonSnapshot
+        {
+            public bool Firing;
+            public float NextFire;
+        }
+
+        /// <inheritdoc />
+        public bool DiscardWhenMissing => false;
+
+        /// <inheritdoc />
+        public object CaptureSnapshotState() => new CannonSnapshot
+        {
+            Firing = _firing,
+            NextFire = _nextFire,
+        };
+
+        /// <inheritdoc />
+        public void RestoreSnapshotState(object snapshot)
+        {
+            if (!(snapshot is CannonSnapshot state)) return;
+            _firing = state.Firing;
+            _nextFire = state.NextFire;
+        }
+
         private void Awake()
         {
+            if (Application.isPlaying) SnapshotParticipantRegistry.Register(this);
             ResolveCombat();
             _nextFire = _startDelay;
 
             if (_projectilePrefab == null) WarnMissingPrefab();
+        }
+
+        private void OnDestroy()
+        {
+            SnapshotParticipantRegistry.Unregister(this);
         }
 
         private void OnEnable()
@@ -217,6 +249,12 @@ namespace RuleGame.Gameplay.Scene
             }
 
             _alive.Clear();
+        }
+
+        private void Start()
+        {
+            if (!Application.isPlaying) return;
+            if (WorldStateStore.TryGet(SaveStateKey, out string saved)) _firing = saved == "1";
         }
 
         private void FixedUpdate()
@@ -258,6 +296,7 @@ namespace RuleGame.Gameplay.Scene
         public void SetFiring(bool firing)
         {
             _firing = firing;
+            WorldStateStore.SetBool(SaveStateKey, firing);
             if (firing) _nextFire = 0f;
         }
 
@@ -388,5 +427,7 @@ namespace RuleGame.Gameplay.Scene
             Gizmos.DrawLine(tip, tip - direction * 0.3f - perp * 0.15f);
             Gizmos.DrawWireSphere(origin, 0.12f);
         }
+
+        private string SaveStateKey => WorldStateStore.KeyOf(this, "firing");
     }
 }

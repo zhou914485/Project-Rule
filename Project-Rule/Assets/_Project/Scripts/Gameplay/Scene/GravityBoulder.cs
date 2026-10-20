@@ -602,13 +602,13 @@ namespace RuleGame.Gameplay.Scene
         /// <summary>白盒标签（带锁定状态）：锁死时的文案优先。</summary>
         public static string LabelText(State state, bool anchored)
         {
-            if (anchored) return "巨石 · 锁死";
+            if (anchored) return "击碎巨石 · 锁死";
 
             switch (state)
             {
-                case State.Armed:     return "巨石 · 开裂";
-                case State.Shattered: return "巨石 · 已碎";
-                default:              return "巨石";
+                case State.Armed:     return "击碎巨石 · 开裂";
+                case State.Shattered: return "击碎巨石 · 已碎";
+                default:              return "击碎巨石";
             }
         }
 

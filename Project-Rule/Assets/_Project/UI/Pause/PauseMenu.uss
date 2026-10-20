@@ -1,0 +1,338 @@
+/* ==========================================================================
+   ESC 暂停菜单 —— 规格见 Doc/ESC暂停菜单设计.md
+   1920x1080 画板 + 等比缩放（与 MainMenu 同一套做法）
+   现在用纯色 + 描边占位，美术资产到位后只需替换 .pause-panel / .pause-button 的
+   背景图为 Panel_Cream.png / Button_Cream.png 的 9-slice。
+   ========================================================================== */
+
+.pause-hidden {
+    display: none;
+}
+
+.pause-viewport {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    -unity-font-definition: url("project://database/Assets/_Project/UI/Fonts/P4ChineseFont.asset");
+}
+
+.pause-shade {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(11, 26, 40, 0.72);
+}
+
+.pause-artboard {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1920px;
+    height: 1080px;
+    transform-origin: 0 0;
+}
+
+/* ---------- 面板 ---------- */
+
+.pause-panel {
+    position: absolute;
+    left: 630px;
+    top: 290px;
+    width: 660px;
+    height: 500px;
+    padding: 34px 44px 30px 44px;
+    background-color: #f8f0da;
+    border-width: 3px;
+    border-color: #6b4a2a;
+    border-radius: 8px;
+    color: #3a2a14;
+}
+
+.pause-panel-confirm {
+    top: 323px;
+    height: 434px;
+}
+
+/* ---------- 标题区 ---------- */
+
+.pause-eyebrow {
+    flex-direction: row;
+    justify-content: space-between;
+    height: 18px;
+}
+
+.pause-eyebrow-text {
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: #967e58;
+    -unity-text-align: middle-left;
+}
+
+.pause-eyebrow-right {
+    letter-spacing: 6px;
+    -unity-text-align: middle-right;
+}
+
+.pause-eyebrow-warning {
+    color: #b4462f;
+    letter-spacing: 6px;
+    -unity-text-align: middle-right;
+}
+
+.pause-title {
+    margin-top: 4px;
+    height: 70px;
+    font-size: 54px;
+    letter-spacing: 12px;
+    -unity-font-style: bold;
+    color: #3a2a14;
+    -unity-text-align: middle-left;
+}
+
+.pause-subtitle {
+    margin-top: 8px;
+    height: 22px;
+    font-size: 17px;
+    letter-spacing: 1px;
+    color: #7a6a4f;
+    -unity-text-align: middle-left;
+}
+
+.pause-rule {
+    margin-top: 20px;
+    margin-bottom: 22px;
+    height: 1px;
+    background-color: #d9c8a4;
+}
+
+/* ---------- 按键 ---------- */
+
+.pause-button {
+    height: 76px;
+    margin: 0 0 14px 0;
+    padding: 0 24px 0 24px;
+    flex-direction: row;
+    align-items: center;
+    background-color: #fdf6e6;
+    background-image: none;
+    border-width: 2px;
+    border-color: #b39463;
+    border-radius: 5px;
+}
+
+.pause-button:hover {
+    background-color: #fbeec9;
+    border-color: #8a6a3a;
+}
+
+.pause-button:active {
+    background-color: #f6e5b8;
+}
+
+.pause-button:disabled {
+    background-color: #f1e9d7;
+    border-color: #d6c8ab;
+}
+
+.pause-button.is-focused {
+    background-color: #fff7df;
+    border-width: 3px;
+    border-color: #d9a63f;
+    translate: 4px 0;
+}
+
+.pause-button-body {
+    flex-grow: 1;
+    justify-content: center;
+}
+
+.pause-button-label {
+    font-size: 24px;
+    letter-spacing: 2px;
+    -unity-font-style: bold;
+    color: #43301a;
+    -unity-text-align: middle-left;
+}
+
+.pause-button-label-danger {
+    color: #97381f;
+}
+
+.pause-button:disabled .pause-button-label {
+    color: #a89a80;
+}
+
+.pause-button-desc {
+    margin-top: 6px;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    color: #8d7a58;
+    -unity-text-align: middle-left;
+}
+
+.pause-button:disabled .pause-button-desc {
+    color: #b3a488;
+}
+
+.pause-key {
+    width: 44px;
+    height: 26px;
+    border-width: 1px;
+    border-color: #c3ac83;
+    border-radius: 3px;
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: #8d7a58;
+    -unity-text-align: middle-center;
+}
+
+.pause-focus-bar {
+    position: absolute;
+    left: -14px;
+    top: 8px;
+    bottom: 8px;
+    width: 6px;
+    border-radius: 3px;
+    background-color: #d9a63f;
+    display: none;
+}
+
+.pause-button.is-focused .pause-focus-bar {
+    display: flex;
+}
+
+/* ---------- 底部键位提示 ---------- */
+
+.pause-hints {
+    margin-top: 22px;
+    height: 20px;
+    font-size: 13px;
+    letter-spacing: 1px;
+    color: #97866a;
+    -unity-text-align: middle-center;
+}
+
+/* ---------- 确认态 ---------- */
+
+.pause-confirm-title {
+    margin-top: 4px;
+    height: 46px;
+    font-size: 34px;
+    letter-spacing: 2px;
+    -unity-font-style: bold;
+    color: #3a2a14;
+    -unity-text-align: middle-left;
+}
+
+.pause-confirm-copy {
+    margin-top: 10px;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+    color: #6d5c40;
+    white-space: normal;
+    -unity-text-align: upper-left;
+}
+
+.pause-save-card {
+    margin-top: 20px;
+    height: 96px;
+    padding: 12px 18px 12px 18px;
+    background-color: #f2e6c8;
+    border-left-width: 4px;
+    border-left-color: #d9a63f;
+}
+
+.pause-save-key {
+    height: 16px;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: #97866a;
+    -unity-text-align: middle-left;
+}
+
+.pause-save-value {
+    margin-top: 2px;
+    height: 26px;
+    font-size: 19px;
+    -unity-font-style: bold;
+    color: #43301a;
+    -unity-text-align: middle-left;
+}
+
+.pause-save-meta {
+    margin-top: 2px;
+    height: 18px;
+    font-size: 13px;
+    color: #8d7a58;
+    -unity-text-align: middle-left;
+}
+
+.pause-actions {
+    margin-top: 22px;
+    flex-direction: row;
+}
+
+.pause-button-half {
+    width: 279px;
+    height: 68px;
+    margin: 0 0 0 0;
+    justify-content: center;
+    align-items: center;
+}
+
+/* UI Toolkit 不支持相邻兄弟选择器（+），第二个按钮用 name 精确给间距 */
+#confirmButton {
+    margin-left: 14px;
+}
+
+.pause-button-half .pause-button-label {
+    -unity-text-align: middle-center;
+}
+
+.pause-actions .pause-button {
+    -unity-text-align: middle-center;
+    font-size: 24px;
+    -unity-font-style: bold;
+    letter-spacing: 2px;
+}
+
+.pause-button-ghost {
+    background-color: transparent;
+    border-color: #c4ad89;
+    color: #6d5c40;
+}
+
+.pause-button-ghost:hover {
+    background-color: #f6ead0;
+}
+
+.pause-button-primary {
+    background-color: #23303f;
+    border-color: #23303f;
+    color: #f8f0da;
+}
+
+.pause-button-primary:hover {
+    background-color: #2e3f52;
+    border-color: #2e3f52;
+}
+
+.pause-button-primary.is-focused {
+    border-color: #d9a63f;
+    background-color: #23303f;
+}
+
+.pause-button-primary.is-danger {
+    background-color: #a8432c;
+    border-color: #a8432c;
+}
+
+.pause-button-primary.is-danger:hover {
+    background-color: #bb4d33;
+    border-color: #bb4d33;
+}

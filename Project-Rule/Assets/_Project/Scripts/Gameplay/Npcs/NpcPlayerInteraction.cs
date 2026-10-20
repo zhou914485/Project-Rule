@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using RuleGame.Gameplay.Dialogue;
 using RuleGame.Gameplay.Player;
 using RuleGame.Infrastructure.Time;
@@ -52,8 +53,13 @@ namespace RuleGame.Gameplay.Npcs
             {
                 // 守卫可能由范围自动启动，也需要占用同一个玩家门禁。
                 if (ActiveNpc == null)
+                {
                     foreach (NpcActor npc in _npcs)
                         if (npc != null && npc.IsSpeaking) { ActiveNpc = npc; break; }
+                    if (ActiveNpc == null)
+                        foreach (NpcActor npc in NpcActor.All)
+                            if (npc != null && npc.IsSpeaking) { ActiveNpc = npc; break; }
+                }
                 AcquireInput();
             }
         }
@@ -94,15 +100,18 @@ namespace RuleGame.Gameplay.Npcs
         {
             NearbyNpc = null;
             float nearest = float.PositiveInfinity;
-            foreach (NpcActor npc in _npcs)
-            {
-                if (npc == null || !npc.isActiveAndEnabled || npc.Definition == null) continue;
-                float distance = ((Vector2)(npc.transform.position - transform.position)).sqrMagnitude;
-                float radius = npc.Definition.InteractionRadius;
-                if (distance > radius * radius || distance >= nearest) continue;
-                nearest = distance;
-                NearbyNpc = npc;
-            }
+            foreach (NpcActor npc in _npcs) ConsiderNearby(npc, ref nearest);
+            foreach (NpcActor npc in NpcActor.All) ConsiderNearby(npc, ref nearest);
+        }
+
+        private void ConsiderNearby(NpcActor npc, ref float nearest)
+        {
+            if (npc == null || !npc.isActiveAndEnabled || npc.Definition == null) return;
+            float distance = ((Vector2)(npc.transform.position - transform.position)).sqrMagnitude;
+            float radius = npc.Definition.InteractionRadius;
+            if (distance > radius * radius || distance >= nearest) return;
+            nearest = distance;
+            NearbyNpc = npc;
         }
 
         public bool TryInteractNearest()

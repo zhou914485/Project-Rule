@@ -56,8 +56,8 @@ namespace RuleGame.Editor.Level
 
             Debug.Log(
                 $"[落点] 已在 {scene.name} 新建落点 \"{point.Id}\"，位置 {go.transform.position}。" +
-                "\n· 起点/入口用 id = start（全世界只能有一个）。" +
-                "\n· 触发半径按门洞/落脚区宽度给，默认 1.2 米；设 0 = 只能靠脚本 Activate。", go);
+                "\n· 起点/入口用 id = start（全世界只能有一个，攻击它不会存档）。" +
+                "\n· 其余点要挂 Trigger 碰撞体；攻击盒 / 飞刀打中才会存档，已经存过的点再打只重播表现。", go);
         }
 
         [MenuItem("Tools/规则游戏/落点/④ 放置秋千存档点（预制体）", false, 63)]
@@ -107,7 +107,8 @@ namespace RuleGame.Editor.Level
             Debug.Log(
                 $"[落点] 已放置秋千存档点 \"{point.Id}\" 于 {go.transform.position}。" +
                 "\n· 根节点 = 玩家复活中心（地面 + 0.5）；Art 已向下偏 0.5，秋千脚底落在地面。" +
-                "\n· 走近半径 1.4 米自动存档；一次运行只播一次过场。", go);
+                "\n· 走近不再自动存档：用攻击盒 / 飞刀打中秋千才会播过场并存档。" +
+                "\n· 已经存过的秋千再打只重播过场，不改复活点、不重复写盘。", go);
         }
 
         /// <summary>同一场景里取一个没人用的 <c>checkpoint-NN</c>。</summary>
@@ -208,12 +209,11 @@ namespace RuleGame.Editor.Level
                 Vector2 at = point.transform.position;
 
                 notes.Append("  ").Append(point.Id).Append("  @ ").Append(point.gameObject.scene.name)
-                     .Append(' ').Append(at.ToString("F1")).Append("  r=").Append(point.ActivateRadius.ToString("0.##"))
-                     .Append('\n');
+                     .Append(' ').Append(at.ToString("F1")).Append('\n');
 
-                if (point.ActivateRadius <= 0f)
+                if (point.GetComponentInChildren<Collider2D>() == null)
                 {
-                    notes.Append("    ⚠️ 半径 0：只能靠开局 / 脚本 Activate，走过不会记录\n");
+                    notes.Append("    ⚠️ 没有碰撞体：攻击打不到，只能靠开局 / 脚本 Activate\n");
                 }
 
                 if (catalog == null) continue;

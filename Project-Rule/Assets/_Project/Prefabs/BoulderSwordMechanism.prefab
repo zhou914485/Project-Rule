@@ -47,10 +47,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: RuleGame.Gameplay::RuleGame.Gameplay.Scene.SwordInStone
   _requireFreeRule: 0
-  _grantAbility: 4
   _acceptInverted: 1
   _acceptWeakFriction: 0
   _releaseThreshold: 1
+  _grantAbility: 4
   _requirePlayer: 1
   _pullRadius: 1.6
   _pullerLayers:
@@ -423,7 +423,7 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4642152736437334072}
-  m_Text: "\u5DE8\u77F3"
+  m_Text: "\u51FB\u788E\u5DE8\u77F3"
   m_OffsetZ: 0
   m_CharacterSize: 0.05
   m_LineSpacing: 1
@@ -744,7 +744,7 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7298451261918287566}
-  m_Text: "\u5251 \xB7 \u9501\u6B7B"
+  m_Text: "\u5251 \xB7 \u53EF\u62D4"
   m_OffsetZ: 0
   m_CharacterSize: 0.05
   m_LineSpacing: 1

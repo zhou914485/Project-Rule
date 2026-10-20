@@ -6,6 +6,7 @@ using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using RuleGame.Gameplay.Combat;
+using RuleGame.Gameplay.Common;
 using RuleGame.Gameplay.Player;
 using RuleGame.Gameplay.Scene;
 using RuleGame.Gameplay.Scene.Components;
@@ -151,15 +152,21 @@ namespace RuleGame.Editor.Level
                     Physics2D.Simulate(Time.fixedDeltaTime);
                     Check(ball.Body.linearVelocity.magnitude > 1f, "dynamic impulse lost");
                 });
-                Case("contact damage and refill cooldown", () =>
+                Case("contact damage and one-shot refill", () =>
                 {
                     var zone = Find<CityDamageZone>(x => x.name == "CityThorns");
                     var status = _player.GetComponent<EntityStatus>(); PutPlayer(zone.transform.position);
                     float before = status.Health; zone.SendMessage("FixedUpdate");
                     Check(status.Health < before, "contact did not reach CombatSystem");
                     float after = status.Health; zone.SendMessage("FixedUpdate"); Check(status.Health == after, "contact ignored cooldown");
-                    var refill = Find<CityRefill>(); status.TryConsumeEnergy(50f);
-                    Check(refill.Interact(_player) && !refill.Interact(_player), "refill cooldown failed");
+                    var refill = Find<CityRefill>(); status.TryConsumeEnergy(50f); float energy = status.Energy;
+                    float expected = Mathf.Min(energy + refill.Amount, status.EnergyMax);
+                    // 走「攻击盒 / 飞刀」那条路，不是 CityInteractor 的 E。
+                    ((IContactSwitch)refill).ImpactByContact(_player.transform.position);
+                    Check(Mathf.Approximately(status.Energy, expected), "refill amount wrong: " + status.Energy);
+                    Check(!refill.Available && !refill.GetComponent<Collider2D>().enabled, "one-shot refill was not consumed");
+                    ((IContactSwitch)refill).ImpactByContact(_player.transform.position);
+                    Check(Mathf.Approximately(status.Energy, expected), "consumed refill accepted a second hit");
                 });
                 Case("hammer and fuse rewind", () =>
                 {
@@ -208,7 +215,7 @@ namespace RuleGame.Editor.Level
                 });
                 Case("checkpoint and permanent reward", () =>
                 {
-                    // 落点 = 存档点：走过去就记录（不再交互），死亡后回这里。
+                    // 落点 = 存档点：攻击命中才记录（这里直接调 Arrive 模拟），死亡后回这里。
                     var point = Find<PlayerSpawnPoint>();
                     var controller = _player.GetComponent<PlayerController>();
                     Check(point.Arrive() && controller.HasRespawn && controller.RespawnId == point.Id,
@@ -218,8 +225,9 @@ namespace RuleGame.Editor.Level
                     Check(controller.Respawn() && Vector2.Distance(_player.GetComponent<Rigidbody2D>().position, saved) < .01f, "respawn failed");
                     var chest = Find<CityRewardSource>(x => !x.PickupVisual); var before = SnapshotSystem.Instance.Capture();
                     Check(chest.Interact(_player), "demo receiver did not accept reward");
-                    int count = _controls.PowerTokens; SnapshotSystem.Instance.Restore(before);
-                    Check(!chest.Available && !chest.Interact(_player) && _controls.PowerTokens == count, "rewind duplicated permanent reward");
+                    // 战斗力那条奖励已删（2026-10-20），演示计数只剩生命 / 能量。
+                    int count = _controls.HealthTokens + _controls.EnergyTokens; SnapshotSystem.Instance.Restore(before);
+                    Check(!chest.Available && !chest.Interact(_player) && _controls.HealthTokens + _controls.EnergyTokens == count, "rewind duplicated permanent reward");
                 });
             }
             finally { Physics2D.simulationMode = mode; Finish(); }

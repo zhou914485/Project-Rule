@@ -35,8 +35,12 @@ namespace RuleGame.Gameplay.Dialogue
             foreach (TextAsset script in content.Scripts ?? Array.Empty<TextAsset>())
             {
                 if (script == null) { errors.Add("台词文件引用丢失。"); continue; }
+                // 统一成 LF 再校验：项目里的 .yarn 可能是 CRLF，而下面几条行尾锚点
+                // （尤其是 line group 的无条件兜底）用 $ 匹配；不归一化会把 `\r` 当成正文，
+                // 让所有入口误报「缺少无条件兜底」、Host 拒绝开播。
+                string source = script.text.Replace("\r\n", "\n").Replace('\r', '\n');
                 // 去掉整行注释，避免示例、解释和废弃台词误报为正在使用的引用。
-                string source = Regex.Replace(script.text, @"(?m)^\s*//[^\r\n]*", "");
+                source = Regex.Replace(source, @"(?m)^\s*//[^\r\n]*", "");
                 if (Regex.IsMatch(source, @"(?m)^\s*->"))
                     errors.Add(script.name + " 包含玩家选项；首版 bark 显示器只接收台词，请先接入 Yarn 的选项显示组件。");
                 foreach (Match match in Declaration.Matches(source)) declared.Add(match.Groups[1].Value);

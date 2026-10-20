@@ -99,12 +99,14 @@ namespace RuleGame.Presentation.Player
         private void OnEnable()
         {
             if (_damageable != null) _damageable.OnDamageTaken += Play;
+            if (_player != null) _player.OnTeleported += Clear;
             BindSnapshots();
         }
 
         private void OnDisable()
         {
             if (_damageable != null) _damageable.OnDamageTaken -= Play;
+            if (_player != null) _player.OnTeleported -= Clear;
             if (_snapshots != null) _snapshots.OnRestored -= Clear;
             _snapshots = null;
             Clear();
@@ -112,6 +114,10 @@ namespace RuleGame.Presentation.Player
 
         private void OnDestroy()
         {
+            // 场景卸载 / 玩家整棵树销毁时，Unity 正在拆父子关系；这时再 SetParent 会报
+            // “new parent is being destroyed”。整棵树都要没了，交给 Unity 清理即可。
+            if (!gameObject.scene.isLoaded) return;
+
             RestoreBodyTint();
             if (_motionRoot != null)
             {

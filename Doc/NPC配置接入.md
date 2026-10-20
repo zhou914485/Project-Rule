@@ -32,16 +32,22 @@ Unity 资源均位于 `Assets/_Project/`：
 ## 试播与摆放
 
 1. 打开 `Test_NpcConfiguration.unity`，按 Play。场景已接入现有主角预制体和跟随镜头，`A / D` 移动、空格跳跃。
-2. 走近 NPC，画面出现「E 与某人交谈」。按 `E` 开始交谈，再按 `E` 显示整句/继续；`Esc` 结束。手柄对应 `Y / B`。
+2. 走近 NPC，画面出现「E 与某人交谈」。按 `E` 开始交谈，**或直接攻击命中 NPC**（与按钮、宝箱同一条撞击入口）；再按 `E` 显示整句/继续，`Esc` 结束。手柄对应 `Y / B`。
 3. 右上角直接勾选「能力达标」「按钮通电」「齿轮解卡」「持有通行证」「小镇商品买齐」切换真实条件组件；无需操作 Hierarchy 或 Inspector。
 4. 商人说完后，Game 画面显示四件商品；按 `E / Esc` 或点击「关闭展示，继续交谈」进入道别。这个面板用于交互验证，不结算购买。
 5. 走进守卫范围会自动交谈。交谈与商品展示期间占用现有玩家输入门禁，结束或取消后恢复跑跳和攻击。
 
-正式场景放一个 `NpcDialogueSystem.prefab`，再拖入所需 NPC；将同一个 Host 赋给各 NPC 的 `_host`。运行时也可 `npc.BindHost(host)`。NPC Prefab 不嵌入独立 Runner，避免每个人抢一个窗口。
+⚠️ **NPC 必须放在分区关卡场景**（`Level_Center` / `Level_Start_01` 等），**不能放在 `Boot`**：Boot 不是世界分区，没有地面，主菜单还会把物理停住，NPC 会停在半空、攻击也打不到。
 
-可直接复用 **`NpcPlayerInteraction`**：挂在现有 `PlayerController` 上，绑定共享 Host、NPC 数组，将 `Advance Dialogue` 事件连接到既有 `DialogueToolkitPresenter.Advance`。它负责最近 NPC 选择、E/Y 输入、Esc/B 取消，以及已有输入令牌的取得和释放，尊重其他界面的输入占用。NPC Runtime 不依赖显示程序集。
+正式场景放一个 `NpcDialogueSystem.prefab`，再拖入所需 NPC。**NPC 的 `_host` 可以留空**：`NpcActor` 会退回 `DialogueHost.Active`（当前启用的共享 Host），也可以在运行时 `npc.BindHost(host)`。NPC Prefab 不嵌入独立 Runner，避免每个人抢一个窗口。
+
+对话的**正式触发走攻击**：`NpcActor` 实现 `IContactSwitch`，攻击盒 / 投射物命中后由 `ImpactByContact` 开播，与按钮、宝箱同一条路（`PlayerController.PressSwitches`），不进伤害管线。命中本身就是触发条件，不再用交互半径二次拒绝；冷却、暂停和 `Sell/PassKey/Attack` 状态闸门仍然生效。
+
+`NpcPlayerInteraction` 仍然负责**阅读期间的输入接管**：挂在现有 `PlayerController` 上，绑定共享 Host，将 `Advance Dialogue` 事件连接到既有 `DialogueToolkitPresenter.Advance`。它负责 E/Y 继续、Esc/B 取消，以及已有输入令牌的取得和释放，尊重其他界面的输入占用。E 键近距离开播保留为兼容入口；正式关卡可以只靠攻击触发，不依赖它。
 
 已有自定义交互入口时，也可调用 **`NpcActor.TryInteract(player.transform)`**。这个包装会选取当前状态入口，再复用已有 `DialogueNpc` 的半径、冷却与 Host 忙碌检查。不要直接调用其内部 `DialogueNpc.TryInteract`，那会绕过角色条件选择。守卫将 `_proximityActor` 接到玩家，以距离轮询实现进入范围自动交谈；离开后可再次触发。
+
+⚠️ 飞刀目前只对 **Trigger** 调 `IContactSwitch`；NPC 身体是实心 CapsuleCollider2D，所以**近战攻击盒可以触发对话，飞刀要额外加一个 Trigger 子物体**才会触发。
 
 已有的 `Data/Dialogue/NpcBarks.yarn`、原三位试播 NPC 和 `DialogueLab` 不替换。新台词在 `Data/Npcs/ConfiguredNpcs.yarn`，直接修改正文即可。表中概念例句用于首轮配置，居民四句是试播文案，尚未视为正式剧情定稿。
 
@@ -49,10 +55,12 @@ Unity 资源均位于 `Assets/_Project/`：
 
 条件引用必须由实际负责系统更新 `DialogueSceneFlag.SetValue(bool)`。空引用视为未满足，不根据当前规则、血量或场景名称猜测任务进度。
 
+**例外：镇长资格直接读玩家进度**。`NpcActor.HasQualification()` 检查 `PlayerProgress.HasAllUnlocks` —— 六个规则属性、五个规则关系、四项能力（爬墙跳 / 二段跳 / 攻击 / 飞刀）全部解锁才算达标；`_abilityReady` 只保留为白盒/测试的手动覆盖，正式场景留空。
+
 | NPC | 条件及状态 | 完成后的接线 |
 | --- | --- | --- |
 | 商人 | `Talk → Sell → Bye → Idle` | `_onTradeRequested` 打开商店，关闭时调用 `CloseTrade()` |
-| 镇长 | `_abilityReady` 决定 `Talk1/Talk2` | 达标对话读完后 `PassKey`，发 `_onQualificationGranted` |
+| 镇长 | **直接读 `PlayerProgress`**：规则与能力全解锁 → `Talk2`，否则 `Talk1`；`_abilityReady` 仅作白盒覆盖 | 达标对话读完后 `PassKey`，发 `_onQualificationGranted` |
 | 居民 | 小范围 `Idle/Walk`，交互为 `Talk` | Rigidbody2D 真实碰撞、重力和质量；墙/悬崖前停步转向 |
 | 齿轮人 | 首次 `Talk1`；随后未完成/仅按钮/仅齿轮/全完成为 `Talk2/3/4/5` | 全完成读完后 `PassKey`，发 `_onBossRequested` |
 | 守卫 | `_hasPass` 决定 `Talk1/Talk2` | 无证读完发 `_onAttackRequested`；有证读完后关闭可选 `_passageBlocker` 并发 `_onPassageGranted` |
@@ -60,7 +68,7 @@ Unity 资源均位于 `Assets/_Project/`：
 
 资格、Boss 与放行事件每个实例只发一次，领取记录不随物理回溯重复触发；跨场景、重开和落盘的幂等仍由进度系统负责。外部条件会在动作完成前重新检查。动作计时 `ActionDuration` 当前用来预留完整动画播放窗口；没有实际动画时保持静态姿态。
 
-`_onAttackRequested` 是守卫交给现有战斗系统的请求，**未配置伤害数值、攻击范围或战斗 AI**。商店同样只交付四件普通商品和四件神秘商品的名称/效果配置，未实现支付或升级结算。原表没给价格、血蓝增加量、能力达标判据，`Price=-1` 明确表示未配置，不能据此扣款。后续由负责系统接入这些值，不在 NPC 模块重复实现经济和玩家属性系统。
+`_onAttackRequested` 是守卫交给现有战斗系统的请求，**未配置伤害数值、攻击范围或战斗 AI**。商店同样只交付四件普通商品和四件神秘商品的名称/效果配置，未实现支付或升级结算。原表没给价格、血蓝增加量，`Price=-1` 明确表示未配置，不能据此扣款。镇长资格判据已按 2026-10-20 决定改为「规则 6 属性 × 5 关系 + 四项能力全解锁」，不再由场景 flag 手动推进；后续商店与经济仍由负责系统接入，不在 NPC 模块重复实现。
 
 ```mermaid
 flowchart LR

@@ -34,6 +34,19 @@ namespace RuleGame.Infrastructure.Persistence
         /// <summary>已解锁的关系词条（枚举名，如 "Revert"）。</summary>
         public List<string> UnlockedRelations = new List<string>();
 
+        /// <summary>已领取的宝箱 / 龙珠编号（<c>CityRewardSource.SourceId</c>）。</summary>
+        /// <remarks>奖励是永久的，箱子是场景物件：不存这一串，读档后同一个箱子能再领一次。
+        /// 场景里的箱子也靠它把自己画回「已开」。</remarks>
+        public List<string> ClaimedSourceIds = new List<string>();
+
+        /// <summary>生命上限的累计奖励增量（宝箱）。0 = 没领过。</summary>
+        /// <remarks>存在玩家账本里而不是 <see cref="EntityStatusData"/>：后者是「那一刻的血条」，
+        /// 每次回溯都会整体覆盖，而成长必须跨回溯保留。</remarks>
+        public float MaxHealthBonus;
+
+        /// <summary>能量上限的累计奖励增量（宝箱）。0 = 没领过。</summary>
+        public float MaxEnergyBonus;
+
         /// <summary>跨关卡仍激活的规则 Id（如 "gravity.revert"）。重开关卡后重新应用。</summary>
         public List<string> ActiveRuleIds = new List<string>();
 

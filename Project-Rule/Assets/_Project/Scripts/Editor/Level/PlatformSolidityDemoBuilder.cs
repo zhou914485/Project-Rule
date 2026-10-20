@@ -14,7 +14,7 @@ namespace RuleGame.Editor.Level
     /// <para>平台底边在父物体的 y = 0；把 <c>PlatformSolidityDemo</c> 拖到地面上即可。
     /// 开关触发区盖住胸口高度（轻击 / 重击 / 纸飞机都打得到）。</para>
     ///
-    /// <para>用法：菜单 Tools/规则游戏/地图组件/⑱ 虚实平台（A/B 全局切换 + 受击开关）。</para>
+    /// <para>用法：菜单 Tools/规则游戏/地图组件/⑲ 虚实平台（A/B 全局切换 + 受击开关）。</para>
     /// </remarks>
     public static class PlatformSolidityDemoBuilder
     {
@@ -54,7 +54,7 @@ namespace RuleGame.Editor.Level
         private static readonly Color SwitchColor = new Color(0.55f, 0.55f, 0.65f, 1f);
         private static readonly Color LabelColor = new Color(0.12f, 0.11f, 0.20f, 1f);
 
-        [MenuItem("Tools/规则游戏/地图组件/⑱ 虚实平台（A/B 全局切换 + 受击开关）", false, 70)]
+        [MenuItem("Tools/规则游戏/地图组件/⑲ 虚实平台（A/B 全局切换 + 受击开关）", false, 70)]
         public static void Create()
         {
             Sprite sprite = AssetDatabase.LoadAssetAtPath<Sprite>(SpritePath);

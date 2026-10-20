@@ -45,7 +45,7 @@
 .common-panel {
     width: 600px; max-width: 88%;
     padding: 44px;
-    background-image: url("project://database/Assets/_Project/UI/Art/Launch/CommonPanel.png");
+    background-image: url("project://database/Assets/_Project/UI/Art/Common/Panel_Cream.png");
     -unity-slice-left: 20; -unity-slice-right: 20;
     -unity-slice-top: 20; -unity-slice-bottom: 20;
 }
@@ -56,7 +56,7 @@
     width: 26px; height: 26px;
     padding: 0; margin: 0; border-width: 0;
     background-color: transparent;
-    background-image: url("project://database/Assets/_Project/UI/Art/Launch/CommonClose.png");
+    background-image: url("project://database/Assets/_Project/UI/Art/Common/Button_Close.png");
 }
 .common-button {
     min-width: 130px; min-height: 46px;
@@ -65,7 +65,7 @@
     color: #433721;
     font-size: 20px;
     background-color: transparent;
-    background-image: url("project://database/Assets/_Project/UI/Art/Launch/CommonButton.png");
+    background-image: url("project://database/Assets/_Project/UI/Art/Common/Button_Cream.png");
     -unity-slice-left: 14; -unity-slice-right: 14;
     -unity-slice-top: 10; -unity-slice-bottom: 10;
 }

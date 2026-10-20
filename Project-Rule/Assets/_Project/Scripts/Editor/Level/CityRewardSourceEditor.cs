@@ -13,6 +13,7 @@ namespace RuleGame.Editor.Level
     /// <remarks>
     /// 三个载荷字段（Ability / Attribute / Relation）同时摆出来会让人以为都要填。
     /// 这里按 Kind 切换，并在底部写一句「当前奖励是什么」。
+    /// 生命 / 能量只画 Amount（上限提升多少）。
     /// </remarks>
     [CustomEditor(typeof(CityRewardSource))]
     public sealed class CityRewardSourceEditor : UnityEditor.Editor
@@ -69,7 +70,9 @@ namespace RuleGame.Editor.Level
         private static bool IsPlayerProgressReward(CityRewardKind kind)
             => kind == CityRewardKind.Ability
             || kind == CityRewardKind.RuleAttribute
-            || kind == CityRewardKind.RuleRelation;
+            || kind == CityRewardKind.RuleRelation
+            || kind == CityRewardKind.Health
+            || kind == CityRewardKind.Energy;
 
         private static string Describe(CityRewardSource source, CityRewardKind kind)
         {
@@ -88,8 +91,16 @@ namespace RuleGame.Editor.Level
                     return "当前奖励：解锁规则关系「" + RelationName(source.Relation)
                         + "」（该关系下已解锁的属性都会变得可用）。";
 
+                case CityRewardKind.Health:
+                    return "当前奖励：生命上限 +" + Mathf.Max(1, source.Amount)
+                        + "（当前生命同步抬高同一段，随存档保存）。";
+
+                case CityRewardKind.Energy:
+                    return "当前奖励：能量上限 +" + Mathf.Max(1, source.Amount)
+                        + "（当前能量同步抬高同一段，随存档保存）。";
+
                 default:
-                    return "当前奖励：" + TokenName(kind) + " × " + Mathf.Max(1, source.Amount) + "。";
+                    return "当前奖励：未识别的类型 " + (int)kind + "（不会发放）。";
             }
         }
 
@@ -117,15 +128,5 @@ namespace RuleGame.Editor.Level
             return index >= 0 && index < RelationNames.Length ? RelationNames[index] : relation.ToString();
         }
 
-        private static string TokenName(CityRewardKind kind)
-        {
-            switch (kind)
-            {
-                case CityRewardKind.Power: return "战斗力";
-                case CityRewardKind.Health: return "生命";
-                case CityRewardKind.Energy: return "能量";
-                default: return kind.ToString();
-            }
-        }
     }
 }

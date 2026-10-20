@@ -73,6 +73,7 @@ namespace RuleGame.Editor.UI
             }
             else Document(presenter.gameObject, panel, "PlayerVitals.uxml");
             Set(presenter, "_status", status);
+            EnsureUnlockOverlay(presenter.gameObject);
             var reference = new SerializedObject(presenter);
             if (reference.FindProperty("_status").objectReferenceValue != status)
                 throw new InvalidOperationException("生命/能量条玩家状态引用写入失败：" + scene.path);
@@ -111,6 +112,7 @@ namespace RuleGame.Editor.UI
                 Document(host, hudPanel, "PlayerVitals.uxml");
                 PlayerVitalsPresenter presenter = host.GetComponent<PlayerVitalsPresenter>() ?? host.AddComponent<PlayerVitalsPresenter>();
                 Set(presenter, "_status", status);
+                EnsureUnlockOverlay(host);
                 PrefabUtility.SaveAsPrefabAsset(runtime, RuntimePath);
             }
             finally { PrefabUtility.UnloadPrefabContents(runtime); }
@@ -168,6 +170,12 @@ namespace RuleGame.Editor.UI
             panel.sortingOrder = order;
             EditorUtility.SetDirty(panel);
             return panel;
+        }
+
+        /// <summary>解锁黑幕与生命条共用同一份 UIDocument，缺了就补上（老场景 / 白盒重建时不必手动拖）。</summary>
+        private static void EnsureUnlockOverlay(GameObject host)
+        {
+            if (host.GetComponent<AbilityUnlockOverlay>() == null) host.AddComponent<AbilityUnlockOverlay>();
         }
 
         private static void Document(GameObject host, PanelSettings panel, string layout)

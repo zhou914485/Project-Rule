@@ -19,7 +19,7 @@ namespace RuleGame.Gameplay.Travel
     /// <see cref="ImpactByContact"/>，把面板叫出来。压住型的两条（Press / Release）是空实现：
     /// 车站不是压板。</para>
     /// <para><b>复活点</b>：同一物体（或子物体）上挂 <see cref="PlayerSpawnPoint"/>，
-    /// 落人之后由 <see cref="NotifyArrived"/> 显式激活 —— 不依赖「走近 1.2 米」那条自动路径，
+    /// 落人之后由 <see cref="NotifyArrived"/> 显式激活 —— 不依赖「攻击存档点」那条路径，
     /// 传送完就一定是存档点。</para>
     /// </remarks>
     [DisallowMultipleComponent]

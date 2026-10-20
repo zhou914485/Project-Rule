@@ -156,12 +156,12 @@ namespace RuleGame.Editor.Level
             EditPrefab("CityReward", root =>
             {
                 var visual = Visual(root);
-                SetCenter(root, visual, Load("CityReward_Power"));
+                // 战斗力那条奖励已删（2026-10-20），预制体默认 Kind = 生命，默认贴图跟着换。
+                SetCenter(root, visual, Load("CityReward_Health"));
                 var source = root.GetComponent<CityRewardSource>();
                 var view = root.GetComponent<CityRewardSpriteView>() ?? root.AddComponent<CityRewardSpriteView>();
                 view.Source = source;
                 view.Target = visual;
-                view.Power = Load("CityReward_Power");
                 view.Health = Load("CityReward_Health");
                 view.Energy = Load("CityReward_Energy");
             });
