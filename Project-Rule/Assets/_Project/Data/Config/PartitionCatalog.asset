@@ -27,8 +27,8 @@ MonoBehaviour:
     AlwaysLoaded: 0
   - PartitionId: 3
     ScenePath: Assets/_Project/Scenes/Castle/castle.unity
-    Center: {x: -2.8026805, y: 3.423437}
-    Size: {x: 5.605361, y: 6.846874}
+    Center: {x: 67, y: 93.25}
+    Size: {x: 307, y: 62.5}
     LoadRadius: 0
     AlwaysLoaded: 0
   - PartitionId: 4
