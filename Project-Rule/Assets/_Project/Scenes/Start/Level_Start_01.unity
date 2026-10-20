@@ -88433,7 +88433,7 @@ MonoBehaviour:
     Size: {x: 54.09623, y: 28.473566}
   _priority: 0
   _profile: {fileID: 11400000, guid: fc2a647ebf9f1094f8ccb60f8d30d1de, type: 2}
-  _music: {fileID: 0}
+  _music: {fileID: 11400000, guid: 6659d23118684dcb8a6624aaf1697308, type: 2}
 --- !u!1 &1050984981
 GameObject:
   m_ObjectHideFlags: 0

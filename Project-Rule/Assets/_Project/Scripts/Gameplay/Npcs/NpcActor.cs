@@ -1,8 +1,10 @@
+using System;
 using System.Collections.Generic;
 using RuleGame.Gameplay.Dialogue;
 using RuleGame.Gameplay.Common;
 using RuleGame.Gameplay.Player;
 using RuleGame.Core.Rules;
+using RuleGame.Infrastructure.Persistence;
 using RuleGame.Infrastructure.Snapshot;
 using RuleGame.Infrastructure.Time;
 using UnityEngine;
@@ -14,6 +16,12 @@ namespace RuleGame.Gameplay.Npcs
     [RequireComponent(typeof(DialogueNpc), typeof(Rigidbody2D))]
     public sealed class NpcActor : MonoBehaviour, ISnapshotParticipant, IContactSwitch
     {
+        /// <summary>镇长资格发放的全局存档键；门 / 剧情都用它跨分区判断。</summary>
+        public const string MayorQualifiedKey = "npc.mayor.qualified";
+
+        /// <summary>镇长资格发放（每次 Play 只应有一次；读档恢复不发）。</summary>
+        public static event Action MayorQualified;
+
         [SerializeField] private NpcDefinition _definition;
         [SerializeField] private DialogueHost _host;
         [SerializeField] private SpriteRenderer _view;
@@ -67,7 +75,11 @@ namespace RuleGame.Gameplay.Npcs
 
         // 工程开着「不重载域」的播放选项时，静态表会跨 Play 会话残留；进 Play 前先清空。
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-        private static void ResetRegistry() => AllActors.Clear();
+        private static void ResetRegistry()
+        {
+            AllActors.Clear();
+            MayorQualified = null;
+        }
 
         private void OnEnable()
         {
@@ -276,7 +288,12 @@ namespace RuleGame.Gameplay.Npcs
             EnterIdle();
             if (!ready || _delivered) return;
             _delivered = true;
-            if (role == NpcRole.Mayor) _onQualificationGranted.Invoke();
+            if (role == NpcRole.Mayor)
+            {
+                WorldStateStore.SetBool(MayorQualifiedKey, true);
+                _onQualificationGranted.Invoke();
+                MayorQualified?.Invoke();
+            }
             else if (role == NpcRole.GearKeeper) _onBossRequested.Invoke();
             else if (role == NpcRole.Guard)
             {

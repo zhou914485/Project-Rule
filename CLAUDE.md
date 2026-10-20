@@ -296,6 +296,12 @@
   `DialogueHost.Active` 提供共享 Host 兜底，NPC Prefab 的 `_host` 可以留空；E 键近距离开播保留为兼容入口。
   ⚠️ 飞刀只对 Trigger 调 `IContactSwitch`，NPC 身体是实心碰撞体，要飞刀触发得加 Trigger 子物体。
   镇长资格同批改为直读 `PlayerProgress.HasAllUnlocks`（6 属性 × 5 关系 + 四项能力全解锁）。
+- ✅ **镇长资格门（通往魔王城，2026-10-21）** —— `Gameplay/Npcs/MayorQualificationGate.cs`：
+  镇长读完 `Talk2` → `PassKey` 后写 `WorldStateStore` 键 `npc.mayor.qualified` 并广播
+  `NpcActor.MayorQualified`；门订阅静态事件，**跨分区不依赖场景引用**。
+  `Open()` 再查一次 `PlayerProgress.HasAllUnlocks`，白盒把 `_abilityReady` 手动打开也不会提前开门；
+  读档 / 分区重载按同一个键恢复开门状态。配法：挂在头顶门上，`_gate` 留空自动取 `CityPathMotor`，
+  只靠碰撞体挡路时把碰撞体拖进 `_blocker`。现成实例已放在 `Level_Center` 的 `(-3.65, 31.5)`（预制体 `Prefabs/MayorGate.prefab`，默认宽 4m，`EndOffset (0,4)` 向上滑开）。
 - ✅ **楼层电梯 + 随车拉杆**（2026-10-19，独立预制体）—— `Prefabs/BrickCity/CityFloorLift.prefab`，
   生成菜单 `Tools/规则游戏/积木城/⑮ 楼层电梯（拉杆随车走）`。**旧的两站电梯一行没动**：
   `CityPathMotor` / `CityLift` / `CityLever` 原样，新组件是 `CityMultiStopLift` + `CityFloorLever`。
