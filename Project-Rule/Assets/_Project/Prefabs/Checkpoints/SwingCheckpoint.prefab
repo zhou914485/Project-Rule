@@ -174,10 +174,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8300608b28f8cc6c39148e8b134e635b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: RuleGame.Gameplay::RuleGame.Gameplay.Scene.PlayerSpawnPoint
-  _id: checkpoint
+  _id: purple-08
   _facing: 1
   _applyWhenStandalone: 1
-  _activateRadius: 1.4
+  _activateByAttack: 1
   _reactivate: 0
   _onActivated:
     m_PersistentCalls:
@@ -273,6 +273,7 @@ MonoBehaviour:
   FadeSeconds: 0.15
   CameraSettleSeconds: 0.2
   RequireGrounded: 1
+  LoopUntilInput: 1
 --- !u!1 &8176719422096620762
 GameObject:
   m_ObjectHideFlags: 0
