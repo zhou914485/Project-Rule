@@ -1861160,7 +1861160,7 @@ MonoBehaviour:
   _parts:
   - Center: {x: 114.086525, y: 41.97971}
     Size: {x: 41.307663, y: 24.746407}
-  _priority: 0
+  _priority: 10
   _profile: {fileID: 11400000, guid: 285998f1cb22417e94001b7e8876770a, type: 2}
   _music: {fileID: 11400000, guid: a021db1e9f5d44df9a732b8b7e60710d, type: 2}
 --- !u!4 &1747726388

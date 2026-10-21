@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc8eba0708fb20b419c0cb99a4662c19, type: 3}
   m_Name: Clockwork_Backdrop
   m_EditorClassIdentifier: RuleGame.Presentation::RuleGame.Presentation.SceneComponents.BackdropProfile
-  _sprite: {fileID: 5279668533400450551, guid: e84163c7ea5985c4c9191dd2d93663f3, type: 3}
+  _sprite: {fileID: 21300000, guid: e84163c7ea5985c4c9191dd2d93663f3, type: 3}
   _tint: {r: 1, g: 1, b: 1, a: 1}
   _clearColor: {r: 0.914, g: 0.788, b: 0.537, a: 1}
   _fadeSeconds: 0.35

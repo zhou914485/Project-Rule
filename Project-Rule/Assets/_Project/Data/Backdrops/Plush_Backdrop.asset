@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc8eba0708fb20b419c0cb99a4662c19, type: 3}
   m_Name: Plush_Backdrop
   m_EditorClassIdentifier: RuleGame.Presentation::RuleGame.Presentation.SceneComponents.BackdropProfile
-  _sprite: {fileID: -7722191048221920055, guid: d12ebb80526b29a4a980ed5dccc449b3, type: 3}
+  _sprite: {fileID: 21300000, guid: d12ebb80526b29a4a980ed5dccc449b3, type: 3}
   _tint: {r: 1, g: 1, b: 1, a: 1}
   _clearColor: {r: 0.867, g: 0.824, b: 0.91, a: 1}
   _fadeSeconds: 0.35

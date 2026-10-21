@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbf1da18131a34346b4c8920e2d41627, type: 3}
+  m_Name: Comic_Intro
+  m_EditorClassIdentifier: RuleGame.UI::RuleGame.UI.Comic.ComicSequence
+  _pages:
+  - _image: {fileID: 2800000, guid: 7365cba5127e36d46a7b6386aca1c3b1, type: 3}
+    _transition: 0
+    _autoAdvance: 1
+    _blackHold: 0.6
+  - _image: {fileID: 2800000, guid: 8e3f7145be6a0474d9f4a3d0f365336f, type: 3}
+    _transition: 0
+    _autoAdvance: 0
+    _blackHold: 0
+  - _image: {fileID: 2800000, guid: 13864f451bd086e489e10772413431d8, type: 3}
+    _transition: 0
+    _autoAdvance: 0
+    _blackHold: 0
+  - _image: {fileID: 2800000, guid: 8795893613d0a78498074d27605a5c20, type: 3}
+    _transition: 0
+    _autoAdvance: 0
+    _blackHold: 0
+  - _image: {fileID: 2800000, guid: f24c9f4dd6050784ab09c8c4cefcc645, type: 3}
+    _transition: 0
+    _autoAdvance: 0
+    _blackHold: 0
+  - _image: {fileID: 2800000, guid: 5c0c2158b11299b4a8f4abc05ab42184, type: 3}
+    _transition: 0
+    _autoAdvance: 1
+    _blackHold: 0.25
+  - _image: {fileID: 2800000, guid: b9ac538d9f7a9e142b57c91f9cce3a4c, type: 3}
+    _transition: 2
+    _autoAdvance: 0
+    _blackHold: 0
+  - _image: {fileID: 2800000, guid: a385e6d9e1389ac47a27f8e9faf0de49, type: 3}
+    _transition: 0
+    _autoAdvance: 0
+    _blackHold: 0
+  - _image: {fileID: 2800000, guid: f1d02482242d8e04fb530229db4f7bc4, type: 3}
+    _transition: 0
+    _autoAdvance: 0
+    _blackHold: 0
+  - _image: {fileID: 2800000, guid: a5fc50fd9cf67cf40a73324636fcd70e, type: 3}
+    _transition: 2
+    _autoAdvance: 0
+    _blackHold: 0
+  - _image: {fileID: 2800000, guid: 5a45d43c32c29384a946cdccefe200f5, type: 3}
+    _transition: 0
+    _autoAdvance: 0
+    _blackHold: 0
+  - _image: {fileID: 2800000, guid: f7018722fd2aaa14bb5d82be9de06595, type: 3}
+    _transition: 1
+    _autoAdvance: 0
+    _blackHold: 0
+  - _image: {fileID: 2800000, guid: 17affbb71a2256e4789a97c3d699eda1, type: 3}
+    _transition: 1
+    _autoAdvance: 0
+    _blackHold: 0
+  - _image: {fileID: 2800000, guid: cbf184cd9c49d614698f7eea90e49372, type: 3}
+    _transition: 0
+    _autoAdvance: 0
+    _blackHold: 0
+  - _image: {fileID: 2800000, guid: 3a5d9a1854d7ab540b4dd28983cd1096, type: 3}
+    _transition: 0
+    _autoAdvance: 0
+    _blackHold: 0
+  - _image: {fileID: 2800000, guid: 4a5f27db0772a3a44a259b3cfb0fc00e, type: 3}
+    _transition: 1
+    _autoAdvance: 0
+    _blackHold: 0
+  - _image: {fileID: 2800000, guid: 14b569b1b20af3143afd587e4164f69a, type: 3}
+    _transition: 0
+    _autoAdvance: 0
+    _blackHold: 0
+  - _image: {fileID: 2800000, guid: 08f1c241ec7a9804b9cfebea367a97e3, type: 3}
+    _transition: 0
+    _autoAdvance: 0
+    _blackHold: 0
+  - _image: {fileID: 2800000, guid: c059a0a1d3286e9468b1919a95d2f84e, type: 3}
+    _transition: 1
+    _autoAdvance: 0
+    _blackHold: 0

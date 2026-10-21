@@ -329069,7 +329069,7 @@ MonoBehaviour:
   _parts:
   - Center: {x: 159.2627, y: 28.756973}
     Size: {x: 32.998184, y: 16.3723}
-  _priority: 0
+  _priority: 10
   _profile: {fileID: 11400000, guid: cc67a2daa97049a49eb2d2e787d1d2f7, type: 2}
   _music: {fileID: 11400000, guid: 8244e68588f44a3ea3fb7be7fd8b3e61, type: 2}
 --- !u!4 &576932579

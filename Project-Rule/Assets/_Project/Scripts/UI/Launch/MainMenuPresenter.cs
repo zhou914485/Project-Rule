@@ -4,6 +4,7 @@ using RuleGame.Gameplay.Player;
 using RuleGame.Gameplay.Scene;
 using RuleGame.Infrastructure.Interaction;
 using RuleGame.Infrastructure.Time;
+using RuleGame.UI.Comic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
@@ -103,7 +104,10 @@ namespace RuleGame.UI.Launch
             _started = true;
             _viewport.AddToClassList("hidden");
             ReleasePause();
-            _gameRoot.StartStreaming();
+
+            // 开场漫画：播完（或被跳过）才真的开始加载世界。没有序列时 TryPlayIntro 返回 false，照旧直接开局。
+            ComicPlayer comic = ComicPlayer.EnsureInstance();
+            if (!comic.TryPlayIntro(_gameRoot.StartStreaming)) _gameRoot.StartStreaming();
         }
 
         /// <summary>

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbf1da18131a34346b4c8920e2d41627, type: 3}
+  m_Name: Comic_Ending
+  m_EditorClassIdentifier: RuleGame.UI::RuleGame.UI.Comic.ComicSequence
+  _pages:
+  - _image: {fileID: 2800000, guid: 70498bb80cc18a34193f0fc8f3b81d27, type: 3}
+    _transition: 2
+    _autoAdvance: 0
+    _blackHold: 0
+  - _image: {fileID: 2800000, guid: 897a1cd832263b341a4701b34a3425c0, type: 3}
+    _transition: 0
+    _autoAdvance: 0
+    _blackHold: 0
