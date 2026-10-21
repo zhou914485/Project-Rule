@@ -95,6 +95,11 @@ namespace RuleGame.Gameplay.Scene
         /// <summary>阶段变化（表现层 / 测试用）。</summary>
         public event System.Action<Phase> PhaseChanged;
 
+        /// <summary>Boss 被打死（运行时击杀发一次）。结尾演出的挂点。</summary>
+        /// <remarks>读档时 <c>Start</c> 直接把阶段拉成 <c>Cleared</c>，走的是另一条路、**不发**这个事件 ——
+        /// 所以结尾动画不会在读档时重播。</remarks>
+        public static event System.Action<BossEncounter> Cleared;
+
         // ==================================================================
         //  对外
         // ==================================================================
@@ -203,6 +208,7 @@ namespace RuleGame.Gameplay.Scene
             SetGate(_topGate, true);
 
             PhaseChanged?.Invoke(Current);
+            Cleared?.Invoke(this);
             _onCleared.Invoke();
         }
 

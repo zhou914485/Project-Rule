@@ -89,8 +89,20 @@ namespace RuleGame.Presentation.SceneComponents
             _front.enabled = false;
             _back.enabled = false;
 
-            if (_defaultProfile != null) Apply(_defaultProfile);
-            else Debug.LogWarning("[背景] 没有默认背景，开局会看到相机底色。", this);
+            if (_defaultProfile == null)
+            {
+                Debug.LogWarning("[背景] 没有默认背景，开局会看到相机底色。", this);
+            }
+            else if (_defaultProfile.Sprite == null)
+            {
+                // 2026-10-21 踩过：配置资产的 _sprite 用了错误的 fileID（内部 ID 而不是 21300000），
+                // 引用会静默变成 null，画面只剩相机底色 —— 这里必须说清楚是哪份配置。
+                Debug.LogError("[背景] 默认配置 " + _defaultProfile.name + " 的贴图引用是空的（_sprite 丢了）。", this);
+            }
+            else
+            {
+                Apply(_defaultProfile);
+            }
         }
 
         private void LateUpdate()

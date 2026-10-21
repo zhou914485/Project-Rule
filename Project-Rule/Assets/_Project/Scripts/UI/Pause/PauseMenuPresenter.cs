@@ -11,6 +11,7 @@ using RuleGame.Infrastructure.Persistence;
 using RuleGame.Infrastructure.Snapshot;
 using RuleGame.Infrastructure.Time;
 using RuleGame.Persistence;
+using RuleGame.UI.Comic;
 using RuleGame.UI.Launch;
 using RuleGame.UI.RuleWheel;
 using RuleGame.UI.Train;
@@ -78,6 +79,7 @@ namespace RuleGame.UI.Pause
         private RuleWheelPresenter _wheel;
         private TrainTravelPanel _train;
         private AbilityUnlockOverlay _abilityScreen;
+        private ComicPlayer _comic;
         private IDisposable _inputLease;
         private ConfirmKind _confirmKind;
         private Button _focusReturn;
@@ -241,6 +243,13 @@ namespace RuleGame.UI.Pause
             // 这里不让路的话，同一次 ESC 会先弹出暂停菜单、再把黑幕关掉。
             if (_abilityScreen == null) _abilityScreen = FindAnyObjectByType<AbilityUnlockOverlay>();
             if (_abilityScreen != null && _abilityScreen.IsShowing) return true;
+
+            // 剧情漫画（开场 / 结尾）自己拿着暂停，并把 ESC 当「跳过」用：
+            // 这里不让路的话，同一次 ESC 会先弹出暂停菜单、再被漫画当成跳过。
+            if (_comic == null) _comic = ComicPlayer.Instance != null
+                ? ComicPlayer.Instance
+                : FindAnyObjectByType<ComicPlayer>();
+            if (_comic != null && _comic.IsShowing) return true;
 
             return false;
         }

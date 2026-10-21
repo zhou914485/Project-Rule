@@ -628445,7 +628445,7 @@ MonoBehaviour:
   _parts:
   - Center: {x: -305.47333, y: -49.008717}
     Size: {x: 33.970184, y: 18.6399}
-  _priority: 0
+  _priority: 10
   _profile: {fileID: 11400000, guid: 7c398f92a5a743d2b299360b22dbb7be, type: 2}
   _music: {fileID: 11400000, guid: f391ed7cfb2643d29d8987b4229fe3a5, type: 2}
 --- !u!4 &1420256091
