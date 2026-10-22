@@ -32,7 +32,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 914246f20af2493479638496895f7ab1, type: 3}
   _variantSeed: 1013
   _chainVariants: 0
-  _spike: {fileID: 0}
+  _spike: {fileID: 21300000, guid: 4bc3dd5f7e5ea944fad353c7a04564dd, type: 3}
   _nineSlice:
   - {fileID: 21300000, guid: fd642edc6751433498c0b704bd8130c0, type: 3}
   - {fileID: 21300000, guid: 684d926b3b3d675499ca34ad0a019c9c, type: 3}

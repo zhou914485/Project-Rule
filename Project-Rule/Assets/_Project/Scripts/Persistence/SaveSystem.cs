@@ -134,6 +134,7 @@ namespace RuleGame.Persistence
                 data.ClaimedSourceIds = new List<string>(_progress.ClaimedSourceIds);
                 data.MaxHealthBonus   = _progress.MaxHealthBonus;
                 data.MaxEnergyBonus   = _progress.MaxEnergyBonus;
+                data.UnlockedAbilities = _progress.UnlockedAbilities;
             }
 
             return data;
@@ -162,6 +163,7 @@ namespace RuleGame.Persistence
 
                     // 宝箱记录与上限增量同样归零，否则上一局的永久成长会漏进这一局。
                     _progress?.RestoreProgress(null, 0f, 0f);
+                    _progress?.RestoreAbilities(0);
                     return;
                 }
 
@@ -176,10 +178,13 @@ namespace RuleGame.Persistence
                 // ② 解锁词条。
                 _unlocks?.RestoreUnlocks(data.UnlockedAttributes, data.UnlockedRelations);
 
-                // ②′ 永久成长：宝箱记录 + 生命 / 能量上限增量。
+                // ②′ 永久成长：宝箱记录 + 生命 / 能量上限增量 + 能力位。
                 //    必须在 ③ 之前 —— ApplyData 会按「当前上限」clamp 生命 / 能量，
                 //    上限还没抬起来的话，档里超出的那截会被削掉。
                 _progress?.RestoreProgress(data.ClaimedSourceIds, data.MaxHealthBonus, data.MaxEnergyBonus);
+                //    能力位同样在这里回灌：不落盘的话，宝箱给的能力重启一次就没了
+                //    （领取记录还在，箱子不会再发第二遍）。
+                _progress?.RestoreAbilities(data.UnlockedAbilities);
 
                 // ③ 玩家数值。
                 if (_player != null && data.PlayerStatus != null)

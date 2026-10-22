@@ -69,20 +69,23 @@ namespace RuleGame.Editor.Persistence
             public event System.Action<AttributeId, RelationId, float> OnCooldownStarted;
         }
 
-        /// <summary>内存永久成长存储（宝箱记录 + 生命 / 能量上限增量）。</summary>
+        /// <summary>内存永久成长存储（宝箱记录 + 生命 / 能量上限增量 + 能力位）。</summary>
         public sealed class MemoryProgressStore : IPlayerProgressStore
         {
             private readonly List<string> _claimed = new List<string>();
 
             public float MaxHealthBonus { get; private set; }
             public float MaxEnergyBonus { get; private set; }
+            public int UnlockedAbilities { get; private set; }
 
             public MemoryProgressStore(IEnumerable<string> claimed = null,
-                                       float healthBonus = 0f, float energyBonus = 0f)
+                                       float healthBonus = 0f, float energyBonus = 0f,
+                                       int unlockedAbilities = 0)
             {
                 if (claimed != null) _claimed.AddRange(claimed);
                 MaxHealthBonus = healthBonus;
                 MaxEnergyBonus = energyBonus;
+                UnlockedAbilities = unlockedAbilities;
             }
 
             public IReadOnlyCollection<string> ClaimedSourceIds => _claimed;
@@ -95,6 +98,8 @@ namespace RuleGame.Editor.Persistence
                 MaxHealthBonus = healthBonus;
                 MaxEnergyBonus = energyBonus;
             }
+
+            public void RestoreAbilities(int unlockedAbilities) => UnlockedAbilities = unlockedAbilities;
         }
 
         /// <summary>内存解锁词条存储（玩家解锁系统落地前的测试替身）。</summary>

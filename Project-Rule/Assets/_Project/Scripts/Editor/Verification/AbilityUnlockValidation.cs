@@ -28,6 +28,23 @@ namespace RuleGame.Editor.Verification
                 Check(!progress.IsUnlocked(AttributeId.Friction, RelationId.Revert), "摩擦开局锁着", ref passed);
                 Check(!progress.IsUnlocked(AttributeId.Gravity, RelationId.Nullify), "失效开局锁着", ref passed);
 
+                // 续档：必须关掉开发期「规则全开」，否则轮盘会放行玩家没解锁的词条
+                // （2026-10-21 修：StartStreaming 续档分支以前直接跳过 StartNewGame，开关一路留着）。
+                var continueObject = new GameObject("ContinueSessionValidation");
+                try
+                {
+                    var continueProgress = continueObject.AddComponent<PlayerProgress>();
+                    Check(continueProgress.IsUnlocked(AttributeId.Friction, RelationId.Nullify),
+                          "调试场景默认规则全开", ref passed);
+                    continueProgress.ContinueFromSave();
+                    Check(!continueProgress.IsUnlocked(AttributeId.Friction, RelationId.Nullify),
+                          "续档关掉开发期全开（摩擦×失效回到锁定）", ref passed);
+                }
+                finally
+                {
+                    Object.DestroyImmediate(continueObject);
+                }
+
                 int attributeEvents = 0, relationEvents = 0;
                 progress.AttributeUnlocked += _ => attributeEvents++;
                 progress.RelationUnlocked += _ => relationEvents++;
@@ -123,6 +140,13 @@ namespace RuleGame.Editor.Verification
                     runtimePlayer.SetUnlockedAbilities(PlayerAbility.All);
                     var unlocked = (MotionTuning)build.Invoke(runtimePlayer, null);
                     Check(unlocked.MaxAirJumps == 1 && unlocked.WallClimbEnabled, "解锁后打包参数恢复二段跳 / 贴墙", ref passed);
+
+                    // 读档回灌能力位（2026-10-21 新增：能力位随档存取）。
+                    var prefabProgressInContents = runtimePlayer.GetComponent<PlayerProgress>();
+                    var progressStore = (RuleGame.Infrastructure.Persistence.IPlayerProgressStore)prefabProgressInContents;
+                    var wanted = PlayerAbility.WallClimb | PlayerAbility.Throw;
+                    progressStore.RestoreAbilities((int)wanted);
+                    Check(runtimePlayer.UnlockedAbilities == wanted, "读档能力位回灌到玩家", ref passed);
                 }
                 finally
                 {

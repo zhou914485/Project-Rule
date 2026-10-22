@@ -368,6 +368,13 @@
   验证：菜单 `规则游戏/验证/能力与词条解锁` **42 项**（含黑幕元素与预制体接线两项）；
   版式示意图 `Doc/UI预览/解锁黑幕_预览.png`（按 USS 数值画的黑底占位，不是引擎截图）。
 
+- ✅ **续档不再绕过解锁（2026-10-21 修）** —— `GameRoot.StartStreaming` 的续档分支以前直接跳过
+  `StartNewGame()`，于是预制体上的开发期开关 `_unlockAllRulesForDevelopment`（默认 `true`）一路留到正式流程，
+  规则轮盘能释放玩家没解锁的词条。现在续档走 `PlayerProgress.ContinueFromSave()`：只关开发期开关、不动存档回灌的账本。
+  同批修掉两个会让「解锁失效」的坑：① `PlayerProgress.Awake` 不再无条件重置词条
+  （`PersistenceDriver` 执行序 −90 先回灌，旧写法会在紧接着的 Awake 里把「摩擦 / 失效……」清回 重力 × 反转）；
+  ② **能力位进存档**（`SaveData.UnlockedAbilities` + `IPlayerProgressStore`），宝箱给的能力重启后不再丢。
+
 ## 已定设计决策（2026-10-12，合并 `mortis-sys/main` 时定）
 
 | # | 决策 | 理由 / 代价 |

@@ -15,7 +15,7 @@ MonoBehaviour:
   Attribute: 4
   Relation: 3
   Duration: 10
-  ActivationCost: 20
+  ActivationCost: 0
   Cooldown: 0
-  DisplayName: 增强攻击与回血
-  Description:
+  DisplayName: "\u589E\u5F3A\u653B\u51FB\u4E0E\u56DE\u8840"
+  Description: 

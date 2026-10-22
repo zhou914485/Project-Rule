@@ -45,6 +45,12 @@ namespace RuleGame.Editor.Level
         private const string IceMaterialPath = "Assets/_Project/Data/Config/Ice_Surface.physicsMaterial2D";
         private const int IceSortingOrder = 0;
 
+        /// <summary>危险格瓦片：开始场景的刺就是它，复用刺时按它的伤害配置补 HazardField。</summary>
+        private const string SpikeTilePath = "Assets/_Project/Art/Tiles/Spike_Logic.asset";
+        private const float SpikeDamage = 10f;
+        private const float SpikeKnockback = 6f;
+        private const float SpikeRepeatInterval = 0.5f;
+
         private enum Face { Up, Down, Left, Right }
 
         [MenuItem("Tools/规则游戏/铺装美术/① 全部（地板 + 墙 + 薄板 + 内部） %#g", false, 10)]
@@ -932,6 +938,123 @@ namespace RuleGame.Editor.Level
             Debug.Log($"[铺装] 内部补齐 {filled} 格（外露面仍由 ①~⑤ 负责）。");
         }
 
+        /// <summary>
+        /// 只铺刺：按 <see cref="HazardField"/> 的危险格铺刺美术，**不动**其它已经铺好的墙皮。
+        /// </summary>
+        /// <remarks>
+        /// <para>给「已经有美术、但刺还没铺」的场景用（魔王城复用开始场景的刺就是这条路径）。
+        /// 整张重铺（菜单 ①）会清空 Art 层重新生成，手工修过的构件会被覆盖。</para>
+        /// <para>场景没有 <see cref="HazardField"/> 时，只要逻辑层真的画了 <c>Spike_Logic</c>，
+        /// 就按开始场景的参数补一个（伤害 10 / 击退 6 / 0.5 秒重复）—— 开始场景的刺之所以会扎人，
+        /// 靠的就是这个组件，只铺图不补它等于铺了一层装饰。</para>
+        /// </remarks>
+        [MenuItem("Tools/规则游戏/铺装美术/⑩ 只铺刺（危险格，不改其它美术）", false, 17)]
+        public static void DressSpikesOnly()
+        {
+            var selected = Selection.activeGameObject;
+            if (selected == null) { Debug.LogError("[铺装] 请先在 Hierarchy 里选中逻辑 Grid 物体。"); return; }
+
+            var root = ResolveRoot(selected).gameObject;
+            var tilemap = FindLogicTilemap(root);
+            if (tilemap == null) { Debug.LogError("[铺装] 选中的物体下面找不到 Tilemap。"); return; }
+
+            var hazards = EnsureSpikeHazardField(tilemap);
+            if (hazards == null)
+            {
+                Debug.LogWarning("[铺装] 逻辑层上没有 HazardField，也没画 " + SpikeTilePath + "，没有刺可铺。");
+                return;
+            }
+
+            var region = TileRegion.FindFor(tilemap);
+            var artRoot = EnsureArtRoot(root);
+
+            // 只清上一次铺的刺，其它构件（墙皮 / 内部补块 / 跳穿平台）原样保留。
+            for (int i = artRoot.childCount - 1; i >= 0; i--)
+            {
+                var child = artRoot.GetChild(i);
+                if (child != null && child.name.StartsWith("Spike_", System.StringComparison.Ordinal))
+                    Undo.DestroyObjectImmediate(child.gameObject);
+            }
+
+            var grid = tilemap.layoutGrid;
+            Vector3 cell = grid.cellSize;
+            var solid = CollectSolidCells(tilemap, hazards);
+            var kits = LoadKits();
+            if (kits == null) return;
+
+            int count = DressSpikes(artRoot, hazards, tilemap, grid, cell,
+                                    c => region != null ? region.ResolveKit(grid.CellToWorld(c)) : null,
+                                    solid, kits.DefaultSpikes);
+
+            EditorUtility.SetDirty(tilemap);
+            if (!Application.isPlaying)
+                UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(tilemap.gameObject.scene);
+
+            Debug.Log($"[铺装] 只铺刺完成：{count} 个构件" +
+                      $"（区域套件：{(region != null && region.DefaultKit != null ? region.DefaultKit.DisplayName : "未配")}）。");
+        }
+
+        /// <summary>
+        /// 逻辑层没有 <see cref="HazardField"/> 时，只要画了刺瓦片就按开始场景的参数补一个。
+        /// </summary>
+        private static HazardField EnsureSpikeHazardField(Tilemap tilemap)
+        {
+            var field = tilemap.GetComponent<HazardField>();
+            if (field != null) return field;
+
+            var spike = AssetDatabase.LoadAssetAtPath<TileBase>(SpikeTilePath);
+            if (spike == null) return null;
+
+            bool used = false;
+            var bounds = tilemap.cellBounds;
+            for (int x = bounds.xMin; x < bounds.xMax && !used; x++)
+                for (int y = bounds.yMin; y < bounds.yMax && !used; y++)
+                    used = tilemap.GetTile(new Vector3Int(x, y, 0)) == spike;
+
+            if (!used) return null;
+
+            var added = Undo.AddComponent<HazardField>(tilemap.gameObject);
+            var so = new SerializedObject(added);
+            var hazards = so.FindProperty("_hazards");
+            hazards.arraySize = 1;
+            var entry = hazards.GetArrayElementAtIndex(0);
+            entry.FindPropertyRelative("Tile").objectReferenceValue = spike;
+            entry.FindPropertyRelative("Damage").floatValue = SpikeDamage;
+            entry.FindPropertyRelative("Knockback").floatValue = SpikeKnockback;
+            entry.FindPropertyRelative("SelfArt").boolValue = false;
+            so.FindProperty("_repeatInterval").floatValue = SpikeRepeatInterval;
+            so.ApplyModifiedPropertiesWithoutUndo();
+            EditorUtility.SetDirty(added);
+
+            Debug.Log($"[铺装] 逻辑层没有 HazardField，已按开始场景的刺补齐：伤害 {SpikeDamage} / " +
+                      $"击退 {SpikeKnockback} / {SpikeRepeatInterval} 秒重复。");
+            return added;
+        }
+
+        /// <summary>
+        /// 收集实心几何格（刺只用它判断地刺 / 顶刺）。
+        /// </summary>
+        /// <remarks>与九宫格铺装同一套口径：跳过刺、跳穿平台、没登记的 None 碰撞瓦片。</remarks>
+        private static HashSet<Vector3Int> CollectSolidCells(Tilemap tilemap, HazardField hazards)
+        {
+            var secretWalls = tilemap.GetComponent<SecretWallField>();
+            var solid = new HashSet<Vector3Int>();
+            var bounds = tilemap.cellBounds;
+            for (int x = bounds.xMin; x < bounds.xMax; x++)
+                for (int y = bounds.yMin; y < bounds.yMax; y++)
+                {
+                    var p = new Vector3Int(x, y, 0);
+                    var tile = tilemap.GetTile(p);
+                    if (tile == null) continue;
+                    if (hazards != null && hazards.IsHazardCell(p)) continue;
+                    if (tile is OneWayTile) continue;
+                    bool isSecret = secretWalls != null && secretWalls.IsSecretCell(p);
+                    if (!isSecret && tile is Tile bare && bare.colliderType == Tile.ColliderType.None) continue;
+                    solid.Add(p);
+                }
+            return solid;
+        }
+
         private static int FillInterior(Transform artRoot, Tilemap tilemap, Kit kits)
         {
             // 旧的补块先清掉，重复执行不会叠。
@@ -1243,12 +1366,17 @@ namespace RuleGame.Editor.Level
 
                     var go = new GameObject("Spike_" + sprite.name);
                     go.transform.SetParent(artRoot, false);
-                    go.transform.position = grid.CellToWorld(c);     // 左下角对齐，和方块一致
 
+                    // 刺图的轴心不统一：荆棘是「底边中轴」，新交付的毛绒 / 发条刺是「中心」。
+                    // 直接按格子左下角放，中心轴心的图会偏出半格，所以先把 pivot 换算成世界偏移。
                     Vector3 size = sprite.bounds.size;
-                    go.transform.localScale = new Vector3(
+                    Vector3 scale = new Vector3(
                         cell.x / Mathf.Max(size.x, 0.0001f),
                         cell.y / Mathf.Max(size.y, 0.0001f), 1f);
+                    Vector2 pivot = sprite.pivot / Mathf.Max(sprite.pixelsPerUnit, 0.0001f);
+                    go.transform.position = grid.CellToWorld(c)                       // 左下角对齐
+                                            + new Vector3(pivot.x * scale.x, pivot.y * scale.y, 0f);
+                    go.transform.localScale = scale;
 
                     var sr = go.AddComponent<SpriteRenderer>();
                     sr.sprite = sprite;

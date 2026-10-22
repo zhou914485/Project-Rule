@@ -325,7 +325,7 @@ namespace RuleGame.Editor.Persistence
 
             var storage10 = new SaveTestDoubles.MemoryStorage();
             var progress10 = new SaveTestDoubles.MemoryProgressStore(
-                new[] { "Chest_Health_01", "Chest_Energy_02" }, 15f, 25f);
+                new[] { "Chest_Health_01", "Chest_Energy_02" }, 15f, 25f, unlockedAbilities: 5);
             var rules10 = new RuleSystem(catalog);
             var flow10 = new LevelFlow();
             var save10 = new SaveSystem(rules10, flow10, storage10, null, null, progress10);
@@ -339,6 +339,8 @@ namespace RuleGame.Editor.Persistence
                     Mathf.Approximately(captured10.MaxHealthBonus, 15f)
                     && Mathf.Approximately(captured10.MaxEnergyBonus, 25f),
                     $"{captured10.MaxHealthBonus}/{captured10.MaxEnergyBonus}");
+            h.Check("能力位进入采集", captured10.UnlockedAbilities == 5,
+                    $"{captured10.UnlockedAbilities}");
 
             save10.Save();
 
@@ -354,6 +356,8 @@ namespace RuleGame.Editor.Persistence
                     Mathf.Approximately(progress10b.MaxHealthBonus, 15f)
                     && Mathf.Approximately(progress10b.MaxEnergyBonus, 25f),
                     $"{progress10b.MaxHealthBonus}/{progress10b.MaxEnergyBonus}");
+            h.Check("能力位随档恢复", progress10b.UnlockedAbilities == 5,
+                    $"{progress10b.UnlockedAbilities}");
 
             // 新游戏必须把上一局的永久成长清掉（否则半血重开）。
             save10b.Apply(null);
@@ -363,6 +367,8 @@ namespace RuleGame.Editor.Persistence
                     Mathf.Approximately(progress10b.MaxHealthBonus, 0f)
                     && Mathf.Approximately(progress10b.MaxEnergyBonus, 0f),
                     $"{progress10b.MaxHealthBonus}/{progress10b.MaxEnergyBonus}");
+            h.Check("新游戏清空能力位", progress10b.UnlockedAbilities == 0,
+                    $"{progress10b.UnlockedAbilities}");
 
             // ==============================================================
             //  清理

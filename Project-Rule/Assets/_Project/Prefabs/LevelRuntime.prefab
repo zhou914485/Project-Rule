@@ -101,7 +101,6 @@ GameObject:
   - component: {fileID: 5714247369272765345}
   - component: {fileID: 4369594674464734835}
   - component: {fileID: 2895808581285521288}
-  - component: {fileID: 4815626553428127705}
   - component: {fileID: 6857249214650424030}
   - component: {fileID: 6048151562633117209}
   - component: {fileID: 3563518010594046544}
@@ -208,6 +207,8 @@ MonoBehaviour:
   _jumpBuffer: 0.12
   _dashSpeed: 26
   _dashDuration: 0.18
+  _dashRampUp: 0.05
+  _dashRampDown: 0.06
   _dashExitSpeedScale: 0.35
   _maxDashes: 1
   _dashCooldown: 0.25
@@ -232,6 +233,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   _knockbackDecay: 30
+  _hurtImpactPause: 0.055
+  _hurtRecovery: 0.22
+  _hurtKnockbackDecay: 20
   _pushStrength: 60
   _pushProbeDistance: 0.15
   _unlockedAbilities: -1
@@ -285,30 +289,6 @@ MonoBehaviour:
   _invincibleSeconds: 0.5
   _knockbackResistance: 0
   _knockbackLift: 0.4
---- !u!114 &4815626553428127705
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 701508034279411341}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 368ffb84407f475abefc2a0f594c6c17, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: RuleGame.Development::RuleGame.Development.P3.P3DebugOverlay
-  _status: {fileID: 0}
-  _damageable: {fileID: 0}
-  _player: {fileID: 0}
-  _combat: {fileID: 1882199678892831726}
-  _rules: {fileID: 196069887920428972}
-  _testDamage: 10
-  _testKnockback: 6
-  _attackFrom: {fileID: 0}
-  _velocityLogInterval: 0.1
-  _detectFrozenMotion: 1
-  _frozenSpeedThreshold: 1
-  _frozenLogInterval: 0.5
 --- !u!70 &6857249214650424030
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -719,6 +699,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: RuleGame.UI::RuleGame.UI.Pause.PauseMenuPresenter
   _player: {fileID: 4369594674464734835}
   _mainMenu: {fileID: 0}
+  _fadeBehaviour: {fileID: 0}
 --- !u!1 &3221797611552797144
 GameObject:
   m_ObjectHideFlags: 0
@@ -1454,7 +1435,6 @@ GameObject:
   - component: {fileID: 1072998228990704747}
   - component: {fileID: 196069887920428972}
   - component: {fileID: 1882199678892831726}
-  - component: {fileID: 9086114315502287884}
   m_Layer: 0
   m_Name: Systems
   m_TagString: Untagged
@@ -1502,20 +1482,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfdebf9b3dd503c679261d1873e26842, type: 3}
   m_Name: 
   m_EditorClassIdentifier: RuleGame.Gameplay::RuleGame.Gameplay.Combat.CombatSystem
---- !u!114 &9086114315502287884
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8918909928772190229}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6f4752ed3b7f2f408b07131ec0fcebe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: RuleGame.Core::RuleGame.Core.Rules.Debugging.RuleSystemTestInput
-  _attribute: 0
-  _relation: 0
 --- !u!1001 &5529022413425279261
 PrefabInstance:
   m_ObjectHideFlags: 0

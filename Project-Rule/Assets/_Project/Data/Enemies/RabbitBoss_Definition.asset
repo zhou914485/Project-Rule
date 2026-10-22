@@ -15,18 +15,50 @@ MonoBehaviour:
   Kind: 3
   DisplayName: "\u6BDB\u7ED2\u5154\u5B50 Boss"
   BodySize: {x: 2, y: 3}
-  Health: 600
-  Damage: 24
-  ContactDamage: 1
+  Health: 250
+  Damage: 5
+  ContactDamage: 0
   ContactInterval: 0.4
   ContactPadding: 0.05
   Energy: 100
+  EnergyPerHit: 4
   EnergyRegen: 2
   RuleAttribute: 0
   RuleRelation: 4
   MoveSpeed: 3.8
   AttackRange: 3.5
   AttackCooldown: 0.65
+  ProjectileBudget: 192
+  ProjectileLifetime: 7
+  BrickGroundWaves: 1
+  BrickWaveInterval: 0.24
+  BrickSlamRange: 0
+  BrickThrowCount: 1
+  BrickThrowSpread: 54
+  BrickThrowSpeed: 9
+  RabbitLobCount: 11
+  RabbitGroundVolleyCount: 4
+  RabbitGroundMagicInterval: 16
+  RabbitGroundFanCount: 7
+  RabbitGroundFanSpread: 60
+  RabbitGroundFanSpeed: 14
+  RabbitGroundArcStagger: 2.4
+  RabbitLandingSpread: 1.05
+  RabbitFanCount: 11
+  RabbitFanSpread: 110
+  BatVolleyWaves: 4
+  BatFanCount: 5
+  BatVolleyInterval: 0.25
+  BatFanSpread: 48
+  BatRingCount: 0
+  ClockTimeRuleInterval: 0
+  ClockExtraBarrageEnabled: 0
+  ClockBurstCount: 0
+  ClockBurstInterval: 1.6
+  ClockBurstWarning: 0.45
+  ClockBurstSpeed: 8
+  ClockBeamWidth: 0.1
+  ClockBeamWidthStep: 0.08
   BossRestDuration: 0.4
   ClockBeamVolleysBeforeRest: 2
   BrickAdvanceDuration: 0.9
@@ -38,6 +70,7 @@ MonoBehaviour:
   ClockChargeCooldown: 7
   ClockBeamWarning: 0.7
   ClockBeamDuration: 0.35
+  ClockBeamMaxSweepAngle: 90
   ClockBeamSpread: 14
   RabbitBurrowDuration: 0.65
   RabbitBurrowSpeedMultiplier: 3.5
@@ -47,6 +80,7 @@ MonoBehaviour:
   RabbitBurstInterval: 0.2
   RabbitRepositionDuration: 0.65
   RabbitAimLockLead: 0.35
+  RabbitThrowArcHeight: 1
   RabbitAirHeight: 3
   RabbitAirMoveDuration: 0.9
   RabbitAirSpeedMultiplier: 2
@@ -80,7 +114,6 @@ MonoBehaviour:
   ImpactFraction: 0.6
   RabbitCycle: 14
   RabbitThrowInterval: 1
-  RabbitThrowArcHeight: 1
   ClockHourInterval: 12
   ClockMinuteInterval: 6
   ClockSecondInterval: 3
@@ -89,18 +122,43 @@ MonoBehaviour:
   ClockSecondRotationPeriod: 3
   ClockCoreWindow: 3
   ClockCoreHealth: 15
-  ProjectileLifetime: 7
-  RabbitFanCount: 11
-  RabbitLandingSpread: 1.05
-  RabbitLobCount: 11
-  RabbitGroundVolleyCount: 4
-  RabbitGroundMagicInterval: 16
-  RabbitGroundFanCount: 7
-  RabbitGroundFanSpread: 60
-  RabbitGroundFanSpeed: 14
-  RabbitGroundArcStagger: 2.4
-  RabbitFanSpread: 110
-  ProjectileBudget: 192
+  MinionSenseRange: 6
+  MinionPatrolDistance: 3
+  MinionIgnoreDuration: 3
+  MinionLeashRange: 8
+  MinionTargetMemory: 1.5
+  MinionStaggerThreshold: 12
+  MinionHurtDuration: 0.25
+  MinionPreferredRange: 4
+  MinionAimLockFraction: 0.25
+  MinionNavigationEnabled: 1
+  MinionJumpHeight: 1.6
+  MinionMaxDrop: 2.5
+  MinionNavigationSpacing: 0.5
+  MinionRepathInterval: 0.65
+  MinionReassembles: 0
+  MinionRespawnDelay: 7
+  MinionFuseDuration: 1
+  MinionExplosionRadius: 2.5
+  MinionHopInterval: 0.5
+  MinionHopHeight: 2
+  MinionHighHopHeight: 3.2
+  MinionMouseRange: 8
+  MinionMouseCooldown: 3
+  MinionHugDuration: 3
+  MinionHugTickInterval: 1
+  MinionSkillInterval: 5
+  MinionSlideDuration: 1.2
+  MinionDashMultiplier: 3
+  MinionProjectileSpeed: 7
+  RadiationRadius: 8
+  RadiationWarning: 0.75
+  RadiationDuration: 4
+  RadiationRest: 2
+  RadiationHitInterval: 0.5
+  TopRestitution: 0.9
+  TopImpactCooldown: 0.12
+  TopInitialDirection: 1
   Timings:
   - Action: Pop
     Duration: 3.625

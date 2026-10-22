@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
@@ -195,3 +196,4 @@ namespace RuleGame.Core.Rules.Debugging
         }
     }
 }
+#endif

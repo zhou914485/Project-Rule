@@ -15,7 +15,7 @@ MonoBehaviour:
   Attribute: 5
   Relation: 4
   Duration: 10
-  ActivationCost: 20
+  ActivationCost: 0
   Cooldown: 0
   DisplayName: "\u56E0\u679C\u524A\u5F31\uFF1A\u6548\u679C\u51CF\u5F31"
   Description: "\u56E0\u679C\u6548\u679C\u51CF\u5F31"

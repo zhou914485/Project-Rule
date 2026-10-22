@@ -15,7 +15,7 @@ MonoBehaviour:
   Attribute: 4
   Relation: 1
   Duration: 10
-  ActivationCost: 20
+  ActivationCost: 0
   Cooldown: 0
-  DisplayName: 攻击与回血都失效
-  Description:
+  DisplayName: "\u653B\u51FB\u4E0E\u56DE\u8840\u90FD\u5931\u6548"
+  Description: 

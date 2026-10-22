@@ -32,9 +32,19 @@ namespace RuleGame.Infrastructure.Persistence
         float MaxEnergyBonus { get; }
 
         /// <summary>
+        /// 已解锁的能力位（<c>PlayerAbility</c> 的整数位标记，0 = 全锁）。
+        /// </summary>
+        /// <remarks>用 <c>int</c> 而不是枚举：本接口在 Infrastructure 层，不认识 Gameplay 的 <c>PlayerAbility</c>。</remarks>
+        int UnlockedAbilities { get; }
+
+        /// <summary>
         /// 读档后整体替换：领取记录 + 上限增量。
         /// </summary>
         /// <remarks>实现方负责把增量回灌给玩家的 <c>EntityStatus</c>（存的是绝对值，不是叠加量）。</remarks>
         void RestoreProgress(IReadOnlyCollection<string> claimedSourceIds, float healthBonus, float energyBonus);
+
+        /// <summary>读档后整体覆盖能力位（整数位标记；0 = 全锁）。</summary>
+        /// <remarks>回灌不发「刚解锁」事件 —— 读档不是获得，不该弹解锁黑幕。</remarks>
+        void RestoreAbilities(int unlockedAbilities);
     }
 }

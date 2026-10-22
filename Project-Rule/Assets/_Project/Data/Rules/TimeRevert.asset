@@ -15,7 +15,7 @@ MonoBehaviour:
   Attribute: 1
   Relation: 0
   Duration: 10
-  ActivationCost: 20
+  ActivationCost: 0
   Cooldown: 0
   DisplayName: 
   Description: 

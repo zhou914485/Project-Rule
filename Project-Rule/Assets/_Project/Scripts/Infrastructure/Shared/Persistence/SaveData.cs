@@ -47,6 +47,14 @@ namespace RuleGame.Infrastructure.Persistence
         /// <summary>能量上限的累计奖励增量（宝箱）。0 = 没领过。</summary>
         public float MaxEnergyBonus;
 
+        /// <summary>已解锁的能力位（<c>PlayerAbility</c> 的整数位标记，0 = 全锁）。</summary>
+        /// <remarks>
+        /// ⚠️ v1 之后追加的字段：旧档没有它时 JsonUtility 给 0（全锁）。
+        /// 剑那类「世界状态会重新发一次能力」的机关不受影响；宝箱给的能力不会自动补回来
+        /// （领取记录还在，箱子不会重发）—— 开发期旧档丢一次能力，重新领取即可。
+        /// </remarks>
+        public int UnlockedAbilities;
+
         /// <summary>跨关卡仍激活的规则 Id（如 "gravity.revert"）。重开关卡后重新应用。</summary>
         public List<string> ActiveRuleIds = new List<string>();
 

@@ -17,16 +17,48 @@ MonoBehaviour:
   BodySize: {x: 2.5, y: 2.8}
   Health: 300
   Damage: 24
-  ContactDamage: 1
+  ContactDamage: 0
   ContactInterval: 0.4
   ContactPadding: 0.05
   Energy: 100
+  EnergyPerHit: 4
   EnergyRegen: 2
   RuleAttribute: 0
   RuleRelation: 1
   MoveSpeed: 7.2
   AttackRange: 5
   AttackCooldown: 0.6
+  ProjectileBudget: 256
+  ProjectileLifetime: 7
+  BrickGroundWaves: 1
+  BrickWaveInterval: 0.24
+  BrickSlamRange: 0
+  BrickThrowCount: 1
+  BrickThrowSpread: 54
+  BrickThrowSpeed: 9
+  RabbitLobCount: 1
+  RabbitGroundVolleyCount: 1
+  RabbitGroundMagicInterval: 8
+  RabbitGroundFanCount: 0
+  RabbitGroundFanSpread: 60
+  RabbitGroundFanSpeed: 14
+  RabbitGroundArcStagger: 1
+  RabbitLandingSpread: 1.1
+  RabbitFanCount: 3
+  RabbitFanSpread: 0
+  BatVolleyWaves: 6
+  BatFanCount: 13
+  BatVolleyInterval: 0.18
+  BatFanSpread: 96
+  BatRingCount: 24
+  ClockTimeRuleInterval: 0
+  ClockExtraBarrageEnabled: 0
+  ClockBurstCount: 0
+  ClockBurstInterval: 1.6
+  ClockBurstWarning: 0.45
+  ClockBurstSpeed: 8
+  ClockBeamWidth: 0.1
+  ClockBeamWidthStep: 0.08
   BossRestDuration: 0.35
   ClockBeamVolleysBeforeRest: 2
   BrickAdvanceDuration: 0.9
@@ -37,6 +69,8 @@ MonoBehaviour:
   ClockChargeSpeedMultiplier: 3.5
   ClockChargeCooldown: 7
   ClockBeamWarning: 0.7
+  ClockBeamDuration: 0.35
+  ClockBeamMaxSweepAngle: 90
   ClockBeamSpread: 14
   RabbitBurrowDuration: 1
   RabbitBurrowSpeedMultiplier: 2.8
@@ -44,6 +78,13 @@ MonoBehaviour:
   RabbitEscapeDistance: 2.8
   RabbitBurstCount: 2
   RabbitBurstInterval: 0.35
+  RabbitRepositionDuration: 2
+  RabbitAimLockLead: 0.35
+  RabbitThrowArcHeight: 1
+  RabbitAirHeight: 2.4
+  RabbitAirMoveDuration: 1.8
+  RabbitAirSpeedMultiplier: 1.6
+  RabbitFanAngle: 18
   PreferredDistance: 5
   SpacingTolerance: 0.6
   RangedRange: 15
@@ -63,6 +104,10 @@ MonoBehaviour:
   BatEvadeCooldown: 1.2
   BatEvadeDuration: 0.45
   BatRecoverDuration: 0.25
+  BatApproachDistance: 3.6
+  BatApproachHeight: 0.8
+  BatApproachDuration: 0.9
+  BatApproachSpeedMultiplier: 1.4
   BatRestHeightRatio: 0.8
   BatRestPatrolDistance: 2.5
   BatRestSpeedMultiplier: 0.85
@@ -70,18 +115,50 @@ MonoBehaviour:
   RabbitCycle: 20
   RabbitThrowInterval: 2
   ClockHourInterval: 12
+  ClockMinuteInterval: 6
+  ClockSecondInterval: 3
+  ClockHourRotationPeriod: 24
+  ClockMinuteRotationPeriod: 12
+  ClockSecondRotationPeriod: 6
   ClockCoreWindow: 3
   ClockCoreHealth: 15
-  BatApproachSpeedMultiplier: 1.4
-  BatApproachDuration: 0.9
-  ProjectileLifetime: 7
-  BatApproachDistance: 3.6
-  BatVolleyWaves: 6
-  BatFanCount: 13
-  BatVolleyInterval: 0.18
-  BatFanSpread: 96
-  BatRingCount: 24
-  ProjectileBudget: 256
+  MinionSenseRange: 6
+  MinionPatrolDistance: 3
+  MinionIgnoreDuration: 3
+  MinionLeashRange: 8
+  MinionTargetMemory: 1.5
+  MinionStaggerThreshold: 12
+  MinionHurtDuration: 0.25
+  MinionPreferredRange: 4
+  MinionAimLockFraction: 0.25
+  MinionNavigationEnabled: 1
+  MinionJumpHeight: 1.6
+  MinionMaxDrop: 2.5
+  MinionNavigationSpacing: 0.5
+  MinionRepathInterval: 0.65
+  MinionReassembles: 0
+  MinionRespawnDelay: 7
+  MinionFuseDuration: 1
+  MinionExplosionRadius: 2.5
+  MinionHopInterval: 0.5
+  MinionHopHeight: 2
+  MinionHighHopHeight: 3.2
+  MinionMouseRange: 8
+  MinionMouseCooldown: 3
+  MinionHugDuration: 3
+  MinionHugTickInterval: 1
+  MinionSkillInterval: 5
+  MinionSlideDuration: 1.2
+  MinionDashMultiplier: 3
+  MinionProjectileSpeed: 7
+  RadiationRadius: 8
+  RadiationWarning: 0.75
+  RadiationDuration: 4
+  RadiationRest: 2
+  RadiationHitInterval: 0.5
+  TopRestitution: 0.9
+  TopImpactCooldown: 0.12
+  TopInitialDirection: 1
   Timings:
   - Action: Fly
     Duration: 0.625

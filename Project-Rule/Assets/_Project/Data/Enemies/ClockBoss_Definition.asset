@@ -16,13 +16,13 @@ MonoBehaviour:
   DisplayName: "\u53D1\u6761 Boss"
   BodySize: {x: 2, y: 3}
   Health: 150
-  Damage: 22
-  ContactDamage: 1
+  Damage: 8
+  ContactDamage: 0
   ContactInterval: 0.4
   ContactPadding: 0.05
   Energy: 100
   EnergyPerHit: 4
-  EnergyRegen: 14
+  EnergyRegen: 5
   RuleAttribute: 1
   RuleRelation: 3
   MoveSpeed: 3.4
@@ -121,7 +121,7 @@ MonoBehaviour:
   ClockMinuteRotationPeriod: 3
   ClockSecondRotationPeriod: 1
   ClockCoreWindow: 1.15
-  ClockCoreHealth: 15
+  ClockCoreHealth: 1
   MinionSenseRange: 6
   MinionPatrolDistance: 3
   MinionIgnoreDuration: 3

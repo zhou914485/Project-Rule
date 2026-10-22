@@ -65,11 +65,11 @@ namespace RuleGame.Gameplay.Player
         public event Action<RelationId> RelationUnlocked;
 
         /// <summary>当前已解锁的能力位（存档只需要这一份）。</summary>
-        public PlayerAbility UnlockedAbilities => _player != null ? _player.UnlockedAbilities : PlayerAbility.None;
+        public PlayerAbility UnlockedAbilities => Player != null ? Player.UnlockedAbilities : PlayerAbility.None;
 
         /// <summary>四项能力全部解锁。</summary>
         public bool HasAllAbilities
-            => _player != null && (_player.UnlockedAbilities & PlayerAbility.All) == PlayerAbility.All;
+            => Player != null && (Player.UnlockedAbilities & PlayerAbility.All) == PlayerAbility.All;
 
         /// <summary>
         /// 规则是不是已经全解锁：六个属性与五个关系都在账本里。
@@ -115,11 +115,25 @@ namespace RuleGame.Gameplay.Player
             }
         }
 
+        /// <summary>同一物体上的玩家控制（读档早于 Awake 时也能拿到）。</summary>
+        private PlayerController Player
+        {
+            get
+            {
+                if (_player == null) _player = GetComponent<PlayerController>();
+                return _player;
+            }
+        }
+
         private void Awake()
         {
             if (_player == null) _player = GetComponent<PlayerController>();
             if (_status == null) _status = GetComponent<EntityStatus>();
-            ResetRuleSets();
+
+            // ⚠️ PersistenceDriver 执行序 −90，会在本组件的 Awake（默认 0）之前
+            // 用存档回灌词条。账本非空就说明读档已经填过，不能再塞开局默认值
+            // —— 否则「摩擦 / 失效……」这类宝箱词条重启一次就被清回 重力 × 反转。
+            if (_attributes.Count == 0 && _relations.Count == 0) ResetRuleSets();
         }
 
         /// <summary>
@@ -141,8 +155,19 @@ namespace RuleGame.Gameplay.Player
             _maxEnergyBonus = 0f;
             Status?.SetMaxVitalBonuses(0f, 0f);
 
-            _player?.SetUnlockedAbilities(PlayerAbility.None);
+            Player?.SetUnlockedAbilities(PlayerAbility.None);
         }
+
+        /// <summary>
+        /// 续档：只关掉「开发期规则全开」，不动存档刚回灌的账本。
+        /// </summary>
+        /// <remarks>
+        /// <para>⚠️ 续档**不能**调 <see cref="StartNewGame"/>（会把读回来的词条 / 宝箱 / 能力清空），
+        /// 但也不能什么都不调：预制体上的 <c>_unlockAllRulesForDevelopment</c> 默认为 <c>true</c>
+        /// （方便直接进关卡场景调试），正式流程不把它关掉，规则轮盘就会放行玩家没解锁的词条。</para>
+        /// <para>由 <c>GameRoot.StartStreaming</c> 在续档分支调用。</para>
+        /// </remarks>
+        public void ContinueFromSave() => _unlockAllRulesForDevelopment = false;
 
         /// <summary>属性与关系都解锁了，这一格才可用。</summary>
         public bool IsUnlocked(AttributeId attribute, RelationId relation)
@@ -156,7 +181,8 @@ namespace RuleGame.Gameplay.Player
         /// <summary>解锁一项能力。已经解锁时返回 false，不会重复广播。</summary>
         public bool UnlockAbility(PlayerAbility ability)
         {
-            if (_player == null || !_player.UnlockAbility(ability)) return false;
+            PlayerController player = Player;
+            if (player == null || !player.UnlockAbility(ability)) return false;
             AbilityUnlocked?.Invoke(ability);
             return true;
         }
@@ -187,7 +213,7 @@ namespace RuleGame.Gameplay.Player
             switch (reward.Kind)
             {
                 case CityRewardKind.Ability:
-                    if (_player == null || reward.Ability == PlayerAbility.None) return false;
+                    if (Player == null || reward.Ability == PlayerAbility.None) return false;
                     _claimed.Add(sourceId);
                     UnlockAbility(reward.Ability);
                     return true;
@@ -266,7 +292,16 @@ namespace RuleGame.Gameplay.Player
             Status?.SetMaxVitalBonuses(_maxHealthBonus, _maxEnergyBonus);
         }
 
-        /// <summary>场景里找玩家身上的账本（没有返回 null）。</summary>
+        // ==================================================================
+        //  IPlayerProgressStore：能力位的存档桥接（显式实现，接口只认整数）
+        // ==================================================================
+
+        int RuleGame.Infrastructure.Persistence.IPlayerProgressStore.UnlockedAbilities
+            => (int)this.UnlockedAbilities;
+
+        void RuleGame.Infrastructure.Persistence.IPlayerProgressStore.RestoreAbilities(int unlockedAbilities)
+            => Player?.SetUnlockedAbilities((PlayerAbility)unlockedAbilities);
+
         // ==================================================================
         //  IRuleUnlockStore：存档桥接（显式实现，避免与游戏内用的枚举集合重名冲突）
         // ==================================================================
@@ -286,6 +321,11 @@ namespace RuleGame.Gameplay.Player
             _restoringUnlocks = true;
             try
             {
+                // 契约是「整体覆盖」：先清空，旧会话 / Awake 里塞的开局默认值不能混进来
+                // （否则档里没有的词条也会被当成已解锁）。
+                _attributes.Clear();
+                _relations.Clear();
+
                 if (attributes != null)
                 {
                     foreach (string name in attributes)
@@ -317,6 +357,7 @@ namespace RuleGame.Gameplay.Player
             return list;
         }
 
+        /// <summary>场景里找玩家身上的账本（没有返回 null）。</summary>
         public static PlayerProgress Find()
             => UnityEngine.Object.FindAnyObjectByType<PlayerProgress>();
 

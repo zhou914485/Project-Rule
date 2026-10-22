@@ -40,6 +40,9 @@ namespace RuleGame.UI.Comic
         /// <summary>结尾序列在 Resources 下的路径。</summary>
         public const string EndingResourcePath = "Comic/Comic_Ending";
 
+        /// <summary>最终关卡场景。只有这里的 Boss 被打死才播结尾。</summary>
+        private const string FinalScenePath = "Assets/_Project/Scenes/Castle/castle.unity";
+
         [Header("序列（留空则从 Resources/Comic 取）")]
         [SerializeField] private ComicSequence _intro;
         [SerializeField] private ComicSequence _ending;
@@ -605,6 +608,9 @@ namespace RuleGame.UI.Comic
             // 调试场景直接开跑、没有从 Boot 开局时，别把结尾演出来。
             if (GameRoot.Instance == null || !GameRoot.Instance.HasStarted) return;
 
+            // 只有最后一关的 Boss 才播结尾。中间的 Boss（积木国等）打死只开门、继续玩。
+            if (!IsFinalBoss(boss)) return;
+
             ComicSequence sequence = _ending != null ? _ending : Resources.Load<ComicSequence>(EndingResourcePath);
             if (sequence == null || sequence.Count == 0)
             {
@@ -621,6 +627,20 @@ namespace RuleGame.UI.Comic
         {
             yield return WaitUnscaled(_endingDelay);
             Play(sequence, ReturnToMenu, false);
+        }
+
+        /// <summary>
+        /// Boss 是不是最终关卡（castle）里的那一个。
+        /// </summary>
+        /// <remarks>结尾只属于最终 Boss；中间关卡的 Boss 由 <see cref="BossEncounter"/> 自己开门，
+        /// 不能因为共用 <see cref="BossEncounter.Cleared"/> 就把玩家踢回标题。</remarks>
+        private static bool IsFinalBoss(BossEncounter boss)
+        {
+            if (boss == null) return false;
+
+            string scenePath = boss.gameObject.scene.path;
+            return !string.IsNullOrEmpty(scenePath)
+                && string.Equals(scenePath, FinalScenePath, StringComparison.Ordinal);
         }
 
         private void ReturnToMenu()
